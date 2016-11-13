@@ -19,13 +19,20 @@ public class TestDAO {
     public static void main(String args[]){
         
 
-        Users user = new Users("anouar", "anouaremi");
+        Users user = new Users("mehdi", "mehdiemi");
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         if(usersDAO.create(user)){
             
             System.out.println("Insertion de l'utilisateur " + user.getIDUser() + "réussie.");
         }else {
             System.out.println("Echec pour user");
+        }
+        usersDAO = new UsersDAO(ConnexionBD.init());
+        if(usersDAO.finds(user.getIDUser()) != null) {
+            System.out.println("Utilisateur trouvé.");
+            
+        } else {
+            System.out.println("Utilisateur non trouvé");
         }
         
         
@@ -38,7 +45,7 @@ public class TestDAO {
             System.out.println("Echec");
         }*/
         
-        Enseignant enseignant = new Enseignant(1000, "Anouar", "Mouad", "anouar@gmail.com", 6847349, user.getIDUser());
+        Enseignant enseignant = new Enseignant(3, "Mehdi", "Azough", "azough@gmail.com", 6878349, user.getIDUser());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
         if(enseignantDAO.create(enseignant)) {
@@ -47,6 +54,15 @@ public class TestDAO {
         
             System.out.println("Echec pour enseignant");
         }
+        enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        if(enseignantDAO.find(enseignant.getNumEns()) != null) {
+            System.out.println("Enseignanttrouvé.");
+            
+        } else {
+            System.out.println("Enseignant non trouvé");
+        }
+        
+        
         
         
         

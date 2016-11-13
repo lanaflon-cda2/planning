@@ -121,8 +121,8 @@ public class EnseignantDAO extends DAO<Enseignant> {
             state = this.conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Enseignant WHERE NumEns = " + numens);
             res = state.executeQuery(query);
-            if(res.first()) {
-                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5));
+            if(res.next()) {
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
                 Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt(0));
                 Iterator iterator = seanceList.iterator();
