@@ -5,7 +5,9 @@
  */
 package com.planning.view;
 
+import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
+import com.planning.model.Users;
 
 /**
  *
@@ -77,7 +79,13 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_identifiantActionPerformed
 
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
-       
+        UsersDAO userdao= new UsersDAO(ConnexionBD.init());
+        Users user= userdao.finds(identifiant.getSelectedText());
+        if(user!=null){
+            System.out.println("ça marche");
+        }
+        else  System.out.println("ça marche pas");
+                  
     }//GEN-LAST:event_ConnexionMouseClicked
 
     /**

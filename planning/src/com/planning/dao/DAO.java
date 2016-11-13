@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.planning.dao;
 
 import java.sql.Connection;
-/**
- *
- * @author genereux
- */
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public abstract class DAO <T> {
-    
     protected Connection conn = null;
+    protected ResultSet res = null;
+    protected Statement state = null;
     
     public DAO (Connection conn) {
         this.conn = conn;
@@ -25,4 +20,6 @@ public abstract class DAO <T> {
     public abstract boolean update(T obj);
     
     public abstract T find(int id);
+    
+    public abstract T finds(String string);
 }
