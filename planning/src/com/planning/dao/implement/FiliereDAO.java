@@ -19,59 +19,100 @@ public class FiliereDAO extends DAO<Filiere> {
     
     public boolean create(Filiere obj) {
         try {
-            Statement state1 = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String query1 = new String("SELECT NEXTVAL ('NumFiliere') as numfiliere");
-            ResultSet res = state1.executeQuery(query1);
+            res = state.executeQuery(query1);
             if(res.first()) {
-                int id = res.getInt("NumFiliere");
+                int numfiliere = res.getInt(0);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO FILIERE (NumFiliere, NomFiliere) VALUES (?,?)");
-                prepare.setInt(1,obj.getNumFiliere());
+                prepare.setInt(1,numfiliere);
                 prepare.setString(2,obj.getNomFiliere());
                 prepare.executeUpdate();
-                obj = this.find(id);
+                obj = this.find(numfiliere);
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean delete(Filiere obj){
         try {
             this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM FILIERE WHERE NumFliere = " + obj.getNumFiliere());
-            return false;
         } 
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean update(Filiere obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE FILIERE SET "
-                    + "NumFilere = '" + obj.getNumFiliere() + "'"
-                            +" WHERE NomFiliere = " + obj.getNomFiliere());
+                    +" NomFiliere = " + obj.getNomFiliere()+ ",'"
+                            + " WHERE NumFilere = '" + obj.getNumFiliere());
             obj = this.find(obj.getNumFiliere());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        return false;
-   
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public Filiere find(int numf){
-        Filiere filiere = new Filiere();
+        
+        Filiere filiere = null;
+        
         try {    
-            Statement state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Filiere WHERE NumFiliere = " + numf);
-            ResultSet res = state.executeQuery(query);
+            res = state.executeQuery(query);
             if(res.first()) {
-                filiere = new Filiere(res.getInt("numFiliere"), res.getString("nomFiliere"));   
+                filiere = new Filiere(res.getInt(0), res.getString(1));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt("numfiliere"));
+                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt(0));
                 Iterator iterator = seanceList.iterator();
                 while(iterator.hasNext()){
                     filiere.addSeance((Seance)iterator.next());
@@ -80,6 +121,35 @@ public class FiliereDAO extends DAO<Filiere> {
         }catch (SQLException e) {   
         e.printStackTrace();       
         }
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return filiere;
+    }
+    
+    
+    public Filiere finds(String string){
+        Filiere filiere = null;
         return filiere;
     }
 }

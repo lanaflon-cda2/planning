@@ -22,72 +22,141 @@ public class MatiereDAO extends DAO<Matiere> {
     
     public boolean create(Matiere obj) {
         try {
-            Statement state1 = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String query1 = new String("SELECT NEXTVAL ('NumMatiere') as numgroupe");
-            ResultSet res = state1.executeQuery(query1);
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String query1 = new String("SELECT NEXTVAL ('NumMatiere') as nummatiere");
+            res = state.executeQuery(query1);
             if(res.first()) {
-                int id = res.getInt("NumMatiere");
+                int nummatiere = res.getInt(0);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO Matiere (NumMatiere, NomMatiere, DateDebut, DateFin) VALUES (?,?,?,?)");
-                prepare.setInt(1,obj.getNumMatiere());
+                prepare.setInt(1,nummatiere);
                 prepare.setString(2,obj.getNomMatiere());
                 prepare.setDate(3,(Date) obj.getDateDebut());
                 prepare.setDate(4,(Date) obj.getDateFin());
                 prepare.executeUpdate();
-                obj = this.find(id);
+                obj = this.find(nummatiere);
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean delete(Matiere obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM MATIERE WHERE NumMatiere = " + obj.getNumMatiere()
-            );
-            return false;
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM MATIERE WHERE NumMatiere = " + obj.getNumMatiere());
         } 
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean update(Matiere obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE MATIERE SET "
-                    + "NumMatiere = '" + obj.getNumMatiere() + "'"
-                            +" WHERE NomMatiere = " + obj.getNomMatiere()+ "'"
-                                    +" WHERE DateDebut = " + obj.getDateDebut()+ "'"
-                                            +" WHERE DateFin = " + obj.getDateFin());
+                    +" NomMatiere = " + obj.getNomMatiere()+ ",'"
+                            +" DateDebut = " + obj.getDateDebut()+ ",'"
+                                    +" DateFin = " + obj.getDateFin()
+                                            + " WHERE NumMatiere = '" + obj.getNumMatiere());
             obj = this.find(obj.getNumMatiere());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        return false;
-   
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public Matiere find(int numm){
-        Matiere matiere = new Matiere();
+        
+        Matiere matiere = null;
+        
         try {    
-            Statement state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Matiere WHERE NumMatiere = " + numm);
-            ResultSet res = state.executeQuery(query);
+            res = state.executeQuery(query);
             if(res.first()) {
-                matiere = new Matiere(res.getInt("numMatiere"));   
+                matiere = new Matiere(res.getInt(0));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt("numMatiere"));
+                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt(0));
                 Iterator iterator = seanceList.iterator();
                 while(iterator.hasNext()){
                     matiere.addSeance((Seance)iterator.next());
                 }
              }   
         }catch (SQLException e) {   
-        e.printStackTrace();       
+            e.printStackTrace();       
         }
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return matiere;
+    }
+    
+    
+    public Matiere finds(String string){
+        Matiere matiere = null;
         return matiere;
     }
 }

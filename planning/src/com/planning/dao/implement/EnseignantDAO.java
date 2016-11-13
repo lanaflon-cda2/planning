@@ -23,68 +23,108 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     public boolean create(Enseignant obj) {
         try {
-            Statement state1 = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String query1 = new String("SELECT NEXTVAL ('NumEns') as numens");
-            ResultSet res = state1.executeQuery(query1);
+            res = state.executeQuery(query1);
             if(res.first()) {
-                int id = res.getInt("NumEns");
+                int numens = res.getInt("NumEns");
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO ENSEIGNANT (NumEns, NomEns, PrenomEns, Mail, Tel, NumUser) VALUES (?,?,?,?,?,?)");
-                prepare.setInt(1,obj.getNumEns());
+                prepare.setInt(1,numens);
                 prepare.setString(2,obj.getNomEns());
                 prepare.setString(3,obj.getPrenomEns());
                 prepare.setString(4,obj.getMail());
                 prepare.setInt(5,obj.getTel());
-                prepare.setInt(6,obj.getNumUser());
+                prepare.setString(6,obj.getIDUser());
                 prepare.executeUpdate();
-                obj = this.find(id);
+                obj = this.find(numens);
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean delete(Enseignant obj){
         try {
             this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM ENSEIGNANT WHERE NumEns = " + obj.getNumEns());
-            return false;
         } 
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean update(Enseignant obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE ENSEIGNANT SET "
-                    + "NumEns = '" + obj.getNumEns() + "'"
-                            +" WHERE NomEns = " + obj.getNomEns()+ "'"
-                                    +" WHERE PrenomEns = " + obj.getPrenomEns()+ "'"
-                                            +" WHERE Mail = " + obj.getMail()+ "'"
-                                                    +" WHERE Tel = " + obj.getTel()+ "'"
-                                                            +" WHERE NumUser = " + obj.getNumUser());
+                +" NomEns = "  + obj.getNomEns()+ ",'"
+                        +" PrenomEns = " + obj.getPrenomEns()+ ",'"
+                                +" Mail = " + obj.getMail()+ ",'"
+                                        +" Tel = " + obj.getTel()+ ",'"
+                                                +" NumUser = " + obj.getIDUser()
+                                                        + " WHERE NumEns = '" + obj.getNumEns());
             obj = this.find(obj.getNumEns());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        return false;
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
-    public Enseignant find(int id){
+    public Enseignant find(int numens){
         
-        Enseignant enseignant = new Enseignant();
+        Enseignant enseignant = null;
         
         try {
-            Statement state = this.conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Enseignant WHERE NumEns = " + id);
-            ResultSet res = state.executeQuery(query);
+            state = this.conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            String query = new String("SELECT * FROM Enseignant WHERE NumEns = " + numens);
+            res = state.executeQuery(query);
             if(res.first()) {
-                enseignant = new Enseignant(res.getInt("numEns"), res.getString("nomEns"), res.getString("prenomEns"), res.getString("mail"), res.getInt("tel"), res.getInt("numUser"));
+                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5));
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt("numEns"));
+                Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt(0));
                 Iterator iterator = seanceList.iterator();
             while(iterator.hasNext()){
                 enseignant.addSeance((Seance)iterator.next());
@@ -93,23 +133,77 @@ public class EnseignantDAO extends DAO<Enseignant> {
         } catch (SQLException e) {
             e.printStackTrace();
             }
-        return enseignant;}
-    
-    
-    public Set<Enseignant> findByIDUsers(int idu){
-        Set<Enseignant> enseignantList = new HashSet<Enseignant>();
-        try {
-            Statement state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Enseignant WHERE IDUsers = " + idu);
-            ResultSet res = state.executeQuery(query);
-            while(res.next()) {
-                Enseignant enseignant = new Enseignant(res.getInt("numEns"), res.getString("nomEns"), res.getString("prenomEns"), res.getString("mail"), res.getInt("tel"), res.getInt("IDUser"));
-                enseignantList.add(enseignant);                  
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
             }
-            return enseignantList;
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return enseignant;
+    }
+    
+    
+    public Enseignant findByIDUser(String iDUser){
+        
+        Enseignant enseignant = null;
+        
+        try {
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            String query = new String("SELECT * FROM Enseignant WHERE IDUsers = " + iDUser);
+            res = state.executeQuery(query);
+            while(res.next()) {
+                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5));                  
+            }
         } catch (SQLException e) {
              e.printStackTrace();
         }
-        return enseignantList;
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return enseignant;
+    }
+    
+    
+    
+    public Enseignant finds(String string){
+      
+        return null;
     }
 }
