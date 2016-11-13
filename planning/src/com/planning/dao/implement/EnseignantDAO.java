@@ -24,23 +24,21 @@ public class EnseignantDAO extends DAO<Enseignant> {
     public boolean create(Enseignant obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String query1 = new String("SELECT NEXTVAL ('NumEns') as numens");
-            res = state.executeQuery(query1);
-            if(res.first()) {
-                int numens = res.getInt("NumEns");
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO ENSEIGNANT (NumEns, NomEns, PrenomEns, Mail, Tel, NumUser) VALUES (?,?,?,?,?,?)");
-                prepare.setInt(1,numens);
-                prepare.setString(2,obj.getNomEns());
-                prepare.setString(3,obj.getPrenomEns());
-                prepare.setString(4,obj.getMail());
-                prepare.setInt(5,obj.getTel());
-                prepare.setString(6,obj.getIDUser());
-                prepare.executeUpdate();
-                obj = this.find(numens);
-            }
+            
+            String query = "INSERT INTO Enseignant VALUES (NULL, ";
+            query += "'" + obj.getNomEns() + "', ";
+            query += "'" + obj.getPrenomEns() + "',";
+            query += "'" + obj.getMail() + "', ";
+            query += obj.getTel() + ", ";
+            query += "'" + obj.getIDUser() + "')";
+            
+            int numEns = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            
+            obj.setNumEns(numEns);            
         }
         catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         finally{
             if(res != null){
@@ -70,10 +68,11 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     public boolean delete(Enseignant obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM ENSEIGNANT WHERE NumEns = " + obj.getNumEns());
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Enseignant WHERE NumEns = " + obj.getNumEns());
         } 
         catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         finally{
             if(conn != null){
@@ -89,7 +88,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     public boolean update(Enseignant obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE ENSEIGNANT SET "
+            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Enseignant SET "
                 +" NomEns = "  + obj.getNomEns()+ ",'"
                         +" PrenomEns = " + obj.getPrenomEns()+ ",'"
                                 +" Mail = " + obj.getMail()+ ",'"
@@ -100,6 +99,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
+                    return false;
 	}
         finally{
             if(conn != null){

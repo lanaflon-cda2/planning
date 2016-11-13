@@ -17,8 +17,9 @@ public class Users implements Serializable {
         this.iDUser = iDUser;
     }
 
-    public Users(String string, String string0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Users(String iDUser, String motDePasse) {
+       this.iDUser = iDUser;
+       this.motDePasse= motDePasse;
     }
 
     public String getIDUser() {

@@ -12,27 +12,26 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 public class ConnexionBD {
-    private Connection connection ;
     
     public static Connection init(){
+        Connection conn = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd","root","root");
-            if (connection!=null)
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd","root","root");
+            if (conn != null)
                 System.out.println("Connexion Reussite");
             else
                 System.out.println("Erreur de Connexion");
-        return connection;
         
                 
         }catch(Exception e){
             System.out.println("--> SQLException : "+ e);
-            return null;
         }
         
+        return conn;
     }
-     public static void main(String args[]){
+     /*public static void main(String args[]){
          ConnexionBD.init();
-     }
+     }*/
     
 }

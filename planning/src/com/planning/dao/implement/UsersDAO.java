@@ -20,19 +20,18 @@ public class UsersDAO extends DAO<Users> {
     public boolean create(Users obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String query1 = new String("SELECT NEXTVAL ('IDUser') as IDUser");
-            res = state.executeQuery(query1);
-            if(res.first()) {
-                String iDUser = res.getString(0);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO USERS (IDUser, MotDePasse) VALUES (?,?)");
-                prepare.setString(1,iDUser);
-                prepare.setString(2,obj.getMotDePasse());
-                prepare.executeUpdate();
-                obj = this.finds(iDUser);
-            }
+            PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO Users VALUES (?,?)");
+            prepare.setString(1,obj.getIDUser());
+            prepare.setString(2,obj.getMotDePasse());
+            prepare.executeUpdate();
+                
+            
         }
         catch (SQLException e) {
+            
             e.printStackTrace();
+            return false;
+            
         }
         finally{
             if(res != null){
@@ -62,10 +61,11 @@ public class UsersDAO extends DAO<Users> {
     
     public boolean delete(Users obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM USERS WHERE IDUser = " + obj.getIDUser());
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Users WHERE IDUser = '" + obj.getIDUser() + "'");
         } 
         catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         finally{
             if(conn != null){
@@ -81,13 +81,14 @@ public class UsersDAO extends DAO<Users> {
     
     public boolean update(Users obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE USERS SET "
-                    +" MotDePasse = " + obj.getMotDePasse() + ",'"
-                            + " WHERE IDUser = '" + obj.getIDUser()+";");
+            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Users SET "
+                    +" MotDePasse = '" + obj.getMotDePasse() + "',"
+                            + " WHERE IDUser = '" + obj.getIDUser()+"'");
             obj = this.finds(obj.getIDUser());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
+                    return false;
 	}
         finally{
             if(conn != null){
@@ -105,7 +106,7 @@ public class UsersDAO extends DAO<Users> {
         Users users = new Users();
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM USERS WHERE IDUsers = " + iDUser);
+            String query = new String("SELECT * FROM USERS WHERE IDUsers = " + "'" + iDUser + "'");
             res = state.executeQuery(query);
             if(res.first()) {
                 users = new Users(res.getString("IDUser"), res.getString("MotDePasse"));   
