@@ -109,7 +109,9 @@ public class MatiereDAO extends DAO<Matiere> {
     }
     
     public Matiere find(int numm){
-        Matiere matiere = new Matiere();
+        
+        Matiere matiere = null;
+        
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Matiere WHERE NumMatiere = " + numm);
@@ -154,7 +156,7 @@ public class MatiereDAO extends DAO<Matiere> {
     
     
     public Matiere finds(String string){
-        Matiere matiere = new Matiere();
+        Matiere matiere = null;
         return matiere;
     }
 }

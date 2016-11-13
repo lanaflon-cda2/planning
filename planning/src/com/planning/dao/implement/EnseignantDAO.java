@@ -115,7 +115,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     public Enseignant find(int numens){
         
-        Enseignant enseignant = new Enseignant();
+        Enseignant enseignant = null;
         
         try {
             state = this.conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
@@ -160,17 +160,17 @@ public class EnseignantDAO extends DAO<Enseignant> {
     }
     
     
-    public Set<Enseignant> findByIDUser(String iDUser){
-        Set<Enseignant> enseignantList = new HashSet<Enseignant>();
+    public Enseignant findByIDUser(String iDUser){
+        
+        Enseignant enseignant = null;
+        
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Enseignant WHERE IDUsers = " + iDUser);
             res = state.executeQuery(query);
             while(res.next()) {
-                Enseignant enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));
-                enseignantList.add(enseignant);                  
+                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));                  
             }
-            return enseignantList;
         } catch (SQLException e) {
              e.printStackTrace();
         }
@@ -197,13 +197,13 @@ public class EnseignantDAO extends DAO<Enseignant> {
                 }
             }
         }
-        return enseignantList;
+        return enseignant;
     }
     
     
     
     public Enseignant finds(String string){
-        Enseignant ensaignant = new Enseignant();
+        Enseignant ensaignant = null;
         return ensaignant;
     }
 }

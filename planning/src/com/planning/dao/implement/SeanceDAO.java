@@ -116,7 +116,9 @@ public class SeanceDAO extends DAO<Seance> {
     }
     
     public Seance find(int numseance){
-        Seance seance = new Seance();
+        
+        Seance seance = null;
+        
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Seance WHERE NumSeance = " + numseance);
@@ -156,7 +158,9 @@ public class SeanceDAO extends DAO<Seance> {
     
     
     public Set<Seance> findByNumEns(int nume){
+        
         Set<Seance> seanceList = new HashSet<Seance>();
+        
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Seance WHERE NumEns = " + nume);
@@ -196,7 +200,9 @@ public class SeanceDAO extends DAO<Seance> {
     
     
     public Set<Seance> findByNumFiliere(int numf){
+        
         Set<Seance> seanceList = new HashSet<Seance>();
+        
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Seance WHERE NumFiliere = " + numf);
@@ -237,7 +243,9 @@ public class SeanceDAO extends DAO<Seance> {
     
     
     public Set<Seance> findByNumGroupe(int numg){
+        
         Set<Seance> seanceList = new HashSet<Seance>();
+        
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Seance WHERE NumGroupe = " + numg);
@@ -279,7 +287,9 @@ public class SeanceDAO extends DAO<Seance> {
     
     
     public Set<Seance> findByNumMatiere(int numm){
+        
         Set<Seance> seanceList = new HashSet<Seance>();
+        
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Seance WHERE NumMatiere = " + numm);
@@ -320,7 +330,7 @@ public class SeanceDAO extends DAO<Seance> {
     
     
     public Seance finds(String string){
-        Seance seance = new Seance();
+        Seance seance = null;
         return seance;
     }
 }

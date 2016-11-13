@@ -102,7 +102,9 @@ public class FiliereDAO extends DAO<Filiere> {
     }
     
     public Filiere find(int numf){
-        Filiere filiere = new Filiere();
+        
+        Filiere filiere = null;
+        
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Filiere WHERE NumFiliere = " + numf);
@@ -147,7 +149,7 @@ public class FiliereDAO extends DAO<Filiere> {
     
     
     public Filiere finds(String string){
-        Filiere filiere = new Filiere();
+        Filiere filiere = null;
         return filiere;
     }
 }

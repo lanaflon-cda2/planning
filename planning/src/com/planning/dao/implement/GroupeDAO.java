@@ -108,7 +108,9 @@ public class GroupeDAO extends DAO<Groupe> {
     }
     
     public Groupe find(int numg){
-        Groupe groupe = new Groupe();
+        
+        Groupe groupe = null;
+        
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Groupe WHERE NumGroupe = " + numg);
@@ -153,7 +155,7 @@ public class GroupeDAO extends DAO<Groupe> {
     
     
     public Groupe finds(String string){
-        Groupe groupe = new Groupe();
+        Groupe groupe = null;
         return groupe;
     }
 }

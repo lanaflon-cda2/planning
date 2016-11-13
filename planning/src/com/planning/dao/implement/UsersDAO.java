@@ -104,14 +104,16 @@ public class UsersDAO extends DAO<Users> {
     
     
     public Users find(int id){
-        Users users = new Users();
+        Users users = null;
         return users;
     }
     
     
         
     public Users finds(String iDUser){
-        Users users = new Users();
+        
+        Users users = null;
+        
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM USERS WHERE IDUsers = " + iDUser);
@@ -119,11 +121,7 @@ public class UsersDAO extends DAO<Users> {
             if(res.first()) {
                 users = new Users(res.getString(0));   
                 EnseignantDAO enseignantDAO = new EnseignantDAO(this.conn);
-                Set<Enseignant> enseignantList = enseignantDAO.findByIDUser(res.getString(0));
-                Iterator iterator = enseignantList.iterator();
-                while(iterator.hasNext()){
-                    users.addEnseignant((Enseignant)iterator.next());
-                }
+                Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(0));
              }   
         }catch (SQLException e) {   
         e.printStackTrace();       
