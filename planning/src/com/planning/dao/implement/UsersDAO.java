@@ -103,15 +103,15 @@ public class UsersDAO extends DAO<Users> {
     }
     
     public Users finds(String iDUser){
-        Users users = new Users();
+        Users users = null;
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM USERS WHERE IDUsers = " + "'" + iDUser + "'");
+            String query = new String("SELECT * FROM Users WHERE IDUser = '" + iDUser + "'");
             res = state.executeQuery(query);
-            if(res.first()) {
+            if(res.next()) {
                 users = new Users(res.getString("IDUser"), res.getString("MotDePasse"));   
                 EnseignantDAO enseignantDAO = new EnseignantDAO(this.conn);
-                Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(0));
+                Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(1));
                 users.setEnseignant(enseignant);
              }   
         }catch (SQLException e) {   

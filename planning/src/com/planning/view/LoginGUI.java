@@ -5,7 +5,9 @@
  */
 package com.planning.view;
 
+import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
+import com.planning.model.Users;
 
 /**
  *
@@ -77,14 +79,18 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_identifiantActionPerformed
 
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
-       
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        Users user = usersDAO.finds(identifiant.getText());
+        if(user != null ) {
+            System.out.println("ça marche");
+        } else System.out.println("ça marche pas");
     }//GEN-LAST:event_ConnexionMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set th{e Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
