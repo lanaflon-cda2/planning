@@ -7,7 +7,7 @@ import java.util.Set;
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int iDUser;
+    private String iDUser;
     private String motDePasse;
    
     private Set<Enseignant> enseignantList = new HashSet<Enseignant> ();
@@ -15,15 +15,15 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(int iDUser) {
+    public Users(String iDUser) {
         this.iDUser = iDUser;
     }
 
-    public int getIDUser() {
+    public String getIDUser() {
         return iDUser;
     }
 
-    public void setIDUser(int iDUser) {
+    public void setIDUser(String iDUser) {
         this.iDUser = iDUser;
     }
 

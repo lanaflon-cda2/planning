@@ -19,60 +19,107 @@ public class UsersDAO extends DAO<Users> {
     
     public boolean create(Users obj) {
         try {
-            Statement state1 = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String query1 = new String("SELECT NEXTVAL ('IDUser') as IDUser");
-            ResultSet res = state1.executeQuery(query1);
+            res = state.executeQuery(query1);
             if(res.first()) {
-                int id = res.getInt("IDUser");
+                String IDUser = res.getString(0);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO USERS (IDUser, MotDePasse) VALUES (?,?)");
-                prepare.setInt(1,obj.getIDUser());
+                prepare.setString(1,IDUser);
                 prepare.setString(2,obj.getMotDePasse());
                 prepare.executeUpdate();
-                obj = this.find(id);
+                obj = this.finds(IDUser);
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean delete(Users obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM USERS WHERE IDUser = " + obj.getIDUser()
-            );
-            return false;
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM USERS WHERE IDUser = " + obj.getIDUser());
         } 
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean update(Users obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE USERS SET "
-                    + "IDUser = '" + obj.getIDUser() + "'"
-                            +" WHERE MotDePasse = " + obj.getMotDePasse());
-            obj = this.find(obj.getIDUser());
+                    +" MotDePasse = " + obj.getMotDePasse() + ",'"
+                            + " WHERE IDUser = '" + obj.getIDUser()+";");
+            obj = this.finds(obj.getIDUser());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        return false;
-   
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
-    public Users find(int idu){
+    
+    
+    public Users find(int id){
+        Users users = new Users();
+        return users;
+    }
+    
+    
+        
+    public Users finds(String iDUser){
         Users users = new Users();
         try {    
-            Statement state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Users WHERE IDUsers = " + idu);
-            ResultSet res = state.executeQuery(query);
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            String query = new String("SELECT * FROM USERS WHERE IDUsers = " + iDUser);
+            res = state.executeQuery(query);
             if(res.first()) {
-                users = new Users(res.getInt("numGroupe"));   
+                users = new Users(res.getString(0));   
                 EnseignantDAO enseignantDAO = new EnseignantDAO(this.conn);
-                Set<Enseignant> enseignantList = enseignantDAO.findByNumUsers(res.getInt("numGroupe"));
+                Set<Enseignant> enseignantList = enseignantDAO.findByIDUser(res.getString(0));
                 Iterator iterator = enseignantList.iterator();
                 while(iterator.hasNext()){
                     users.addEnseignant((Enseignant)iterator.next());
@@ -81,6 +128,30 @@ public class UsersDAO extends DAO<Users> {
         }catch (SQLException e) {   
         e.printStackTrace();       
         }
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
         return users;
     }
+    
 }

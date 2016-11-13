@@ -23,62 +23,100 @@ public class GroupeDAO extends DAO<Groupe> {
     
     public boolean create(Groupe obj) {
         try {
-            Statement state1 = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String query1 = new String("SELECT NEXTVAL ('NumGroupe') as numgroupe");
-            ResultSet res = state1.executeQuery(query1);
+            res = state.executeQuery(query1);
             if(res.first()) {
-                int id = res.getInt("NumGroupe");
+                int numgroupe = res.getInt(0);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO GROUPE (NumGroupe, NomGroupe, Niveau) VALUES (?,?,?)");
-                prepare.setInt(1,obj.getNumGroupe());
+                prepare.setInt(1,numgroupe);
                 prepare.setString(2,obj.getNomGroupe());
                 prepare.setInt(3,obj.getNiveau());
                 prepare.executeUpdate();
-                obj = this.find(id);
+                obj = this.find(numgroupe);
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean delete(Groupe obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM GROUPE WHERE NumGroupe = " + obj.getNumGroupe()
-            );
-            return false;
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM GROUPE WHERE NumGroupe = " + obj.getNumGroupe());
         } 
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public boolean update(Groupe obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE GROUPE SET "
-                    + "NumGroupe = '" + obj.getNumGroupe() + "'"
-                            +" WHERE NomGroupe = " + obj.getNomGroupe()+ "'"
-                                    +" WHERE Niveau = " + obj.getNiveau());
+                    +" NomGroupe = " + obj.getNomGroupe()+ ",'"
+                            +" Niveau = " + obj.getNiveau()
+                                    + " WHERE NumGroupe = '" + obj.getNumGroupe());
             obj = this.find(obj.getNumGroupe());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        return false;
-   
+        finally{
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return true;
     }
     
     public Groupe find(int numg){
         Groupe groupe = new Groupe();
         try {    
-            Statement state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Groupe WHERE NumGroupe = " + numg);
-            ResultSet res = state.executeQuery(query);
+            res = state.executeQuery(query);
             if(res.first()) {
-                groupe = new Groupe(res.getInt("numGroupe"));   
+                groupe = new Groupe(res.getInt(0));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumGroupe(res.getInt("numGroupe"));
+                Set<Seance> seanceList = seanceDAO.findByNumGroupe(res.getInt(0));
                 Iterator iterator = seanceList.iterator();
                 while(iterator.hasNext()){
                     groupe.addSeance((Seance)iterator.next());
@@ -87,6 +125,35 @@ public class GroupeDAO extends DAO<Groupe> {
         }catch (SQLException e) {   
         e.printStackTrace();       
         }
+        finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(conn != null){
+                try{
+                conn.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        }
+        return groupe;
+    }
+    
+    
+    public Groupe finds(String string){
+        Groupe groupe = new Groupe();
         return groupe;
     }
 }
