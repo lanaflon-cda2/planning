@@ -19,7 +19,7 @@ public class TestDAO {
     public static void main(String args[]){
         
 
-        Users user = new Users("mehdi", "mehdiemi");
+        Users user = new Users("keita", "koria");
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         if(usersDAO.create(user)){
             
@@ -45,7 +45,7 @@ public class TestDAO {
             System.out.println("Echec");
         }*/
         
-        Enseignant enseignant = new Enseignant(3, "Mehdi", "Azough", "azough@gmail.com", 6878349, user.getIDUser());
+        Enseignant enseignant = new Enseignant(3, "keita", "lancine", "keita@gmail.com", 6878349, user.getIDUser());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
         if(enseignantDAO.create(enseignant)) {

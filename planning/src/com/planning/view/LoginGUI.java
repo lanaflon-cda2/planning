@@ -8,6 +8,8 @@ package com.planning.view;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Users;
+import static java.lang.System.out;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,9 +83,24 @@ public class LoginGUI extends javax.swing.JFrame {
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         Users user = usersDAO.finds(identifiant.getText());
+        String passwordtext = new String(motdepasse.getPassword());
+        
         if(user != null ) {
-            System.out.println("ça marche");
-        } else System.out.println("ça marche pas");
+            String passworduser = user.getMotDePasse();
+            if(passworduser.equals(passwordtext)) {
+                System.out.println("Mot de Passe Correcte");
+                JOptionPane.showMessageDialog(null, "Connexion réussie");
+            }
+            
+            else {
+                System.out.println("Mot de passe incorrecte");
+                JOptionPane.showMessageDialog(null, "Connexion échouée.Mot de passe incorrecte");
+            }
+              
+        } else {
+            System.out.println("ça marche pas");
+            JOptionPane.showMessageDialog(null, "Utilisateur non trouvé");
+        }
     }//GEN-LAST:event_ConnexionMouseClicked
 
     /**
