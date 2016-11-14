@@ -5,7 +5,11 @@
  */
 package com.planning.view;
 
+import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
+import com.planning.model.Users;
+import static java.lang.System.out;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -77,14 +81,33 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_identifiantActionPerformed
 
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
-       
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        Users user = usersDAO.finds(identifiant.getText());
+        String passwordtext = new String(motdepasse.getPassword());
+        
+        if(user != null ) {
+            String passworduser = user.getMotDePasse();
+            if(passworduser.equals(passwordtext)) {
+                System.out.println("Mot de Passe Correcte");
+                JOptionPane.showMessageDialog(null, "Connexion réussie");
+            }
+            
+            else {
+                System.out.println("Mot de passe incorrecte");
+                JOptionPane.showMessageDialog(null, "Connexion échouée.Mot de passe incorrecte");
+            }
+              
+        } else {
+            System.out.println("ça marche pas");
+            JOptionPane.showMessageDialog(null, "Utilisateur non trouvé");
+        }
     }//GEN-LAST:event_ConnexionMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set th{e Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

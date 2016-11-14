@@ -24,23 +24,21 @@ public class EnseignantDAO extends DAO<Enseignant> {
     public boolean create(Enseignant obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String query1 = new String("SELECT NEXTVAL ('NumEns') as numens");
-            res = state.executeQuery(query1);
-            if(res.first()) {
-                int numens = res.getInt(1);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO ENSEIGNANT (NumEns, NomEns, PrenomEns, Mail, Tel, NumUser) VALUES (?,?,?,?,?,?)");
-                prepare.setInt(1,numens);
-                prepare.setString(2,obj.getNomEns());
-                prepare.setString(3,obj.getPrenomEns());
-                prepare.setString(4,obj.getMail());
-                prepare.setInt(5,obj.getTel());
-                prepare.setInt(6,obj.getNumUser());
-                prepare.executeUpdate();
-                obj = this.find(numens);
-            }
+            
+            String query = "INSERT INTO Enseignant VALUES (NULL, ";
+            query += "'" + obj.getNomEns() + "', ";
+            query += "'" + obj.getPrenomEns() + "',";
+            query += "'" + obj.getMail() + "', ";
+            query += obj.getTel() + ", ";
+            query += "'" + obj.getIDUser() + "')";
+            
+            int numEns = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            
+            obj.setNumEns(numEns);            
         }
         catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         finally{
             if(res != null){
@@ -70,10 +68,11 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     public boolean delete(Enseignant obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM ENSEIGNANT WHERE NumEns = " + obj.getNumEns());
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Enseignant WHERE NumEns = " + obj.getNumEns());
         } 
         catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         finally{
             if(conn != null){
@@ -89,17 +88,18 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     public boolean update(Enseignant obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE ENSEIGNANT SET "
+            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Enseignant SET "
                 +" NomEns = "  + obj.getNomEns()+ ",'"
                         +" PrenomEns = " + obj.getPrenomEns()+ ",'"
                                 +" Mail = " + obj.getMail()+ ",'"
                                         +" Tel = " + obj.getTel()+ ",'"
-                                                +" NumUser = " + obj.getNumUser()
+                                                +" NumUser = " + obj.getIDUser()
                                                         + " WHERE NumEns = '" + obj.getNumEns());
             obj = this.find(obj.getNumEns());
 	}
         catch (SQLException e) {
 	            e.printStackTrace();
+                    return false;
 	}
         finally{
             if(conn != null){
@@ -121,8 +121,8 @@ public class EnseignantDAO extends DAO<Enseignant> {
             state = this.conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String("SELECT * FROM Enseignant WHERE NumEns = " + numens);
             res = state.executeQuery(query);
-            if(res.first()) {
-                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6));
+            if(res.next()) {
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
                 Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
@@ -169,7 +169,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             String query = new String("SELECT * FROM Enseignant WHERE IDUsers = " + iDUser);
             res = state.executeQuery(query);
             while(res.next()) {
-                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6));                  
+                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5));                  
             }
         } catch (SQLException e) {
              e.printStackTrace();
@@ -203,7 +203,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     
     public Enseignant finds(String string){
-        Enseignant ensaignant = null;
-        return ensaignant;
+      
+        return null;
     }
 }

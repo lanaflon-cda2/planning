@@ -14,7 +14,7 @@ public class Enseignant implements Serializable {
     private String prenomEns;
     private String mail;
     private int tel;
-    private int numUser;
+    private String iDUser;
     
     private Set<Seance> seanceList = new HashSet<Seance>  ();
 
@@ -25,14 +25,14 @@ public class Enseignant implements Serializable {
         this.numEns = numEns;
     }
 
-    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, int tel, int numUser) {
+    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, int tel, String iDUser) {
         
         this.numEns = numEns;
         this.nomEns = nomEns;
         this.prenomEns = prenomEns;
         this.mail = mail;
         this.tel = tel;
-        this.numUser = numUser;
+        this.iDUser = iDUser;
     }
 
     public int getNumEns() {
@@ -75,12 +75,12 @@ public class Enseignant implements Serializable {
         this.tel = tel;
     }
 
-    public int getNumUser() {
-        return numUser;
+    public String getIDUser() {
+        return iDUser;
     }
 
-    public void setNumUser(int numUser) {
-        this.numUser = numUser;
+    public void setIDUser(String iDUser) {
+        this.iDUser = iDUser;
     }
 
     public Set<Seance> getSeanceList() {

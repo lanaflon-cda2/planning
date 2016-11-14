@@ -17,6 +17,11 @@ public class Users implements Serializable {
         this.iDUser = iDUser;
     }
 
+    public Users(String iDUser, String motDePasse) {
+       this.iDUser = iDUser;
+       this.motDePasse= motDePasse;
+    }
+
     public String getIDUser() {
         return iDUser;
     }

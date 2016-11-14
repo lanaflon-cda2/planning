@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 public class ConnexionBD {
+    private Connection connection ;
     
     public static Connection open(){
         try{
