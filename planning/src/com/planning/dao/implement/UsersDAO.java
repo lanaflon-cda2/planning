@@ -23,7 +23,7 @@ public class UsersDAO extends DAO<Users> {
             String query1 = new String("SELECT NEXTVAL ('IDUser') as IDUser");
             res = state.executeQuery(query1);
             if(res.first()) {
-                String IDUser = res.getString(0);
+                String IDUser = res.getString(1);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO USERS (IDUser, MotDePasse) VALUES (?,?)");
                 prepare.setString(1,IDUser);
                 prepare.setString(2,obj.getMotDePasse());
@@ -119,9 +119,9 @@ public class UsersDAO extends DAO<Users> {
             String query = new String("SELECT * FROM USERS WHERE IDUsers = " + iDUser);
             res = state.executeQuery(query);
             if(res.first()) {
-                users = new Users(res.getString(0));   
+                users = new Users(res.getString(1));   
                 EnseignantDAO enseignantDAO = new EnseignantDAO(this.conn);
-                Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(0));
+                Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(1));
              }   
         }catch (SQLException e) {   
         e.printStackTrace();       

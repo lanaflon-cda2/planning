@@ -23,7 +23,7 @@ public class FiliereDAO extends DAO<Filiere> {
             String query1 = new String("SELECT NEXTVAL ('NumFiliere') as numfiliere");
             res = state.executeQuery(query1);
             if(res.first()) {
-                int numfiliere = res.getInt(0);
+                int numfiliere = res.getInt(1);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO FILIERE (NumFiliere, NomFiliere) VALUES (?,?)");
                 prepare.setInt(1,numfiliere);
                 prepare.setString(2,obj.getNomFiliere());
@@ -110,9 +110,9 @@ public class FiliereDAO extends DAO<Filiere> {
             String query = new String("SELECT * FROM Filiere WHERE NumFiliere = " + numf);
             res = state.executeQuery(query);
             if(res.first()) {
-                filiere = new Filiere(res.getInt(0), res.getString(1));   
+                filiere = new Filiere(res.getInt(1), res.getString(2));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt(0));
+                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
                 while(iterator.hasNext()){
                     filiere.addSeance((Seance)iterator.next());

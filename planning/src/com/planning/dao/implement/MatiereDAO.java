@@ -26,7 +26,7 @@ public class MatiereDAO extends DAO<Matiere> {
             String query1 = new String("SELECT NEXTVAL ('NumMatiere') as nummatiere");
             res = state.executeQuery(query1);
             if(res.first()) {
-                int nummatiere = res.getInt(0);
+                int nummatiere = res.getInt(1);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO Matiere (NumMatiere, NomMatiere, DateDebut, DateFin) VALUES (?,?,?,?)");
                 prepare.setInt(1,nummatiere);
                 prepare.setString(2,obj.getNomMatiere());
@@ -117,9 +117,9 @@ public class MatiereDAO extends DAO<Matiere> {
             String query = new String("SELECT * FROM Matiere WHERE NumMatiere = " + numm);
             res = state.executeQuery(query);
             if(res.first()) {
-                matiere = new Matiere(res.getInt(0));   
+                matiere = new Matiere(res.getInt(1));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt(0));
+                Set<Seance> seanceList = seanceDAO.findByNumFiliere(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
                 while(iterator.hasNext()){
                     matiere.addSeance((Seance)iterator.next());

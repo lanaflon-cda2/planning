@@ -27,7 +27,7 @@ public class GroupeDAO extends DAO<Groupe> {
             String query1 = new String("SELECT NEXTVAL ('NumGroupe') as numgroupe");
             res = state.executeQuery(query1);
             if(res.first()) {
-                int numgroupe = res.getInt(0);
+                int numgroupe = res.getInt(1);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO GROUPE (NumGroupe, NomGroupe, Niveau) VALUES (?,?,?)");
                 prepare.setInt(1,numgroupe);
                 prepare.setString(2,obj.getNomGroupe());
@@ -116,9 +116,9 @@ public class GroupeDAO extends DAO<Groupe> {
             String query = new String("SELECT * FROM Groupe WHERE NumGroupe = " + numg);
             res = state.executeQuery(query);
             if(res.first()) {
-                groupe = new Groupe(res.getInt(0));   
+                groupe = new Groupe(res.getInt(1));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumGroupe(res.getInt(0));
+                Set<Seance> seanceList = seanceDAO.findByNumGroupe(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
                 while(iterator.hasNext()){
                     groupe.addSeance((Seance)iterator.next());

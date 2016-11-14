@@ -27,7 +27,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             String query1 = new String("SELECT NEXTVAL ('NumEns') as numens");
             res = state.executeQuery(query1);
             if(res.first()) {
-                int numens = res.getInt("NumEns");
+                int numens = res.getInt(1);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO ENSEIGNANT (NumEns, NomEns, PrenomEns, Mail, Tel, NumUser) VALUES (?,?,?,?,?,?)");
                 prepare.setInt(1,numens);
                 prepare.setString(2,obj.getNomEns());
@@ -122,9 +122,9 @@ public class EnseignantDAO extends DAO<Enseignant> {
             String query = new String("SELECT * FROM Enseignant WHERE NumEns = " + numens);
             res = state.executeQuery(query);
             if(res.first()) {
-                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6));
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
-                Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt(0));
+                Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
             while(iterator.hasNext()){
                 enseignant.addSeance((Seance)iterator.next());
@@ -169,7 +169,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             String query = new String("SELECT * FROM Enseignant WHERE IDUsers = " + iDUser);
             res = state.executeQuery(query);
             while(res.next()) {
-                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getInt(5));                  
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getInt(6));                  
             }
         } catch (SQLException e) {
              e.printStackTrace();
