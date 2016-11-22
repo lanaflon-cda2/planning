@@ -26,15 +26,14 @@ public class SeanceDAO extends DAO<Seance> {
             res = state.executeQuery(query1);
             if(res.first()) {
                 int numseance = res.getInt(0);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO SEANCE (NumSeance, DateSeance, HeurSeance, NumEns, NumMatiere, NumGroupe, NumFiliere, EtatSeance) VALUES (?,?,?,?,?,?,?,?)");
+                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO SEANCE (NumSeance,Numcreneau,NumEns, NumMatiere, NumGroupe, NumFiliere, EtatSeance) VALUES (?,?,?,?,?,?,?,?)");
                 prepare.setInt(1,numseance);
-                prepare.setDate(2, (Date) obj.getDateSeance());
-                prepare.setDate(3,(Date) obj.getHeureSeance());
-                prepare.setInt(4,obj.getNumEns());
-                prepare.setInt(5,obj.getNumMatiere());
-                prepare.setInt(6,obj.getNumGroupe());
-                prepare.setInt(7,obj.getNumFiliere());
-                prepare.setInt(8,obj.getEtatSeance());
+                prepare.setInt(2,obj.getnumCreneau());
+                prepare.setInt(3,obj.getNumEns());
+                prepare.setInt(4,obj.getNumMatiere());
+                prepare.setInt(5,obj.getNumGroupe());
+                prepare.setInt(6,obj.getNumFiliere());
+                prepare.setInt(7,obj.getEtatSeance());
                 prepare.executeUpdate();
                 obj = this.find(numseance);
             }
@@ -90,8 +89,7 @@ public class SeanceDAO extends DAO<Seance> {
     public boolean update(Seance obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Seance SET "
-                    +" DateSeance = " + obj.getDateSeance()+ ",'"
-                            +" HeureSenace = " + obj.getHeureSeance()+ ",'"
+                        +"NumCreneau ="+obj.getnumCreneau()+",'"
                                     +" NumEns = " + obj.getNumEns()+ ",'"
                                             +" NumMatiere = " + obj.getNumMatiere()+ ",'"
                                                     +" NumGroupe = " + obj.getNumGroupe()+ ",'"
@@ -124,7 +122,7 @@ public class SeanceDAO extends DAO<Seance> {
             String query = new String("SELECT * FROM Seance WHERE NumSeance = " + numseance);
             res = state.executeQuery(query);
             if(res.first()) {
-                seance = new Seance(res.getInt(0), res.getDate(1), res.getTime(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getInt(6), res.getInt(7));                
+                seance = new Seance(res.getInt(0), res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getInt(6));                
             }
         } catch (SQLException e) {
              e.printStackTrace();
@@ -166,7 +164,7 @@ public class SeanceDAO extends DAO<Seance> {
             String query = new String("SELECT * FROM Seance WHERE NumEns = " + nume);
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"), res.getDate("dateSeance"), res.getTime("heureSeance"), res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
                 seanceList.add(seance);                
             }
         } catch (SQLException e) {
@@ -208,7 +206,7 @@ public class SeanceDAO extends DAO<Seance> {
             String query = new String("SELECT * FROM Seance WHERE NumFiliere = " + numf);
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"), res.getDate("dateSeance"), res.getTime("heureSeance"), res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
                 seanceList.add(seance);                
             }
         } catch (SQLException e) {
@@ -251,7 +249,7 @@ public class SeanceDAO extends DAO<Seance> {
             String query = new String("SELECT * FROM Seance WHERE NumGroupe = " + numg);
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"), res.getDate("dateSeance"), res.getTime("heureSeance"), res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
                 seanceList.add(seance);                  
             }
             return seanceList;
@@ -295,7 +293,7 @@ public class SeanceDAO extends DAO<Seance> {
             String query = new String("SELECT * FROM Seance WHERE NumMatiere = " + numm);
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"), res.getDate("dateSeance"), res.getTime("heureSeance"), res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
                 seanceList.add(seance);                  
             }
             return seanceList;

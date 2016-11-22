@@ -10,8 +10,6 @@ public class Matiere implements Serializable {
     private static final long serialVersionUID = 1L;
     private int numMatiere;
     private String nomMatiere;
-    private Date dateDebut;
-    private Date dateFin;
     private Set<Seance> seanceList = new HashSet<Seance> ();
 
     public Matiere() {
@@ -35,22 +33,6 @@ public class Matiere implements Serializable {
 
     public void setNomMatiere(String nomMatiere) {
         this.nomMatiere = nomMatiere;
-    }
-
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
     }
 
     public Set<Seance> getSeanceList() {
