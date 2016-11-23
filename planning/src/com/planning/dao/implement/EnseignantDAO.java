@@ -3,17 +3,12 @@ package com.planning.dao.implement;
 import com.planning.dao.DAO;
 import com.planning.model.Enseignant;
 import com.planning.model.Seance;
-
-import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class EnseignantDAO extends DAO<Enseignant> {
     
@@ -65,6 +60,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
         }
         return true;
     }
+
     
     public boolean delete(Enseignant obj){
         try {
@@ -79,25 +75,21 @@ public class EnseignantDAO extends DAO<Enseignant> {
                 try{
                 conn.close();
                 }
-                catch(SQLException e){    public classe EnsSeance {
-
-    int numEns = 
-}
+                catch(SQLException e){    
                 }
             }
         }
         return true;
-    }
-    
+
+    }    
+   
+    @Override
     public boolean update(Enseignant obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Enseignant SET "
-                +" NomEns = "  + obj.getNomEns()+ ",'"
-                        +" PrenomEns = " + obj.getPrenomEns()+ ",'"
-                                +" Mail = " + obj.getMail()+ ",'"
-                                        +" Tel = " + obj.getTel()+ ",'"
-                                                +" NumUser = " + obj.getIDUser()
-                                                        + " WHERE NumEns = '" + obj.getNumEns());
+            String query = new String("UPDATE Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns());
+            query += ("', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel()+ " IDUser = '" + obj.getIDUser()+ "' WHERE NumEns = " + obj.getNumEns());
+                                                        
+            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate(query);
             obj = this.find(obj.getNumEns());
 	}
         catch (SQLException e) {
@@ -116,6 +108,8 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return true;
     }
     
+    
+    @Override
     public Enseignant find(int numens){
         
         Enseignant enseignant = null;
@@ -169,10 +163,10 @@ public class EnseignantDAO extends DAO<Enseignant> {
         
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Enseignant WHERE IDUsers = " + iDUser);
+            String query = new String("SELECT * FROM Enseignant WHERE IDUser = '" + iDUser+ "'");
             res = state.executeQuery(query);
             while(res.next()) {
-                enseignant = new Enseignant(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5));                  
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));                  
             }
         } catch (SQLException e) {
              e.printStackTrace();
@@ -206,7 +200,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
     
     
     public Enseignant finds(String string){
-      
+        
         return null;
     }
 }

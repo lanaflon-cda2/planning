@@ -62,34 +62,47 @@ public class Absence {
             }
         return dateFin;
     }
+        
+    }
     
     
-    public ArrayList searchMatch(int numEns, int numGroupe, int numMatiere, int numFiliere){
+    /**
+     *
+     * @param numEns
+     * @param numGroupe
+     * @param numMatiere
+     * @param numFiliere
+     * @return
+     */
+    
+    public ArrayList searchMatch (int numEns, int numGroupe, int numMatiere, int numFiliere) {
+        
+    
         ArrayList creneauVideEns = new ArrayList();
         ArrayList creneauVideGroupe = new ArrayList();
         ArrayList creneauMatch = new ArrayList();
-        Date df= getDateFin(numGroupe, numMatiere, numFiliere);
+        Date df = getDateFin(numGroupe, numMatiere, numFiliere);
         Date dateSysteme = new Date();
         
         try {
             
-            String query1 = new String("Select NumCreneau From Creneau where DateCreneau>="+dateSysteme+"and DateCreneau<="+df);
-            query1 += (" EXCEPT Select NumCreneau from Seance where NumEns="+numEns);
-            res = state.executeQuery(query1);
+            String query1 = new String("Select NumCreneau From Creneau where DateCreneau >= " + dateSysteme + " and DateCreneau <= " + df);
+            query1 += (" EXCEPT Select NumCreneau from Seance where NumEns = " + numEns);
+            res = state.executeQuery(query1); 
             while(res.next()){
                 creneauVideEns.add(res.getInt(1));
             }
             String query2 = new String("Select numCreneau From Creneau where DateCreneau >= "+ dateSysteme +" and DateCreneau <= "+ df);
-            query2 += (" EXCEPT Select NumCreneau from Seance where NumGroupe="+numGroupe+"and NumFiliere = " + numFiliere+ "and EtatSeance=1");
+            query2 += (" EXCEPT Select NumCreneau from Seance where NumGroupe = " + numGroupe + " and NumFiliere = " + numFiliere + " and EtatSeance=1");
             res = state.executeQuery(query2);
             while(res.next()){
                 creneauVideGroupe.add(res.getInt(1));
             }
-            for(int i=0;i<creneauVideEns.size();i++){
-                int num =(int) creneauVideEns.get(i);
-                for(int j=0 ; j<creneauVideGroupe.size(); j++){
-                    int numg =(int)creneauVideGroupe.get(j);
-                    if (num==numg){
+            for(int i = 0; i < creneauVideEns.size(); i++){
+                int num = (int) creneauVideEns.get(i);
+                for(int j=0 ; j < creneauVideGroupe.size(); j++){
+                    int numg = (int) creneauVideGroupe.get(j);
+                    if (num == numg){
                         creneauMatch.add(numg);
                         break;
                     }
@@ -115,7 +128,7 @@ public class Absence {
                 }
             }
         }
-      return creneauMatch ;     
+      return creneauMatch;     
     }
     
     public ArrayList seanceForUniqueEns(int numEns, int numGroupe , int numMatiere, int numFiliere){
@@ -171,17 +184,14 @@ public class Absence {
                              
             }
             for(int i=0 ; i<allEnsSeanceList.size();i++){
-                numEns = allEnsSeanceList.get(i).getNumEns();
-                ArrayList ensSeance;
-                for(int j = 0; j<=)
+                numEns = ((EnsSeance) allEnsSeanceList.get(i)).getNumEns();
+               
+                for(int j = 0; j<=0;j++) {
+                
+                }
 
                 
             }
-            
-            
-            
-            
-  
             
             
         } catch (SQLException e) {
@@ -203,6 +213,7 @@ public class Absence {
                 }
             }
         }   
+        return allEnsSeanceList;
     }
     
     
