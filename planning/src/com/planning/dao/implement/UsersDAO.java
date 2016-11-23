@@ -114,7 +114,8 @@ public class UsersDAO extends DAO<Users> {
                 Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(1));
                 users.setEnseignant(enseignant);
              }   
-        }catch (SQLException e) {   
+        }catch (SQLException e) {  
+            
         e.printStackTrace();       
         }
         finally{
