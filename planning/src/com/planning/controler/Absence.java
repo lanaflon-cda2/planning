@@ -32,45 +32,69 @@ public class Absence {
         }
     return false ;    
     }
+
+    public Date getDateFin(int numGroupe, int numMatiere, int numFiliere){
+        Date dateFin= new Date();
+        try {
+            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            String query = new String("SELECT DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe+" and NumMatiere="+numMatiere);
+            query += " and NumFiliere = " + numFiliere;
+            res = state.executeQuery(query);
+            while(res.next()) {
+                dateFin = res.getDate(1);                 
+            } 
+        } catch (SQLException e) {
+             e.printStackTrace();
+        } finally{
+            if(res != null){
+                try{
+                res.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+            if(state != null){
+                try{
+                state.close();
+                }
+                catch(SQLException e){    
+                }
+            }
+        return dateFin;
+    }
     
     
-    public ArrayList searchMatch(int numEns , int numGroupe , int numMatiere){
+    public ArrayList searchMatch(int numEns, int numGroupe, int numMatiere, int numFiliere){
         ArrayList creneauVideEns = new ArrayList();
         ArrayList creneauVideGroupe = new ArrayList();
         ArrayList creneauMatch = new ArrayList();
- 
+        Date df= getDateFin(numGroupe, numMatiere, numFiliere);
+        Date dateSysteme = new Date();
         
         try {
-            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe+" and numMatiere="+numMatiere);
-            res = state.executeQuery(query);
-            Date df= new Date();
-            Date dd= new Date();
-            while(res.next()) {
-                df = res.getDate(1);                 
-            }
-            String query1 = new String("Select numCreneau From Creneau where dateCreneau>="+dd+"and dateCreneau<="+df);
-            query1 += (" EXCEPT Select numCreneau from Seance where numEns="+numEns);
+            
+            String query1 = new String("Select NumCreneau From Creneau where DateCreneau>="+dateSysteme+"and DateCreneau<="+df);
+            query1 += (" EXCEPT Select NumCreneau from Seance where NumEns="+numEns);
             res = state.executeQuery(query1);
             while(res.next()){
                 creneauVideEns.add(res.getInt(1));
             }
-            String query2 = new String("Select numCreneau From Creneau where dateCreneau>="+dd+"and dateCreneau<="+df);
-            query2 += (" EXCEPT Select numCreneau from Seance where numGroupe="+numGroupe+"and etatSeance=1");
+            String query2 = new String("Select numCreneau From Creneau where DateCreneau >= "+ dateSysteme +" and DateCreneau <= "+ df);
+            query2 += (" EXCEPT Select NumCreneau from Seance where NumGroupe="+numGroupe+"and NumFiliere = " + numFiliere+ "and EtatSeance=1");
             res = state.executeQuery(query2);
             while(res.next()){
                 creneauVideGroupe.add(res.getInt(1));
             }
-        for(int i=0;i<creneauVideEns.size();i++){
-            int num =(int) creneauVideEns.get(i);
-            for(int j=0 ; j<creneauVideGroupe.size(); j++){
-                int numg =(int)creneauVideGroupe.get(j);
-                if (num==numg){
-                    creneauMatch.add(numg);
-                    break;
+            for(int i=0;i<creneauVideEns.size();i++){
+                int num =(int) creneauVideEns.get(i);
+                for(int j=0 ; j<creneauVideGroupe.size(); j++){
+                    int numg =(int)creneauVideGroupe.get(j);
+                    if (num==numg){
+                        creneauMatch.add(numg);
+                        break;
+                    }
                 }
             }
-        }
       
         } catch (SQLException e) {
              e.printStackTrace();
@@ -94,30 +118,20 @@ public class Absence {
       return creneauMatch ;     
     }
     
-    public ArrayList seanceEns(int numEns, int numGroupe , int numMatiere){
+    public ArrayList seanceForUniqueEns(int numEns, int numGroupe , int numMatiere, int numFiliere){
         ArrayList seance = new ArrayList();
+        Date df= getDateFin(numGroupe, numMatiere, numFiliere);
+        Date dateSysteme = new Date();
+        
         try {
-            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe+" and numMatiere="+numMatiere);
-            res = state.executeQuery(query);
-            Date df= new Date();
-            Date dd= new Date();
-            while(res.next()) {
-                df = res.getDate(1);                 
-            }
-            
-            String query1= new String("Select numCreneau from Seance where numEns="+numEns+" and numGroupe"+numGroupe);
-            query1 += (" INTERSECT Select numCreneau From Creneau where dateCreneau>="+dd+"and dateCreneau<="+df);
+            String query1= new String("Select NumCreneau from Seance where NumEns="+numEns+" and NumGroupe"+numGroupe+"and NumFiliere = " + numFiliere);
+            query1 += (" INTERSECT Select NumCreneau From Creneau where DateCreneau>="+dateSysteme+"and DateCreneau<="+df);
             res=state.executeQuery(query1);
             while(res.next()){
                 seance.add(res.getInt(1));
             }
                 
-            }
-        
-        
-        
-         catch (SQLException e) {
+        } catch (SQLException e) {
              e.printStackTrace();
         }
         finally{
@@ -139,20 +153,29 @@ public class Absence {
         return seance; 
     }
     
-    public ArrayList searchPermut(int numEns , int numCreneau , int numGroupe){
-        ArrayList enseignantList = new ArrayList();
-        ArrayList ensSeance =new ArrayList();
+    public ArrayList searchPermut(int numEns , int numCreneau , int numGroupe, int numMatiere, int numFiliere){
+        ArrayList allEnsSeanceList = new ArrayList();
+        ArrayList ensSeanceMatchList = new ArrayList();
+        EnsSeance ensSeance;
+        int numEnsX;
         try {
             state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT numEns FROM Enseignant WHERE NumEns != " + numEns);
-            query += (" EXCEPT Select numEns from Seance where numCreneau="+numCreneau+" and numGroupe="+numGroupe);
+            String query = new String("SELECT numEns FROM Seance WHERE NumEns != " + numEns);
+            query += "NumGroupe = " + numGroupe+"and NumFiliere = " + numFiliere;
+            query += (" EXCEPT Select numEns from Seance where numCreneau="+numCreneau+" and numGroupe="+numGroupe+"and NumFiliere = " + numFiliere);
             res = state.executeQuery(query);
             while(res.next()) {
-                enseignantList.add(res.getInt(1));                 
+                numEnsX = res.getInt(1);
+                ArrayList seanceEnsList = seanceForUniqueEns(numEns, numGroupe, numMatiere, numFiliere);
+                ArrayList seanceMatch;
+                             
             }
-            for(int i=0 ; i<enseignantList.size();i++){
-                int numEns = (int)EnseignantList.get(i);
-                ensSeance=seanceEns(numEns);
+            for(int i=0 ; i<allEnsSeanceList.size();i++){
+                numEns = allEnsSeanceList.get(i).getNumEns();
+                ArrayList ensSeance;
+                for(int j = 0; j<=)
+
+                
             }
             
             

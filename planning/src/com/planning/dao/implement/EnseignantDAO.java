@@ -79,7 +79,10 @@ public class EnseignantDAO extends DAO<Enseignant> {
                 try{
                 conn.close();
                 }
-                catch(SQLException e){    
+                catch(SQLException e){    public classe EnsSeance {
+
+    int numEns = 
+}
                 }
             }
         }
