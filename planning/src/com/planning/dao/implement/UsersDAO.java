@@ -106,7 +106,7 @@ public class UsersDAO extends DAO<Users> {
         Users users = null;
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM USERS WHERE IDUsers = " + "'" + iDUser + "'");
+            String query = new String("SELECT * FROM Users WHERE IDUser = '" + iDUser + "'");
             res = state.executeQuery(query);
             if(res.next()) {
                 users = new Users(res.getString("IDUser"), res.getString("MotDePasse"));   
