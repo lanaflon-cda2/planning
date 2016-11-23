@@ -53,6 +53,11 @@ public class LoginGUI extends javax.swing.JFrame {
                 ConnexionMouseClicked(evt);
             }
         });
+        Connexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConnexionActionPerformed(evt);
+            }
+        });
         getContentPane().add(Connexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 150, -1));
 
         identifiant.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -102,6 +107,10 @@ public class LoginGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Utilisateur non trouvé");
         }
     }//GEN-LAST:event_ConnexionMouseClicked
+
+    private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConnexionActionPerformed
 
     /**
      * @param args the command line arguments
