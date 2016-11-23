@@ -5,6 +5,7 @@
  */
 package com.planning.view;
 
+import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Users;
@@ -41,7 +42,6 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 600));
-        setPreferredSize(new java.awt.Dimension(900, 600));
 
         Connexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
         Connexion.setText("Connexion");
@@ -50,6 +50,11 @@ public class LoginGUI extends javax.swing.JFrame {
         Connexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ConnexionMouseClicked(evt);
+            }
+        });
+        Connexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConnexionActionPerformed(evt);
             }
         });
 
@@ -108,7 +113,11 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_identifiantActionPerformed
 
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
-        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+       
+    }//GEN-LAST:event_ConnexionMouseClicked
+
+    private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
+         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         Users user = usersDAO.finds(identifiant.getText());
         String passwordtext = new String(motdepasse.getPassword());
         
@@ -117,7 +126,7 @@ public class LoginGUI extends javax.swing.JFrame {
             if(passworduser.equals(passwordtext)) {
                  dispose();
                  JOptionPane.showMessageDialog(null, "Connexion réussie");
-                 new Acceuil().setVisible(true);
+                 new AcceuilEnseignant().setVisible(true);
                  
                 
             }
@@ -130,7 +139,7 @@ public class LoginGUI extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer");
         }
-    }//GEN-LAST:event_ConnexionMouseClicked
+    }//GEN-LAST:event_ConnexionActionPerformed
 
     /**
      * @param args the command line arguments
