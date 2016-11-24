@@ -6,10 +6,7 @@
 package com.planning.model;
 
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 
 public class ConnexionBD {
     
@@ -25,7 +22,7 @@ public class ConnexionBD {
         
                 
         }catch(Exception e){
-            System.out.println("--> SQLException : "+ e);
+            System.out.println("--> SQLException : " + e);
         }
         
         return conn;

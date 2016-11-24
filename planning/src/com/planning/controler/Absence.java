@@ -13,7 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -42,7 +43,7 @@ public class Absence {
         this.numMatiere = s.getNumMatiere();
         this.numFiliere = s.getNumFiliere();
         this.numCreneau = s.getnumCreneau();
-        this.dateSysteme = new Date();
+        this.dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
         
         searchRattrapage();
         
@@ -57,7 +58,6 @@ public class Absence {
     }
     
     private void searchRattrapage(){
-        dateSysteme = new Date();
         dateFin = getDateFin();
         creneauxMatchEnsGroupe = searchMatchEnsGroupe();
         if(creneauxMatchEnsGroupe == null){

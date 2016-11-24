@@ -6,7 +6,7 @@
 package com.planning.model;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 

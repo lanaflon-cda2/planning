@@ -5,45 +5,35 @@
  */
 package com.planning.model;
 
-import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author Oumaima
  */
-public class GroupeMatiere {
-        
-    
-    private int numGM;
+public class GroupeMatiere {       
     private int numGroupe;
     private int numMatiere;
+    private int numFiliere;
     private Date dateDebut;
     private Date dateFin;
+
     
-   public GroupeMatiere(int numGM, int numGroupe , int numMatiere , Date dateDebut, Date dateFin){
-        this.numGM = numGM;
+   public GroupeMatiere(int numMatiere, int numGroupe ,int numFiliere, Date dateDebut, Date dateFin){
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
+        this.numFiliere = numFiliere;
         this.dateDebut = dateDebut;
         this.dateFin= dateFin;
    
    }
   
-    public GroupeMatiere(){}
-
-    public GroupeMatiere(int numGM) {
-        this.numGM = numGM;
+    public GroupeMatiere(int numMatiere, int numGroupe, int numFiliere){
+        this.numMatiere = numMatiere;
+        this.numGroupe = numGroupe;
+        this.numFiliere = numFiliere;
     }
 
-    public int getNumGM() {
-        return numGM;
-    }   
-    
-    public void setNumGM(int numGM) {
-        this.numGM = numGM;
-    }
-    
     public int getnumGroupe() {
         return numGroupe;
     }
@@ -58,6 +48,14 @@ public class GroupeMatiere {
 
     public void setnumMatiere(int numMatiere) {
         this.numMatiere = numMatiere;
+    }    
+    
+    public int getnumFiliere() {
+        return numFiliere;
+    }
+
+    public void setnumFiliere(int numFiliere) {
+        this.numFiliere = numFiliere;
     }    
     
     public Date getDateDebut() {
