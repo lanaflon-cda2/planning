@@ -32,32 +32,10 @@ public class EnseignantDAO extends DAO<Enseignant> {
             obj.setNumEns(numEns);            
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("SQLException: " + e);
             return false;
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
+       
         return true;
     }
 
@@ -67,17 +45,8 @@ public class EnseignantDAO extends DAO<Enseignant> {
             this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Enseignant WHERE NumEns = " + obj.getNumEns());
         } 
         catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("SQLException: " + e);
             return false;
-        }
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return true;
 
@@ -93,18 +62,9 @@ public class EnseignantDAO extends DAO<Enseignant> {
             obj = this.find(obj.getNumEns());
 	}
         catch (SQLException e) {
-	            e.printStackTrace();
-                    return false;
+            System.out.println("SQLException: " + e);
+            return false;
 	}
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
@@ -129,29 +89,6 @@ public class EnseignantDAO extends DAO<Enseignant> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return enseignant;
     }
@@ -171,29 +108,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
         } catch (SQLException e) {
              e.printStackTrace();
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
+        
         return enseignant;
     }
     
