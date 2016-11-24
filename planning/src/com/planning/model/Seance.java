@@ -8,19 +8,17 @@ public class Seance implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int numSeance;
-    private Date dateSeance;
-    private Date heureSeance;
+    private int numCreneau;
     private int etatSeance;
     private int numEns;
     private int numFiliere;
     private int numGroupe;
     private int numMatiere;
 
-    public Seance(int numSeance, Date dateSeance, Time heureSeance, int numEns, int numMatiere, int numGroupe, int numFiliere, int etatSeance) {
+    public Seance(int numSeance,int numCreneau ,int numEns, int numMatiere, int numGroupe, int numFiliere, int etatSeance) {
         
         this.numSeance = numSeance;
-        this.dateSeance = dateSeance;
-        this.heureSeance = heureSeance;
+        this.numCreneau = numCreneau;
         this.numEns = numEns;
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
@@ -41,23 +39,15 @@ public class Seance implements Serializable {
     public void setNumSeance(int numSeance) {
         this.numSeance = numSeance;
     }
-
-    public Date getDateSeance() {
-        return dateSeance;
+    
+    public int getnumCreneau() {
+        return numCreneau;
     }
 
-    public void setDateSeance(Date dateSeance) {
-        this.dateSeance = dateSeance;
+    public void setnumCreneau(int numCreneau) {
+        this.numCreneau = numCreneau;
     }
-
-    public Date getHeureSeance() {
-        return heureSeance;
-    }
-
-    public void setHeureSeance(Date heureSeance) {
-        this.heureSeance = heureSeance;
-    }
-
+    
     public int getEtatSeance() {
         return etatSeance;
     }
