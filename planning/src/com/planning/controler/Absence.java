@@ -39,14 +39,15 @@ public class Absence {
     
     public Absence(Seance s) {
         
+        updateEtat(s, 0);
+        
         this.numEns = s.getNumEns();
         this.numGroupe = s.getNumGroupe();
         this.numMatiere = s.getNumMatiere();
         this.numFiliere = s.getNumFiliere();
         this.numCreneau = s.getnumCreneau();
-        this.dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
         
-        searchRattrapage(s);
+        searchRattrapage();
         
     }
     
@@ -58,11 +59,16 @@ public class Absence {
         return this.permutPossible;
     }
     
-    private void searchRattrapage(Seance s) {
+    private void searchRattrapage() {
+        
         con = ConnexionBD.init();
+       
+        this.dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
+
         dateFin = getDateFin();
-        updateEtat(s, 0);
+        
         creneauxMatchEnsGroupe = searchMatchEnsGroupe();
+        
         if(creneauxMatchEnsGroupe == null){
             permutPossible = searchPermut();
         }
@@ -76,7 +82,8 @@ public class Absence {
         
     }
             
-    public boolean updateEtat(Seance s,int etat){
+    public static boolean updateEtat(Seance s,int etat){
+       
         s.setEtatSeance(etat);
         SeanceDAO seanceDAO = new SeanceDAO(ConnexionBD.init());
         seanceDAO.update(s);
