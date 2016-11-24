@@ -27,11 +27,9 @@ public class MatiereDAO extends DAO<Matiere> {
             res = state.executeQuery(query1);
             if(res.first()) {
                 int nummatiere = res.getInt(0);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO Matiere (NumMatiere, NomMatiere, DateDebut, DateFin) VALUES (?,?,?,?)");
+                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO Matiere (NumMatiere, NomMatiere VALUES (?,?)");
                 prepare.setInt(1,nummatiere);
                 prepare.setString(2,obj.getNomMatiere());
-                prepare.setDate(3,(Date) obj.getDateDebut());
-                prepare.setDate(4,(Date) obj.getDateFin());
                 prepare.executeUpdate();
                 obj = this.find(nummatiere);
             }
@@ -88,8 +86,6 @@ public class MatiereDAO extends DAO<Matiere> {
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE MATIERE SET "
                     +" NomMatiere = " + obj.getNomMatiere()+ ",'"
-                            +" DateDebut = " + obj.getDateDebut()+ ",'"
-                                    +" DateFin = " + obj.getDateFin()
                                             + " WHERE NumMatiere = '" + obj.getNumMatiere());
             obj = this.find(obj.getNumMatiere());
 	}
