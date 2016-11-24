@@ -7,9 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Iterator;
-import java.util.Set;
 
 public class UsersDAO extends DAO<Users> {
     
@@ -114,7 +111,8 @@ public class UsersDAO extends DAO<Users> {
                 Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(1));
                 users.setEnseignant(enseignant);
              }   
-        }catch (SQLException e) {   
+        }catch (SQLException e) {  
+            
         e.printStackTrace();       
         }
         finally{
