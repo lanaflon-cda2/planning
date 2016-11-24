@@ -46,7 +46,7 @@ public class Absence {
         this.numCreneau = s.getnumCreneau();
         this.dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
         
-        searchRattrapage();
+        searchRattrapage(s);
         
     }
     
@@ -58,9 +58,10 @@ public class Absence {
         return this.permutPossible;
     }
     
-    private void searchRattrapage() {
+    private void searchRattrapage(Seance s) {
         con = ConnexionBD.init();
         dateFin = getDateFin();
+        updateEtat(s, 0);
         creneauxMatchEnsGroupe = searchMatchEnsGroupe();
         if(creneauxMatchEnsGroupe == null){
             permutPossible = searchPermut();
