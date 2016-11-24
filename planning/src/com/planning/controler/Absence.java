@@ -22,7 +22,7 @@ import java.util.Calendar;
  */
 public class Absence {
     
-    Connection con = ConnexionBD.init();
+    Connection con;
     Statement state;
     ResultSet res;
     
@@ -34,10 +34,11 @@ public class Absence {
     private Date dateSysteme;
     private Date dateFin;
     
-    ArrayList creneauxMatchEnsGroupe;
-    ArrayList permutPossible;
+    ArrayList creneauxMatchEnsGroupe = null;
+    ArrayList permutPossible = null;
     
     public Absence(Seance s) {
+        
         this.numEns = s.getNumEns();
         this.numGroupe = s.getNumGroupe();
         this.numMatiere = s.getNumMatiere();
@@ -57,13 +58,21 @@ public class Absence {
         return this.permutPossible;
     }
     
-    private void searchRattrapage(){
+    private void searchRattrapage() {
+        con = ConnexionBD.init();
         dateFin = getDateFin();
         creneauxMatchEnsGroupe = searchMatchEnsGroupe();
         if(creneauxMatchEnsGroupe == null){
             permutPossible = searchPermut();
         }
-    
+        try {
+            res.close();
+            state.close();
+            con.close();
+        } catch(SQLException e){
+            System.out.println("SQLException: "+e);
+        }
+        
     }
             
     public boolean updateEtat(Seance s,int etat){
@@ -131,7 +140,7 @@ public class Absence {
     
     public ArrayList searchMatchEnsGroupe () {
         
-        ArrayList creneauxMatch = new ArrayList();
+        ArrayList creneauxMatch = null;
         ArrayList creneauxVideEns = getCreneauxVideEns();
        
         ArrayList creneauxVideGroupe = getCreneauxVideGroupe();
@@ -140,6 +149,7 @@ public class Absence {
             for(int j=0 ; j < creneauxVideGroupe.size(); j++){
                 int numg = (int) creneauxVideGroupe.get(j);
                 if (num == numg){
+                    if(creneauxMatch == null) creneauxMatch = new ArrayList();
                     creneauxMatch.add(numg);
                     break;
                 }
@@ -170,9 +180,10 @@ public class Absence {
     }
     
     public ArrayList getSeancesDeEnsX(){
-        ArrayList seance = new ArrayList();
+        ArrayList seance = null;
         
         try {
+            seance = new ArrayList();
             String query= new String();
             query += "Select NumCreneau from Seance where NumEns="+numEns+" and NumGroupe"+numGroupe+"and NumFiliere = " + numFiliere;
             query += (" INTERSECT Select NumCreneau From Creneau where DateCreneau>="+dateSysteme+"and DateCreneau<="+dateFin);
@@ -188,25 +199,33 @@ public class Absence {
     }
     
     public ArrayList searchPermut(){
-        ArrayList creneauxMatchList = new ArrayList();
+        ArrayList creneauxMatchList = null;
         CreneauPermut creneauxMatchWithX;
         ArrayList seanceDeEnsX;
         ArrayList ensList = getPossibleEnsXPermut();
         ArrayList creneauxVideEns = getCreneauxVideEns();
         for (Object ensX : ensList) {
             seanceDeEnsX = getSeancesDeEnsX();
-            creneauxMatchWithX = new CreneauPermut();
-            creneauxMatchWithX.setNumEns((int) ensX);
+            creneauxMatchWithX = null;
+            
             
             for(Object seance: seanceDeEnsX){
                 for(Object creneauVide: creneauxVideEns){
-                    if(creneauVide == seance) {                       
+                    if(creneauVide == seance) {
+                        if(creneauxMatchWithX == null) {
+                            creneauxMatchWithX = new CreneauPermut();
+                            creneauxMatchWithX.setNumEns((int) ensX);
+                        }
                         creneauxMatchWithX.addCreneaux((int) creneauVide);
                     }   
                 }
             }
             
-            creneauxMatchList.add(creneauxMatchWithX);
+            
+            if(creneauxMatchWithX != null) {
+                if(creneauxMatchList == null) creneauxMatchList = new ArrayList();
+                creneauxMatchList.add(creneauxMatchWithX); 
+            }           
         }
         
         
