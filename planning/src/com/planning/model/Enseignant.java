@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.planning.model;
 
 import java.io.Serializable;
@@ -10,36 +5,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- *
- * @author genereux
- */
-/*@Entity
-@Table(name = "Enseignant")
-@NamedQueries({
-    @NamedQuery(name = "Enseignant.findAll", query = "SELECT e FROM Enseignant e")})*/
 
 public class Enseignant implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "NumEns")*/
     private int numEns;
-    /*@Column(name = "NomEns")*/
     private String nomEns;
-    /*@Column(name = "PrenomEns")*/
     private String prenomEns;
-    /*@Column(name = "Mail")*/
     private String mail;
-    /*@Column(name = "Tel")*/
     private int tel;
-    /*@JoinColumn(name = "NumUser", referencedColumnName = "IDUser")
-    @ManyToOne(optional = false)*/
-    private int numUser;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "numEns")*/
-    //private List<Seance> seanceList;
+    private String iDUser;
     
     private Set<Seance> seanceList = new HashSet<Seance>  ();
 
@@ -50,14 +25,14 @@ public class Enseignant implements Serializable {
         this.numEns = numEns;
     }
 
-    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, int tel, int numUser) {
+    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, int tel, String iDUser) {
         
         this.numEns = numEns;
         this.nomEns = nomEns;
         this.prenomEns = prenomEns;
         this.mail = mail;
         this.tel = tel;
-        this.numUser = numUser;
+        this.iDUser = iDUser;
     }
 
     public int getNumEns() {
@@ -100,12 +75,12 @@ public class Enseignant implements Serializable {
         this.tel = tel;
     }
 
-    public int getNumUser() {
-        return numUser;
+    public String getIDUser() {
+        return iDUser;
     }
 
-    public void setNumUser(int numUser) {
-        this.numUser = numUser;
+    public void setIDUser(String iDUser) {
+        this.iDUser = iDUser;
     }
 
     public Set<Seance> getSeanceList() {
@@ -129,28 +104,7 @@ public class Enseignant implements Serializable {
         return this.getNumEns() == enseignant.getNumEns();
     }
 
-    /*@Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (numEns != null ? numEns.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Enseignant)) {
-            return false;
-        }
-        Enseignant other = (Enseignant) object;
-        if ((this.numEns == null && other.numEns != null) || (this.numEns != null && !this.numEns.equals(other.numEns))) {
-            return false;
-        }
-        return true;
-    }
-*/
-
-    @Override
+    
     public String toString() {
         return "com.planning.model.Enseignant[ numEns=" + numEns + " ]";
     }
