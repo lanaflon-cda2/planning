@@ -72,12 +72,13 @@ public class Absence {
         if(creneauxMatchEnsGroupe == null){
             permutPossible = searchPermut();
         }
+        
         try {
             res.close();
             state.close();
             con.close();
         } catch(SQLException e){
-            System.out.println("SQLException: "+e);
+            System.out.println("SQLException: " + e);
         }
         
     }
