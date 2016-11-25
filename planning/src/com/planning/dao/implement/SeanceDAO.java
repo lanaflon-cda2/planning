@@ -327,8 +327,9 @@ public class SeanceDAO extends DAO<Seance> {
     }
     
     
-    public Seance finds(String string){
-        Seance seance = null;
-        return seance;
+    @Override
+    public Seance find(String string){
+       
+        return null;
     }
 }

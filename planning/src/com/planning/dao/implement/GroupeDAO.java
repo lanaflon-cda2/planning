@@ -154,9 +154,10 @@ public class GroupeDAO extends DAO<Groupe> {
     }
     
     
-    public Groupe finds(String string){
-        Groupe groupe = null;
-        return groupe;
+    @Override
+    public Groupe find(String string){
+       
+        return null;
     }
 }
 

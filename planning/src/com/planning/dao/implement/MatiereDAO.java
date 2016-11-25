@@ -151,8 +151,9 @@ public class MatiereDAO extends DAO<Matiere> {
     }
     
     
-    public Matiere finds(String string){
-        Matiere matiere = null;
-        return matiere;
+    @Override
+    public Matiere find(String string){
+        
+        return null;
     }
 }

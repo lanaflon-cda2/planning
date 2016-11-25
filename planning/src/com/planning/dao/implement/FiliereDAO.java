@@ -148,8 +148,9 @@ public class FiliereDAO extends DAO<Filiere> {
     }
     
     
-    public Filiere finds(String string){
-        Filiere filiere = null;
-        return filiere;
+    @Override
+    public Filiere find(String string){
+
+        return null;
     }
 }

@@ -28,6 +28,14 @@ public class Creneau {
    
    }
    
+   public Creneau(Date date, Time heure){
+        this.numCreneau = 1;
+        this.date = date;
+        this.heure= heure;
+   
+   }
+   
+   
     public Creneau(){}
 
     public Creneau(int numCreneau) {
