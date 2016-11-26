@@ -154,24 +154,32 @@ public class SeanceDAO extends DAO<Seance> {
         int dayOfWeek = sc.getJourSemaine();
         Date dateD = sc.getDateD();
         Date dateF = sc.getDateF();
-        Date dateDMat = null;
-        Date dateFMat = null;
+        
         Time t = sc.getHeureSeance();
         
-        String req1 = "Select DateDebut, DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe + " and NumMatiere = " + numMatiere;
+        
         
         
         try {
             state = conn.createStatement();
+            
+            /*Date dateDMat = null;
+            Date dateFMat = null;
+            String req1 = "Select DateDebut, DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe + " and NumMatiere = " + numMatiere;
             res = state.executeQuery(req1);
             while(res.next()) {
                 dateDMat = res.getDate(1);
                 dateFMat = res.getDate(2);
             }
-            if(dateD.before(dateDMat) || dateF.after(dateFMat)) {
-                System.out.println("La periode de la seance n'est pas incluse dans la periode de la matiere. Erreur");
+            if(dateDMat.compareTo(dateD) > 0) {
+                System.out.println("La periode de debut de la seance " + dateD + " est avant la date de début de la matiere " + dateDMat + " pour ce groupe. Erreur");
                 return;
             }
+            
+            if(dateFMat.compareTo(dateF) < 0){
+                System.out.println("La periode de fin de la seance " + dateF + " est apres la date de début de la matiere " + dateFMat + " pour ce groupe. Erreur");
+                return;
+            }*/
             
             String req2 = "Select NumCreneau , Date FROM Creneau WHERE Date >= '" + dateD + "' and Date <= '" + dateF + "' and Heure = '" + t;
             req2 += "' and DAYOFWEEK(Date) = " + dayOfWeek;

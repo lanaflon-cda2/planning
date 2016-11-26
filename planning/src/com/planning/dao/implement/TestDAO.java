@@ -126,8 +126,16 @@ public class TestDAO {
         cal.set(0, 0, 0, 14, 0, 0);
         long timeMillis = cal.getTimeInMillis();
         Time t = new Time(timeMillis);
-        //StatiqueCreneau so = new StatiqueCreneau(1, 1, 1, 1, 2, t);
-        //s.createAllSeance(so);
+        cal.set(2016, 8, 26);
+        timeMillis = cal.getTimeInMillis();
+        Date dd = new Date(timeMillis);
+        cal.set(2016, 10, 11);
+        timeMillis = cal.getTimeInMillis();
+        Date df = new Date(timeMillis);
+        
+        
+        StatiqueCreneau so = new StatiqueCreneau(5, 1, 1, 3, t, dd, df);
+        s.insertAllSeanceForStatiqueCreneau(so);
     }
     
     public static void main(String args[]){
