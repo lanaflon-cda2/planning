@@ -19,6 +19,16 @@ public class Seance {
         this.etatSeance = etatSeance;
     }
     
+    public Seance(int numSeance,int numCreneau ,int numEns, int numMatiere, int numGroupe) {
+        
+        this.numSeance = numSeance;
+        this.numCreneau = numCreneau;
+        this.numEns = numEns;
+        this.numMatiere = numMatiere;
+        this.numGroupe = numGroupe;
+        this.etatSeance = 1;
+    }
+    
     public Seance(int numCreneau ,int numEns, int numMatiere, int numGroupe) {
         
         this.numSeance = 1;

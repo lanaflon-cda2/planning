@@ -56,15 +56,15 @@ public class SeanceDAO extends DAO<Seance> {
     @Override
     public boolean update(Seance obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Seance SET "
-                        +"NumCreneau ="+obj.getNumCreneau()+",'"
-                                    +" NumEns = " + obj.getNumEns()+ ",'"
-                                            +" NumMatiere = " + obj.getNumMatiere()+ ",'"
-                                                    +" NumGroupe = " + obj.getNumGroupe()+ ",'"
-                                                                    +" EtatSeance = " + obj.getEtatSeance()
-                                                                            + " WHERE NumSeance = '" + obj.getNumSeance());
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            query = "UPDATE Seance SET NumCreneau = " + obj.getNumCreneau()+ ",  NumEns = " + obj.getNumEns()+ ", NumMatiere = ";
+            query += obj.getNumMatiere()+ ", NumGroupe = " + obj.getNumGroupe()+ ", EtatSeance = " + obj.getEtatSeance();
+            query += " WHERE NumSeance = " + obj.getNumSeance();
+            state.executeUpdate(query);
 	}
         catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
 	}
         return true;
     }

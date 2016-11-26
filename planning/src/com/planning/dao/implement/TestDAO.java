@@ -5,14 +5,17 @@
  */
 package com.planning.dao.implement;
 
+import com.planning.controler.Absence;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
+import com.planning.model.Seance;
 import com.planning.model.StatiqueCreneau;
 import com.planning.model.Users;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -20,7 +23,7 @@ import java.util.Calendar;
  * @author genereux
  */
 public class TestDAO {
-    static Connection conn = ConnexionBD.init();
+    static Connection conn;
     
     public static void testCreneau () {
              
@@ -138,8 +141,22 @@ public class TestDAO {
         s.insertAllSeanceForStatiqueCreneau(so);
     }
     
+    
+    public static void testAbsence(){
+        Seance s = new Seance(8, 75, 1, 5, 1);
+        Absence absence = new Absence(s);
+        ArrayList creno = absence.getCreneauxMatchEnsGroupe();
+        if(creno != null) {
+            for(int i = 0; i < creno.size(); i++) {
+                System.out.println("les creneaux trouvés sont : " + (int) creno.get(i));
+            }
+            
+        } else System.out.println(" Creno = " + creno);
+        
+    }
+    
     public static void main(String args[]){
-        testInsertSeance();
+       testAbsence();
     }
     
 }
