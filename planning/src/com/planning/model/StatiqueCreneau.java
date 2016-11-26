@@ -26,8 +26,20 @@ public class StatiqueCreneau {
     public StatiqueCreneau(int numSC) {
         this.numSC = numSC;
     }
+    
+    public StatiqueCreneau(int numSC, int numMatiere, int numGroupe, int numEns, int jourSemaine, Time heureSeance, Date dateD, Date dateF) {
+        this.numSC = numSC;
+        this.numMatiere = numMatiere;
+        this.numGroupe = numGroupe;
+        this.numEns = numEns;
+        this.jourSemaine = jourSemaine;
+        this.heureSeance = heureSeance;
+        this.dateD = dateD;
+        this.dateF = dateF;
+    }
 
     public StatiqueCreneau(int numMatiere, int numGroupe, int numEns, int jourSemaine, Time heureSeance, Date dateD, Date dateF) {
+        this.numSC = 1;
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
         this.numEns = numEns;

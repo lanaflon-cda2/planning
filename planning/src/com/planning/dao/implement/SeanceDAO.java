@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class SeanceDAO extends DAO<Seance> {
             query += obj.getNumCreneau() + ", ";
             query += obj.getNumEns() + ",";
             query += obj.getNumMatiere() + ", ";
-            query += obj.getNumGroupe() + ", NULL)";
+            query += obj.getNumGroupe() + ", 1)";
             
             int numSeance = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             
@@ -143,7 +144,7 @@ public class SeanceDAO extends DAO<Seance> {
         return null;
     }
     
-    public void createAllSeance(StatiqueCreneau sc) {
+    public void insertAllSeanceForStatiqueCreneau(StatiqueCreneau sc) {
         
         Seance s;
         
@@ -189,6 +190,17 @@ public class SeanceDAO extends DAO<Seance> {
         } catch (SQLException e) {
             System.out.println("SQLException :" + e);
         }
+        
+    }
+    
+    
+    public void insertAllSeance(){
+        StatiqCrenoDAO scDAO = new StatiqCrenoDAO(conn);
+        ArrayList allSC = scDAO.getAllSC();
+        for(Object sc: allSC){
+            this.insertAllSeanceForStatiqueCreneau((StatiqueCreneau) sc);
+        }
+        
         
     }
 }
