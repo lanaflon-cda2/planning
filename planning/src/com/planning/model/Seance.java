@@ -1,29 +1,32 @@
 package com.planning.model;
 
-import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
+public class Seance {
 
-public class Seance implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     private int numSeance;
     private int numCreneau;
     private int etatSeance;
     private int numEns;
-    private int numFiliere;
     private int numGroupe;
     private int numMatiere;
 
-    public Seance(int numSeance,int numCreneau ,int numEns, int numMatiere, int numGroupe, int numFiliere, int etatSeance) {
+    public Seance(int numSeance,int numCreneau ,int numEns, int numMatiere, int numGroupe, int etatSeance) {
         
         this.numSeance = numSeance;
         this.numCreneau = numCreneau;
         this.numEns = numEns;
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
-        this.numFiliere = numFiliere;
         this.etatSeance = etatSeance;
+    }
+    
+    public Seance(int numCreneau ,int numEns, int numMatiere, int numGroupe) {
+        
+        this.numSeance = 1;
+        this.numCreneau = numCreneau;
+        this.numEns = numEns;
+        this.numMatiere = numMatiere;
+        this.numGroupe = numGroupe;
+        this.etatSeance = -1;
     }
     
     public Seance(){}
@@ -40,11 +43,11 @@ public class Seance implements Serializable {
         this.numSeance = numSeance;
     }
     
-    public int getnumCreneau() {
+    public int getNumCreneau() {
         return numCreneau;
     }
 
-    public void setnumCreneau(int numCreneau) {
+    public void setNumCreneau(int numCreneau) {
         this.numCreneau = numCreneau;
     }
     
@@ -62,14 +65,6 @@ public class Seance implements Serializable {
 
     public void setNumEns(int numEns) {
         this.numEns = numEns;
-    }
-
-    public int getNumFiliere() {
-        return numFiliere;
-    }
-
-    public void setNumFiliere(int numFiliere) {
-        this.numFiliere = numFiliere;
     }
 
     public int getNumGroupe() {

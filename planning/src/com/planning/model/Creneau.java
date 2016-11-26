@@ -19,7 +19,7 @@ public class Creneau {
     private int numCreneau;
     private Date date;
     private Time heure;
-    private Set<Seance> seanceList = new HashSet<Seance> ();
+    private Set<Seance> seanceList = new HashSet<> ();
     
    public Creneau(int numCreneau, Date date, Time heure){
         this.numCreneau = numCreneau;

@@ -14,24 +14,21 @@ import java.sql.Date;
 public class GroupeMatiere {       
     private int numGroupe;
     private int numMatiere;
-    private int numFiliere;
     private Date dateDebut;
     private Date dateFin;
 
     
-   public GroupeMatiere(int numMatiere, int numGroupe ,int numFiliere, Date dateDebut, Date dateFin){
+   public GroupeMatiere(int numMatiere, int numGroupe, Date dateDebut, Date dateFin){
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
-        this.numFiliere = numFiliere;
         this.dateDebut = dateDebut;
         this.dateFin= dateFin;
    
    }
   
-    public GroupeMatiere(int numMatiere, int numGroupe, int numFiliere){
+    public GroupeMatiere(int numMatiere, int numGroupe){
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
-        this.numFiliere = numFiliere;
     }
 
     public int getnumGroupe() {
@@ -48,14 +45,6 @@ public class GroupeMatiere {
 
     public void setnumMatiere(int numMatiere) {
         this.numMatiere = numMatiere;
-    }    
-    
-    public int getnumFiliere() {
-        return numFiliere;
-    }
-
-    public void setnumFiliere(int numFiliere) {
-        this.numFiliere = numFiliere;
     }    
     
     public Date getDateDebut() {

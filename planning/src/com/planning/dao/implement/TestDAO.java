@@ -8,6 +8,7 @@ package com.planning.dao.implement;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
+import com.planning.model.StatiqueCreneau;
 import com.planning.model.Users;
 import java.sql.Connection;
 import java.sql.Date;
@@ -113,10 +114,24 @@ public class TestDAO {
     
     }
     
-    public static void main(String args[]){
+    public static void testInsertAllCreneau(){
         CreneauDAO x = new CreneauDAO(conn);
         
         x.insererAllCreneau(2016, 2017);
+    }
+    
+    public static void testInsertSeance(){
+        SeanceDAO s = new SeanceDAO(conn);
+        Calendar cal = Calendar.getInstance();
+        cal.set(0, 0, 0, 14, 0, 0);
+        long timeMillis = cal.getTimeInMillis();
+        Time t = new Time(timeMillis);
+        //StatiqueCreneau so = new StatiqueCreneau(1, 1, 1, 1, 2, t);
+        //s.createAllSeance(so);
+    }
+    
+    public static void main(String args[]){
+        testInsertSeance();
     }
     
 }

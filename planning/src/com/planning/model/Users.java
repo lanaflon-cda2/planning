@@ -1,11 +1,7 @@
 package com.planning.model;
 
-import java.io.Serializable;
-import java.util.Set;
+public class Users {
 
-public class Users implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     private String iDUser;
     private String motDePasse;
     private Enseignant enseignant = new Enseignant();

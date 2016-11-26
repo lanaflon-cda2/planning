@@ -1,16 +1,16 @@
 package com.planning.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Groupe implements Serializable {
+public class Groupe{
 
-    private static final long serialVersionUID = 1L;
     private int numGroupe;
+    private int numFiliere;
+    
     private String nomGroupe;
     private int niveau;
-     private Set<Seance> seanceList = new HashSet<Seance> ();
+     private Set<Seance> seanceList = new HashSet<> ();
 
     public Groupe() {
     }
@@ -25,6 +25,14 @@ public class Groupe implements Serializable {
 
     public void setNumGroupe(int numGroupe) {
         this.numGroupe = numGroupe;
+    }
+    
+    public int getNumFiliere() {
+        return numFiliere;
+    }
+
+    public void setNumFiliere(int numFiliere) {
+        this.numFiliere = numFiliere;
     }
 
     public String getNomGroupe() {
@@ -66,6 +74,7 @@ public class Groupe implements Serializable {
 
 
 
+    @Override
     public String toString() {
         return "com.planning.model.Groupe[ numGroupe=" + numGroupe + " ]";
     }

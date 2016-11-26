@@ -44,7 +44,9 @@ public class EnseignantDAO extends DAO<Enseignant> {
     @Override
     public boolean delete(Enseignant obj){
         try {
-            conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Enseignant WHERE NumEns = " + obj.getNumEns());
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "DELETE FROM Enseignant WHERE NumEns = " + obj.getNumEns();
+            state.executeUpdate(query);
         } 
         catch (SQLException e) {
             System.out.println("SQLException: " + e);

@@ -7,6 +7,7 @@ package com.planning.model;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class ConnexionBD {
     
@@ -14,15 +15,17 @@ public class ConnexionBD {
         Connection conn = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd","root","root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd_test","root","root");
             if (conn != null)
                 System.out.println("Connexion Reussite");
             else
                 System.out.println("Erreur de Connexion");
         
                 
-        }catch(Exception e){
+        }catch(SQLException e){
             System.out.println("--> SQLException : " + e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("MySQL Driver Not Found");
         }
         
         return conn;

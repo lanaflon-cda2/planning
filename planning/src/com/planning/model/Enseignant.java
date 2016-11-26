@@ -2,7 +2,6 @@ package com.planning.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -13,10 +12,10 @@ public class Enseignant implements Serializable {
     private String nomEns;
     private String prenomEns;
     private String mail;
-    private int tel;
+    private long tel;
     private String iDUser;
     
-    private Set<Seance> seanceList = new HashSet<Seance>  ();
+    private Set<Seance> seanceList = new HashSet<>  ();
 
     public Enseignant() {
     }
@@ -25,7 +24,7 @@ public class Enseignant implements Serializable {
         this.numEns = numEns;
     }
 
-    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, int tel, String iDUser) {
+    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, long tel, String iDUser) {
         
         this.numEns = numEns;
         this.nomEns = nomEns;
@@ -67,11 +66,11 @@ public class Enseignant implements Serializable {
         this.mail = mail;
     }
 
-    public int getTel() {
+    public long getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(long tel) {
         this.tel = tel;
     }
 
