@@ -97,7 +97,7 @@ public class CreneauDAO extends DAO<Creneau> {
         
         Creneau x;
         Calendar cal = Calendar.getInstance();
-        int[] month = {8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6, 7};
+        int[] month = {8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6};
         int year;
         long dateToMillisSecond;
         Date dateToInsert;

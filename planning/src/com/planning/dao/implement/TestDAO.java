@@ -114,7 +114,9 @@ public class TestDAO {
     }
     
     public static void main(String args[]){
+        CreneauDAO x = new CreneauDAO(conn);
         
+        x.insererAllCreneau(2016, 2017);
     }
     
 }

@@ -34,29 +34,7 @@ public class FiliereDAO extends DAO<Filiere> {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
+       
         return true;
     }
     
@@ -66,15 +44,6 @@ public class FiliereDAO extends DAO<Filiere> {
         } 
         catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return true;
     }
@@ -89,15 +58,6 @@ public class FiliereDAO extends DAO<Filiere> {
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
@@ -120,29 +80,6 @@ public class FiliereDAO extends DAO<Filiere> {
              }   
         }catch (SQLException e) {   
         e.printStackTrace();       
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return filiere;
     }

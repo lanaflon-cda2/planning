@@ -37,29 +37,6 @@ public class MatiereDAO extends DAO<Matiere> {
         catch (SQLException e) {
             e.printStackTrace();
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
@@ -69,15 +46,6 @@ public class MatiereDAO extends DAO<Matiere> {
         } 
         catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return true;
     }
@@ -92,15 +60,6 @@ public class MatiereDAO extends DAO<Matiere> {
         catch (SQLException e) {
 	            e.printStackTrace();
 	}
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
@@ -123,29 +82,6 @@ public class MatiereDAO extends DAO<Matiere> {
              }   
         }catch (SQLException e) {   
             e.printStackTrace();       
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return matiere;
     }
