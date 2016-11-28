@@ -2,16 +2,17 @@ package com.planning.dao.implement;
 
 import com.planning.dao.DAO;
 import com.planning.model.Seance;
+import com.planning.model.StatiqueCreneau;
 
-import java.sql.PreparedStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.sql.Time;
-import java.sql.Date;
 
 public class SeanceDAO extends DAO<Seance> {
         
@@ -19,316 +20,195 @@ public class SeanceDAO extends DAO<Seance> {
         super(conn);
     }
     
+    @Override
     public boolean create(Seance obj) {
-        try {
+            try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String query1 = new String("SELECT NEXTVAL ('NumSeance') as numseance");
-            res = state.executeQuery(query1);
-            if(res.first()) {
-                int numseance = res.getInt(0);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO SEANCE (NumSeance,Numcreneau,NumEns, NumMatiere, NumGroupe, NumFiliere, EtatSeance) VALUES (?,?,?,?,?,?,?,?)");
-                prepare.setInt(1,numseance);
-                prepare.setInt(2,obj.getnumCreneau());
-                prepare.setInt(3,obj.getNumEns());
-                prepare.setInt(4,obj.getNumMatiere());
-                prepare.setInt(5,obj.getNumGroupe());
-                prepare.setInt(6,obj.getNumFiliere());
-                prepare.setInt(7,obj.getEtatSeance());
-                prepare.executeUpdate();
-                obj = this.find(numseance);
-            }
+            
+            query = "INSERT INTO Seance VALUES (NULL, ";
+            query += obj.getNumCreneau() + ", ";
+            query += obj.getNumEns() + ",";
+            query += obj.getNumMatiere() + ", ";
+            query += obj.getNumGroupe() + ", 1)";
+            
+            int numSeance = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            
+            obj.setNumEns(numSeance);            
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("SQLException: " + e);
+            return false;
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
+       
         return true;
     }
     
+    @Override
     public boolean delete(Seance obj){
         try {
             this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Seance WHERE NumSeance = " + obj.getNumSeance());
         } 
         catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return true;
     }
     
+    @Override
     public boolean update(Seance obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Seance SET "
-                        +"NumCreneau ="+obj.getnumCreneau()+",'"
-                                    +" NumEns = " + obj.getNumEns()+ ",'"
-                                            +" NumMatiere = " + obj.getNumMatiere()+ ",'"
-                                                    +" NumGroupe = " + obj.getNumGroupe()+ ",'"
-                                                            +" NumFiliere = " + obj.getNumFiliere()+ ",'"
-                                                                    +" EtatSeance = " + obj.getEtatSeance()
-                                                                            + " WHERE NumSeance = '" + obj.getNumSeance());
-            obj = this.find(obj.getNumSeance());
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            query = "UPDATE Seance SET NumCreneau = " + obj.getNumCreneau()+ ",  NumEns = " + obj.getNumEns()+ ", NumMatiere = ";
+            query += obj.getNumMatiere()+ ", NumGroupe = " + obj.getNumGroupe()+ ", EtatSeance = " + obj.getEtatSeance();
+            query += " WHERE NumSeance = " + obj.getNumSeance();
+            state.executeUpdate(query);
 	}
         catch (SQLException e) {
-	            e.printStackTrace();
+            System.out.println("SQLException: " + e);
+            return false;
 	}
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
+    @Override
     public Seance find(int numseance){
         
         Seance seance = null;
         
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Seance WHERE NumSeance = " + numseance);
+            query = "SELECT * FROM Seance WHERE NumSeance = " + numseance;
             res = state.executeQuery(query);
             if(res.first()) {
-                seance = new Seance(res.getInt(0), res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getInt(6));                
+                seance = new Seance(res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4));                
             }
         } catch (SQLException e) {
-             e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return seance;
     }
-    
-    
     
     public Set<Seance> findByNumEns(int nume){
         
-        Set<Seance> seanceList = new HashSet<Seance>();
+        Set<Seance> seanceList = new HashSet<>();
         
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Seance WHERE NumEns = " + nume);
+            query = "SELECT * FROM Seance WHERE NumEns = " + nume;
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("NumSeance"),res.getInt("NumCreneau"), res.getInt("NumEns"), res.getInt("NumMatiere"), res.getInt("NumGroupe"),res.getInt("EtatSeance"));
                 seanceList.add(seance);                
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return seanceList;
     }
-    
-    
-    public Set<Seance> findByNumFiliere(int numf){
         
-        Set<Seance> seanceList = new HashSet<Seance>();
-        
-        try {
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Seance WHERE NumFiliere = " + numf);
-            res = state.executeQuery(query);
-            while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
-                seanceList.add(seance);                
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
-        return seanceList;
-    }
-    
-    
-    
     public Set<Seance> findByNumGroupe(int numg){
         
-        Set<Seance> seanceList = new HashSet<Seance>();
+        Set<Seance> seanceList = new HashSet<>();
         
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Seance WHERE NumGroupe = " + numg);
+            query = "SELECT * FROM Seance WHERE NumGroupe = " + numg;
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("NumSeance"),res.getInt("NumCreneau"), res.getInt("NumEns"), res.getInt("NumMatiere"), res.getInt("NumGroupe"),res.getInt("EtatSeance"));
                 seanceList.add(seance);                  
             }
             return seanceList;
         } catch (SQLException e) {
-             e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return seanceList;
-    }
-  
-    
+    }   
     
     public Set<Seance> findByNumMatiere(int numm){
         
-        Set<Seance> seanceList = new HashSet<Seance>();
+        Set<Seance> seanceList = new HashSet<>();
         
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Seance WHERE NumMatiere = " + numm);
+            query = "SELECT * FROM Seance WHERE NumMatiere = " + numm;
             res = state.executeQuery(query);
             while(res.next()) {
-                Seance seance = new Seance(res.getInt("numSeance"),res.getInt("numCreneau"),res.getInt("etatSeance"), res.getInt("numEns"), res.getInt("numFiliere"), res.getInt("numGroupe"), res.getInt("numMatiere"));
+                Seance seance = new Seance(res.getInt("NumSeance"),res.getInt("NumCreneau"), res.getInt("NumEns"), res.getInt("NumMatiere"), res.getInt("NumGroupe"),res.getInt("EtatSeance"));
                 seanceList.add(seance);                  
             }
             return seanceList;
         } catch (SQLException e) {
-             e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return seanceList;
+    } 
+    @Override
+    public Seance find(String string){
+       
+        return null;
+    }
+    
+    public void insertAllSeanceForStatiqueCreneau(StatiqueCreneau sc) {
+        
+        Seance s;
+        
+        int numMatiere = sc.getNumMatiere();
+        int numGroupe = sc.getNumGroupe();
+        int numEns = sc.getNumEns();
+        int dayOfWeek = sc.getJourSemaine();
+        Date dateD = sc.getDateD();
+        Date dateF = sc.getDateF();
+        
+        Time t = sc.getHeureSeance();
+        
+        
+        
+        
+        try {
+            state = conn.createStatement();
+            
+            /*Date dateDMat = null;
+            Date dateFMat = null;
+            String req1 = "Select DateDebut, DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe + " and NumMatiere = " + numMatiere;
+            res = state.executeQuery(req1);
+            while(res.next()) {
+                dateDMat = res.getDate(1);
+                dateFMat = res.getDate(2);
+            }
+            if(dateDMat.compareTo(dateD) > 0) {
+                System.out.println("La periode de debut de la seance " + dateD + " est avant la date de début de la matiere " + dateDMat + " pour ce groupe. Erreur");
+                return;
+            }
+            
+            if(dateFMat.compareTo(dateF) < 0){
+                System.out.println("La periode de fin de la seance " + dateF + " est apres la date de début de la matiere " + dateFMat + " pour ce groupe. Erreur");
+                return;
+            }*/
+            
+            String req2 = "Select NumCreneau , Date FROM Creneau WHERE Date >= '" + dateD + "' and Date <= '" + dateF + "' and Heure = '" + t;
+            req2 += "' and DAYOFWEEK(Date) = " + dayOfWeek;
+            
+            res = state.executeQuery(req2);
+            
+            while(res.next()) {
+                    
+                    s = new Seance(res.getInt(1), numEns, numMatiere, numGroupe);
+                    if(this.create(s)) System.out.println("Insertion de la seance de " + res.getDate(2));
+                    else System.out.println("Error insertion de la seance de " + res.getDate(2));
+                    
+            }
+            
+                
+        } catch (SQLException e) {
+            System.out.println("SQLException :" + e);
+        }
+        
     }
     
     
-    public Seance finds(String string){
-        Seance seance = null;
-        return seance;
+    public void insertAllSeance(){
+        StatiqCrenoDAO scDAO = new StatiqCrenoDAO(conn);
+        ArrayList allSC = scDAO.getAllSC();
+        for(Object sc: allSC){
+            this.insertAllSeanceForStatiqueCreneau((StatiqueCreneau) sc);
+        }
+        
+        
     }
 }

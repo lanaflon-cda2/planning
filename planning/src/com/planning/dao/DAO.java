@@ -8,6 +8,7 @@ public abstract class DAO <T> {
     protected Connection conn = null;
     protected ResultSet res = null;
     protected Statement state = null;
+    protected String query;
     
     public DAO (Connection conn) {
         this.conn = conn;
@@ -21,5 +22,5 @@ public abstract class DAO <T> {
     
     public abstract T find(int id);
     
-    public abstract T finds(String string);
+    public abstract T find(String string);
 }

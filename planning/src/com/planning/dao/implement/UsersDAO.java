@@ -14,6 +14,7 @@ public class UsersDAO extends DAO<Users> {
         super(conn);
     }
     
+    @Override
     public boolean create(Users obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -21,89 +22,52 @@ public class UsersDAO extends DAO<Users> {
             prepare.setString(1,obj.getIDUser());
             prepare.setString(2,obj.getMotDePasse());
             prepare.executeUpdate();
-                
-            
+
         }
         catch (SQLException e) {
-            
-            e.printStackTrace();
+            System.out.println("SQLException: " + e);
             return false;
             
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
+
         return true;
     }
     
+    @Override
     public boolean delete(Users obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Users WHERE IDUser = '" + obj.getIDUser() + "'");
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "DELETE FROM Users WHERE IDUser = '" + obj.getIDUser() + "'";
+            state.executeUpdate(query);
         } 
         catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("SQLException: " + e);
             return false;
         }
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
+    @Override
     public boolean update(Users obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Users SET "
-                    +" MotDePasse = '" + obj.getMotDePasse() + "',"
-                            + " WHERE IDUser = '" + obj.getIDUser()+"'");
-            obj = this.finds(obj.getIDUser());
+            
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            query = "UPDATE Users SET IDUser = '" + obj.getIDUser() + "', MotDePasse = '" + obj.getMotDePasse() + "', WHERE IDUser = '" + obj.getIDUser()+"'";
+            state.executeUpdate(query);
 	}
         catch (SQLException e) {
-	            e.printStackTrace();
-                    return false;
+            System.out.println("SQLException: " + e);
+            return false;
 	}
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
-    public Users finds(String iDUser){
+    @Override
+    public Users find(String iDUser){
         Users users = null;
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Users WHERE IDUser = '" + iDUser + "'");
+            query = "SELECT * FROM Users WHERE IDUser = '" + iDUser + "'";
             res = state.executeQuery(query);
             if(res.next()) {
                 users = new Users(res.getString("IDUser"), res.getString("MotDePasse"));   
@@ -112,35 +76,14 @@ public class UsersDAO extends DAO<Users> {
                 users.setEnseignant(enseignant);
              }   
         }catch (SQLException e) {  
-            
-        e.printStackTrace();       
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
+            System.out.println("SQLException: " + e);
+            return null;
         }
         return users;
     }
     
+    
+    @Override
     public Users find(int id) {
         return null;
     }

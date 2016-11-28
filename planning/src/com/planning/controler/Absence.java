@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,207 +13,234 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
  * @author Oumaima
  */
 public class Absence {
-    Statement state ;
-    ResultSet res;
-    Connection con = ConnexionBD.init();
     
-    public boolean updateEtat(Seance s,int etat){
-        s.setEtatSeance(etat);
-        SeanceDAO seanceDAO = new SeanceDAO(ConnexionBD.init());
-        if (seanceDAO.update(s)){
-            return true ;
+    static Connection con = ConnexionBD.init();
+    Statement state;
+    ResultSet res;
+    
+    private final int numEns;
+    private final int numGroupe;
+    private final int numMatiere;
+    private final int numCreneau;
+    private Date dateSysteme;
+    private Date dateFin;
+    
+    ArrayList creneauxMatchEnsGroupe = null;
+    ArrayList permutPossible = null;
+    
+    public Absence(Seance s) {
+        
+        updateEtat(s, 0);
+        
+        this.numEns = s.getNumEns();
+        this.numGroupe = s.getNumGroupe();
+        this.numMatiere = s.getNumMatiere();
+        this.numCreneau = s.getNumCreneau();
+        this.dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
+        
+        searchRattrapage();
+        
+    }
+    
+    public ArrayList getCreneauxMatchEnsGroupe(){
+        return this.creneauxMatchEnsGroupe;
+    }
+    
+    public ArrayList getPermutPossible() {
+        return this.permutPossible;
+    }
+    
+    private void searchRattrapage() {
+        System.out.println("La date systeme = " + dateSysteme);
+        this.dateFin = getDateFin();
+        System.out.println("Date de fin de la fin matiere = " + dateFin);
+        creneauxMatchEnsGroupe = searchMatchEnsGroupe();
+        
+        if(creneauxMatchEnsGroupe == null){
+            System.out.println("Aucune intersection trouvée.");
+            permutPossible = searchPermut();
+            if(permutPossible == null) {
+                System.out.println("Aucune permutation possible");
+            }
         }
-    return false ;    
+        
+        try {
+            res.close();
+            state.close();
+            con.close();
+        } catch(SQLException e){
+            System.out.println("SQLException: " + e);
+        }
+        
+    }
+            
+    public static boolean updateEtat(Seance s,int etat){
+       
+        s.setEtatSeance(etat);
+        SeanceDAO seanceDAO = new SeanceDAO(con);
+        seanceDAO.update(s);
+        return true;   
     }
 
-    public Date getDateFin(int numGroupe, int numMatiere, int numFiliere){
-        Date dateFin= new Date();
+    public Date getDateFin(){
         try {
             state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe+" and NumMatiere="+numMatiere);
-            query += " and NumFiliere = " + numFiliere;
+            String query = new String();
+            query += "SELECT DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe + " and NumMatiere= "+ numMatiere;
             res = state.executeQuery(query);
             while(res.next()) {
                 dateFin = res.getDate(1);                 
             } 
         } catch (SQLException e) {
-             e.printStackTrace();
-        } finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
+            System.out.println("SQLException: " + e);
+            return null;
+        } 
         return dateFin;
     }
-        
-    }
     
     
-    /**
-     *
-     * @param numEns
-     * @param numGroupe
-     * @param numMatiere
-     * @param numFiliere
-     * @return
-     */
-    
-    public ArrayList searchMatch (int numEns, int numGroupe, int numMatiere, int numFiliere) {
-        
-    
-        ArrayList creneauVideEns = new ArrayList();
-        ArrayList creneauVideGroupe = new ArrayList();
-        ArrayList creneauMatch = new ArrayList();
-        Date df = getDateFin(numGroupe, numMatiere, numFiliere);
-        Date dateSysteme = new Date();
-        
+    public ArrayList getCreneauxVideEns(){
+            ArrayList creneauxVideEns = null;
         try {
-            
-            String query1 = new String("Select NumCreneau From Creneau where DateCreneau >= " + dateSysteme + " and DateCreneau <= " + df);
-            query1 += (" EXCEPT Select NumCreneau from Seance where NumEns = " + numEns);
-            res = state.executeQuery(query1); 
+            creneauxVideEns = new ArrayList();
+            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            String query = new String();
+            query += "Select NumCreneau From Creneau where Date >= '" + dateSysteme + "' and Date <= '" + dateFin;
+            query += "' AND NumCreneau NOT IN (Select NumCreneau from Seance where NumEns = " + numEns + ")";
+            res = state.executeQuery(query); 
             while(res.next()){
-                creneauVideEns.add(res.getInt(1));
-            }
-            String query2 = new String("Select numCreneau From Creneau where DateCreneau >= "+ dateSysteme +" and DateCreneau <= "+ df);
-            query2 += (" EXCEPT Select NumCreneau from Seance where NumGroupe = " + numGroupe + " and NumFiliere = " + numFiliere + " and EtatSeance=1");
-            res = state.executeQuery(query2);
-            while(res.next()){
-                creneauVideGroupe.add(res.getInt(1));
-            }
-            for(int i = 0; i < creneauVideEns.size(); i++){
-                int num = (int) creneauVideEns.get(i);
-                for(int j=0 ; j < creneauVideGroupe.size(); j++){
-                    int numg = (int) creneauVideGroupe.get(j);
-                    if (num == numg){
-                        creneauMatch.add(numg);
-                        break;
-                    }
-                }
+                creneauxVideEns.add(res.getInt(1));
             }
       
         } catch (SQLException e) {
-             e.printStackTrace();
+            System.out.println("SQLException: " + e);
+            return null;
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
-      return creneauMatch;     
+      return creneauxVideEns;     
     }
     
-    public ArrayList seanceForUniqueEns(int numEns, int numGroupe , int numMatiere, int numFiliere){
-        ArrayList seance = new ArrayList();
-        Date df= getDateFin(numGroupe, numMatiere, numFiliere);
-        Date dateSysteme = new Date();
+    public ArrayList getCreneauxVideGroupe(){
+        ArrayList creneauxVideGroupe = null;
+        try {
+            creneauxVideGroupe = new ArrayList();
+            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            String query = new String();
+            query += "Select NumCreneau From Creneau where Date >= '"+ dateSysteme + "' and Date <= '" + dateFin + "' and NumCreneau != " + numCreneau;
+            query += " AND NumCreneau NOT IN (Select NumCreneau from Seance where NumGroupe = " + numGroupe + " and EtatSeance = 1" + ")";
+            res = state.executeQuery(query);
+            while(res.next()){
+                creneauxVideGroupe.add(res.getInt(1));
+            }
+      
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return null;
+        }
+      return creneauxVideGroupe;     
+    
+    }
+    
+    public ArrayList searchMatchEnsGroupe () {
+        
+        ArrayList creneauxMatch = null;
+        ArrayList creneauxVideEns = getCreneauxVideEns();
+       
+        ArrayList creneauxVideGroupe = getCreneauxVideGroupe();
+        for(int i = 0; i < creneauxVideEns.size(); i++){
+            int num = (int) creneauxVideEns.get(i);
+            for(int j = 0 ; j < creneauxVideGroupe.size(); j++){
+                int numg = (int) creneauxVideGroupe.get(j);
+                if (num == numg){
+                    if(creneauxMatch == null) creneauxMatch = new ArrayList();
+                    creneauxMatch.add(numg);
+                    break;
+                }
+            }
+        }
+        return creneauxMatch;     
+    }
+    
+    public ArrayList getPossibleEnsXPermut(){
+        
+        ArrayList possibleEnsPermut = null;
+        try {
+            possibleEnsPermut = new ArrayList();
+            String query = new String();
+            query += "SELECT DISTINCT NumEns FROM Seance WHERE NumEns != " + numEns;
+            query += "NumGroupe = " + numGroupe;
+            query += " AND NumEns NOT IN (Select NumEns from Seance where NumCreneau = " + numCreneau +" and NumGroupe = "+ numGroupe + ")";
+            res = state.executeQuery(query);
+            while(res.next()) {
+                    possibleEnsPermut.add(res.getInt(1));
+                             
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return null;
+        }
+        return possibleEnsPermut;
+    }
+    
+    public ArrayList getSeancesDeEnsX(){
+        ArrayList seance = null;
         
         try {
-            String query1= new String("Select NumCreneau from Seance where NumEns="+numEns+" and NumGroupe"+numGroupe+"and NumFiliere = " + numFiliere);
-            query1 += (" INTERSECT Select NumCreneau From Creneau where DateCreneau>="+dateSysteme+"and DateCreneau<="+df);
-            res=state.executeQuery(query1);
+            seance = new ArrayList();
+            String query= new String();
+            query += "Select NumCreneau from Seance where NumEns= " + numEns + " and NumGroupe " + numGroupe;
+            query += " INTERSECT (Select NumCreneau From Creneau where Date >= '" + dateSysteme + "' and Date <= '" + dateFin + "')";
+            res=state.executeQuery(query);
             while(res.next()){
                 seance.add(res.getInt(1));
             }
                 
         } catch (SQLException e) {
-             e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
+             //e.printStackTrace();
         }
         return seance; 
     }
     
-    public ArrayList searchPermut(int numEns , int numCreneau , int numGroupe, int numMatiere, int numFiliere){
-        ArrayList allEnsSeanceList = new ArrayList();
-        ArrayList ensSeanceMatchList = new ArrayList();
-        EnsSeance ensSeance;
-        int numEnsX;
-        try {
-            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT numEns FROM Seance WHERE NumEns != " + numEns);
-            query += "NumGroupe = " + numGroupe+"and NumFiliere = " + numFiliere;
-            query += (" EXCEPT Select numEns from Seance where numCreneau="+numCreneau+" and numGroupe="+numGroupe+"and NumFiliere = " + numFiliere);
-            res = state.executeQuery(query);
-            while(res.next()) {
-                numEnsX = res.getInt(1);
-                ArrayList seanceEnsList = seanceForUniqueEns(numEns, numGroupe, numMatiere, numFiliere);
-                ArrayList seanceMatch;
-                             
-            }
-            for(int i=0 ; i<allEnsSeanceList.size();i++){
-                numEns = ((EnsSeance) allEnsSeanceList.get(i)).getNumEns();
-               
-                for(int j = 0; j<=0;j++) {
-                
+    public ArrayList searchPermut(){
+        ArrayList creneauxMatchList = null;
+        CreneauPermut creneauxMatchWithX;
+        ArrayList seanceDeEnsX;
+        ArrayList ensList = getPossibleEnsXPermut();
+        ArrayList creneauxVideEns = getCreneauxVideEns();
+        for (Object ensX : ensList) {
+            seanceDeEnsX = getSeancesDeEnsX();
+            creneauxMatchWithX = null;
+            
+            
+            for(Object seance: seanceDeEnsX){
+                for(Object creneauVide: creneauxVideEns){
+                    if(creneauVide == seance) {
+                        if(creneauxMatchWithX == null) {
+                            creneauxMatchWithX = new CreneauPermut();
+                            creneauxMatchWithX.setNumEns((int) ensX);
+                        }
+                        creneauxMatchWithX.addCreneaux((int) creneauVide);
+                    }   
                 }
-
-                
             }
             
             
-        } catch (SQLException e) {
-             e.printStackTrace();
+            if(creneauxMatchWithX != null) {
+                if(creneauxMatchList == null) creneauxMatchList = new ArrayList();
+                creneauxMatchList.add(creneauxMatchWithX); 
+            }           
         }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }   
-        return allEnsSeanceList;
+        
+        
+        return creneauxMatchList;
     }
     
     

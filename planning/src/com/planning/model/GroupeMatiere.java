@@ -5,24 +5,20 @@
  */
 package com.planning.model;
 
-import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author Oumaima
  */
-public class GroupeMatiere {
-        
-    
-    private int numGM;
+public class GroupeMatiere {       
     private int numGroupe;
     private int numMatiere;
     private Date dateDebut;
     private Date dateFin;
+
     
-   public GroupeMatiere(int numGM, int numGroupe , int numMatiere , Date dateDebut, Date dateFin){
-        this.numGM = numGM;
+   public GroupeMatiere(int numMatiere, int numGroupe, Date dateDebut, Date dateFin){
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
         this.dateDebut = dateDebut;
@@ -30,20 +26,11 @@ public class GroupeMatiere {
    
    }
   
-    public GroupeMatiere(){}
-
-    public GroupeMatiere(int numGM) {
-        this.numGM = numGM;
+    public GroupeMatiere(int numMatiere, int numGroupe){
+        this.numMatiere = numMatiere;
+        this.numGroupe = numGroupe;
     }
 
-    public int getNumGM() {
-        return numGM;
-    }   
-    
-    public void setNumGM(int numGM) {
-        this.numGM = numGM;
-    }
-    
     public int getnumGroupe() {
         return numGroupe;
     }
