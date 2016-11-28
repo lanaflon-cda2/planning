@@ -54,7 +54,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
             Logger.getLogger(com.planning.view.AdminDept.AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
         }
         mcd.show();
-        getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 810, 530));
+        getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 810, 530));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -128,7 +128,10 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/images/AcceuilBG.png"))); // NOI18N
         acceuilBG.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 880));
+        acceuilBG.setMaximumSize(new java.awt.Dimension(1000, 700));
+        acceuilBG.setMinimumSize(new java.awt.Dimension(1000, 700));
+        acceuilBG.setPreferredSize(new java.awt.Dimension(1000, 700));
+        getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
         setLocationRelativeTo(null);
