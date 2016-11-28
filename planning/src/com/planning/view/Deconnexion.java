@@ -35,7 +35,6 @@ public class Deconnexion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 600));
         setMinimumSize(new java.awt.Dimension(900, 600));
-        setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,7 +62,7 @@ public class Deconnexion extends javax.swing.JFrame {
         jLabel1.setText("Vous avez été déconnecté");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
 
-        DeconnexionBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/Deconnexion.png")));
+        DeconnexionBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Deconnexion.png"))); // NOI18N
         getContentPane().add(DeconnexionBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         pack();
