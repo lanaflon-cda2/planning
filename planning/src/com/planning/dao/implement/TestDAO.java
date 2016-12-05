@@ -23,7 +23,7 @@ import java.util.Calendar;
  * @author genereux
  */
 public class TestDAO {
-    static Connection conn;
+    static Connection conn = ConnexionBD.init();
     
     public static void testCreneau () {
              
@@ -123,27 +123,26 @@ public class TestDAO {
         x.insererAllCreneau(2016, 2017);
     }
     
-    public static void testInsertSeance(){
+    public static void InsertSeance(){
         SeanceDAO s = new SeanceDAO(conn);
         Calendar cal = Calendar.getInstance();
         cal.set(0, 0, 0, 14, 0, 0);
         long timeMillis = cal.getTimeInMillis();
         Time t = new Time(timeMillis);
-        cal.set(2016, 8, 26);
+        cal.set(2016, 10, 14);
         timeMillis = cal.getTimeInMillis();
         Date dd = new Date(timeMillis);
-        cal.set(2016, 10, 11);
+        cal.set(2016, 11, 30);
         timeMillis = cal.getTimeInMillis();
         Date df = new Date(timeMillis);
-        
-        
-        StatiqueCreneau so = new StatiqueCreneau(5, 1, 1, 3, t, dd, df);
+              
+        StatiqueCreneau so = new StatiqueCreneau(12, 2, 14, 6, t, dd, df);
         s.insertAllSeanceForStatiqueCreneau(so);
     }
     
     
     public static void testAbsence(){
-        Seance s = new Seance(8, 75, 1, 5, 1);
+        Seance s = new Seance(10068, 172, 9, 4, 1);
         Absence absence = new Absence(s);
         ArrayList creno = absence.getCreneauxMatchEnsGroupe();
         if(creno != null) {
@@ -156,7 +155,10 @@ public class TestDAO {
     }
     
     public static void main(String args[]){
+       //InsertSeance();
        testAbsence();
+       
+       
     }
     
 }
