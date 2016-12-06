@@ -189,7 +189,7 @@ public class SeanceDAO extends DAO<Seance> {
             while(res.next()) {
                     
                     s = new Seance(res.getInt(1), numEns, numMatiere, numGroupe);
-                    if(this.create(s)) System.out.println("Insertion de la seance de " + res.getDate(2));
+                    if(this.create(s)) System.out.println("Insertion de la seance" + " du " + getNomJour(dayOfWeek) + " " + res.getDate(2) + " à " + t);
                     else System.out.println("Error insertion de la seance de " + res.getDate(2));
                     
             }
@@ -199,6 +199,27 @@ public class SeanceDAO extends DAO<Seance> {
             System.out.println("SQLException :" + e);
         }
         
+    }
+    
+    
+    public String getNomJour(int dayOfWeek){
+        switch (dayOfWeek) {
+            case 1: 
+                return "Dimanche";
+            case 2:
+                return "Lundi";
+            case 3:
+                return "Mardi";
+            case 4:
+                return "Mercredi";
+            case 5:
+                return "Jeudi";
+            case 6:
+                return "Vendredi";
+            default:
+                return "Samedi";
+        }
+              
     }
     
     

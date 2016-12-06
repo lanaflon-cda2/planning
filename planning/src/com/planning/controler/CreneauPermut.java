@@ -17,7 +17,11 @@ public class CreneauPermut {
 
     private ArrayList creneaux;
     
-    public CreneauPermut(){}
+    public CreneauPermut(){
+        this.numEns = 0;
+        this.creneaux = new ArrayList();
+        
+    }
 
     public CreneauPermut (int numEns, ArrayList creneaux) {
 

@@ -38,7 +38,7 @@ public class Absence {
     
     public Absence(Seance s) {
         
-        updateEtat(s, 0);
+        Absence.updateEtat(s, 0);
         
         this.numEns = s.getNumEns();
         this.numGroupe = s.getNumGroupe();
@@ -46,7 +46,7 @@ public class Absence {
         this.numCreneau = s.getNumCreneau();
         this.dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
         
-        searchRattrapage();
+        this.searchRattrapage();
         
     }
     
@@ -60,15 +60,26 @@ public class Absence {
     
     private void searchRattrapage() {
         System.out.println("La date systeme = " + dateSysteme);
-        this.dateFin = getDateFin();
+        this.dateFin = this.getDateFin();
         System.out.println("Date de fin de la fin matiere = " + dateFin);
-        creneauxMatchEnsGroupe = searchMatchEnsGroupe();
-        
+        creneauxMatchEnsGroupe = this.searchMatchEnsGroupe();
+        permutPossible = this.searchPermut();
+
         if(creneauxMatchEnsGroupe == null){
             System.out.println("Aucune intersection trouvée.");
-            permutPossible = searchPermut();
             if(permutPossible == null) {
-                System.out.println("Aucune permutation possible");
+                System.out.println(" Et aucune permutation possible");
+            }
+            else {
+                System.out.println("Mais des permutations sont possibles");
+            }
+        }
+        else {
+             if(permutPossible == null) {
+                System.out.println(" Intersection trouvee mais aucune permutation trouvee");
+             } 
+             else {
+                System.out.println("Intersection trouvee et des permutations sont aussi possibles");
             }
         }
         
@@ -90,7 +101,7 @@ public class Absence {
         return true;   
     }
 
-    public Date getDateFin(){
+    private Date getDateFin(){
         try {
             state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String();
@@ -107,7 +118,7 @@ public class Absence {
     }
     
     
-    public ArrayList getCreneauxVideEns(){
+    private ArrayList getCreneauxVideEns(){
             ArrayList creneauxVideEns = null;
         try {
             creneauxVideEns = new ArrayList();
@@ -127,7 +138,7 @@ public class Absence {
       return creneauxVideEns;     
     }
     
-    public ArrayList getCreneauxVideGroupe(){
+    private ArrayList getCreneauxVideGroupe(){
         ArrayList creneauxVideGroupe = null;
         try {
             creneauxVideGroupe = new ArrayList();
@@ -148,12 +159,12 @@ public class Absence {
     
     }
     
-    public ArrayList searchMatchEnsGroupe () {
+    private ArrayList searchMatchEnsGroupe () {
         
         ArrayList creneauxMatch = null;
-        ArrayList creneauxVideEns = getCreneauxVideEns();
+        ArrayList creneauxVideEns = this.getCreneauxVideEns();
        
-        ArrayList creneauxVideGroupe = getCreneauxVideGroupe();
+        ArrayList creneauxVideGroupe = this.getCreneauxVideGroupe();
         for(int i = 0; i < creneauxVideEns.size(); i++){
             int num = (int) creneauxVideEns.get(i);
             for(int j = 0 ; j < creneauxVideGroupe.size(); j++){
@@ -168,15 +179,17 @@ public class Absence {
         return creneauxMatch;     
     }
     
-    public ArrayList getPossibleEnsXPermut(){
+    private ArrayList getPossibleEnsXPermut(){
         
         ArrayList possibleEnsPermut = null;
         try {
             possibleEnsPermut = new ArrayList();
+            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             String query = new String();
             query += "SELECT DISTINCT NumEns FROM Seance WHERE NumEns != " + numEns;
-            query += "NumGroupe = " + numGroupe;
-            query += " AND NumEns NOT IN (Select NumEns from Seance where NumCreneau = " + numCreneau +" and NumGroupe = "+ numGroupe + ")";
+            query += " AND NumGroupe = " + numGroupe;
+            query += " AND NumEns NOT IN (Select NumEns from Seance where NumCreneau = "; 
+            query += numCreneau + ")";
             res = state.executeQuery(query);
             while(res.next()) {
                     possibleEnsPermut.add(res.getInt(1));
@@ -190,39 +203,42 @@ public class Absence {
         return possibleEnsPermut;
     }
     
-    public ArrayList getSeancesDeEnsX(){
+    private ArrayList getSeancesDeEnsX(int numEnsX){
         ArrayList seance = null;
         
         try {
+            state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             seance = new ArrayList();
             String query= new String();
-            query += "Select NumCreneau from Seance where NumEns= " + numEns + " and NumGroupe " + numGroupe;
-            query += " INTERSECT (Select NumCreneau From Creneau where Date >= '" + dateSysteme + "' and Date <= '" + dateFin + "')";
-            res=state.executeQuery(query);
+            query += "Select NumCreneau from Seance where NumEns = " + numEnsX + " and NumGroupe = " + numGroupe;
+            query += " and NumCreneau IN (Select NumCreneau From Creneau where Date >= '" + dateSysteme + "' and Date <= '" + dateFin + "')";
+            res = state.executeQuery(query);
             while(res.next()){
                 seance.add(res.getInt(1));
             }
                 
         } catch (SQLException e) {
-             //e.printStackTrace();
+            System.out.println("SQLException: " + e);
+            return null;
         }
         return seance; 
     }
     
-    public ArrayList searchPermut(){
+    private ArrayList searchPermut(){
+        System.out.println("search permut in methode");
         ArrayList creneauxMatchList = null;
         CreneauPermut creneauxMatchWithX;
         ArrayList seanceDeEnsX;
-        ArrayList ensList = getPossibleEnsXPermut();
-        ArrayList creneauxVideEns = getCreneauxVideEns();
+        ArrayList ensList = this.getPossibleEnsXPermut();
+        ArrayList creneauxVideEns = this.getCreneauxVideEns();
+
         for (Object ensX : ensList) {
-            seanceDeEnsX = getSeancesDeEnsX();
+            seanceDeEnsX = this.getSeancesDeEnsX((int) ensX);
             creneauxMatchWithX = null;
-            
-            
+
             for(Object seance: seanceDeEnsX){
                 for(Object creneauVide: creneauxVideEns){
-                    if(creneauVide == seance) {
+                    if((int) creneauVide == (int) seance) {
                         if(creneauxMatchWithX == null) {
                             creneauxMatchWithX = new CreneauPermut();
                             creneauxMatchWithX.setNumEns((int) ensX);
