@@ -9,7 +9,6 @@ import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Users;
-import static java.lang.System.out;
 import javax.swing.JOptionPane;
 
 /**
@@ -123,7 +122,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
          UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        Users user = usersDAO.finds(identifiant.getText());
+        Users user = usersDAO.find(identifiant.getText());
         String passwordtext = new String(motdepasse.getPassword());
         
         if(user != null ) {
