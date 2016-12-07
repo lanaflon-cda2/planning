@@ -107,6 +107,11 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 seancerattMouseClicked(evt);
             }
         });
+        seanceratt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seancerattActionPerformed(evt);
+            }
+        });
         getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 170, 70));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,16 +177,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseClicked
 
     private void seancerattMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seancerattMouseClicked
-        this.desktop.removeAll();
-        this.desktop.repaint();
-        GererGroupe gg = new GererGroupe();
-        this.desktop.add(gg);
-        try {
-            gg.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        gg.show();
+        
     }//GEN-LAST:event_seancerattMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
@@ -205,6 +201,20 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         dispose();
         new Deconnexion().setVisible(true);        
     }//GEN-LAST:event_deconnexionMouseClicked
+
+    private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
+        this.desktop.removeAll();
+        this.desktop.repaint();
+        GererGroupe gg = new GererGroupe();
+        this.desktop.add(gg);
+        try {
+            gg.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        gg.show();
+        
+    }//GEN-LAST:event_seancerattActionPerformed
 
     /**
      * @param args the command line arguments

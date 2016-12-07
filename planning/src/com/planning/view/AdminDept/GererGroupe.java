@@ -27,13 +27,170 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        nomlabel1 = new javax.swing.JLabel();
+        nomfield1 = new javax.swing.JTextField();
+        filierelabel1 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        niveaulabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListeGroupe = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Modifier = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
         setTitle("Gérer groupes");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Ajouter groupe");
+        jLabel4.setEnabled(false);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+
+        nomlabel1.setText("Nom groupe");
+        nomlabel1.setEnabled(false);
+        getContentPane().add(nomlabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+
+        nomfield1.setEnabled(false);
+        getContentPane().add(nomfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 170, 30));
+
+        filierelabel1.setText("Filière");
+        filierelabel1.setEnabled(false);
+        getContentPane().add(filierelabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setEnabled(false);
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 130, 30));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setEnabled(false);
+        getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, 30));
+
+        niveaulabel1.setText("Niveau");
+        niveaulabel1.setEnabled(false);
+        getContentPane().add(niveaulabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
+
+        jButton2.setText("Confirmer");
+        jButton2.setEnabled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 460, 110, 30));
+
+        ListeGroupe.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"test1", "test2", "test3"},
+                {"sdfds", "rrrrr", "aaaaa"},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Groupe", "Filière", "Niveau"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ListeGroupe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListeGroupeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(ListeGroupe);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 500, 170));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Gestion des groupes");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel2.setText("Liste des groupes :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        Modifier.setText("Modifier");
+        Modifier.setEnabled(false);
+        Modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifierActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 120, 30));
+
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ListeGroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListeGroupeMouseClicked
+        Modifier.setEnabled(true);
+    }//GEN-LAST:event_ListeGroupeMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        Modifier.setEnabled(false);
+        ListeGroupe.clearSelection();
+        
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
+
+    }//GEN-LAST:event_ModifierActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        nomlabel1.setEnabled(true);
+        nomfield1.setEnabled(true);
+        filierelabel1.setEnabled(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable ListeGroupe;
+    private javax.swing.JButton Modifier;
+    private javax.swing.JLabel filierelabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel niveaulabel1;
+    private javax.swing.JTextField nomfield1;
+    private javax.swing.JLabel nomlabel1;
     // End of variables declaration//GEN-END:variables
 }
