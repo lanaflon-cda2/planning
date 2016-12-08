@@ -81,10 +81,15 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
 
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
         monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
-        monemploi.setText("Gérer utilisateurs");
+        monemploi.setText("Utilisateurs");
         monemploi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 monemploiMouseClicked(evt);
+            }
+        });
+        monemploi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monemploiActionPerformed(evt);
             }
         });
         getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 170, 70));
@@ -118,7 +123,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseExited
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked
@@ -152,6 +157,10 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         dispose();
         new Deconnexion().setVisible(true);
     }//GEN-LAST:event_deconnexionMouseClicked
+
+    private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monemploiActionPerformed
 
     /**
      * @param args the command line arguments
