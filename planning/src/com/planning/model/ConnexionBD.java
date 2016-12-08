@@ -15,9 +15,9 @@ public class ConnexionBD {
         Connection conn = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd_test","root","root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd_test","root","");
             if (conn != null)
-                System.out.println("Connexion A la base de donnees reusies.");
+                System.out.println("Connexion A la base de donnees reussie.");
             else
                 System.out.println("Erreur de Connexion");
         

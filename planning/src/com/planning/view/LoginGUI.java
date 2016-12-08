@@ -9,6 +9,7 @@ import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Users;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,6 +66,11 @@ public class LoginGUI extends javax.swing.JFrame {
         });
 
         motdepasse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        motdepasse.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                motdepasseKeyPressed(evt);
+            }
+        });
 
         loginbackground.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/LoginBG.png")));
@@ -114,19 +120,22 @@ public class LoginGUI extends javax.swing.JFrame {
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
        
     }//GEN-LAST:event_ConnexionMouseClicked
-
+    //public static Users user = null ;
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
-         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        Users user = usersDAO.find(identifiant.getText());
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        String id = new String(identifiant.getText());
+        Users user = usersDAO.find(id);
         String passwordtext = new String(motdepasse.getPassword());
+               
         
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                 dispose();
-                 JOptionPane.showMessageDialog(null, "Connexion réussie");
-                 new AcceuilEnseignant().setVisible(true);
-                 
+                 AcceuilEnseignant AE = new AcceuilEnseignant();
+                 AE.getEnseignant(id);
+                 this.dispose();
+                 AE.setVisible(true);
+                
                 
             }
             
@@ -139,6 +148,10 @@ public class LoginGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer");
         }
     }//GEN-LAST:event_ConnexionActionPerformed
+
+    private void motdepasseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_motdepasseKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_motdepasseKeyPressed
 
     /**
      * @param args the command line arguments

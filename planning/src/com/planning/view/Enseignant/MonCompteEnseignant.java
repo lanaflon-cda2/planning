@@ -5,6 +5,10 @@
  */
 package com.planning.view.Enseignant;
 
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
+
 /**
  *
  * @author Azough Mehdi
@@ -17,7 +21,6 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     public MonCompteEnseignant() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +36,7 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -63,6 +67,10 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jButton1.setText("Modifier");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 150, 40));
 
+        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 290, 60));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -74,5 +82,6 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

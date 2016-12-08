@@ -5,6 +5,9 @@
  */
 package com.planning.view.Enseignant;
 
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
 import java.beans.PropertyVetoException;
@@ -23,7 +26,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     public AcceuilEnseignant() {
         initComponents();
     }
-
+    public void getEnseignant(String id){
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        Enseignant ens = enseignantDAO.findByIDUser(id);
+        jLabel1.setText(ens.getNomEns()+" "+ens.getPrenomEns());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,8 +65,15 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 810, 530));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
         jLabel1.setText("Enseignant");
+        jLabel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabel1InputMethodTextChanged(evt);
+            }
+        });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 130, -1, -1));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
@@ -195,6 +209,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         }
         sr.show();
     }//GEN-LAST:event_seancerattActionPerformed
+
+    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel1InputMethodTextChanged
+    EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+    
+    }//GEN-LAST:event_jLabel1InputMethodTextChanged
 
     /**
      * @param args the command line arguments
