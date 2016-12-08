@@ -31,16 +31,17 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         nomlabel1 = new javax.swing.JLabel();
         nomfield1 = new javax.swing.JTextField();
         filierelabel1 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        filierebox = new javax.swing.JComboBox<>();
+        niveaubox = new javax.swing.JComboBox<>();
         niveaulabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        confirmer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListeGroupe = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Modifier = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        supprimer = new javax.swing.JButton();
 
         setTitle("Gérer groupes");
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -52,8 +53,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Ajouter groupe");
-        jLabel4.setEnabled(false);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         nomlabel1.setText("Nom groupe");
         nomlabel1.setEnabled(false);
@@ -66,26 +66,31 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         filierelabel1.setEnabled(false);
         getContentPane().add(filierelabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.setEnabled(false);
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 130, 30));
+        filierebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filierebox.setEnabled(false);
+        filierebox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filiereboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(filierebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 130, 30));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.setEnabled(false);
-        getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, 30));
+        niveaubox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        niveaubox.setEnabled(false);
+        getContentPane().add(niveaubox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, 30));
 
         niveaulabel1.setText("Niveau");
         niveaulabel1.setEnabled(false);
         getContentPane().add(niveaulabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
 
-        jButton2.setText("Confirmer");
-        jButton2.setEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        confirmer.setText("Confirmer");
+        confirmer.setEnabled(false);
+        confirmer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                confirmerActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 460, 110, 30));
+        getContentPane().add(confirmer, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 460, 110, 30));
 
         ListeGroupe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,59 +143,82 @@ public class GererGroupe extends javax.swing.JInternalFrame {
                 ModifierActionPerformed(evt);
             }
         });
-        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 120, 30));
+        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 120, 30));
 
-        jButton1.setText("Ajouter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jRadioButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 120, 30));
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+
+        supprimer.setText("Supprimer");
+        supprimer.setEnabled(false);
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListeGroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListeGroupeMouseClicked
         Modifier.setEnabled(true);
+        supprimer.setEnabled(true);
     }//GEN-LAST:event_ListeGroupeMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         Modifier.setEnabled(false);
+        supprimer.setEnabled(false);
         ListeGroupe.clearSelection();
         
     }//GEN-LAST:event_formMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void confirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_confirmerActionPerformed
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
 
     }//GEN-LAST:event_ModifierActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        nomlabel1.setEnabled(true);
-        nomfield1.setEnabled(true);
-        filierelabel1.setEnabled(true);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        if(jRadioButton1.isSelected()){
+            nomlabel1.setEnabled(true);
+            nomfield1.setEnabled(true);
+            filierelabel1.setEnabled(true);
+            filierebox.setEnabled(true);
+            niveaubox.setEnabled(true);
+            confirmer.setEnabled(true);
+        }
+        else{
+            nomlabel1.setEnabled(false);
+            nomfield1.setEnabled(false);
+            filierelabel1.setEnabled(false);
+            filierebox.setEnabled(false);
+            niveaubox.setEnabled(false);
+            confirmer.setEnabled(false);
+            
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void filiereboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filiereboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filiereboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ListeGroupe;
     private javax.swing.JButton Modifier;
+    private javax.swing.JButton confirmer;
+    private javax.swing.JComboBox<String> filierebox;
     private javax.swing.JLabel filierelabel1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> niveaubox;
     private javax.swing.JLabel niveaulabel1;
     private javax.swing.JTextField nomfield1;
     private javax.swing.JLabel nomlabel1;
+    private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
 }
