@@ -28,17 +28,10 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         setTitle("mon emploi");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 794, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        setMaximumSize(new java.awt.Dimension(860, 570));
+        setMinimumSize(new java.awt.Dimension(860, 580));
+        setPreferredSize(new java.awt.Dimension(860, 570));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

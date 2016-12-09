@@ -141,6 +141,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseExited
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
+        monemploi.setBackground(new java.awt.Color(240, 240, 240));
+        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
         MonCompteEnseignant ai = new MonCompteEnseignant();
@@ -172,7 +174,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_deconnexionMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-       monemploi.setBackground(Color.red);
+        monemploi.setBackground(java.awt.SystemColor.activeCaption);
+        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
        this.desktop.repaint();  
        MonEmploiEnseignant me = new MonEmploiEnseignant();
@@ -186,6 +189,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
+        seanceratt.setBackground(java.awt.SystemColor.activeCaption);
+        monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
         SeanceRattrapage sr = new SeanceRattrapage();
