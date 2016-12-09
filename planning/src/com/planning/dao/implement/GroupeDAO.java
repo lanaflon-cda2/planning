@@ -1,7 +1,6 @@
 package com.planning.dao.implement;
 
 import com.planning.dao.DAO;
-import com.planning.model.Filiere;
 import com.planning.model.Groupe;
 import com.planning.model.Seance;
 
@@ -9,11 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GroupeDAO extends DAO<Groupe> {
     
@@ -21,11 +17,12 @@ public class GroupeDAO extends DAO<Groupe> {
         super(conn);
     }
     
+    @Override
     public boolean create(Groupe obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String query1 = new String("SELECT NEXTVAL ('NumGroupe') as numgroupe");
-            res = state.executeQuery(query1);
+            query = "SELECT NEXTVAL ('NumGroupe') as numgroupe";
+            res = state.executeQuery(query);
             if(res.first()) {
                 int numgroupe = res.getInt(1);
                 PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO GROUPE (NumGroupe, NomGroupe, Niveau) VALUES (?,?,?)");
@@ -33,87 +30,44 @@ public class GroupeDAO extends DAO<Groupe> {
                 prepare.setString(2,obj.getNomGroupe());
                 prepare.setInt(3,obj.getNiveau());
                 prepare.executeUpdate();
-                obj = this.find(numgroupe);
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
+        }    
         return true;
     }
     
+    @Override
     public boolean delete(Groupe obj){
         try {
             this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM GROUPE WHERE NumGroupe = " + obj.getNumGroupe());
         } 
         catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return true;
     }
     
+    @Override
     public boolean update(Groupe obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE GROUPE SET "
                     +" NomGroupe = " + obj.getNomGroupe()+ ",'"
                             +" Niveau = " + obj.getNiveau()
                                     + " WHERE NumGroupe = '" + obj.getNumGroupe());
-            obj = this.find(obj.getNumGroupe());
 	}
         catch (SQLException e) {
-	            e.printStackTrace();
 	}
-        finally{
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-        }
         return true;
     }
     
+    @Override
     public Groupe find(int numg){
         
         Groupe groupe = null;
         
         try {    
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String("SELECT * FROM Groupe WHERE NumGroupe = " + numg);
+            query = "SELECT * FROM Groupe WHERE NumGroupe = " + numg;
             res = state.executeQuery(query);
             if(res.first()) {
                 groupe = new Groupe(res.getInt(1));   
@@ -125,38 +79,15 @@ public class GroupeDAO extends DAO<Groupe> {
                 }
              }   
         }catch (SQLException e) {   
-        e.printStackTrace();       
-        }
-        finally{
-            if(res != null){
-                try{
-                res.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(state != null){
-                try{
-                state.close();
-                }
-                catch(SQLException e){    
-                }
-            }
-            if(conn != null){
-                try{
-                conn.close();
-                }
-                catch(SQLException e){    
-                }
-            }
         }
         return groupe;
     }
     
     
-    public Groupe finds(String string){
-        Groupe groupe = null;
-        return groupe;
+    @Override
+    public Groupe find(String string){
+       
+        return null;
     }
 }
 

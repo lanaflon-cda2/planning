@@ -6,7 +6,7 @@
 package com.planning.model;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +19,7 @@ public class Creneau {
     private int numCreneau;
     private Date date;
     private Time heure;
-    private Set<Seance> seanceList = new HashSet<Seance> ();
+    private Set<Seance> seanceList = new HashSet<> ();
     
    public Creneau(int numCreneau, Date date, Time heure){
         this.numCreneau = numCreneau;
@@ -27,6 +27,14 @@ public class Creneau {
         this.heure= heure;
    
    }
+   
+   public Creneau(Date date, Time heure){
+        this.numCreneau = 1;
+        this.date = date;
+        this.heure= heure;
+   
+   }
+   
    
     public Creneau(){}
 

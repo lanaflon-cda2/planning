@@ -1,16 +1,13 @@
 package com.planning.model;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Matiere implements Serializable {
+public class Matiere {
 
-    private static final long serialVersionUID = 1L;
     private int numMatiere;
     private String nomMatiere;
-    private Set<Seance> seanceList = new HashSet<Seance> ();
+    private Set<Seance> seanceList = new HashSet<> ();
 
     public Matiere() {
     }

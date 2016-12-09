@@ -5,11 +5,16 @@
  */
 package com.planning.view;
 
+import com.planning.dao.implement.EnseignantDAO;
 import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
 import com.planning.model.Users;
-import static java.lang.System.out;
+import com.planning.view.Enseignant.MonCompteEnseignant;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +22,8 @@ import javax.swing.JOptionPane;
  * @author Azough Mehdi
  */
 public class LoginGUI extends javax.swing.JFrame {
+
+    
 
     /**
      * Creates new form LoginGUI
@@ -66,6 +73,11 @@ public class LoginGUI extends javax.swing.JFrame {
         });
 
         motdepasse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        motdepasse.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                motdepasseKeyPressed(evt);
+            }
+        });
 
         loginbackground.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/LoginBG.png")));
@@ -107,7 +119,8 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void identifiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identifiantActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_identifiantActionPerformed
@@ -115,31 +128,62 @@ public class LoginGUI extends javax.swing.JFrame {
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
        
     }//GEN-LAST:event_ConnexionMouseClicked
-
+    
+    public String getid(){
+        String text = new String(identifiant.getText());
+        return text;
+    }
+    
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
          UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        Users user = usersDAO.finds(identifiant.getText());
+         Users user = usersDAO.find(getid());
         String passwordtext = new String(motdepasse.getPassword());
         
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                 dispose();
-                 JOptionPane.showMessageDialog(null, "Connexion reussie");
-                 new AcceuilEnseignant().setVisible(true);
-                 
+                
+                String id = new String(identifiant.getText());
+                
+                EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+                Enseignant ens = enseignantDAO.findByIDUser(id);
+                             
+                AcceuilEnseignant AE = new AcceuilEnseignant();
+                
+                AE.desktop.removeAll();
+                AE.desktop.repaint();
+                MonCompteEnseignant MCE = new MonCompteEnseignant();
+                MCE.getNomInternalframe(ens.getNomEns());
+                MCE.getPrenomInternalframe(ens.getPrenomEns());
+                //MCE.getDeptInternalframe(ens.getFilEns());
+                MCE.getMailInternalframe(ens.getMail());
+                //MCE.getTelInternalframe(ens.getTel());
+                AE.desktop.add(MCE);
+                try {
+                    MCE.setMaximum(true);
+                 } catch (PropertyVetoException ex) {
+                    Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                MCE.show();
+                
+                dispose();
+                AE.setVisible(true);
                 
             }
             
             else {
-                JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Reessayer ");
+                JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
             }
               
         } else {
             
-            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Reessayer");
+            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer");
         }
     }//GEN-LAST:event_ConnexionActionPerformed
+
+    private void motdepasseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_motdepasseKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_motdepasseKeyPressed
 
     /**
      * @param args the command line arguments
@@ -178,7 +222,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Connexion;
-    private javax.swing.JTextField identifiant;
+    public javax.swing.JTextField identifiant;
     private javax.swing.JLabel loginbackground;
     private javax.swing.JPasswordField motdepasse;
     // End of variables declaration//GEN-END:variables

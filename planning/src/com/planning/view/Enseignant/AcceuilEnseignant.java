@@ -5,8 +5,12 @@
  */
 package com.planning.view.Enseignant;
 
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
+import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,14 +20,15 @@ import java.util.logging.Logger;
  * @author Azough Mehdi
  */
 public class AcceuilEnseignant extends javax.swing.JFrame {
-
+       
     /**
      * Creates new form Acceuil
      */
     public AcceuilEnseignant() {
         initComponents();
     }
-
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +64,19 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Enseignant");
+        jLabel1.setText("");
+        jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jLabel1ComponentResized(evt);
+            }
+        });
+        jLabel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabel1InputMethodTextChanged(evt);
+            }
+        });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 130, -1, -1));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
@@ -129,6 +146,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/AcceuilBG.png")));
+        acceuilBG.setToolTipText("");
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
@@ -140,16 +158,27 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseExited
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
+        LoginGUI LG = new LoginGUI();
+        String id = new String(LG.identifiant.getText());
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        Enseignant ens = enseignantDAO.findByIDUser(id);
+        
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteEnseignant ai = new MonCompteEnseignant();
-        this.desktop.add(ai);
+        MonCompteEnseignant MCE = new MonCompteEnseignant();
+        MCE.getNomInternalframe(ens.getNomEns());
+        MCE.getPrenomInternalframe(ens.getPrenomEns());
+        //MCE.getDeptInternalframe(ens.getFilEns());
+        MCE.getMailInternalframe(ens.getMail());
+        //MCE.getTelInternalframe(ens.getTel());
+        
+        this.desktop.add(MCE);
         try {
-            ai.setMaximum(true);
+            MCE.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ai.show();
+        MCE.show();
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked
@@ -196,6 +225,15 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         sr.show();
     }//GEN-LAST:event_seancerattActionPerformed
 
+    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel1InputMethodTextChanged
+        
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1InputMethodTextChanged
+
+    private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1ComponentResized
+
     /**
      * @param args the command line arguments
      */
@@ -236,7 +274,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JLabel deconnexion;
-    private javax.swing.JDesktopPane desktop;
+    public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
