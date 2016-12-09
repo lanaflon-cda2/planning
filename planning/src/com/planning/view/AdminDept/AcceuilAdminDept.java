@@ -75,7 +75,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         });
         getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 110, 30));
 
-        gerermat.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
+        gerermat.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         gerermat.setText("Matières");
         gerermat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,7 +90,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 150, 80));
 
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
-        monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         monemploi.setText("Emploi du temps");
         monemploi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,7 +105,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 150, 80));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
-        seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
+        seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         seanceratt.setText("Groupes");
         seanceratt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
