@@ -9,7 +9,6 @@ import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Users;
-import static java.lang.System.out;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,6 +70,11 @@ public class LoginGUI extends javax.swing.JFrame {
         loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/LoginBG.png")));
         loginbackground.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loginbackground.setPreferredSize(new java.awt.Dimension(900, 600));
+        loginbackground.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginbackgroundKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,14 +122,14 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
          UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        Users user = usersDAO.finds(identifiant.getText());
+        Users user = usersDAO.find(identifiant.getText());
         String passwordtext = new String(motdepasse.getPassword());
         
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                 dispose();
                  JOptionPane.showMessageDialog(null, "Connexion réussie");
+                 dispose();
                  new AcceuilEnseignant().setVisible(true);
                  
                 
@@ -140,6 +144,10 @@ public class LoginGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer");
         }
     }//GEN-LAST:event_ConnexionActionPerformed
+
+    private void loginbackgroundKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginbackgroundKeyPressed
+        
+    }//GEN-LAST:event_loginbackgroundKeyPressed
 
     /**
      * @param args the command line arguments

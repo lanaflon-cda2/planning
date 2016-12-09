@@ -27,13 +27,123 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListeGroupe = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        Modifier = new javax.swing.JButton();
+        supprimer = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
         setTitle("Gérer groupes");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ListeGroupe.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"test1", "test2", "test3"},
+                {"sdfds", "rrrrr", "aaaaa"},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Groupe", "Filière", "Niveau"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ListeGroupe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListeGroupeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(ListeGroupe);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 760, 350));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Gestion des groupes");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Modifier.setText("Modifier");
+        Modifier.setEnabled(false);
+        Modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifierActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 120, 30));
+
+        supprimer.setText("Supprimer");
+        supprimer.setEnabled(false);
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 120, 30));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Ajouter");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        Modifier.setEnabled(false);
+        supprimer.setEnabled(false);
+        ListeGroupe.clearSelection();
+        
+    }//GEN-LAST:event_formMouseClicked
+
+    private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
+         Ajouter_Modifier modifier = new Ajouter_Modifier();
+         modifier.setTitle("Modifier groupe");
+         modifier.indication.setText("Veuillez mettre à jour les informations :");
+         int row = ListeGroupe.getSelectedRow();
+         String groupe =ListeGroupe.getModel().getValueAt(row,0).toString();
+         modifier.nomgroupefield.setText(groupe);
+         
+         modifier.setVisible(true);
+    }//GEN-LAST:event_ModifierActionPerformed
+
+    private void ListeGroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListeGroupeMouseClicked
+        Modifier.setEnabled(true);
+        supprimer.setEnabled(true);
+    }//GEN-LAST:event_ListeGroupeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable ListeGroupe;
+    private javax.swing.JButton Modifier;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
 }

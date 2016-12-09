@@ -1,18 +1,13 @@
 package com.planning.model;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Matiere implements Serializable {
+public class Matiere {
 
-    private static final long serialVersionUID = 1L;
     private int numMatiere;
     private String nomMatiere;
-    private Date dateDebut;
-    private Date dateFin;
-    private Set<Seance> seanceList = new HashSet<Seance> ();
+    private Set<Seance> seanceList = new HashSet<> ();
 
     public Matiere() {
     }
@@ -35,22 +30,6 @@ public class Matiere implements Serializable {
 
     public void setNomMatiere(String nomMatiere) {
         this.nomMatiere = nomMatiere;
-    }
-
-    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
     }
 
     public Set<Seance> getSeanceList() {
