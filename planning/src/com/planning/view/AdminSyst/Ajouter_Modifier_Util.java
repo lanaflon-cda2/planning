@@ -48,32 +48,32 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Ajouter utilisateur");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 190, 30));
+        getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 250, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Nom");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Prenom");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         prenomfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prenomfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(prenomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 190, 30));
-        getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 190, 30));
+        getContentPane().add(prenomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 250, 30));
+        getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 250, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("mail");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Tel");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-        getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 190, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
 
         idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idfield.addActionListener(new java.awt.event.ActionListener() {

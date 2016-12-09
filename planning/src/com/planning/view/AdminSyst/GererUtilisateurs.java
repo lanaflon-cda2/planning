@@ -36,7 +36,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         supprimer = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setTitle("Gérer utilisateurs");
+        setTitle("utilisateurs");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -46,7 +46,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Gestion Utilisateurs");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         listeutilisateur.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,7 +89,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(listeutilisateur);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 590, 300));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 740, 330));
 
         modifier.setText("Modifier");
         modifier.setEnabled(false);
@@ -104,13 +104,14 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         supprimer.setEnabled(false);
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, 30));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 130, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 170, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,6 +135,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         String tel =listeutilisateur.getModel().getValueAt(row,3).toString();
         String id =listeutilisateur.getModel().getValueAt(row,4).toString();
         Ajouter_Modifier_Util modifier = new Ajouter_Modifier_Util();
+        modifier.setTitle("Modifier");
         modifier.nomfield.setText(nom);
         modifier.prenomfield.setText(prenom);
         modifier.mailfield.setText(mail);
@@ -149,6 +151,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ajouter_Modifier_Util ajouter = new Ajouter_Modifier_Util();
+        ajouter.setTitle("Ajouter");
         ajouter.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

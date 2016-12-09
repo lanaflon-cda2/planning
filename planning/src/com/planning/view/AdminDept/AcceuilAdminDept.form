@@ -35,7 +35,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="190" y="160" width="810" height="530"/>
+          <AbsoluteConstraints x="140" y="130" width="860" height="560"/>
         </Constraint>
       </Constraints>
 
@@ -46,7 +46,7 @@
     <Component class="javax.swing.JButton" name="moncompte">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="f0" green="f1" red="f0" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Champagne &amp; Limousines" size="14" style="1"/>
@@ -61,23 +61,24 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="160" width="170" height="70"/>
+          <AbsoluteConstraints x="780" y="90" width="110" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="gerermat">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Champagne &amp; Limousines" size="14" style="1"/>
+          <Font name="Champagne &amp; Limousines" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="G&#xe9;rer les mati&#xe8;res"/>
+        <Property name="text" type="java.lang.String" value="Mati&#xe8;res"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="gerermatMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gerermatActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="400" width="170" height="70"/>
+          <AbsoluteConstraints x="0" y="340" width="150" height="80"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -87,9 +88,9 @@
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Champagne &amp; Limousines" size="14" style="1"/>
+          <Font name="Champagne &amp; Limousines" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="G&#xe9;rer emploi du temps"/>
+        <Property name="text" type="java.lang.String" value="Emploi du temps"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="monemploiMouseClicked"/>
@@ -97,7 +98,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="240" width="170" height="70"/>
+          <AbsoluteConstraints x="0" y="190" width="150" height="80"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -107,9 +108,9 @@
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Champagne &amp; Limousines" size="14" style="1"/>
+          <Font name="Champagne &amp; Limousines" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="G&#xe9;rer les groupes"/>
+        <Property name="text" type="java.lang.String" value="Groupes"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="seancerattMouseClicked"/>
@@ -117,7 +118,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="320" width="170" height="70"/>
+          <AbsoluteConstraints x="0" y="260" width="150" height="90"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -131,7 +132,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="890" y="10" width="100" height="130"/>
+          <AbsoluteConstraints x="900" y="10" width="90" height="110"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -151,7 +152,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="750" y="120" width="100" height="-1"/>
+          <AbsoluteConstraints x="660" y="91" width="100" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -162,15 +163,6 @@
           <Image iconType="3" name="/com/planning/images/AcceuilBG.png"/>
         </Property>
         <Property name="verticalAlignment" type="int" value="1"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1000, 700]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1000, 700]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1000, 700]"/>
-        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

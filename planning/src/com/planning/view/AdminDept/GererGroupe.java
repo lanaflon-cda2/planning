@@ -88,7 +88,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(ListeGroupe);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 560, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 760, 350));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Gestion des groupes");
@@ -101,14 +101,15 @@ public class GererGroupe extends javax.swing.JInternalFrame {
                 ModifierActionPerformed(evt);
             }
         });
-        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, 30));
+        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 120, 30));
 
         supprimer.setText("Supprimer");
         supprimer.setEnabled(false);
-        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 120, 30));
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 120, 30));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Ajouter");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 120, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
