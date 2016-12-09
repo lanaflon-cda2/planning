@@ -23,7 +23,7 @@ import java.util.Calendar;
  * @author genereux
  */
 public class TestDAO {
-    static Connection conn;
+    static Connection conn = ConnexionBD.init();
     
     public static void testCreneau () {
              
@@ -137,7 +137,7 @@ public class TestDAO {
         Date df = new Date(timeMillis);
         
         
-        StatiqueCreneau so = new StatiqueCreneau(5, 1, 1, 3, t, dd, df);
+        StatiqueCreneau so = new StatiqueCreneau(5, 1, 2, 3, t, dd, df);
         s.insertAllSeanceForStatiqueCreneau(so);
     }
     
@@ -156,7 +156,7 @@ public class TestDAO {
     }
     
     public static void main(String args[]){
-       testAbsence();
+       testInsertSeance();
     }
     
 }

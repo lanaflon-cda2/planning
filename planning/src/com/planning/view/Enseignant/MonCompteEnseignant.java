@@ -5,19 +5,46 @@
  */
 package com.planning.view.Enseignant;
 
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
+import com.planning.view.LoginGUI;
+
 /**
  *
  * @author Azough Mehdi
  */
 public class MonCompteEnseignant extends javax.swing.JInternalFrame {
-
+        
     /**
      * Creates new form AcceuilInternal
      */
     public MonCompteEnseignant() {
         initComponents();
     }
-
+   
+    public void getNomInternalframe(String id){    
+        jLabel7.setText(id);
+    }
+    
+    public void getPrenomInternalframe(String id){
+        jLabel6.setText(id);
+    }
+    
+    /*public void getDeptInternalframe(String id){
+            jlabel_.setText(id);
+    }*/
+    
+    
+    public void getMailInternalframe(String id){
+        jLabel8.setText(id);
+    }
+    
+    /*public void getTelInternalframe(long tel){
+        jLabel9.setText(tel);
+    }     
+    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +60,11 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -63,6 +95,25 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jButton1.setText("Modifier");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 150, 40));
 
+        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel6.setText("Prenom");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 70, 50));
+
+        jLabel7.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel7.setText("Nom");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 70, 50));
+
+        jLabel8.setText("Mail");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 220, 30));
+
+        jLabel9.setText("Tel");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 150, 30));
+
+        jLabel10.setText("Department");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 144, 150, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -70,9 +121,14 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
