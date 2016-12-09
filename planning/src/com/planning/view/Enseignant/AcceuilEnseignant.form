@@ -32,6 +32,7 @@
     <Container class="javax.swing.JDesktopPane" name="desktop">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="com.planning.view.Enseignant.MonCompteEnseignant mce = new com.planning.view.Enseignant.MonCompteEnseignant();&#xa;this.desktop.add(mce);&#xa;try {&#xa;            mce.setMaximum(true);&#xa;        } catch (PropertyVetoException ex) {&#xa;            Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;        mce.show();"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -89,7 +90,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Champagne &amp; Limousines" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Mon emploi du temps"/>
+        <Property name="text" type="java.lang.String" value="Emploi du temps"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="monemploiMouseClicked"/>
@@ -97,7 +98,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="240" width="-1" height="90"/>
+          <AbsoluteConstraints x="0" y="240" width="150" height="90"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -109,7 +110,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Champagne &amp; Limousines" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="S&#xe9;ances de rattrapage"/>
+        <Property name="text" type="java.lang.String" value="Rattrapages"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="seancerattMouseClicked"/>
@@ -117,7 +118,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="320" width="170" height="90"/>
+          <AbsoluteConstraints x="0" y="320" width="150" height="90"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -158,8 +159,8 @@
     <Component class="javax.swing.JLabel" name="acceuilBG">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;../../images/AcceuilBG.png&quot;))" type="code"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/planning/view/Enseignant/AcceuilBG.png"/>
         </Property>
       </Properties>
       <Constraints>
