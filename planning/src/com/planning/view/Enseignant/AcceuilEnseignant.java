@@ -148,19 +148,19 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         
-        LoginGUI LG = new LoginGUI();
+        /*LoginGUI LG = new LoginGUI();
         String id = new String(LG.identifiant.getText());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-        Enseignant ens = enseignantDAO.findByIDUser(id);
+        Enseignant ens = enseignantDAO.findByIDUser(id);*/
         
         this.desktop.removeAll();
         this.desktop.repaint();
         MonCompteEnseignant MCE = new MonCompteEnseignant();
-        MCE.getNomInternalframe(ens.getNomEns());
+        /*MCE.getNomInternalframe(ens.getNomEns());
         MCE.getPrenomInternalframe(ens.getPrenomEns());
         //MCE.getDeptInternalframe(ens.getFilEns());
         MCE.getMailInternalframe(ens.getMail());
-        //MCE.getTelInternalframe(ens.getTel());
+        //MCE.getTelInternalframe(ens.getTel());*/
         this.desktop.add(MCE);
         try {
             MCE.setMaximum(true);
@@ -189,8 +189,9 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_deconnexionMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        monemploi.setBackground(java.awt.SystemColor.activeCaption);
-        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+       monemploi.setBackground(java.awt.SystemColor.activeCaption);
+       seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+        
        this.desktop.removeAll();
        this.desktop.repaint();  
        MonEmploiEnseignant me = new MonEmploiEnseignant();

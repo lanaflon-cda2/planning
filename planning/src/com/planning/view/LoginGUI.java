@@ -159,7 +159,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 MCE.show();
                 
                  dispose();
-                 new AcceuilEnseignant().setVisible(true);
+                 AE.setVisible(true);
                  
                 
             }
