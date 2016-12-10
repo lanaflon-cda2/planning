@@ -23,8 +23,6 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
-    
-
     /**
      * Creates new form LoginGUI
      */
@@ -73,16 +71,16 @@ public class LoginGUI extends javax.swing.JFrame {
         });
 
         motdepasse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        motdepasse.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                motdepasseKeyPressed(evt);
-            }
-        });
 
         loginbackground.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/LoginBG.png")));
         loginbackground.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loginbackground.setPreferredSize(new java.awt.Dimension(900, 600));
+        loginbackground.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginbackgroundKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,8 +117,7 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
     private void identifiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identifiantActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_identifiantActionPerformed
@@ -128,15 +125,10 @@ public class LoginGUI extends javax.swing.JFrame {
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
        
     }//GEN-LAST:event_ConnexionMouseClicked
-    
-    public String getid(){
-        String text = new String(identifiant.getText());
-        return text;
-    }
-    
+
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
          UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-         Users user = usersDAO.find(getid());
+        Users user = usersDAO.find(identifiant.getText());
         String passwordtext = new String(motdepasse.getPassword());
         
         if(user != null ) {
@@ -166,8 +158,9 @@ public class LoginGUI extends javax.swing.JFrame {
                  }
                 MCE.show();
                 
-                dispose();
-                AE.setVisible(true);
+                 dispose();
+                 new AcceuilEnseignant().setVisible(true);
+                 
                 
             }
             
@@ -181,9 +174,9 @@ public class LoginGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ConnexionActionPerformed
 
-    private void motdepasseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_motdepasseKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_motdepasseKeyPressed
+    private void loginbackgroundKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginbackgroundKeyPressed
+        
+    }//GEN-LAST:event_loginbackgroundKeyPressed
 
     /**
      * @param args the command line arguments
