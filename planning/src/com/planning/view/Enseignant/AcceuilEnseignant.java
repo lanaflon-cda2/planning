@@ -194,14 +194,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         
        this.desktop.removeAll();
        this.desktop.repaint();  
-       MonEmploiEnseignant me = new MonEmploiEnseignant();
-       this.desktop.add(me);
+       MonEmploiEnseignant ME = new MonEmploiEnseignant();
+       this.desktop.add(ME);
         try {
-            me.setMaximum(true);
+            ME.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        me.show();
+        ME.show();
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
