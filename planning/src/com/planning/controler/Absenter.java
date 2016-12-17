@@ -20,7 +20,7 @@ import java.util.Calendar;
  *
  * @author Oumaima
  */
-public class Absence {
+public class Absenter {
     
     static Connection con = ConnexionBD.init();
     Statement state;
@@ -36,9 +36,9 @@ public class Absence {
     ArrayList creneauxMatchEnsGroupe = null;
     ArrayList permutPossible = null;
     
-    public Absence(Seance s) {
+    public Absenter(Seance s) {
         
-        Absence.updateEtat(s, 0);
+        Absenter.updateEtat(s, 0);
         
         this.numEns = s.getNumEns();
         this.numGroupe = s.getNumGroupe();
