@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Azough Mehdi
  */
 public class LoginGUI extends javax.swing.JFrame {
-
+     
     /**
      * Creates new form LoginGUI
      */
@@ -145,12 +145,16 @@ public class LoginGUI extends javax.swing.JFrame {
                 AE.desktop.removeAll();
                 AE.desktop.repaint();
                 MonCompteEnseignant MCE = new MonCompteEnseignant();
+                
                 MCE.getNomInternalframe(ens.getNomEns());
                 MCE.getPrenomInternalframe(ens.getPrenomEns());
                 //MCE.getDeptInternalframe(ens.getFilEns());
                 MCE.getMailInternalframe(ens.getMail());
                 //MCE.getTelInternalframe(ens.getTel());
                 AE.desktop.add(MCE);
+                AE.setME(MCE);
+                
+                
                 try {
                     MCE.setMaximum(true);
                  } catch (PropertyVetoException ex) {

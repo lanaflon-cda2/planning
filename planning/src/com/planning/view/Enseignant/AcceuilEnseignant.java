@@ -24,8 +24,20 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     /**
      * Creates new form Acceuil
      */
+    
+    String idUser;
+    
+    MonCompteEnseignant me = new MonCompteEnseignant();
+    
+    public void setME(MonCompteEnseignant me){
+        this.me = me;
+    }
+    public void setidUser(String s){
+        this.idUser = s;
+    }
     public AcceuilEnseignant() {
         initComponents();
+        
     }
     
    
@@ -148,6 +160,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         
+        
+        
         /*LoginGUI LG = new LoginGUI();
         String id = new String(LG.identifiant.getText());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
@@ -155,12 +169,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteEnseignant MCE = new MonCompteEnseignant();
+        MonCompteEnseignant MCE = me;
         /*MCE.getNomInternalframe(ens.getNomEns());
         MCE.getPrenomInternalframe(ens.getPrenomEns());
         //MCE.getDeptInternalframe(ens.getFilEns());
         MCE.getMailInternalframe(ens.getMail());
         //MCE.getTelInternalframe(ens.getTel());*/
+        
         this.desktop.add(MCE);
         try {
             MCE.setMaximum(true);
@@ -168,6 +183,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
         MCE.show();
+       
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked
