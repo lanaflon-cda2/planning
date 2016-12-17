@@ -21,6 +21,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     /**
      * Creates new form Acceuil
      */
+    
+    String idUser;
+    public void setIDUser(String s) {
+        this.idUser = s;
+    }
     public AcceuilEnseignant() {
         initComponents();
     }
@@ -34,6 +39,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        monEmploiEnseignant1 = new com.planning.view.Enseignant.MonEmploiEnseignant();
         desktop = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
@@ -42,6 +48,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
+
+        monEmploiEnseignant1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -177,8 +185,9 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         monemploi.setBackground(java.awt.SystemColor.activeCaption);
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
        this.desktop.removeAll();
-       this.desktop.repaint();  
+       this.desktop.repaint();
        MonEmploiEnseignant me = new MonEmploiEnseignant();
+       me.setIDUser(idUser);
        this.desktop.add(me);
         try {
             me.setMaximum(true);
@@ -245,6 +254,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private javax.swing.JLabel deconnexion;
     public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
+    private com.planning.view.Enseignant.MonEmploiEnseignant monEmploiEnseignant1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;

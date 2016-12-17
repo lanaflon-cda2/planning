@@ -129,10 +129,11 @@ public class LoginGUI extends javax.swing.JFrame {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
                  JOptionPane.showMessageDialog(null, "Connexion réussie");
+                 AcceuilEnseignant ac = new AcceuilEnseignant();
+                 ac.setIDUser(identifiant.getText());
                  dispose();
-                 new AcceuilEnseignant().setVisible(true);
-                 
-                
+   
+                 ac.setVisible(true);
             }
             
             else {
