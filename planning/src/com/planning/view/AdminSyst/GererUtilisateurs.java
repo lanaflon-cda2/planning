@@ -6,6 +6,7 @@
 package com.planning.view.AdminSyst;
 
 import com.planning.view.Enseignant.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -102,6 +103,11 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
         supprimer.setText("Supprimer");
         supprimer.setEnabled(false);
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -141,7 +147,6 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         modifier.mailfield.setText(mail);
         modifier.telfield.setText(tel);
         modifier.idfield.setText(id);
-        modifier.jLabel3.setText("Modifier Utilisateur");
         modifier.setVisible(true);
         
            
@@ -154,6 +159,13 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         ajouter.setTitle("Ajouter");
         ajouter.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir supprimer l'utilisateur ?","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(p==0){
+            // code qui supprime de la BD
+        }
+    }//GEN-LAST:event_supprimerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
