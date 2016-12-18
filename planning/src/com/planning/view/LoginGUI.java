@@ -137,7 +137,7 @@ public class LoginGUI extends javax.swing.JFrame {
             }
             
             else {
-                JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
+            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
             }
               
         } else {

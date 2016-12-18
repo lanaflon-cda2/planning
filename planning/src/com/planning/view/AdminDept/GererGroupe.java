@@ -109,6 +109,11 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
 
         pack();
@@ -123,7 +128,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
          Ajouter_Modifier modifier = new Ajouter_Modifier();
-         modifier.setTitle("Modifier groupe");
+         modifier.setTitle("Modifier");
          modifier.indication.setText("Veuillez mettre à jour les informations :");
          int row = ListeGroupe.getSelectedRow();
          String groupe =ListeGroupe.getModel().getValueAt(row,0).toString();
@@ -136,6 +141,11 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         Modifier.setEnabled(true);
         supprimer.setEnabled(true);
     }//GEN-LAST:event_ListeGroupeMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Ajouter_Modifier ajouter = new Ajouter_Modifier(); 
+        ajouter.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
