@@ -7,6 +7,7 @@ package com.planning.view.Enseignant;
 
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
+import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     /**
      * Creates new form Acceuil
      */
+    
+    String idUser;
+    public void setIDUser(String s) {
+        this.idUser = s;
+    }
     public AcceuilEnseignant() {
         initComponents();
     }
@@ -33,6 +39,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        monEmploiEnseignant1 = new com.planning.view.Enseignant.MonEmploiEnseignant();
         desktop = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
@@ -41,6 +48,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
+
+        monEmploiEnseignant1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -55,12 +64,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
         mce.show();
-        getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 810, 530));
+        getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Enseignant");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 130, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -79,11 +88,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 moncompteActionPerformed(evt);
             }
         });
-        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 170, 70));
+        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
 
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
         monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
-        monemploi.setText("Mon emploi du temps");
+        monemploi.setText("Emploi du temps");
         monemploi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 monemploiMouseClicked(evt);
@@ -94,11 +103,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 170, 70));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 90));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
         seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
-        seanceratt.setText("Séances de rattrapage");
+        seanceratt.setText("Rattrapages");
         seanceratt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 seancerattMouseClicked(evt);
@@ -109,12 +118,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 170, 70));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 150, 90));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         photo.setText("photo");
-        getContentPane().add(photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 100, 110));
+        getContentPane().add(photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 100));
 
         deconnexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
         deconnexion.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,10 +134,10 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 deconnexionMouseClicked(evt);
             }
         });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 100, -1));
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 100, 30));
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../images/AcceuilBG.png")));
+        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Enseignant/AcceuilBG.png"))); // NOI18N
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
@@ -140,6 +149,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseExited
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
+        monemploi.setBackground(new java.awt.Color(240, 240, 240));
+        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
         MonCompteEnseignant ai = new MonCompteEnseignant();
@@ -171,9 +182,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_deconnexionMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        this.desktop.removeAll();
-       this.desktop.repaint();  
+        monemploi.setBackground(java.awt.SystemColor.activeCaption);
+        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+       this.desktop.removeAll();
+       this.desktop.repaint();
        MonEmploiEnseignant me = new MonEmploiEnseignant();
+       me.setIDUser(idUser);
        this.desktop.add(me);
         try {
             me.setMaximum(true);
@@ -184,6 +198,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
+        seanceratt.setBackground(java.awt.SystemColor.activeCaption);
+        monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
         SeanceRattrapage sr = new SeanceRattrapage();
@@ -236,8 +252,9 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JLabel deconnexion;
-    private javax.swing.JDesktopPane desktop;
+    public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
+    private com.planning.view.Enseignant.MonEmploiEnseignant monEmploiEnseignant1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;

@@ -5,8 +5,8 @@
  */
 package com.planning.dao.implement;
 
-import com.planning.controler.Absence;
-import com.planning.controler.CreneauPermut;
+import com.planning.controler.Absenter;
+import com.planning.controler.Permut;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
@@ -182,7 +182,7 @@ public class TestAlgo {
         Creneau obj;
         Seance s = new Seance(52, 274, 6, 15, 1);
         
-        Absence absence = new Absence(s);
+        Absenter absence = new Absenter(s);
         ArrayList creno = absence.getCreneauxMatchEnsGroupe();
         if(creno != null) {
             System.out.println("Les creneaux trouvés sont: ");
@@ -199,11 +199,11 @@ public class TestAlgo {
         ArrayList permut = absence.getPermutPossible();
         
         if(permut != null) {
-            CreneauPermut x;
+            Permut x;
              
             for(int j = 0; j < permut.size(); j++) {
 
-                x = (CreneauPermut) permut.get(j);
+                x = (Permut) permut.get(j);
                 int numEnsX = x.getNumEns();
                 System.out.println("Le professeur de numero " + numEnsX + " peut offrir les créneaux suivants: ");
                 ArrayList listCreneauEnsX = x.getCreneaux();

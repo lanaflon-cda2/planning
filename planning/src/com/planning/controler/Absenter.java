@@ -20,7 +20,7 @@ import java.util.Calendar;
  *
  * @author Oumaima
  */
-public class Absence {
+public class Absenter {
     
     static Connection con = ConnexionBD.init();
     Statement state;
@@ -36,9 +36,9 @@ public class Absence {
     ArrayList creneauxMatchEnsGroupe = null;
     ArrayList permutPossible = null;
     
-    public Absence(Seance s) {
+    public Absenter(Seance s) {
         
-        Absence.updateEtat(s, 0);
+        Absenter.updateEtat(s, 0);
         
         this.numEns = s.getNumEns();
         this.numGroupe = s.getNumGroupe();
@@ -227,7 +227,7 @@ public class Absence {
     private ArrayList searchPermut(){
         System.out.println("search permut in methode");
         ArrayList creneauxMatchList = null;
-        CreneauPermut creneauxMatchWithX;
+        Permut creneauxMatchWithX;
         ArrayList seanceDeEnsX;
         ArrayList ensList = this.getPossibleEnsXPermut();
         ArrayList creneauxVideEns = this.getCreneauxVideEns();
@@ -240,7 +240,7 @@ public class Absence {
                 for(Object creneauVide: creneauxVideEns){
                     if((int) creneauVide == (int) seance) {
                         if(creneauxMatchWithX == null) {
-                            creneauxMatchWithX = new CreneauPermut();
+                            creneauxMatchWithX = new Permut();
                             creneauxMatchWithX.setNumEns((int) ensX);
                         }
                         creneauxMatchWithX.addCreneaux((int) creneauVide);
