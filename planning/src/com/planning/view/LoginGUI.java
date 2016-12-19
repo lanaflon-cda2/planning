@@ -26,6 +26,11 @@ public class LoginGUI extends javax.swing.JFrame {
     /**
      * Creates new form LoginGUI
      */
+    
+    String id = new String(this.identifiant.getText());
+    
+    
+    
     public LoginGUI() {
         initComponents();
         
@@ -135,8 +140,8 @@ public class LoginGUI extends javax.swing.JFrame {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
                 
-                String id = new String(identifiant.getText());
-                
+                //String id = new String(identifiant.getText());
+                                
                 EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
                 Enseignant ens = enseignantDAO.findByIDUser(id);
                              
@@ -219,7 +224,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Connexion;
-    public javax.swing.JTextField identifiant;
+    private javax.swing.JTextField identifiant;
     private javax.swing.JLabel loginbackground;
     private javax.swing.JPasswordField motdepasse;
     // End of variables declaration//GEN-END:variables

@@ -40,6 +40,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         
     }
     
+    public void getiduser(String id){    
+        jLabel1.setText(id);
+    }
+    
+        
    
     /**
      * This method is called from within the constructor to initialize the form.
