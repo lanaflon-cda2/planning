@@ -69,8 +69,8 @@ public class MatiereDAO extends DAO<Matiere> {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             query = "SELECT * FROM Matiere WHERE NumMatiere = " + numm;
             res = state.executeQuery(query);
-            if(res.first()) {
-                matiere = new Matiere(res.getInt(1));   
+            while(res.next()) {
+                matiere = new Matiere(res.getInt(1), res.getString(2));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
                 Set<Seance> seanceList = seanceDAO.findByNumMatiere(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
@@ -78,7 +78,8 @@ public class MatiereDAO extends DAO<Matiere> {
                     matiere.addSeance((Seance)iterator.next());
                 }
              }   
-        }catch (SQLException e) {   
+        }catch (SQLException e) {  
+            System.out.println("SQLException: " + e);
         }
         return matiere;
     }

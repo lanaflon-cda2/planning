@@ -7,10 +7,10 @@ public class Groupe{
 
     private int numGroupe;
     private int numFiliere;
-    
     private String nomGroupe;
     private int niveau;
-     private Set<Seance> seanceList = new HashSet<> ();
+    
+    private Set<Seance> seanceList = new HashSet<> ();
 
     public Groupe() {
     }
@@ -18,6 +18,14 @@ public class Groupe{
     public Groupe(int numGroupe) {
         this.numGroupe = numGroupe;
     }
+    
+    public Groupe(int numGroupe, int numFiliere, String nomGroupe, int niveau) {
+        this.numGroupe = numGroupe;
+        this.numFiliere = numFiliere;
+        this.nomGroupe = nomGroupe;
+        this.niveau = niveau;
+    }
+    
 
     public int getNumGroupe() {
         return numGroupe;
