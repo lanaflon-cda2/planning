@@ -1118,7 +1118,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         EnseignantDAO ed = new EnseignantDAO(ConnexionBD.init());
         Enseignant ens = ed.findByIDUser(this.idUser);
         this.numEns = ens.getNumEns();
-        
     }
     
     public void getEmp(Date dd, Date df){

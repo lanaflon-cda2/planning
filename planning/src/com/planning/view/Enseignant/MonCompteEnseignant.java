@@ -21,6 +21,7 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
      */
     String id;
     
+    
     public MonCompteEnseignant() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
