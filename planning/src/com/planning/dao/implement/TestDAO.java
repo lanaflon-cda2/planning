@@ -5,7 +5,7 @@
  */
 package com.planning.dao.implement;
 
-import com.planning.controler.Absence;
+import com.planning.controler.Absenter;
 import com.planning.controler.CreneauPermut;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
@@ -182,7 +182,7 @@ public class TestDAO {
         Creneau obj;
         Seance s = new Seance(52, 274, 6, 15, 1);
         
-        Absence absence = new Absence(s);
+        Absenter absence = new Absenter(s);
         ArrayList creno = absence.getCreneauxMatchEnsGroupe();
         if(creno != null) {
             System.out.println("Les creneaux trouvés sont: ");

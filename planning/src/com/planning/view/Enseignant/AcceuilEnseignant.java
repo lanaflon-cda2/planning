@@ -55,6 +55,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        monEmploiEnseignant1 = new com.planning.view.Enseignant.MonEmploiEnseignant();
         desktop = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
@@ -63,6 +64,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
+
+        monEmploiEnseignant1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -164,30 +167,19 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
-        
-        
-        
-        /*LoginGUI LG = new LoginGUI();
-        String id = new String(LG.identifiant.getText());
-        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-        Enseignant ens = enseignantDAO.findByIDUser(id);*/
-        
+                
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteEnseignant MCE = me;
-        /*MCE.getNomInternalframe(ens.getNomEns());
-        MCE.getPrenomInternalframe(ens.getPrenomEns());
-        //MCE.getDeptInternalframe(ens.getFilEns());
-        MCE.getMailInternalframe(ens.getMail());
-        //MCE.getTelInternalframe(ens.getTel());*/
+        MonCompteEnseignant mce = me;
         
-        this.desktop.add(MCE);
+        this.desktop.add(mce);
+        
         try {
-            MCE.setMaximum(true);
+            mce.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        MCE.show();
+        mce.show();
        
     }//GEN-LAST:event_moncompteActionPerformed
 
@@ -291,6 +283,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private javax.swing.JLabel deconnexion;
     public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
+    private com.planning.view.Enseignant.MonEmploiEnseignant monEmploiEnseignant1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;
