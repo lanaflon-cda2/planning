@@ -6,6 +6,7 @@
 package com.planning.view.AdminDept;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -18,6 +19,10 @@ public class GererEmploi extends javax.swing.JInternalFrame {
      */
     public GererEmploi() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     }
 
     /**

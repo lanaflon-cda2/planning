@@ -5,6 +5,7 @@
  */
 package com.planning.view.AdminSyst;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
      */
     public Ajouter_Modifier_Util() {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
     }
 
     /**

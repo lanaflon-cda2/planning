@@ -6,6 +6,7 @@
 package com.planning.view.AdminDept;
 
 import com.planning.view.Deconnexion;
+import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
      */
     public AcceuilAdminDept() {
         initComponents();
+        
     }
 
     /**
@@ -137,7 +139,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 91, 100, 30));
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/images/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
         acceuilBG.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 

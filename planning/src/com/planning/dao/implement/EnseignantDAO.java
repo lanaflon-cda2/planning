@@ -117,9 +117,9 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return enseignant;
     }
     
-    @Override
-    public Enseignant find(String string){
-        
+    
+    
+    public Enseignant find(String nomEns){
         return null;
     }
 }

@@ -5,6 +5,9 @@
  */
 package com.planning.view.Enseignant;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+
 /**
  *
  * @author Azough Mehdi
@@ -16,6 +19,10 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
      */
     public SeanceRattrapage() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     }
 
     /**
@@ -41,7 +48,8 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         setTitle("seances rattrapage");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("Matière");
@@ -138,8 +146,8 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel1.setText("Veuillez selectionner un créneau convenable :");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Séance à reporté ");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Séance à reporter ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
         pack();

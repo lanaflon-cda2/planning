@@ -5,7 +5,8 @@
  */
 package com.planning.view.AdminSyst;
 
-import com.planning.view.Enseignant.*;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -18,6 +19,11 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
      */
     public GererUtilisateurs() {
         initComponents();
+        
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     }
 
     /**

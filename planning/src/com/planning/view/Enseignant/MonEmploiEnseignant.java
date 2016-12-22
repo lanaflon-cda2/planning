@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -25,6 +26,10 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
      */
     public MonEmploiEnseignant() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         this.initEmp();
     }
 
@@ -120,6 +125,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel52 = new javax.swing.JLabel();
         consulter = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setTitle("mon emploi");
         setMaximumSize(new java.awt.Dimension(860, 570));
         setMinimumSize(new java.awt.Dimension(860, 580));
@@ -1172,7 +1178,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private String idUser;
     private int numEns;
     
-    public void setIDUser(String s){
+    public void setIDUserMEE(String s){
         this.idUser = s;
         EnseignantDAO ed = new EnseignantDAO(ConnexionBD.init());
         Enseignant ens = ed.findByIDUser(this.idUser);
