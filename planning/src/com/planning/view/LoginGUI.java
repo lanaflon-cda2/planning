@@ -144,7 +144,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 AE.desktop.removeAll();
                 AE.desktop.repaint();
                 
-                AE.getiduser(id);
+                AE.setidUser(id);
                 
                 MonCompteEnseignant mce = new MonCompteEnseignant();
                 
@@ -166,7 +166,7 @@ public class LoginGUI extends javax.swing.JFrame {
             }
             
             else {
-                JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
+            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
             }
               
         } else {

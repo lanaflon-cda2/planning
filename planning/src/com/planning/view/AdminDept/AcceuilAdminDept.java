@@ -34,9 +34,9 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
 
         desktop = new javax.swing.JDesktopPane();
         moncompte = new javax.swing.JButton();
-        gerermat = new javax.swing.JButton();
         monemploi = new javax.swing.JButton();
         seanceratt = new javax.swing.JButton();
+        gerermat = new javax.swing.JButton();
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
@@ -54,6 +54,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
             Logger.getLogger(com.planning.view.AdminDept.AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
         }
         mcd.show();
+        desktop.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 560));
 
         moncompte.setBackground(new java.awt.Color(240, 241, 240));
@@ -75,22 +76,8 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         });
         getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 110, 30));
 
-        gerermat.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
-        gerermat.setText("Matières");
-        gerermat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gerermatMouseClicked(evt);
-            }
-        });
-        gerermat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gerermatActionPerformed(evt);
-            }
-        });
-        getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 150, 80));
-
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
-        monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
+        monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
         monemploi.setText("Emploi du temps");
         monemploi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,10 +89,10 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 150, 80));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 150, 80));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
-        seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
+        seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
         seanceratt.setText("Groupes");
         seanceratt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -117,7 +104,21 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 150, 90));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 90));
+
+        gerermat.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
+        gerermat.setText("Matières");
+        gerermat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gerermatMouseClicked(evt);
+            }
+        });
+        gerermat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerermatActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 150, 80));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

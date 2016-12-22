@@ -5,6 +5,8 @@
  */
 package com.planning.view.AdminSyst;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Azough Mehdi
@@ -41,7 +43,6 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         Confirmer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -75,20 +76,24 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
         getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
 
-        idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 220, 30));
+        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 250, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Saisir l'identifiant de l'utilisateur");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+        jLabel8.setText("ID");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-        Confirmer.setText("Confirmer");
-        getContentPane().add(Confirmer, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 140, 30));
+        Confirmer.setText("Sauvegarder");
+        Confirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Confirmer, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 140, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -101,6 +106,13 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     private void idfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idfieldActionPerformed
+
+    private void ConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmerActionPerformed
+        int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(p==0){
+            
+        }
+    }//GEN-LAST:event_ConfirmerActionPerformed
 
     /**
      * @param args the command line arguments

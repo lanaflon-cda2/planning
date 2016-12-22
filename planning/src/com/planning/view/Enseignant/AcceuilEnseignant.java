@@ -5,12 +5,8 @@
  */
 package com.planning.view.Enseignant;
 
-import com.planning.dao.implement.EnseignantDAO;
-import com.planning.model.ConnexionBD;
-import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
-import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,11 +27,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     public void setME(MonCompteEnseignant me){
         this.me = me;
+        me.setIDUserMCE(this.idUser);
     }
     
     public void setidUser(String s){
         this.idUser = s;
-        monEmploiEnseignant1.setIDUser(this.idUser);
+        jLabel1.setText(idUser);
+        monEmploiEnseignant1.setIDUserMEE(this.idUser);
         monEmploiEnseignant1.initEmp();
     }
     
@@ -43,17 +41,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         initComponents();
         
     }
-    
-    public void getiduser(String id){    
-        jLabel1.setText(id);
-    }
-    
-    public String getidAE(){
-        String id = new String(jLabel1.getText());
-        return id;
-    }
-    
-        
+            
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,10 +79,22 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         mce.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Enseignant");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel1.setText("");
+        jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jLabel1ComponentResized(evt);
+            }
+        });
+        jLabel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabel1InputMethodTextChanged(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 90, 30));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -163,6 +163,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Enseignant/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setToolTipText("");
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
@@ -286,7 +287,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JLabel deconnexion;
