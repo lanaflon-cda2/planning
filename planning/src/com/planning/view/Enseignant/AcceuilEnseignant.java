@@ -32,9 +32,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     public void setME(MonCompteEnseignant me){
         this.me = me;
     }
+    
     public void setidUser(String s){
         this.idUser = s;
+        monEmploiEnseignant1.setIDUser(this.idUser);
+        monEmploiEnseignant1.initEmp();
     }
+    
     public AcceuilEnseignant() {
         initComponents();
         
@@ -42,6 +46,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     public void getiduser(String id){    
         jLabel1.setText(id);
+    }
+    
+    public String getidAE(){
+        String id = new String(jLabel1.getText());
+        return id;
     }
     
         
@@ -207,14 +216,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         
        this.desktop.removeAll();
        this.desktop.repaint();  
-       MonEmploiEnseignant ME = new MonEmploiEnseignant();
-       this.desktop.add(ME);
+       MonEmploiEnseignant me = new MonEmploiEnseignant();
+       this.desktop.add(me);
         try {
-            ME.setMaximum(true);
+            me.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ME.show();
+        me.show();
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed

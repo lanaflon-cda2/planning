@@ -8,7 +8,6 @@ package com.planning.view.Enseignant;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
-import java.awt.Color;
 import javax.swing.BorderFactory;
 
 /**
@@ -20,13 +19,16 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     /**
      * Creates new form AcceuilInternal
      */
+    String id;
+    
     public MonCompteEnseignant() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         
-        String id = new String(jLabel1.getText());
+        //String id = new String(getidAE());
+        //System.out.println(id);
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         Enseignant ens = enseignantDAO.findByIDUser(id);
         
@@ -35,6 +37,11 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         //MCE.getDeptInternalframe(ens.getFilEns());
         this.getMailInternalframe(ens.getMail());
         //MCE.getTelInternalframe(ens.getTel());*/
+        
+    }
+    
+        
+    public void getidAE(String id){
         
     }
    
