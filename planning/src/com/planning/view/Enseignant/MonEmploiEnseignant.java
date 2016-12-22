@@ -28,7 +28,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         this.initEmp();
     }
 
@@ -1185,6 +1185,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         
     }
     
+    int[][] emp = new int[5][4];
+    
     public void getEmp(Date dd, Date df){
         ConsulterEMP ce = new ConsulterEMP();
         
@@ -1196,23 +1198,26 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 if(strings[3].equals("2")) {
 
                     if(strings[4].equals("08:00:00")) {
-                        
+                        emp[0][0] = Integer.valueOf(strings[6]);
                         l8text.setText(strings[0]);
                         jLabel32.setText(strings[1] + " " + strings[2]);
                         l8.updateUI();
                     }
                    
                     else if(strings[4].equals("10:00:00")) {
+                        emp[0][1] = Integer.valueOf(strings[6]);
                         jLabel13.setText(strings[0]);
                         jLabel33.setText(strings[1] + " " + strings[2]);
                         l10.updateUI();
                     }
                     else if(strings[4].equals("14:00:00")) {
+                        emp[0][2] = Integer.valueOf(strings[6]);
                         jLabel14.setText(strings[0]);
                         jLabel34.setText(strings[1] + " " + strings[2]);
                         l14.updateUI();
                     }
                     else {
+                        emp[0][3] = Integer.valueOf(strings[6]);
                         jLabel15.setText(strings[0]);
                         jLabel35.setText(strings[1] + " " + strings[2]);
                         l16.updateUI();
@@ -1221,22 +1226,26 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
                 else if(strings[3].equals("3")) {
                     if(strings[4].equals("08:00:00")) {
+                        emp[1][0] = Integer.valueOf(strings[6]);
                         jLabel16.setText(strings[0]);
                         jLabel36.setText(strings[1] + " " + strings[2]);
                         ma8.updateUI();
                     }
 
                     else if(strings[4].equals("10:00:00")) {
+                        emp[1][1] = Integer.valueOf(strings[6]);
                         jLabel17.setText(strings[0]);
                         jLabel37.setText(strings[1] + " " + strings[2]);
                         ma10.updateUI();
                     }
                     else if(strings[4].equals("14:00:00")) {
+                        emp[1][2] = Integer.valueOf(strings[6]);
                         jLabel18.setText(strings[0]);
                         jLabel38.setText(strings[1] + " " + strings[2]);
                         ma14.updateUI();
                     }
                     else {
+                        emp[1][3] = Integer.valueOf(strings[6]);
                         jLabel19.setText(strings[0]);
                         jLabel39.setText(strings[1] + " " + strings[2]);
                     }
@@ -1244,19 +1253,23 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
                 else if(strings[3].equals("4")) {
                     if(strings[4].equals("08:00:00")) {
+                        emp[2][0] = Integer.valueOf(strings[6]);
                         jLabel20.setText(strings[0]);
                         jLabel40.setText(strings[1] + " " + strings[2]);
                     }
 
                     else if(strings[4].equals("10:00:00")) {
+                        emp[2][1] = Integer.valueOf(strings[6]);
                         jLabel21.setText(strings[0]);
                         jLabel41.setText(strings[1] + " " + strings[2]);
                     }
                     else if(strings[4].equals("14:00:00")) {
+                        emp[2][2] = Integer.valueOf(strings[6]);
                         jLabel22.setText(strings[0]);
                         jLabel42.setText(strings[1] + " " + strings[2]);
                     }
                     else {
+                        emp[2][3] = Integer.valueOf(strings[6]);
                         jLabel23.setText(strings[0]);
                         jLabel43.setText(strings[1] + " " + strings[2]);
                     }
@@ -1264,22 +1277,24 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
                 else if(strings[3].equals("5")) {
                     if(strings[4].equals("08:00:00")) {
+                        emp[3][0] = Integer.valueOf(strings[6]);
                         jLabel24.setText(strings[0]);
-                        
                         jLabel44.setText(strings[1] + " " + strings[2]);
                     }
 
                     else if(strings[4].equals("10:00:00")) {
+                        emp[3][1] = Integer.valueOf(strings[6]);
                         jLabel25.setText(strings[0]);
                         jLabel45.setText(strings[1] + " " + strings[2]);
                     }
                     else if(strings[4].equals("14:00:00")) {
+                        emp[3][2] = Integer.valueOf(strings[6]);
                         jLabel26.setText(strings[0]);
-
                         jLabel46.setText(strings[1] + " " + strings[2]);
                         j14.updateUI();
                     }
                     else {
+                        emp[3][3] = Integer.valueOf(strings[6]);
                         jLabel27.setText(strings[0]);
                         jLabel47.setText(strings[1] + " " + strings[2]);
                     }
@@ -1287,19 +1302,23 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
                 else if (strings[3].equals("6")) {
                     if(strings[4].equals("08:00:00")) {
+                        emp[4][0] = Integer.valueOf(strings[6]);
                         jLabel26.setText(strings[0]);
                         jLabel46.setText(strings[1] + " " + strings[2]);
                     }
 
                     else if(strings[4].equals("10:00:00")) {
+                        emp[4][1] = Integer.valueOf(strings[6]);
                         jLabel27.setText(strings[0]);
                         jLabel47.setText(strings[1] + " " + strings[2]);
                     }
                     else if(strings[4].equals("14:00:00")) {
+                        emp[4][2] = Integer.valueOf(strings[6]);
                         jLabel28.setText(strings[0]);
                         jLabel48.setText(strings[1] + " " + strings[2]);
                     }
                     else {
+                        emp[4][3] = Integer.valueOf(strings[6]);
                         jLabel29.setText(strings[0]);
                         jLabel49.setText(strings[1] + " " + strings[2]);
                     }
