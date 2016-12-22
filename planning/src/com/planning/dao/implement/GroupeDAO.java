@@ -69,8 +69,8 @@ public class GroupeDAO extends DAO<Groupe> {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             query = "SELECT * FROM Groupe WHERE NumGroupe = " + numg;
             res = state.executeQuery(query);
-            if(res.first()) {
-                groupe = new Groupe(res.getInt(1));   
+            while(res.next()) {
+                groupe = new Groupe(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4));   
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
                 Set<Seance> seanceList = seanceDAO.findByNumGroupe(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
@@ -79,6 +79,7 @@ public class GroupeDAO extends DAO<Groupe> {
                 }
              }   
         }catch (SQLException e) {   
+            System.out.println("SQLException: " + e);
         }
         return groupe;
     }

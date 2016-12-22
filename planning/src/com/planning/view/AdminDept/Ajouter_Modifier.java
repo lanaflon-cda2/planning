@@ -44,7 +44,7 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        indication.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        indication.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         indication.setText("Veuillez remplir les informations suivantes :");
         getContentPane().add(indication, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -82,7 +82,7 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
         if(p==0){
-            //code qui met la BD à jour
+            
         }
     
     }//GEN-LAST:event_jButton1ActionPerformed

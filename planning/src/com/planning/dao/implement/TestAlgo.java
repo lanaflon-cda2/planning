@@ -6,7 +6,7 @@
 package com.planning.dao.implement;
 
 import com.planning.controler.Absenter;
-import com.planning.controler.CreneauPermut;
+import com.planning.controler.Permut;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
@@ -23,7 +23,7 @@ import java.util.Calendar;
  *
  * @author genereux
  */
-public class TestDAO {
+public class TestAlgo {
     static Connection conn = ConnexionBD.init();
     
     public static void testCreneau () {
@@ -188,7 +188,7 @@ public class TestDAO {
             System.out.println("Les creneaux trouvés sont: ");
             for(int i = 0; i < creno.size(); i++) {
                 obj = creneauDAO.find((int) creno.get(i));
-                System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestDAO.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
+                System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestAlgo.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
             }
             
         } else System.out.println(" Creno = " + creno + " Aucun creno vide trouvée.");
@@ -199,17 +199,17 @@ public class TestDAO {
         ArrayList permut = absence.getPermutPossible();
         
         if(permut != null) {
-            CreneauPermut x;
+            Permut x;
              
             for(int j = 0; j < permut.size(); j++) {
 
-                x = (CreneauPermut) permut.get(j);
+                x = (Permut) permut.get(j);
                 int numEnsX = x.getNumEns();
                 System.out.println("Le professeur de numero " + numEnsX + " peut offrir les créneaux suivants: ");
                 ArrayList listCreneauEnsX = x.getCreneaux();
                 for(int k = 0; k < listCreneauEnsX.size(); k++){
                     obj = creneauDAO.find((int) listCreneauEnsX.get(k));
-                    System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestDAO.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
+                    System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestAlgo.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
                 }
 
             }
@@ -220,7 +220,7 @@ public class TestDAO {
     public static void main(String args[]){
         
         //TestDAO.insertSeance();
-        TestDAO.testAbsence();
+        TestAlgo.testAbsence();
     }
 
 }

@@ -29,7 +29,7 @@ public class Seance {
         this.etatSeance = 1;
     }
     
-    public Seance(int numCreneau ,int numEns, int numMatiere, int numGroupe) {
+    public Seance(int numCreneau , int numEns, int numMatiere, int numGroupe) {
         
         this.numSeance = 1;
         this.numCreneau = numCreneau;

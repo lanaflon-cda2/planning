@@ -11,19 +11,19 @@ import java.util.ArrayList;
  *
  * @author genereux
  */
-public class CreneauPermut {
+public class Permut {
     
     private int numEns;
 
     private ArrayList creneaux;
     
-    public CreneauPermut(){
+    public Permut(){
         this.numEns = 0;
         this.creneaux = new ArrayList();
         
     }
 
-    public CreneauPermut (int numEns, ArrayList creneaux) {
+    public Permut (int numEns, ArrayList creneaux) {
 
         this.numEns = numEns;
         this.creneaux = creneaux;

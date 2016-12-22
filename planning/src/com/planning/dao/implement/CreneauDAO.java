@@ -78,7 +78,7 @@ public class CreneauDAO extends DAO<Creneau> {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             query = "SELECT * FROM Creneau WHERE NumCreneau = " + numcreneau;
             res = state.executeQuery(query);
-            if(res.first()) {
+            while(res.next()) {
                 creneau = new Creneau(res.getInt(1), res.getDate(2), res.getTime(3));                
             }
         } catch (SQLException e) {

@@ -6,9 +6,13 @@
 package com.planning.view.Enseignant;
 
 import com.planning.controler.ConsulterEMP;
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
 import java.awt.Color;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -21,6 +25,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
      */
     public MonEmploiEnseignant() {
         initComponents();
+        this.initEmp();
     }
 
     /**
@@ -49,35 +54,71 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         l8 = new javax.swing.JPanel();
+        l8text = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
         l10 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
         l16 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         l14 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         ma8 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         ma10 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
         ma14 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
         ma16 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
         j8 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
         me8 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
         me10 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
         j10 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         j14 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
         me14 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
         me16 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         j16 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         v8 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
         v10 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
         v14 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
         v16 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        periode = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        semestre = new javax.swing.JComboBox<>();
-        semaine = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel52 = new javax.swing.JLabel();
+        consulter = new javax.swing.JButton();
 
         setTitle("mon emploi");
         setMaximumSize(new java.awt.Dimension(860, 570));
@@ -98,7 +139,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel2.setText("LUNDI");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 130, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 130, 80));
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -108,7 +149,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel3.setText("MARDI");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 130, 80));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 130, 80));
 
         jPanel3.setBackground(new java.awt.Color(102, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -118,7 +159,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel4.setText("MERCREDI");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 130, 80));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 130, 80));
 
         jPanel4.setBackground(new java.awt.Color(102, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -128,7 +169,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel5.setText("JEUDI");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 130, 80));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 130, 80));
 
         jPanel5.setBackground(new java.awt.Color(102, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -138,7 +179,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel6.setText("VENDREDI");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 130, 80));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 130, 80));
 
         jPanel6.setBackground(new java.awt.Color(102, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -148,7 +189,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel7.setText("8h-10h");
         jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 140, 60));
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 140, 60));
 
         jPanel8.setBackground(new java.awt.Color(102, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -158,7 +199,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel9.setText("14h-16h");
         jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 150, 60));
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 150, 60));
 
         jPanel9.setBackground(new java.awt.Color(102, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -168,7 +209,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel10.setText("16h-18h");
         jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 150, 60));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 150, 60));
 
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -180,7 +221,35 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 l8MouseEntered(evt);
             }
         });
-        getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 140, 80));
+        l8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        l8text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l8text.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                l8textComponentResized(evt);
+            }
+        });
+        l8text.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                l8textInputMethodTextChanged(evt);
+            }
+        });
+        l8text.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                l8textPropertyChange(evt);
+            }
+        });
+        l8.add(l8text, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setToolTipText("");
+        jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        l8.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 140, 80));
 
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -189,7 +258,15 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 l10MouseClicked(evt);
             }
         });
-        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 150, 80));
+        l10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        l10.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setToolTipText("");
+        l10.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 150, 80));
 
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -198,7 +275,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 l16MouseClicked(evt);
             }
         });
-        getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 150, 80));
+        l16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        l16.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l16.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 150, 80));
 
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -207,7 +291,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 l14MouseClicked(evt);
             }
         });
-        getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 150, 80));
+        l14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        l14.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 150, 80));
 
         ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -216,7 +307,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 ma8MouseClicked(evt);
             }
         });
-        getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 140, 80));
+        ma8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ma8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma8.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 140, 80));
 
         ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -225,7 +323,15 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 ma10MouseClicked(evt);
             }
         });
-        getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 150, 80));
+        ma10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ma10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setToolTipText("");
+        ma10.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 150, 80));
 
         ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -234,7 +340,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 ma14MouseClicked(evt);
             }
         });
-        getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 150, 80));
+        ma14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ma14.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma14.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 150, 80));
 
         ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -243,7 +356,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 ma16MouseClicked(evt);
             }
         });
-        getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 150, 80));
+        ma16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        ma16.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma16.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 150, 80));
 
         j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -252,7 +372,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 j8MouseClicked(evt);
             }
         });
-        getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 140, 80));
+        j8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        j8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j8.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 140, 80));
 
         me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -261,7 +388,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 me8MouseClicked(evt);
             }
         });
-        getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 140, 80));
+        me8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        me8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me8.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 140, 80));
 
         me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -270,7 +404,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 me10MouseClicked(evt);
             }
         });
-        getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 150, 80));
+        me10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        me10.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me10.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 150, 80));
 
         j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -279,7 +420,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 j10MouseClicked(evt);
             }
         });
-        getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 150, 80));
+        j10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        j10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j10.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 150, 80));
 
         j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -288,7 +436,23 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 j14MouseClicked(evt);
             }
         });
-        getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 150, 80));
+        j14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabel26InputMethodTextChanged(evt);
+            }
+        });
+        j14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j14.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 150, 80));
 
         me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -297,7 +461,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 me14MouseClicked(evt);
             }
         });
-        getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 150, 80));
+        me14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        me14.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me14.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 150, 80));
 
         me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -306,7 +477,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 me16MouseClicked(evt);
             }
         });
-        getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 150, 80));
+        me16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        me16.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me16.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 150, 80));
 
         j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -315,7 +493,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 j16MouseClicked(evt);
             }
         });
-        getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 150, 80));
+        j16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        j16.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j16.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 150, 80));
 
         v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -324,7 +509,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 v8MouseClicked(evt);
             }
         });
-        getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 140, 80));
+        v8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        v8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v8.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 140, 80));
 
         v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -333,7 +525,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 v10MouseClicked(evt);
             }
         });
-        getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, 150, 80));
+        v10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        v10.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v10.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 150, 80));
 
         v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -342,7 +541,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 v14MouseClicked(evt);
             }
         });
-        getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 450, 150, 80));
+        v14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        v14.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v14.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 430, 150, 80));
 
         v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -351,32 +557,20 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 v16MouseClicked(evt);
             }
         });
-        getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 450, 150, 80));
+        v16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v16.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v16.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 150, 80));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Afficher");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 32));
-
-        periode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
-        getContentPane().add(periode, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Semestre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel11.setText("Période");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
-
-        semestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", " " }));
-        getContentPane().add(semestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-
-        semaine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", " " }));
-        getContentPane().add(semaine, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setText("Semaine");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 530, 123, 32));
 
         jPanel7.setBackground(new java.awt.Color(102, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -386,11 +580,20 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel8.setText("10h-12h");
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 150, 60));
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 150, 60));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 230, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Reporter");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 100, 32));
+        jLabel52.setLabelFor(jDateChooser1);
+        jLabel52.setText("Semaine");
+        getContentPane().add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 15, -1, -1));
+
+        consulter.setText("Consulter");
+        consulter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consulterActionPerformed(evt);
+            }
+        });
+        getContentPane().add(consulter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -884,36 +1087,352 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
     }//GEN-LAST:event_formMouseClicked
+
+    private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
+        // TODO add your handling code here:
+        
+        Date dateSemaine = new Date(jDateChooser1.getDate().getTime());
+        dateSemaine = this.getMonday(dateSemaine);
+        Date semaineFin = this.getFriday(dateSemaine);
+        this.getEmp(dateSemaine, semaineFin);
+
+    }//GEN-LAST:event_consulterActionPerformed
+
+    private void l8textInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_l8textInputMethodTextChanged
+        // TODO add your handling code here:
+ 
+    }//GEN-LAST:event_l8textInputMethodTextChanged
+
+    private void jLabel26InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel26InputMethodTextChanged
+        // TODO add your handling code here:
+ 
+    }//GEN-LAST:event_jLabel26InputMethodTextChanged
+
+    private void l8textPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_l8textPropertyChange
+        // TODO add your handling code here:
+   
+    }//GEN-LAST:event_l8textPropertyChange
+
+    private void l8textComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_l8textComponentResized
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_l8textComponentResized
     
-    String idUser;
+    public void initEmp(){
+        
+        Date dateSysteme = new Date(Calendar.getInstance().getTime().getTime());
+        jDateChooser1.setDate(dateSysteme);
+        dateSysteme = this.getMonday(dateSysteme);
+        Date semaineFin = this.getFriday(dateSysteme);
+        this.getEmp(dateSysteme, semaineFin);
+    }
+    
+    public Date getMonday(Date d) {
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        int x = cal.get(Calendar.DAY_OF_WEEK);
+        switch (x) {
+            case 1:
+                x = 1;
+                break;
+            case 2: 
+                x = 0;
+                break;
+            case 3:
+                x = -1;
+                break;
+            case 4:
+                x = -2;
+                break;
+            case 5:
+                x = -3;
+                break;
+            case 6:
+                x = -4;
+                break;
+            default:
+                x = 2;
+                break;        
+        }
+        
+        cal.add(Calendar.DATE, x);
+        return new Date(cal.getTimeInMillis());
+    }
+    
+    
+    public Date getFriday(Date d) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        cal.add(Calendar.DATE, 4);
+        return new Date(cal.getTimeInMillis());
+    }
+    
+    
+    private String idUser;
+    private int numEns;
     
     public void setIDUser(String s){
         this.idUser = s;
+        EnseignantDAO ed = new EnseignantDAO(ConnexionBD.init());
+        Enseignant ens = ed.findByIDUser(this.idUser);
+        this.numEns = ens.getNumEns();
+        
     }
     
-    public void showEMP(int numEns, Date dd, Date df){
+    public void getEmp(Date dd, Date df){
         ConsulterEMP ce = new ConsulterEMP();
         
-        //ArrayList listGrpMat = ce.getNomGrpMat(numEns, dd, df);
+        ArrayList listGrpMat = ce.getGrpMat(this.numEns, dd, df);
+        String[] strings;
+        for (int i = 0; i < listGrpMat.size(); i++) {
+            strings = (String[]) listGrpMat.get(i);
+            if(strings[3] != null) {
+                if(strings[3].equals("2")) {
+
+                    if(strings[4].equals("08:00:00")) {
+                        
+                        l8text.setText(strings[0]);
+                        jLabel32.setText(strings[1] + " " + strings[2]);
+                        l8.updateUI();
+                    }
+                   
+                    else if(strings[4].equals("10:00:00")) {
+                        jLabel13.setText(strings[0]);
+                        jLabel33.setText(strings[1] + " " + strings[2]);
+                        l10.updateUI();
+                    }
+                    else if(strings[4].equals("14:00:00")) {
+                        jLabel14.setText(strings[0]);
+                        jLabel34.setText(strings[1] + " " + strings[2]);
+                        l14.updateUI();
+                    }
+                    else {
+                        jLabel15.setText(strings[0]);
+                        jLabel35.setText(strings[1] + " " + strings[2]);
+                        l16.updateUI();
+                    }
+                }
+
+                else if(strings[3].equals("3")) {
+                    if(strings[4].equals("08:00:00")) {
+                        jLabel16.setText(strings[0]);
+                        jLabel36.setText(strings[1] + " " + strings[2]);
+                        ma8.updateUI();
+                    }
+
+                    else if(strings[4].equals("10:00:00")) {
+                        jLabel17.setText(strings[0]);
+                        jLabel37.setText(strings[1] + " " + strings[2]);
+                        ma10.updateUI();
+                    }
+                    else if(strings[4].equals("14:00:00")) {
+                        jLabel18.setText(strings[0]);
+                        jLabel38.setText(strings[1] + " " + strings[2]);
+                        ma14.updateUI();
+                    }
+                    else {
+                        jLabel19.setText(strings[0]);
+                        jLabel39.setText(strings[1] + " " + strings[2]);
+                    }
+                }
+
+                else if(strings[3].equals("4")) {
+                    if(strings[4].equals("08:00:00")) {
+                        jLabel20.setText(strings[0]);
+                        jLabel40.setText(strings[1] + " " + strings[2]);
+                    }
+
+                    else if(strings[4].equals("10:00:00")) {
+                        jLabel21.setText(strings[0]);
+                        jLabel41.setText(strings[1] + " " + strings[2]);
+                    }
+                    else if(strings[4].equals("14:00:00")) {
+                        jLabel22.setText(strings[0]);
+                        jLabel42.setText(strings[1] + " " + strings[2]);
+                    }
+                    else {
+                        jLabel23.setText(strings[0]);
+                        jLabel43.setText(strings[1] + " " + strings[2]);
+                    }
+                }
+
+                else if(strings[3].equals("5")) {
+                    if(strings[4].equals("08:00:00")) {
+                        jLabel24.setText(strings[0]);
+                        
+                        jLabel44.setText(strings[1] + " " + strings[2]);
+                    }
+
+                    else if(strings[4].equals("10:00:00")) {
+                        jLabel25.setText(strings[0]);
+                        jLabel45.setText(strings[1] + " " + strings[2]);
+                    }
+                    else if(strings[4].equals("14:00:00")) {
+                        jLabel26.setText(strings[0]);
+
+                        jLabel46.setText(strings[1] + " " + strings[2]);
+                        j14.updateUI();
+                    }
+                    else {
+                        jLabel27.setText(strings[0]);
+                        jLabel47.setText(strings[1] + " " + strings[2]);
+                    }
+                }
+
+                else if (strings[3].equals("6")) {
+                    if(strings[4].equals("08:00:00")) {
+                        jLabel26.setText(strings[0]);
+                        jLabel46.setText(strings[1] + " " + strings[2]);
+                    }
+
+                    else if(strings[4].equals("10:00:00")) {
+                        jLabel27.setText(strings[0]);
+                        jLabel47.setText(strings[1] + " " + strings[2]);
+                    }
+                    else if(strings[4].equals("14:00:00")) {
+                        jLabel28.setText(strings[0]);
+                        jLabel48.setText(strings[1] + " " + strings[2]);
+                    }
+                    else {
+                        jLabel29.setText(strings[0]);
+                        jLabel49.setText(strings[1] + " " + strings[2]);
+                    }
+                }
+
+                else {
+                   
+                }
+            
+            }
+            
+            else {
+                
+            }
+            
+            this.updateUI();
+        }
         
-        //for()
+        if(listGrpMat.size() == 0) {
+
+            l8text.setText(null);
+            jLabel32.setText(null);
+
+            jLabel13.setText(null);
+            jLabel33.setText(null);
+
+            jLabel14.setText(null);
+            jLabel34.setText(null);
+
+            jLabel15.setText(null);
+            jLabel35.setText(null);
+
+            jLabel16.setText(null);
+            jLabel36.setText(null);
+
+            jLabel17.setText(null);
+            jLabel37.setText(null);
+
+            jLabel18.setText(null);
+            jLabel38.setText(null);
+
+            jLabel19.setText(null);
+            jLabel39.setText(null);
+
+            jLabel20.setText(null);
+            jLabel40.setText(null);
+
+            jLabel21.setText(null);
+            jLabel41.setText(null);
+
+            jLabel22.setText(null);
+            jLabel42.setText(null);
+
+            jLabel23.setText(null);
+            jLabel43.setText(null);
+
+            jLabel24.setText(null);
+            jLabel44.setText(null);
+
+            jLabel25.setText(null);
+            jLabel45.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel28.setText(null);
+            jLabel48.setText(null);
+
+            jLabel29.setText(null);
+            jLabel49.setText(null);
+ 
+            
+        }
+        
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton consulter;
     private javax.swing.JPanel j10;
     private javax.swing.JPanel j14;
     private javax.swing.JPanel j16;
     private javax.swing.JPanel j8;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -931,6 +1450,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private javax.swing.JPanel l14;
     private javax.swing.JPanel l16;
     private javax.swing.JPanel l8;
+    private javax.swing.JLabel l8text;
     private javax.swing.JPanel ma10;
     private javax.swing.JPanel ma14;
     private javax.swing.JPanel ma16;
@@ -939,9 +1459,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private javax.swing.JPanel me14;
     private javax.swing.JPanel me16;
     private javax.swing.JPanel me8;
-    private javax.swing.JComboBox<String> periode;
-    private javax.swing.JComboBox<String> semaine;
-    private javax.swing.JComboBox<String> semestre;
     private javax.swing.JPanel v10;
     private javax.swing.JPanel v14;
     private javax.swing.JPanel v16;
