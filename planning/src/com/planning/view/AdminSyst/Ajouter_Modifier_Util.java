@@ -29,6 +29,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         nomfield = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -44,6 +45,10 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Ajouter utilisateur");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
         getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 250, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -88,7 +93,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 ConfirmerActionPerformed(evt);
             }
         });
-        getContentPane().add(Confirmer, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 110, 30));
+        getContentPane().add(Confirmer, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 140, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -147,6 +152,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Confirmer;
     public javax.swing.JTextField idfield;
+    public javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

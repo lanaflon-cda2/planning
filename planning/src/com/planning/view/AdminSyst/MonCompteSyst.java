@@ -36,7 +36,7 @@ public class MonCompteSyst extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(810, 530));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

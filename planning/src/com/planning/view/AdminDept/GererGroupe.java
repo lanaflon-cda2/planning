@@ -34,6 +34,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         supprimer = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Gérer groupes");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

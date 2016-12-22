@@ -7,7 +7,6 @@ package com.planning.view.Enseignant;
 
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
-import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +24,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     String idUser;
     public void setIDUser(String s) {
         this.idUser = s;
+        monEmploiEnseignant1.setIDUser(this.idUser);
+        monEmploiEnseignant1.initEmp();
     }
     public AcceuilEnseignant() {
         initComponents();
@@ -184,17 +185,15 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
         monemploi.setBackground(java.awt.SystemColor.activeCaption);
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
-       this.desktop.removeAll();
-       this.desktop.repaint();
-       MonEmploiEnseignant me = new MonEmploiEnseignant();
-       me.setIDUser(idUser);
-       this.desktop.add(me);
+        this.desktop.removeAll();
+        this.desktop.repaint();
+        this.desktop.add(monEmploiEnseignant1);
         try {
-            me.setMaximum(true);
+            monEmploiEnseignant1.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        me.show();
+        monEmploiEnseignant1.show();
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
