@@ -144,6 +144,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 AE.desktop.removeAll();
                 AE.desktop.repaint();
                 
+                System.out.println("test");
                 AE.setidUser(id);
                 
                 MonCompteEnseignant mce = new MonCompteEnseignant();

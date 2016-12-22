@@ -10,9 +10,12 @@ import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import java.awt.Color;
+import java.beans.PropertyVetoException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 
 /**
@@ -24,6 +27,10 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     /**
      * Creates new form MonEmploi
      */
+    public void setAE(AcceuilEnseignant ae){
+        this.ae = ae;
+    }
+    
     public MonEmploiEnseignant() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
@@ -574,7 +581,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 150, 80));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Afficher");
+        jButton1.setText("Reporter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1148,8 +1155,89 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_l8textComponentResized
 
+    private SeanceRattrapage srat = new SeanceRattrapage();
+    private AcceuilEnseignant ae = new AcceuilEnseignant();
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+        switch(numpan){
+            case 1: 
+                this.srat.setnumseance(emp[0][0]);
+                break;
+            case 2: 
+                this.srat.setnumseance(emp[0][1]);
+                break;
+            case 3: 
+                this.srat.setnumseance(emp[0][2]);
+                break;
+            case 4: 
+                this.srat.setnumseance(emp[0][3]);
+                break;
+            case 5: 
+                this.srat.setnumseance(emp[1][0]);
+                break;
+            case 6: 
+                this.srat.setnumseance(emp[1][1]);
+                break;
+            case 7: 
+                this.srat.setnumseance(emp[1][2]);
+                break;
+            case 8: 
+                this.srat.setnumseance(emp[1][3]);
+                break;
+            case 9: 
+                this.srat.setnumseance(emp[2][0]);
+                break;
+            case 10: 
+                this.srat.setnumseance(emp[2][1]);
+                break;
+            case 11: 
+                this.srat.setnumseance(emp[2][2]);
+                break;
+            case 12: 
+                this.srat.setnumseance(emp[2][3]);
+                break;
+            case 13: 
+                this.srat.setnumseance(emp[3][0]);
+                break;
+            case 14: 
+                this.srat.setnumseance(emp[3][1]);
+                break;
+            case 15: 
+                this.srat.setnumseance(emp[3][2]);
+                break;
+            case 16: 
+                this.srat.setnumseance(emp[3][3]);
+                break;
+            case 17: 
+                this.srat.setnumseance(emp[4][0]);
+                break;
+            case 18: 
+                this.srat.setnumseance(emp[4][1]);
+                break;
+            case 19: 
+                this.srat.setnumseance(emp[4][2]);
+                break;
+            case 20: 
+                this.srat.setnumseance(emp[4][3]);
+                break;
+            default:
+                break;      
+        }
+        
+        
+        this.ae.desktop.removeAll();
+        this.ae.desktop.repaint();
+        
+        this.ae.desktop.add(this.srat);
+        
+        try {
+            this.srat.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.srat.show();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
     

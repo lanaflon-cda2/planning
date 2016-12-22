@@ -16,6 +16,12 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     /**
      * Creates new form SeanceRattrapage
      */
+    private int numseance;
+    
+    public void setnumseance(int i){
+        this.numseance = i;
+    }
+    
     public SeanceRattrapage() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);

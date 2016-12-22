@@ -30,10 +30,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         me.setIDUserMCE(this.idUser);
     }
     
+    
+    
     public void setidUser(String s){
         this.idUser = s;
         jLabel1.setText(idUser);
         monEmploiEnseignant1.setIDUserMEE(this.idUser);
+        monEmploiEnseignant1.setAE(this);
+        System.out.println("test");
         monEmploiEnseignant1.initEmp();
     }
     
