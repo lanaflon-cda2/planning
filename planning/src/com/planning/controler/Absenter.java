@@ -227,7 +227,7 @@ public class Absenter {
     private ArrayList searchPermut(){
         System.out.println("search permut in methode");
         ArrayList creneauxMatchList = null;
-        CreneauPermut creneauxMatchWithX;
+        Permut creneauxMatchWithX;
         ArrayList seanceDeEnsX;
         ArrayList ensList = this.getPossibleEnsXPermut();
         ArrayList creneauxVideEns = this.getCreneauxVideEns();
@@ -240,7 +240,7 @@ public class Absenter {
                 for(Object creneauVide: creneauxVideEns){
                     if((int) creneauVide == (int) seance) {
                         if(creneauxMatchWithX == null) {
-                            creneauxMatchWithX = new CreneauPermut();
+                            creneauxMatchWithX = new Permut();
                             creneauxMatchWithX.setNumEns((int) ensX);
                         }
                         creneauxMatchWithX.addCreneaux((int) creneauVide);
