@@ -78,7 +78,7 @@ public class CreneauDAO extends DAO<Creneau> {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             query = "SELECT * FROM Creneau WHERE NumCreneau = " + numcreneau;
             res = state.executeQuery(query);
-            if(res.first()) {
+            while(res.next()) {
                 creneau = new Creneau(res.getInt(1), res.getDate(2), res.getTime(3));                
             }
         } catch (SQLException e) {
@@ -98,6 +98,7 @@ public class CreneauDAO extends DAO<Creneau> {
         Creneau x;
         Calendar cal = Calendar.getInstance();
         int[] month = {8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6};
+        int nbJours;
         int year;
         long dateToMillisSecond;
         Date dateToInsert;
@@ -107,7 +108,9 @@ public class CreneauDAO extends DAO<Creneau> {
                 year = yearDebut;
             } else year = yearFin;
             
-            for(int i = 1; i <= 31; i++){
+            nbJours = this.daysInMonth(j + 1, year);
+            
+            for(int i = 1; i <= nbJours; i++){
 
 
                 cal.set(year, j, i);
@@ -168,13 +171,18 @@ public class CreneauDAO extends DAO<Creneau> {
     
     }
     
-    private int nbreJourDuMois(int i) {
+    private int daysInMonth(int mois, int year) {
     
-        switch (i) {
+        switch (mois) {
             case 1:
                 return 31;
             case 2:
-                return 28;
+               //vérifier si l'année est bixectille
+               if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                   return 29;
+               } else {
+                   return 28;
+               }
             case 3:
                 return 31;
             case 4:
@@ -193,8 +201,6 @@ public class CreneauDAO extends DAO<Creneau> {
                 return 31;
             case 11:
                 return 30;
-            case 12:
-                return 31;
             default:
                 return 31;
         }

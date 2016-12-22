@@ -5,7 +5,12 @@
  */
 package com.planning.view.AdminSyst;
 
-import com.planning.view.Enseignant.*;
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.UsersDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
+import com.planning.model.Users;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,19 +34,169 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listeutilisateur = new javax.swing.JTable();
+        modifier = new javax.swing.JButton();
+        supprimer = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setTitle("Gérer utilisateurs");
+        setTitle("utilisateurs");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 151, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Gestion Utilisateurs");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        listeutilisateur.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Azough", "Mehdi", "sqdqsd", "qsdsqd", "sqdqsdqs"},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nom", "Prenom", "Mail", "Tel", "ID"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        listeutilisateur.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeutilisateurMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listeutilisateur);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 740, 330));
+
+        modifier.setText("Modifier");
+        modifier.setEnabled(false);
+        modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifierActionPerformed(evt);
+            }
+        });
+        getContentPane().add(modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 130, 30));
+
+        supprimer.setText("Supprimer");
+        supprimer.setEnabled(false);
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, 30));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 170, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        listeutilisateur.clearSelection();
+        modifier.setEnabled(false);
+        supprimer.setEnabled(false);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void listeutilisateurMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeutilisateurMouseClicked
+        modifier.setEnabled(true);
+        supprimer.setEnabled(true);
+    }//GEN-LAST:event_listeutilisateurMouseClicked
+
+    private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
+        int row = listeutilisateur.getSelectedRow();
+        String nom =listeutilisateur.getModel().getValueAt(row,0).toString();
+        String prenom =listeutilisateur.getModel().getValueAt(row,1).toString();
+        String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
+        String tel =listeutilisateur.getModel().getValueAt(row,3).toString();
+        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        
+        Modifier_Util1 modifier = new Modifier_Util1();
+        modifier.nomfield.setText(nom);
+        modifier.prenomfield.setText(prenom);
+        modifier.mailfield.setText(mail);
+        modifier.telfield.setText(tel);
+        modifier.idfield.setText(id);
+        modifier.setVisible(true);
+        
+           
+        
+        
+    }//GEN-LAST:event_modifierActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Ajouter_Modifier_Util ajouter = new Ajouter_Modifier_Util();
+        ajouter.setTitle("Ajouter");
+        ajouter.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        // TODO add your handling code here:
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        
+        int row = listeutilisateur.getSelectedRow();
+        String nom =listeutilisateur.getModel().getValueAt(row,0).toString();
+        String prenom =listeutilisateur.getModel().getValueAt(row,1).toString();
+        String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
+        String tel =listeutilisateur.getModel().getValueAt(row,3).toString() ;
+        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        
+        Users user = new Users(id);
+        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
+        
+        usersDAO.delete(user);
+        enseignantDAO.delete(ens);
+        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
+        listeutilisateur.getModel().setValueAt(" ", row, 0);
+        listeutilisateur.getModel().setValueAt(" ", row, 1);
+        listeutilisateur.getModel().setValueAt(" ", row, 2);
+        listeutilisateur.getModel().setValueAt(" ", row, 3);
+        listeutilisateur.getModel().setValueAt(" ", row, 4);
+        
+    }//GEN-LAST:event_supprimerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable listeutilisateur;
+    private javax.swing.JButton modifier;
+    private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
 }
