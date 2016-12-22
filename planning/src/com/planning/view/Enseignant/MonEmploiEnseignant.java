@@ -575,6 +575,11 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Afficher");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 530, 123, 32));
 
         jPanel7.setBackground(new java.awt.Color(102, 255, 255));
@@ -606,9 +611,10 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private void l8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseEntered
         
     }//GEN-LAST:event_l8MouseEntered
-
+    private int numpan;
+    
     private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
-        
+        numpan = 1;
         l8.setBackground(Color.gray);
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -634,6 +640,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_l8MouseClicked
 
     private void l10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l10MouseClicked
+        numpan = 2;
         l10.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -657,6 +664,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_l10MouseClicked
 
     private void l14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l14MouseClicked
+        numpan = 3;
         l14.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -680,6 +688,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_l14MouseClicked
 
     private void l16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l16MouseClicked
+        numpan = 4;
         l16.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -703,6 +712,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_l16MouseClicked
 
     private void ma8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma8MouseClicked
+        numpan = 5;
         ma8.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -726,6 +736,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ma8MouseClicked
 
     private void ma10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma10MouseClicked
+        numpan = 6;
         ma10.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -749,6 +760,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ma10MouseClicked
 
     private void ma14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma14MouseClicked
+        numpan = 7;
         ma14.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -772,7 +784,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ma14MouseClicked
 
     private void ma16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma16MouseClicked
-         ma16.setBackground(Color.gray);
+        numpan = 8;
+        ma16.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -795,6 +808,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ma16MouseClicked
 
     private void me8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me8MouseClicked
+        numpan = 9;
         me8.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -818,7 +832,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_me8MouseClicked
 
     private void me10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me10MouseClicked
-         me10.setBackground(Color.gray);
+        numpan = 10;
+        me10.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -841,6 +856,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_me10MouseClicked
 
     private void me14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me14MouseClicked
+        numpan = 11;
         me14.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -864,7 +880,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_me14MouseClicked
 
     private void me16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me16MouseClicked
-         me16.setBackground(Color.gray);
+        numpan = 12;
+        me16.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -887,7 +904,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_me16MouseClicked
 
     private void j8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j8MouseClicked
-         j8.setBackground(Color.gray);
+        numpan = 13;
+        j8.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -910,7 +928,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_j8MouseClicked
 
     private void j10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j10MouseClicked
-         j10.setBackground(Color.gray);
+        numpan = 14;
+        j10.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -933,7 +952,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_j10MouseClicked
 
     private void j14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j14MouseClicked
-         j14.setBackground(Color.gray);
+        numpan = 15;
+        j14.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -956,6 +976,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_j14MouseClicked
 
     private void j16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j16MouseClicked
+        numpan = 16;
         j16.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -979,7 +1000,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_j16MouseClicked
 
     private void v8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v8MouseClicked
-         v8.setBackground(Color.gray);
+        numpan = 17;
+        v8.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -1002,7 +1024,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_v8MouseClicked
 
     private void v14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v14MouseClicked
-         v14.setBackground(Color.gray);
+        numpan = 19;
+        v14.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -1025,6 +1048,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_v14MouseClicked
 
     private void v16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v16MouseClicked
+        numpan = 20;
         v16.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -1048,6 +1072,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_v16MouseClicked
 
     private void v10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v10MouseClicked
+        numpan = 18;
         v10.setBackground(Color.gray);
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -1122,6 +1147,11 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_l8textComponentResized
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void initEmp(){
         
