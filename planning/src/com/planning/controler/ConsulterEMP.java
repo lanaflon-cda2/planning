@@ -52,7 +52,7 @@ public class ConsulterEMP {
         
         dd = this.setDate(dd);
         df = this.setDate(df);
-        ArrayList listGrpMat = new ArrayList();
+        ArrayList<String[]> listGrpMat = new ArrayList();
         String tab[] = new String[7];
         SeanceDAO sd = new SeanceDAO(conn);
         Set<Seance> listSeance = new HashSet<>();

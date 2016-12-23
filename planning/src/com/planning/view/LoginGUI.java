@@ -138,9 +138,9 @@ public class LoginGUI extends javax.swing.JFrame {
             if(passworduser.equals(passwordtext)) {
                 
                 String id = new String(identifiant.getText());
-                                             
+                        System.out.println("test");                     
                 AcceuilEnseignant AE = new AcceuilEnseignant();
-                System.out.println("test");
+                
                 AE.desktop.removeAll();
                 AE.desktop.repaint();
                
