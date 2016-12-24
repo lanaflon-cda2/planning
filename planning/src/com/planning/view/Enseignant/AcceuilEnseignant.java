@@ -36,13 +36,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         this.idUser = s;
         jLabel1.setText(idUser);
         monEmploiEnseignant1.setIDUserMEE(this.idUser);
-        monEmploiEnseignant1.setAE(this);
-        System.out.println("test");
+         
         monEmploiEnseignant1.initEmp();
+        monEmploiEnseignant1.setAE(this);
     }
     
     public AcceuilEnseignant() {
         initComponents();
+
         
     }
             
