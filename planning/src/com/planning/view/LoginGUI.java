@@ -137,12 +137,12 @@ public class LoginGUI extends javax.swing.JFrame {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
                 
-                String id = new String(identifiant.getText());
-                        System.out.println("test");                     
+                String id = new String(identifiant.getText());                    
                 AcceuilEnseignant AE = new AcceuilEnseignant();
                 
                 AE.desktop.removeAll();
                 AE.desktop.repaint();
+                        System.out.println("test"); 
                
                 AE.setidUser(id);
                 
