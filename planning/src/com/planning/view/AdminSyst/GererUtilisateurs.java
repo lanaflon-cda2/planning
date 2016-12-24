@@ -195,7 +195,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable listeutilisateur;
+    public javax.swing.JTable listeutilisateur;
     private javax.swing.JButton modifier;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
