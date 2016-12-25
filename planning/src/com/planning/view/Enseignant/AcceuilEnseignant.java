@@ -36,13 +36,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         this.idUser = s;
         jLabel1.setText(idUser);
         monEmploiEnseignant1.setIDUserMEE(this.idUser);
-        monEmploiEnseignant1.setAE(this);
-        System.out.println("test");
+         
         monEmploiEnseignant1.initEmp();
+        monEmploiEnseignant1.setAE(this);
     }
     
     public AcceuilEnseignant() {
         initComponents();
+
         
     }
             
@@ -98,7 +99,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 jLabel1InputMethodTextChanged(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 90, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 110, 30));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N

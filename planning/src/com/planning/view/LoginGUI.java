@@ -139,10 +139,9 @@ public class LoginGUI extends javax.swing.JFrame {
                 
                 String id = new String(identifiant.getText());                    
                 AcceuilEnseignant AE = new AcceuilEnseignant();
-                
+  
                 AE.desktop.removeAll();
-                AE.desktop.repaint();
-                        System.out.println("test"); 
+                AE.desktop.repaint(); 
                
                 AE.setidUser(id);
                 

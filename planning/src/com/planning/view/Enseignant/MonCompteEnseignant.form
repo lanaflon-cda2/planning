@@ -35,13 +35,13 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Champagne &amp; Limousines" size="18" style="1"/>
+          <Font name="Tahoma" size="24" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Vous &#xea;tes connect&#xe9; en tant que:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="10" width="270" height="20"/>
+          <AbsoluteConstraints x="10" y="10" width="420" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
