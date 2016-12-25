@@ -188,6 +188,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         MonCompteEnseignant mce = me;
         
         this.desktop.add(mce);
+    
         
         try {
             mce.setMaximum(true);
@@ -195,6 +196,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
         mce.show();
+        monEmploiEnseignant1.setAE(this);
        
     }//GEN-LAST:event_moncompteActionPerformed
 
@@ -224,12 +226,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
        this.desktop.repaint();  
        MonEmploiEnseignant me = new MonEmploiEnseignant();
        this.desktop.add(me);
+
         try {
             me.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
         me.show();
+        monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
@@ -239,12 +243,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         this.desktop.repaint();
         SeanceRattrapage sr = new SeanceRattrapage();
         this.desktop.add(sr);
+        
         try {
             sr.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
         }
         sr.show();
+        monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_seancerattActionPerformed
 
     private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel1InputMethodTextChanged

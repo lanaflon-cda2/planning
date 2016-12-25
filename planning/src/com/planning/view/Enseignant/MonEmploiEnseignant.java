@@ -1316,6 +1316,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 if(strings[3].equals("2")) {
 
                     if(strings[4].equals("08:00:00")) {
+                        System.out.println("Hey I'm here");
                         emp[0][0] = Integer.valueOf(strings[6]);
                         l8text.setText(strings[0]);
                         jLabel32.setText(strings[1] + " " + strings[2]);
