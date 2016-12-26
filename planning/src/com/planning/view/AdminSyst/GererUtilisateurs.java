@@ -5,7 +5,12 @@
  */
 package com.planning.view.AdminSyst;
 
-import com.planning.view.Enseignant.*;
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.UsersDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
+import com.planning.model.Users;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -102,6 +107,11 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
         supprimer.setText("Supprimer");
         supprimer.setEnabled(false);
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -134,14 +144,13 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
         String tel =listeutilisateur.getModel().getValueAt(row,3).toString();
         String id =listeutilisateur.getModel().getValueAt(row,4).toString();
-        Ajouter_Modifier_Util modifier = new Ajouter_Modifier_Util();
-        modifier.setTitle("Modifier");
+        
+        Modifier_Util1 modifier = new Modifier_Util1();
         modifier.nomfield.setText(nom);
         modifier.prenomfield.setText(prenom);
         modifier.mailfield.setText(mail);
         modifier.telfield.setText(tel);
         modifier.idfield.setText(id);
-        modifier.jLabel3.setText("Modifier Utilisateur");
         modifier.setVisible(true);
         
            
@@ -155,12 +164,38 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         ajouter.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        // TODO add your handling code here:
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        
+        int row = listeutilisateur.getSelectedRow();
+        String nom =listeutilisateur.getModel().getValueAt(row,0).toString();
+        String prenom =listeutilisateur.getModel().getValueAt(row,1).toString();
+        String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
+        String tel =listeutilisateur.getModel().getValueAt(row,3).toString() ;
+        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        
+        Users user = new Users(id);
+        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
+        
+        usersDAO.delete(user);
+        enseignantDAO.delete(ens);
+        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
+        listeutilisateur.getModel().setValueAt(" ", row, 0);
+        listeutilisateur.getModel().setValueAt(" ", row, 1);
+        listeutilisateur.getModel().setValueAt(" ", row, 2);
+        listeutilisateur.getModel().setValueAt(" ", row, 3);
+        listeutilisateur.getModel().setValueAt(" ", row, 4);
+        
+    }//GEN-LAST:event_supprimerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable listeutilisateur;
+    public javax.swing.JTable listeutilisateur;
     private javax.swing.JButton modifier;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables

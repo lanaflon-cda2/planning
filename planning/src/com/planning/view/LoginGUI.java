@@ -127,17 +127,18 @@ public class LoginGUI extends javax.swing.JFrame {
     private void ConnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnexionMouseClicked
        
     }//GEN-LAST:event_ConnexionMouseClicked
-
+    //public static Users user = null ;
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
-         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        Users user = usersDAO.find(identifiant.getText());
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        String id = new String(identifiant.getText());
+        Users user = usersDAO.find(id);
         String passwordtext = new String(motdepasse.getPassword());
+               
         
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                
-                String id = new String(identifiant.getText());                    
+                                    
                 AcceuilEnseignant AE = new AcceuilEnseignant();
   
                 AE.desktop.removeAll();

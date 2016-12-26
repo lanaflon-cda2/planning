@@ -1166,7 +1166,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         switch(numpan){
             case 1: 
                 this.srat.setnumseance(emp[0][0]);
-                System.out.println("jpanel 1");
                 break;
             case 2: 
                 this.srat.setnumseance(emp[0][1]);
@@ -1311,7 +1310,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     
     public void getEmp(Date dd, Date df){
         ConsulterEMP ce = new ConsulterEMP();
-        System.out.println("test");
         ArrayList listGrpMat = ce.getGrpMat(this.numEns, dd, df);
         String[] strings;
         for (int i = 0; i < listGrpMat.size(); i++) {

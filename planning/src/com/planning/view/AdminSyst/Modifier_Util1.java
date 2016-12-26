@@ -16,11 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author Azough Mehdi
  */
-public class Ajouter_Modifier_Util extends javax.swing.JFrame {
+public class Modifier_Util1 extends javax.swing.JFrame {
+    GererUtilisateurs gu = new GererUtilisateurs();
     /**
      * Creates new form Ajouter_Modifier_Util
      */
-    public Ajouter_Modifier_Util() {
+    public Modifier_Util1() {
         initComponents();
     }
 
@@ -52,7 +53,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Ajouter utilisateur");
+        jLabel3.setText("Modifier utilisateur");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         nomfield.addActionListener(new java.awt.event.ActionListener() {
@@ -87,16 +88,17 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
         getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
 
+        idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 250, 30));
+        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 220, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("ID");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jLabel8.setText("Saisir l'identifiant de l'utilisateur");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
         Enregistrer.setText("Enregistrer");
         Enregistrer.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +110,11 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
 
         Annuler.setText("Annuler");
         Annuler.setToolTipText("");
+        Annuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnnulerActionPerformed(evt);
+            }
+        });
         getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 120, 30));
 
         pack();
@@ -126,11 +133,61 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomfieldActionPerformed
 
+    private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AnnulerActionPerformed
+
     private void EnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnregistrerActionPerformed
-        int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
-        if(p==0){
-            
-        }        // TODO add your handling code here:
+        // TODO add your handling code here:
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+
+        int row = gu.listeutilisateur.getSelectedRow();
+        String nom = new String(nomfield.getText());
+        String prenom = new String(prenomfield.getText());
+        String mail = new String(mailfield.getText());
+        String tel = new String(telfield.getText());
+        String id = new String(idfield.getText());
+
+        if ( nom!= null){
+            if(prenom != null){
+                if(mail != null){
+                    if(tel != null){
+                        if(id != null){
+                            Users user = new Users(id);
+                            Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
+                            usersDAO.update(user);
+                            enseignantDAO.update(ens);
+                            gu.listeutilisateur.getModel().setValueAt(nom, row, 0);
+                            gu.listeutilisateur.getModel().setValueAt(prenom, row, 1);
+                            gu.listeutilisateur.getModel().setValueAt(mail, row, 2);
+                            gu.listeutilisateur.getModel().setValueAt(tel, row, 3);
+                            gu.listeutilisateur.getModel().setValueAt(id, row, 4);
+                            JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
+            }  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
+        }
+
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     /**
@@ -150,20 +207,21 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ajouter_Modifier_Util().setVisible(true);
+                new Modifier_Util1().setVisible(true);
             }
         });
     }

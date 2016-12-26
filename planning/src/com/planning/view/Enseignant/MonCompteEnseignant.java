@@ -128,6 +128,10 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel10.setText("Department");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 150, 30));
 
+        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 290, 60));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

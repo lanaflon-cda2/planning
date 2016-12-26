@@ -5,6 +5,9 @@
  */
 package com.planning.view.Enseignant;
 
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
 import java.beans.PropertyVetoException;
@@ -90,13 +93,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 jLabel1ComponentResized(evt);
-            }
-        });
-        jLabel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jLabel1InputMethodTextChanged(evt);
             }
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 110, 30));
@@ -221,15 +217,15 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         
        this.desktop.removeAll();
-       this.desktop.repaint();  
-       MonEmploiEnseignant me = new MonEmploiEnseignant();
-       this.desktop.add(me);
+       this.desktop.repaint(); 
+       this.desktop.add(monEmploiEnseignant1);
         try {
-            me.setMaximum(true);
+            monEmploiEnseignant1.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        me.show();
+        monEmploiEnseignant1.show();
+        monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
@@ -247,10 +243,10 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         sr.show();
     }//GEN-LAST:event_seancerattActionPerformed
 
-    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel1InputMethodTextChanged
+    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {                                               
         
     // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1InputMethodTextChanged
+    }                                              
 
     private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
         // TODO add your handling code here:

@@ -5,6 +5,15 @@
  */
 package com.planning.view.Enseignant;
 
+import com.planning.controler.Absenter;
+import com.planning.dao.implement.CreneauDAO;
+import com.planning.dao.implement.SeanceDAO;
+import com.planning.dao.implement.TestAlgo;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Creneau;
+import com.planning.model.Seance;
+import java.sql.Connection;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 
 /**
@@ -17,9 +26,31 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
      * Creates new form SeanceRattrapage
      */
     private int numseance;
+    Connection con=ConnexionBD.init();
     
     public void setnumseance(int i){
         this.numseance = i;
+        SeanceDAO seanceDAO = new SeanceDAO(con);
+        Seance seance = seanceDAO.find(this.numseance);
+        this.getRattrapage(seance);
+    }
+    
+    public void getRattrapage(Seance seance){
+        CreneauDAO creneauDAO = new CreneauDAO(con);
+        Creneau obj;
+        Absenter absenter = new Absenter(seance);
+        ArrayList creno = absenter.getCreneauxMatchEnsGroupe();
+        if(creno != null) {
+            for(int i = 0; i < creno.size(); i++) {
+                obj = creneauDAO.find((int) creno.get(i));
+                table.setModel(
+                System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestAlgo.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
+            }
+            
+        } else System.out.println(" Creno = " + creno + " Aucun creno vide trouvée.");
+        
+        //Supposons que creno = null. On va chercher si des permutations sont possibles; 
+        System.out.println("\n\n");
     }
     
     public SeanceRattrapage() {
@@ -41,11 +72,12 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        scrollPane1 = new java.awt.ScrollPane();
+        table = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("seances rattrapage");
@@ -65,82 +97,6 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 210, 120));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Professeur", "Date Séance", "Heure Séance"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 440, 410));
-
         jButton1.setText("Confirmer");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 140, 40));
 
@@ -151,6 +107,23 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Séance à reporté ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        table.setViewportView(jTable2);
+
+        scrollPane1.add(table);
+
+        getContentPane().add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 370, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,7 +137,8 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private java.awt.ScrollPane scrollPane1;
+    private javax.swing.JScrollPane table;
     // End of variables declaration//GEN-END:variables
 }

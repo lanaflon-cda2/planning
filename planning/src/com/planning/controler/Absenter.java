@@ -50,6 +50,7 @@ public class Absenter {
         
     }
     
+        
     public ArrayList getCreneauxMatchEnsGroupe(){
         return this.creneauxMatchEnsGroupe;
     }
