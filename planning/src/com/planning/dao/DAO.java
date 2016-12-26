@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public abstract class DAO <T> {
     protected Connection conn = null;
-    protected ResultSet res = null;
+    public ResultSet res = null;
     protected Statement state = null;
     protected String query;
     

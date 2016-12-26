@@ -5,21 +5,41 @@
  */
 package com.planning.view.AdminDept;
 
+import com.planning.dao.implement.FiliereDAO;
+import com.planning.dao.implement.GroupeDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Filiere;
+import com.planning.model.Groupe;
 import java.awt.Color;
+import java.sql.Connection;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Azough Mehdi
  */
-public class Ajouter_Modifier extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ajouter_modifier
-     */
-    public Ajouter_Modifier() {
+public class Ajouter extends javax.swing.JFrame {
+    Groupe groupe;
+    GroupeDAO groupeD;
+    FiliereDAO filD;
+    ArrayList listefil;
+    Filiere fil;
+    Connection conn = ConnexionBD.init();
+    GererGroupe gerergrp;
+    public Ajouter() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        filD = new FiliereDAO(conn);
+        listefil=filD.findAll();
+        for (int i = 0; i < listefil.size(); i++) {
+            
+            fil=(Filiere)listefil.get(i);
+            filierecombo.addItem(fil.getNomFiliere());
+            
+        }
+        
+        
     }
 
     /**
@@ -32,10 +52,10 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
     private void initComponents() {
 
         indication = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Sauvegarder = new javax.swing.JButton();
         nomgroupefield = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        filierecombo = new javax.swing.JComboBox<>();
+        niveaucombo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -50,44 +70,67 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
         indication.setText("Veuillez remplir les informations suivantes :");
         getContentPane().add(indication, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jButton1.setText("Sauvegarder");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Sauvegarder.setText("Sauvegarder");
+        Sauvegarder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SauvegarderActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 120, 30));
-        getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 180, 30));
+        getContentPane().add(Sauvegarder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 120, 30));
+        getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 190, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 100, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 190, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 100, 30));
+        niveaucombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 50, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Nom groupe ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, 20));
+        jLabel2.setText("Nom groupe : ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Filière :");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Niveau :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    public void getgerergroupe(GererGroupe g){
+        this.gerergrp=g;
+        
+    }
+    
+    private void SauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SauvegarderActionPerformed
+    
         int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
         if(p==0){
+            String nomgroupe = nomgroupefield.getText();
+        int numFiliere = 0;
+        String filier =(String) filierecombo.getSelectedItem();
+        for (int i = 0; i < listefil.size(); i++) {
+            fil = (Filiere) listefil.get(i);
+            if(filier.equals(fil.getNomFiliere())) {
+                numFiliere = fil.getNumFiliere();
+                break;
+            }
+        }
+        
+        int niveau =niveaucombo.getSelectedIndex()+1;
+        groupe=new Groupe(1, numFiliere, nomgroupe, niveau);
+        groupeD=new GroupeDAO(conn);
+        groupeD.create(groupe);
+        this.gerergrp.affichage();
+        
+        
             
         }
     
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SauvegarderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,14 +149,22 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -126,19 +177,19 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ajouter_Modifier().setVisible(true);
+                new Ajouter().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Sauvegarder;
+    private javax.swing.JComboBox<String> filierecombo;
     public javax.swing.JLabel indication;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JComboBox<String> niveaucombo;
     public javax.swing.JTextField nomgroupefield;
     // End of variables declaration//GEN-END:variables
 }

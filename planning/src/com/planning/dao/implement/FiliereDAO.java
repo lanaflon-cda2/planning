@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class FiliereDAO extends DAO<Filiere> {
     
@@ -77,6 +78,28 @@ public class FiliereDAO extends DAO<Filiere> {
             return null;       
         }
         return filiere;
+    }
+    
+    public ArrayList findAll(){
+        ArrayList listefiliere=null;
+        Filiere filiere;
+         try {    
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            query = "SELECT * FROM Filiere";
+            res = state.executeQuery(query);
+            while(res.next()) {
+                if(listefiliere==null) listefiliere = new ArrayList();
+                filiere = new Filiere(res.getInt(1), res.getString(2));
+                listefiliere.add(filiere);
+                
+            }   
+        }catch (SQLException e) {   
+            System.out.println("SQLException: " + e);
+            return null;       
+        }
+        return listefiliere;
+        
+        
     }
     
     

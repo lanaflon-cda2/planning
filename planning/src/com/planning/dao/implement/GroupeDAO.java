@@ -47,19 +47,53 @@ public class GroupeDAO extends DAO<Groupe> {
         return true;
     }
     
+    
+    
     @Override
     public boolean update(Groupe obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE GROUPE SET "
-                    +" NomGroupe = " + obj.getNomGroupe()+ ",'"
-                            +" Niveau = " + obj.getNiveau()
-                                    + " WHERE NumGroupe = '" + obj.getNumGroupe());
+            state = conn.createStatement();
+            query = "UPDATE GROUPE SET NomGroupe = " + obj.getNomGroupe() + ", NumFiliere = " + obj.getNumFiliere() + ", Niveau = " + obj.getNiveau();
+            query += " WHERE NumGroupe = " + obj.getNumFiliere();
 	}
         catch (SQLException e) {
-	}
+            System.out.println("SQLException: " + e);
+            return false;
+        }
         return true;
     }
     
+	public ResultSet AfficherAllGrp(){
+        try{
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            query = "select * from Groupe";
+            res =state.executeQuery(query);
+            
+//            while(res.next()) {
+//                System.out.println(res.getString(1));
+//            }
+            
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return res;
+        
+    }
+	
+    public boolean updatebyObj(Groupe obj1, Groupe obj2) {
+        
+        try {
+            state = this.conn.createStatement();
+            query = "UPDATE GROUPE SET NomGroupe = '" + obj2.getNomGroupe() + "', NumFiliere = " + obj2.getNumFiliere() + ", Niveau = " + obj2.getNiveau();
+            query += " WHERE NomGroupe = '" + obj1.getNomGroupe() + "' AND NumFiliere = " + obj1.getNumFiliere() + " and Niveau = " + obj1.getNiveau();
+        } catch (Exception e) {
+            System.out.println("SQLException: " + e);
+            return false;
+        }
+        return true;
+    }
     @Override
     public Groupe find(int numg){
         

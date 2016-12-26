@@ -6,7 +6,6 @@
 package com.planning.view.AdminDept;
 
 import com.planning.view.Deconnexion;
-import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
