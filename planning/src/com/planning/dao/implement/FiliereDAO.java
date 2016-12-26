@@ -80,7 +80,7 @@ public class FiliereDAO extends DAO<Filiere> {
         return filiere;
     }
     
-        public ArrayList findAll(){
+      public ArrayList findAll(){
             ArrayList listeFiliere = new ArrayList();
 
             try {    

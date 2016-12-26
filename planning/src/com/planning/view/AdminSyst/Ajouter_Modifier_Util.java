@@ -17,9 +17,15 @@ import javax.swing.JOptionPane;
  * @author Azough Mehdi
  */
 public class Ajouter_Modifier_Util extends javax.swing.JFrame {
+    
     /**
      * Creates new form Ajouter_Modifier_Util
      */
+    private GererUtilisateurs gererUtil;
+    
+    public void getGererUtili(GererUtilisateurs gu){
+        this.gererUtil = gu;
+    }
     public Ajouter_Modifier_Util() {
         initComponents();
     }
@@ -135,61 +141,32 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
 
     private void EnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnregistrerActionPerformed
         // TODO add your handling code here:
-
+        
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
-        //int row =gu.listeutilisateur.getModel().getRowCount()+1;
         String nom = new String(nomfield.getText());
-        System.out.println("text p " + prenomfield.getText());
         String prenom = new String(prenomfield.getText());
         String mail = new String(mailfield.getText());
         String tel = new String(telfield.getText());
         String id = new String(idfield.getText());
         String mdp = new String(nomfield.getText()+"EMI");
         
-        if (nomfield.getText()!= null){
-            if(prenomfield.getText() != null){
-                if(mail != ""){
-                    if(tel != ""){
-                        if(id != ""){
-                                    Users user = new Users(id,mdp);
-                                    Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);        
-                                    usersDAO.create(user);
-                                    enseignantDAO.create(ens);
-                                    /*gu.listeutilisateur.getModel().setValueAt(nom, row, 0);
-                                    gu.listeutilisateur.getModel().setValueAt(prenom, row, 1);
-                                    gu.listeutilisateur.getModel().setValueAt(mail, row, 2);
-                                    gu.listeutilisateur.getModel().setValueAt(tel, row, 3);
-                                    gu.listeutilisateur.getModel().setValueAt(id, row, 4);*/
-                                    JOptionPane.showMessageDialog(null, "Enseignant ajouté avec succès");
-                        }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-                    }
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-                }
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-            }  
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-        }
+        Users user = new Users(id,mdp);
+        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);        
+        usersDAO.create(user);
+        enseignantDAO.create(ens);
+        this.gererUtil.UpdateTable();
+        JOptionPane.showMessageDialog(null,"Enseignant ajouté avec succès");
+        
+        System.out.println("text p " + prenomfield.getText());
+        dispose();
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
-        
+            dispose();
+            AcceuilAdminSyst AAS = new AcceuilAdminSyst();
+            AAS.setVisible(true);
     }//GEN-LAST:event_AnnulerActionPerformed
 
     /**

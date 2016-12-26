@@ -10,19 +10,25 @@ import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author Azough Mehdi
  */
 public class GererUtilisateurs extends javax.swing.JInternalFrame {
+    ResultSet resultat = null;
 
     /**
      * Creates new form SeanceRattrapage
      */
     public GererUtilisateurs() {
         initComponents();
+        UpdateTable();
     }
 
     /**
@@ -161,32 +167,37 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ajouter_Modifier_Util ajouter = new Ajouter_Modifier_Util();
         ajouter.setTitle("Ajouter");
+        ajouter.getGererUtili(this);
         ajouter.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    public void UpdateTable(){
+           EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+           resultat = enseignantDAO.getAllEnseignant();
+           listeutilisateur.setModel(DbUtils.resultSetToTableModel(resultat)); 
+    }
+    
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
         // TODO add your handling code here:
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
-        int row = listeutilisateur.getSelectedRow();
-        String nom =listeutilisateur.getModel().getValueAt(row,0).toString();
-        String prenom =listeutilisateur.getModel().getValueAt(row,1).toString();
-        String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
-        String tel =listeutilisateur.getModel().getValueAt(row,3).toString() ;
+        int row = listeutilisateur.getSelectedRowCount();
         String id =listeutilisateur.getModel().getValueAt(row,4).toString();
         
         Users user = new Users(id);
-        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
-        
         usersDAO.delete(user);
-        enseignantDAO.delete(ens);
+        enseignantDAO.deleteById(id);
+        
         JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
+        
+        UpdateTable();
+        /*UpdateTable();
         listeutilisateur.getModel().setValueAt(" ", row, 0);
         listeutilisateur.getModel().setValueAt(" ", row, 1);
         listeutilisateur.getModel().setValueAt(" ", row, 2);
         listeutilisateur.getModel().setValueAt(" ", row, 3);
-        listeutilisateur.getModel().setValueAt(" ", row, 4);
+        listeutilisateur.getModel().setValueAt(" ", row, 4);*/
         
     }//GEN-LAST:event_supprimerActionPerformed
 
@@ -195,7 +206,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable listeutilisateur;
+    private javax.swing.JTable listeutilisateur;
     private javax.swing.JButton modifier;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables

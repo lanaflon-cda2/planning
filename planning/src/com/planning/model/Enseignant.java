@@ -23,9 +23,15 @@ public class Enseignant implements Serializable {
     public Enseignant(int numEns) {
         this.numEns = numEns;
     }
-
+    public Enseignant(String nomEns, String prenomEns, String mail, String tel, String iDUser) {
+        this.nomEns = nomEns;
+        this.prenomEns = prenomEns;
+        this.mail = mail;
+        this.tel = tel;
+        this.iDUser = iDUser;
+    
+    }
     public Enseignant(int numEns, String nomEns, String prenomEns, String mail, String tel, String iDUser) {
-        
         this.numEns = numEns;
         this.nomEns = nomEns;
         this.prenomEns = prenomEns;
@@ -34,6 +40,10 @@ public class Enseignant implements Serializable {
         this.iDUser = iDUser;
     }
 
+    public int getNumEnseignant(String id){
+        this.iDUser=id;
+        return numEns;
+    }
     public int getNumEns() {
         return numEns;
     }

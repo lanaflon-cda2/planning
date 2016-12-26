@@ -142,51 +142,17 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
 
-        int row = gu.listeutilisateur.getSelectedRow();
         String nom = new String(nomfield.getText());
         String prenom = new String(prenomfield.getText());
         String mail = new String(mailfield.getText());
         String tel = new String(telfield.getText());
         String id = new String(idfield.getText());
-
-        if ( nom!= null){
-            if(prenom != null){
-                if(mail != null){
-                    if(tel != null){
-                        if(id != null){
-                            Users user = new Users(id);
-                            Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
-                            usersDAO.update(user);
-                            enseignantDAO.update(ens);
-                            gu.listeutilisateur.getModel().setValueAt(nom, row, 0);
-                            gu.listeutilisateur.getModel().setValueAt(prenom, row, 1);
-                            gu.listeutilisateur.getModel().setValueAt(mail, row, 2);
-                            gu.listeutilisateur.getModel().setValueAt(tel, row, 3);
-                            gu.listeutilisateur.getModel().setValueAt(id, row, 4);
-                            JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
-                        }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-                    }
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-                }
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-            }  
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
-        }
+        
+        Users user = new Users(id);
+        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
+        usersDAO.update(user);
+        enseignantDAO.update(ens);
+        JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
 
     }//GEN-LAST:event_EnregistrerActionPerformed
 

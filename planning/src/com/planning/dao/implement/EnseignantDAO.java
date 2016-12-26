@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -55,7 +56,19 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return true;
 
     }    
-   
+        public boolean deleteById(String id){
+        try {
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "DELETE FROM Enseignant WHERE iDUser = " + id;
+            state.executeUpdate(query);
+        } 
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
+        }
+        return true;
+
+    }
     @Override
     public boolean update(Enseignant obj){
         try {
@@ -97,7 +110,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             query = "SELECT * FROM Enseignant WHERE NumEns = " + numens;
             res = state.executeQuery(query);
             if(res.next()) {
-                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(7), res.getString(6));
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6));
                 SeanceDAO seanceDAO = new SeanceDAO(this.conn);
                 Set<Seance> seanceList = seanceDAO.findByNumEns(res.getInt(1));
                 Iterator iterator = seanceList.iterator();
@@ -121,7 +134,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             query = "SELECT * FROM Enseignant WHERE IDUser = '" + iDUser+ "'";
             res = state.executeQuery(query);
             while(res.next()) {
-                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(7), res.getString(6));                  
+                enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6));                  
             }
         } catch (SQLException e) {
              System.out.println("SQLException: " + e);
@@ -129,6 +142,19 @@ public class EnseignantDAO extends DAO<Enseignant> {
         }
         
         return enseignant;
+    }
+    
+      public ResultSet getAllEnseignant(){
+
+            try {    
+                state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+                query = "SELECT * FROM Enseignant";
+                res = state.executeQuery(query);  
+            }catch (SQLException e) {   
+                System.out.println("SQLException: " + e);
+                return null;       
+            }
+            return res;
     }
     
     @Override
