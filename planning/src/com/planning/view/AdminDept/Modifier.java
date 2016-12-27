@@ -26,6 +26,7 @@ public class Modifier extends javax.swing.JFrame {
     ArrayList  listefil;
     Filiere fil;
     Connection conn = ConnexionBD.init();
+    GererGroupe gererGroupe;
     public Modifier() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -69,61 +70,75 @@ public class Modifier extends javax.swing.JFrame {
         indication.setText("Veuillez modifier les informations suivantes :");
         getContentPane().add(indication, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        Sauvegarder.setText("Sauvegarder");
+        Sauvegarder.setText("Enregistrer");
         Sauvegarder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SauvegarderActionPerformed(evt);
             }
         });
-        getContentPane().add(Sauvegarder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 120, 30));
-        getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 190, 30));
+        getContentPane().add(Sauvegarder, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 120, 30));
+        getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 190, 30));
 
-        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 190, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 190, 30));
 
         niveaucombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 50, 30));
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 50, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Nom groupe : ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 20));
+        jLabel2.setText("Nom du groupe * ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Filière :");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        jLabel3.setText("Filière *");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Niveau :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+        jLabel4.setText("Niveau *");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void setGererGroupe(GererGroupe gg) {
+        
+    }
     private void SauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SauvegarderActionPerformed
        
         String nomgroupe = nomgroupefield.getText();
-        int numFiliere = 0;
-        String filier =(String) filierecombo.getSelectedItem();
-        for (int i = 0; i < listefil.size(); i++) {
-            fil = (Filiere) listefil.get(i);
-            if(filier.equals(fil.getNomFiliere())) {
-                numFiliere = fil.getNumFiliere();
-                break;
-            }
-        }
-        
-        int niveau =niveaucombo.getSelectedIndex()+1;
-        groupe=new Groupe(1, numFiliere, nomgroupe, niveau);
-        groupeD=new GroupeDAO(conn);
-        groupeD.update(groupe);
-        
-        int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
-        if(p==0){
-            
+        if(!nomgroupe.equals("")) {
+            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+            if(p == JOptionPane.YES_OPTION){
+
+                int numFiliere = 0;
+                String fils = (String) filierecombo.getSelectedItem();
+                for (int i = 0; i < listefil.size(); i++) {
+                    fil = (Filiere) listefil.get(i);
+                    if(fils.equals(fil.getNomFiliere())) {
+                        numFiliere = fil.getNumFiliere();
+                        break;
+                    }
+                }
+                int niveau = niveaucombo.getSelectedIndex() + 1;
+                groupe = new Groupe(1, numFiliere, nomgroupe, niveau);
+                groupeD = new GroupeDAO(conn);
+                groupeD.create(groupe);
+                this.gererGroupe.affichage();
+                this.dispose();
+
+            } else if(p == JOptionPane.NO_OPTION) {
+
+                this.dispose();
+            } 
+        } else {
+            JOptionPane.showMessageDialog(null,"Le champ Nom du Groupe est obligatoire!","Formulaire incomplet!", JOptionPane.QUESTION_MESSAGE, null);
         }
     
     }//GEN-LAST:event_SauvegarderActionPerformed
-
+    
+    public void setNomField(String s) {
+        this.nomgroupefield.setText(s);
+    }
     /**
      * @param args the command line arguments
      */
@@ -150,39 +165,7 @@ public class Modifier extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Modifier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+   
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Modifier().setVisible(true);

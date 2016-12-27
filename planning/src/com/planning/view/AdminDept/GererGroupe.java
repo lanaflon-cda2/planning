@@ -33,11 +33,11 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     public GererGroupe() {
         
         initComponents();
-        initCompo();
+        initColor();
         
     }
 
-    private void initCompo (){
+    private void initColor (){
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.getContentPane().setBackground(Color.white);
@@ -135,12 +135,10 @@ public class GererGroupe extends javax.swing.JInternalFrame {
          modifier.setTitle("Modifier");
          int row = listeGroupe.getSelectedRow();
          String groupe =listeGroupe.getModel().getValueAt(row,0).toString();
-         modifier.nomgroupefield.setText(groupe);
-         modifier.setVisible(true);
-         
+         modifier.setNomField(groupe);
     }//GEN-LAST:event_ModifierActionPerformed
       
-     public void affichage(){
+    public void affichage(){
          groupeD = new GroupeDAO(conn);    
          res = groupeD.findALL();
          
@@ -154,9 +152,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
              System.out.println("Exception in resulat: " + e);
          }
          
-         listeGroupe.setModel(model);
-      
-         
+         listeGroupe.setModel(model);  
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
