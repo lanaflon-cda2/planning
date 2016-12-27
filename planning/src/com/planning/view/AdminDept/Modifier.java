@@ -101,7 +101,7 @@ public class Modifier extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     public void setGererGroupe(GererGroupe gg) {
-        
+        this.gererGroupe = gg;
     }
     private void SauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SauvegarderActionPerformed
        
