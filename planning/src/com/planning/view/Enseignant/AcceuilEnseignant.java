@@ -5,12 +5,8 @@
  */
 package com.planning.view.Enseignant;
 
-import com.planning.dao.implement.EnseignantDAO;
-import com.planning.model.ConnexionBD;
-import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
-import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,15 +22,31 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
      */
     
     String idUser;
-    public void setIDUser(String s) {
-        this.idUser = s;
-        monEmploiEnseignant1.setIDUser(this.idUser);
-        monEmploiEnseignant1.initEmp();
-    }
-    public AcceuilEnseignant() {
-        initComponents();
+    
+    MonCompteEnseignant me = new MonCompteEnseignant();
+    
+    public void setME(MonCompteEnseignant me){
+        this.me = me;
+        me.setIDUserMCE(this.idUser);
     }
     
+    
+    
+    public void setidUser(String s){
+        this.idUser = s;
+        jLabel1.setText(idUser);
+        monEmploiEnseignant1.setIDUserMEE(this.idUser);
+         
+        monEmploiEnseignant1.initEmp();
+        monEmploiEnseignant1.setAE(this);
+    }
+    
+    public AcceuilEnseignant() {
+        initComponents();
+
+        
+    }
+            
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,10 +84,22 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         mce.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Enseignant");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel1.setText("");
+        jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jLabel1ComponentResized(evt);
+            }
+        });
+        jLabel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabel1InputMethodTextChanged(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 90, 30));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -144,6 +168,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Enseignant/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setToolTipText("");
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
@@ -157,22 +182,20 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+                
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteEnseignant MCE = new MonCompteEnseignant();
-        /*MCE.getNomInternalframe(ens.getNomEns());
-        MCE.getPrenomInternalframe(ens.getPrenomEns());
-        //MCE.getDeptInternalframe(ens.getFilEns());
-        MCE.getMailInternalframe(ens.getMail());
-        //MCE.getTelInternalframe(ens.getTel());*/
+        MonCompteEnseignant mce = me;
         
-        this.desktop.add(MCE);
+        this.desktop.add(mce);
+        
         try {
-            MCE.setMaximum(true);
+            mce.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        MCE.show();
+        mce.show();
+       
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked
@@ -194,17 +217,19 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_deconnexionMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        monemploi.setBackground(java.awt.SystemColor.activeCaption);
-        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
-        this.desktop.removeAll();
-        this.desktop.repaint();
-        this.desktop.add(monEmploiEnseignant1);
+       monemploi.setBackground(java.awt.SystemColor.activeCaption);
+       seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+        
+       this.desktop.removeAll();
+       this.desktop.repaint();  
+       MonEmploiEnseignant me = new MonEmploiEnseignant();
+       this.desktop.add(me);
         try {
-            monEmploiEnseignant1.setMaximum(true);
+            me.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        monEmploiEnseignant1.show();
+        me.show();
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
@@ -267,7 +292,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JLabel deconnexion;

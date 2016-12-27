@@ -8,7 +8,7 @@ package com.planning.view.Enseignant;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
-import com.planning.view.LoginGUI;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -19,27 +19,40 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     /**
      * Creates new form AcceuilInternal
      */
-    public MonCompteEnseignant() {
-        initComponents();
-    }
-   
-    public void getNomInternalframe(String id){    
-        jLabel7.setText(id);
+    private String idUser;
+    private int numEns;
+    
+    public void setIDUserMCE(String s){
+        this.idUser = s;
+        System.out.println(idUser);
+        EnseignantDAO ed = new EnseignantDAO(ConnexionBD.init());
+        Enseignant ens = ed.findByIDUser(this.idUser);
+        this.numEns = ens.getNumEns();
+        
+        jLabel7.setText(ens.getNomEns());
+        jLabel6.setText(ens.getPrenomEns());
+        jLabel8.setText(ens.getMail());
+        //MCE.getDeptInternalframe(ens.getFilEns());
+        //MCE.getTelInternalframe(ens.getTel());
     }
     
-    public void getPrenomInternalframe(String id){
-        jLabel6.setText(id);
+    
+    public MonCompteEnseignant() {
+        initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
     }
+    
+       
     
     /*public void getDeptInternalframe(String id){
             jlabel_.setText(id);
     }*/
     
     
-    public void getMailInternalframe(String id){
-        jLabel8.setText(id);
-    }
-    
+        
     /*public void getTelInternalframe(long tel){
         jLabel9.setText(tel);
     }     
@@ -75,44 +88,45 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel1.setText("Vous êtes connecté en tant que:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 20));
 
-        jLabel2.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("Professeur:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, 50));
 
-        jLabel3.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Département:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("E-mail:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("N° de téléphone:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Modifier");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 150, 40));
 
-        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel6.setText("Prenom");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 70, 50));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 180, 50));
 
-        jLabel7.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel7.setText("Nom");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 70, 50));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 180, 50));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Mail");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 220, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 220, 30));
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Tel");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 150, 30));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 150, 30));
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Department");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 144, 150, 30));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 150, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -5,10 +5,16 @@
  */
 package com.planning.view;
 
+import com.planning.dao.implement.EnseignantDAO;
 import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import com.planning.view.Enseignant.MonCompteEnseignant;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,10 +22,12 @@ import javax.swing.JOptionPane;
  * @author Azough Mehdi
  */
 public class LoginGUI extends javax.swing.JFrame {
-
+     
     /**
      * Creates new form LoginGUI
      */
+    
+    
     public LoginGUI() {
         initComponents();
         
@@ -128,16 +136,36 @@ public class LoginGUI extends javax.swing.JFrame {
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                 JOptionPane.showMessageDialog(null, "Connexion réussie");
-                 AcceuilEnseignant ac = new AcceuilEnseignant();
-                 ac.setIDUser(identifiant.getText());
+                
+                String id = new String(identifiant.getText());                   
+                AcceuilEnseignant AE = new AcceuilEnseignant();
+  
+                AE.desktop.removeAll();
+                AE.desktop.repaint();
+               
+                AE.setidUser(id);
+                
+                MonCompteEnseignant mce = new MonCompteEnseignant();
+                
+                AE.desktop.add(mce);
+                AE.setME(mce);
+                
+                
+                try {
+                    mce.setMaximum(true);
+                 } catch (PropertyVetoException ex) {
+                    Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                mce.show();
+                
                  dispose();
-   
-                 ac.setVisible(true);
+                 AE.setVisible(true);
+                 
+                
             }
             
             else {
-                JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
+            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
             }
               
         } else {

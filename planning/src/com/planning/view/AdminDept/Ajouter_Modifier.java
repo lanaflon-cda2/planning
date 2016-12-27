@@ -5,6 +5,8 @@
  */
 package com.planning.view.AdminDept;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Azough Mehdi
@@ -39,7 +41,6 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajouter ");
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(400, 400));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -47,7 +48,12 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
         indication.setText("Veuillez remplir les informations suivantes :");
         getContentPane().add(indication, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jButton1.setText("Confirmer");
+        jButton1.setText("Sauvegarder");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 120, 30));
         getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 180, 30));
 
@@ -72,6 +78,14 @@ public class Ajouter_Modifier extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(p==0){
+            
+        }
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
