@@ -15,6 +15,7 @@ import com.planning.model.Seance;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,25 +36,45 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         this.getRattrapage(seance);
     }
     
-    public void getRattrapage(Seance seance){
+    public ArrayList getRattrapage(Seance seance){
+        ArrayList List = null;
         CreneauDAO creneauDAO = new CreneauDAO(con);
         Creneau obj;
+        DefaultTableModel model = (DefaultTableModel) table.getColorModel();
+        
         Absenter absenter = new Absenter(seance);
         ArrayList creno = absenter.getCreneauxMatchEnsGroupe();
         if(creno != null) {
-            for(int i = 0; i < creno.size(); i++) {
+        for(int i = 0; i < creno.size(); i++) {
                 obj = creneauDAO.find((int) creno.get(i));
-                table.setModel(
+                
+                
                 System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestAlgo.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
             }
             
         } else System.out.println(" Creno = " + creno + " Aucun creno vide trouvée.");
         
-        //Supposons que creno = null. On va chercher si des permutations sont possibles; 
-        System.out.println("\n\n");
+        /*ArrayList permut = absenter.getPermutPossible();
+        if(permut != null) {
+            Permut x;
+            for(int j = 0; j < permut.size(); j++) {
+            x = (Permut) permut.get(j);
+                int numEnsX = x.getNumEns();
+                System.out.println("Le professeur de numero " + numEnsX + " peut offrir les créneaux suivants: ");
+                ArrayList listCreneauEnsX = x.getCreneaux();
+                for(int k = 0; k < listCreneauEnsX.size(); k++){
+                    obj = creneauDAO.find((int) listCreneauEnsX.get(k));
+                    System.out.println("numCreneau " + obj.getNumCreneau() + " " + TestAlgo.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
+                }
+
+            }
+        
+        }*/
+        return creno;
     }
     
-    public SeanceRattrapage() {
+    
+    public SeanceRattrapage(){
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -116,14 +137,14 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NumCreanau", "DateCreanau", "HeureCreneau", "NomProfPermut"
             }
         ));
         table.setViewportView(jTable2);
 
         scrollPane1.add(table);
 
-        getContentPane().add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 370, 420));
+        getContentPane().add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 450, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

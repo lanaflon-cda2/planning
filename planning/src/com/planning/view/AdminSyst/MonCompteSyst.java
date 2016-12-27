@@ -7,6 +7,7 @@ package com.planning.view.AdminSyst;
 
 import com.planning.view.AdminDept.*;
 import com.planning.view.Enseignant.*;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -19,6 +20,8 @@ public class MonCompteSyst extends javax.swing.JInternalFrame {
      */
     public MonCompteSyst() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 
     /**

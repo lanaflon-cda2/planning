@@ -5,9 +5,6 @@
  */
 package com.planning.view.Enseignant;
 
-import com.planning.dao.implement.EnseignantDAO;
-import com.planning.model.ConnexionBD;
-import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
 import java.beans.PropertyVetoException;
@@ -25,6 +22,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
      */
     
     String idUser;
+    
+    MonEmploiEnseignant monEmploiEnseignant1;
     
     MonCompteEnseignant me = new MonCompteEnseignant();
     
@@ -60,7 +59,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        monEmploiEnseignant1 = new com.planning.view.Enseignant.MonEmploiEnseignant();
         desktop = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
@@ -69,8 +67,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
-
-        monEmploiEnseignant1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -88,13 +84,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel1.setText("");
-        jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                jLabel1ComponentResized(evt);
-            }
-        });
+        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel1.setText("Enseignant");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 110, 30));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
@@ -295,7 +286,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private javax.swing.JLabel deconnexion;
     public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
-    private com.planning.view.Enseignant.MonEmploiEnseignant monEmploiEnseignant1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;
