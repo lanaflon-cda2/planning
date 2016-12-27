@@ -9,6 +9,7 @@ import com.planning.controler.ConsulterEMP;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
+import com.planning.model.Seance;
 import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.sql.Date;
@@ -1166,63 +1167,103 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         switch(numpan){
             case 1: 
                 this.srat.setnumseance(emp[0][0]);
+                /*Seance seance1 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance1);*/
                 break;
             case 2: 
                 this.srat.setnumseance(emp[0][1]);
+                /*Seance seance2 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance2);*/
                 break;
             case 3: 
                 this.srat.setnumseance(emp[0][2]);
+                /*Seance seance3 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance3);*/
                 break;
             case 4: 
                 this.srat.setnumseance(emp[0][3]);
+                /*Seance seance4 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance4);*/
                 break;
             case 5: 
                 this.srat.setnumseance(emp[1][0]);
+                /*Seance seance5 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance5);*/
                 break;
             case 6: 
                 this.srat.setnumseance(emp[1][1]);
+                /*Seance seance6 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance6);*/
                 break;
             case 7: 
                 this.srat.setnumseance(emp[1][2]);
+                /*Seance seance7 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance7);*/
                 break;
             case 8: 
                 this.srat.setnumseance(emp[1][3]);
+                /*Seance seance8 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance8);*/
                 break;
             case 9: 
                 this.srat.setnumseance(emp[2][0]);
+                /*Seance seance9 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance9);*/
                 break;
             case 10: 
                 this.srat.setnumseance(emp[2][1]);
+                /*Seance seance10 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance10);*/
                 break;
             case 11: 
                 this.srat.setnumseance(emp[2][2]);
+                /*Seance seance11 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance11);*/
                 break;
             case 12: 
                 this.srat.setnumseance(emp[2][3]);
+                /*Seance seance12 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance12);*/
                 break;
             case 13: 
                 this.srat.setnumseance(emp[3][0]);
+                /*Seance seance13 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance13);*/
                 break;
             case 14: 
                 this.srat.setnumseance(emp[3][1]);
+                /*Seance seance14 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance14);*/
                 break;
             case 15: 
                 this.srat.setnumseance(emp[3][2]);
+                /*Seance seance15 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance15);*/
                 break;
             case 16: 
                 this.srat.setnumseance(emp[3][3]);
+                /*Seance seance16 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance16);*/
                 break;
             case 17: 
                 this.srat.setnumseance(emp[4][0]);
+                /*Seance seance17 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance17);*/
                 break;
             case 18: 
                 this.srat.setnumseance(emp[4][1]);
+                /*Seance seance18 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance18);*/
                 break;
             case 19: 
                 this.srat.setnumseance(emp[4][2]);
+                /*Seance seance19 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance19);*/
                 break;
             case 20: 
                 this.srat.setnumseance(emp[4][3]);
+                /*Seance seance20 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance20);*/
                 break;
             default:
                 break;      
