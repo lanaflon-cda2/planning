@@ -33,18 +33,17 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     public GererGroupe() {
         
         initComponents();
+        initCompo();
+        
+    }
+
+    private void initCompo (){
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.getContentPane().setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        affichage(); 
+        this.affichage(); 
     }
-        
-        
-        
-        
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,6 +108,14 @@ public class GererGroupe extends javax.swing.JInternalFrame {
                 "NomGroupe", "NomFiliere", "Niveau"
             }
         ));
+        listeGroupe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeGroupeMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                listeGroupeMouseExited(evt);
+            }
+        });
         jScrollPane1.setViewportView(listeGroupe);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 490, 160));
@@ -164,6 +171,17 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
         
     }//GEN-LAST:event_supprimerActionPerformed
+
+    private void listeGroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGroupeMouseClicked
+        // TODO add your handling code here:
+        Modifier.setEnabled(true);
+        supprimer.setEnabled(true);
+    }//GEN-LAST:event_listeGroupeMouseClicked
+
+    private void listeGroupeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGroupeMouseExited
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_listeGroupeMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
