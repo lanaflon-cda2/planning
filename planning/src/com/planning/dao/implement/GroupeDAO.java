@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -63,21 +64,17 @@ public class GroupeDAO extends DAO<Groupe> {
         return true;
     }
     
-	public ResultSet AfficherAllGrp(){
+    public ResultSet findALL(){
+
         try{
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "select * from Groupe";
+            query = "select NomGroupe, NomFiliere, Niveau from Groupe, Filiere WHERE Groupe.NumFiliere = Filiere.NumFiliere";
             res =state.executeQuery(query);
-            
-//            while(res.next()) {
-//                System.out.println(res.getString(1));
-//            }
-            
-            
+
         }catch(Exception e){
             System.out.println(e);
         }
-        
+
         return res;
         
     }
@@ -94,6 +91,7 @@ public class GroupeDAO extends DAO<Groupe> {
         }
         return true;
     }
+    
     @Override
     public Groupe find(int numg){
         

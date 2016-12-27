@@ -24,7 +24,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     DefaultTableModel model = new DefaultTableModel();
     Groupe grp;
     GroupeDAO groupeD;
-    ResultSet resultat=null;
+    ResultSet res = null;
     Connection conn = ConnexionBD.init();
     Groupe obj;
     int selectedRowIndex;
@@ -59,7 +59,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         supprimer = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListeGroupe = new javax.swing.JTable();
+        listeGroupe = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Gérer groupes");
@@ -101,20 +101,17 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
 
-        ListeGroupe.setModel(new javax.swing.table.DefaultTableModel(
+        listeGroupe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NomGroupe", "NomFiliere", "Niveau"
             }
         ));
-        jScrollPane1.setViewportView(ListeGroupe);
+        jScrollPane1.setViewportView(listeGroupe);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, 320));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 480, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,33 +119,37 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         Modifier.setEnabled(false);
         supprimer.setEnabled(false);
-        ListeGroupe.clearSelection();
+        listeGroupe.clearSelection();
         
     }//GEN-LAST:event_formMouseClicked
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
          Modifier modifier = new Modifier();
          modifier.setTitle("Modifier");
-         int row = ListeGroupe.getSelectedRow();
-         String groupe =ListeGroupe.getModel().getValueAt(row,0).toString();
+         int row = listeGroupe.getSelectedRow();
+         String groupe =listeGroupe.getModel().getValueAt(row,0).toString();
          modifier.nomgroupefield.setText(groupe);
          modifier.setVisible(true);
          
     }//GEN-LAST:event_ModifierActionPerformed
       
      public void affichage(){
-         groupeD=new GroupeDAO(conn);
-         resultat = groupeD.AfficherAllGrp();
+         groupeD=new GroupeDAO(conn);    
+         res = groupeD.findALL();
+         
+         model = (DefaultTableModel) listeGroupe.getModel();
+         model.setRowCount(0);
          try {
-             while(resultat.next()) {
-                System.out.println(resultat.getString(1));
+             while(res.next()) {
+                System.out.println(res.getString(1));
+                model.addRow(new Object[] {res.getString(1), res.getString(2), res.getString(3)});
             }
          } catch (Exception e) {
              System.out.println("Exception in resulat: " + e);
          }
          
-         ListeGroupe.setModel(DbUtils.resultSetToTableModel(resultat));
-         System.out.println("fin test");
+         listeGroupe.setModel(model);
+      
          
     }
     
@@ -167,11 +168,11 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ListeGroupe;
     private javax.swing.JButton Modifier;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable listeGroupe;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
 }
