@@ -111,7 +111,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(listeGroupe);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 480, 120));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 490, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,14 +134,13 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ModifierActionPerformed
       
      public void affichage(){
-         groupeD=new GroupeDAO(conn);    
+         groupeD = new GroupeDAO(conn);    
          res = groupeD.findALL();
          
          model = (DefaultTableModel) listeGroupe.getModel();
          model.setRowCount(0);
          try {
              while(res.next()) {
-                System.out.println(res.getString(1));
                 model.addRow(new Object[] {res.getString(1), res.getString(2), res.getString(3)});
             }
          } catch (Exception e) {

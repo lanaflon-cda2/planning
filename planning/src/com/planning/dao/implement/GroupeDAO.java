@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
@@ -22,18 +23,17 @@ public class GroupeDAO extends DAO<Groupe> {
     public boolean create(Groupe obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "SELECT NEXTVAL ('NumGroupe') as numgroupe";
-            res = state.executeQuery(query);
-            if(res.first()) {
-                int numgroupe = res.getInt(1);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO GROUPE (NumGroupe, NomGroupe, Niveau) VALUES (?,?,?)");
-                prepare.setInt(1,numgroupe);
-                prepare.setString(2,obj.getNomGroupe());
-                prepare.setInt(3,obj.getNiveau());
-                prepare.executeUpdate();
-            }
+            query = "INSERT INTO Groupe VALUES (NULL, ";
+            query += obj.getNumFiliere() + ", '";
+            query += obj.getNomGroupe() + "',  ";
+            query += obj.getNiveau() + ")";
+            
+            int numGroupe = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            
         }
         catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
         }    
         return true;
     }
