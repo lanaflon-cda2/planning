@@ -78,10 +78,12 @@ public class SeanceDAO extends DAO<Seance> {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             query = "SELECT * FROM Seance WHERE NumSeance = " + numseance;
             res = state.executeQuery(query);
-            if(res.first()) {
-                seance = new Seance(res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4));                
+            while(res.next()) {
+                seance = new Seance(res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getInt(6));                
             }
         } catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            
         }
         return seance;
     }

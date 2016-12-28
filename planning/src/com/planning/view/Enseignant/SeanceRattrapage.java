@@ -8,6 +8,7 @@ package com.planning.view.Enseignant;
 import com.planning.controler.Absenter;
 import com.planning.controler.Permut;
 import com.planning.dao.implement.CreneauDAO;
+import com.planning.dao.implement.EnseignantDAO;
 import com.planning.dao.implement.SeanceDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
@@ -30,20 +31,78 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     /**
      * Creates new form SeanceRattrapage
      */
-    private int numseance;
-    Connection con=ConnexionBD.init();
     
+    
+    private int numseance;
+    private Connection con=ConnexionBD.init();
+    private DefaultTableModel model;
+    private AcceuilEnseignant ae;
+    
+    public void setAE(AcceuilEnseignant ae){
+        this.ae = ae;
+        this.ae.setSeanceRattrapage(this);
+    }
     public void setnumseance(int i){
         this.numseance = i;
         SeanceDAO seanceDAO = new SeanceDAO(con);
         Seance seance = seanceDAO.find(this.numseance);
         //this.getRattrapage(seance);
-        this.addRattrapage(seance);
+        this.getRattrapage(seance);
     }
     
-    public int getnumseance(){
-        int num = this.numseance;
-        return num;
+    public int getNumSeance(){
+        return this.numseance;
+    }
+    public void getRattrapage(Seance seance){
+        CreneauDAO creneauDAO = new CreneauDAO(con);
+        Creneau obj;
+        EnseignantDAO edao = new EnseignantDAO(con);
+        Enseignant ens;
+        model = (DefaultTableModel) listeratt.getModel();
+        model.setRowCount(0);
+        Object[] objet;
+        
+        
+        Absenter absenter = new Absenter(seance);
+        ArrayList creno = absenter.getCreneauxMatchEnsGroupe();
+        if(creno != null) {
+            System.out.println("Les creneaux trouvés sont: ");
+            for(int i = 0; i < creno.size(); i++) {
+                obj = creneauDAO.find((int) creno.get(i));
+                System.out.println("numCreneau " + obj.getNumCreneau() + " " + this.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
+                objet = new Object[] {obj.getDateCreneau().toString() + " " + this.getDateName(obj.getDateCreneau()), obj.getHeureCreneau(), ""};
+                model.addRow(objet);
+            }
+            
+        } else System.out.println(" Creno = " + creno + " Aucun creno vide trouvée.");
+        
+        //Supposons que creno = null. On va chercher si des permutations sont possibles; 
+        System.out.println("\n\n");
+        
+        ArrayList permut = absenter.getPermutPossible();
+        
+        if(permut != null) {
+            Permut x;
+             
+            for(int j = 0; j < permut.size(); j++) {
+
+                x = (Permut) permut.get(j);
+                int numEnsX = x.getNumEns();
+                ens = edao.find(numEnsX);
+                System.out.println("Le professeur de numero " + numEnsX + " et de nom " + ens.getNomEns() + "peut offrir les créneaux suivants: ");
+                ArrayList listCreneauEnsX = x.getCreneaux();
+                for(int k = 0; k < listCreneauEnsX.size(); k++){
+                    obj = creneauDAO.find((int) listCreneauEnsX.get(k));
+                    System.out.println("numCreneau " + obj.getNumCreneau() + " " + this.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
+                    objet = new Object[] {obj.getDateCreneau().toString() + " " + this.getDateName(obj.getDateCreneau()), obj.getHeureCreneau(), ens.getNomEns()};
+                    model.addRow(objet);
+                }
+
+            }
+        
+        }
+        
+        listeratt.setModel(model);
     }
     
     public static String getDateName(Date d){
@@ -69,57 +128,9 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
                 return "Samedi";
         }
     }
-    
-    public void addRattrapage(Seance seance){
-        CreneauDAO creneauDAO = new CreneauDAO(con);
-        Creneau obj;
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        
-        Absenter absenter = new Absenter(seance);
-        ArrayList creno = absenter.getCreneauxMatchEnsGroupe();
-        if(creno != null) {
-            Object rowDataabs[] = new Object[5];
-            for(int i = 0; i < creno.size(); i++) {
-                obj = creneauDAO.find((int) creno.get(i));
-                rowDataabs[0] = obj.getNumCreneau();
-                rowDataabs[1] = getDateName(obj.getDateCreneau());
-                rowDataabs[2] = obj.getDateCreneau();
-                rowDataabs[3] = obj.getHeureCreneau();
-                rowDataabs[4] = null;
-                model.addRow(rowDataabs);
-            }   
-        }else JOptionPane.showMessageDialog(null, "Aucun creno vide trouvée.");
-        
-        ArrayList permut = absenter.getPermutPossible();
-        if(permut != null) {
-            Permut x;
-            for(int j = 0; j < permut.size(); j++) {
-            x = (Permut) permut.get(j);
-                int numEnsX = x.getNumEns();
-                System.out.println(numEnsX);
-                Enseignant enseignant = new Enseignant(numEnsX);
-                Object rowDataper[] = new Object[5];
-                ArrayList listCreneauEnsX = x.getCreneaux();
-                for(int k = 0; k < listCreneauEnsX.size(); k++){
-                    obj = creneauDAO.find((int) listCreneauEnsX.get(k));
-                    rowDataper[0] = obj.getNumCreneau();
-                    rowDataper[1] = getDateName(obj.getDateCreneau());
-                    rowDataper[2] = obj.getDateCreneau();
-                    rowDataper[3] = obj.getHeureCreneau();
-                    rowDataper[4] = enseignant.getNomEns();
-                    model.addRow(rowDataper);
-                }
-
-            }
-        
-        }
-    }
-    
-    
     public SeanceRattrapage(){
         initComponents();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
-        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        init();
     }
 
     /**
@@ -127,6 +138,12 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
+    private void init() {
+        
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -138,9 +155,8 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        scrollPane1 = new java.awt.ScrollPane();
-        table = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listeratt = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("seances rattrapage");
@@ -168,22 +184,20 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Séance à reporté ");
+        jLabel2.setText("Séance à reporter");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        listeratt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NumCreneau", "Jour", "DateCreneau", "HeureCreneau", "Professeur"
+                "DateSeance", "HeureSeance", "Enseignant"
             }
         ));
-        table.setViewportView(jTable2);
+        jScrollPane1.setViewportView(listeratt);
 
-        scrollPane1.add(table);
-
-        getContentPane().add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 450, 420));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 430, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -197,8 +211,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jTable2;
-    private java.awt.ScrollPane scrollPane1;
-    private javax.swing.JScrollPane table;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable listeratt;
     // End of variables declaration//GEN-END:variables
 }
