@@ -20,8 +20,15 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     /**
      * Creates new form Acceuil
      */
+    SeanceRattrapage sr;
+    
+    public void setSeanceRattrapage(SeanceRattrapage sr){
+        this.sr = sr;
+    }
     
     String idUser;
+    
+    MonEmploiEnseignant monEmploiEnseignant1 = new MonEmploiEnseignant();
     
     MonCompteEnseignant me = new MonCompteEnseignant();
     
@@ -57,7 +64,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        monEmploiEnseignant1 = new com.planning.view.Enseignant.MonEmploiEnseignant();
         desktop = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
@@ -66,8 +72,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
-
-        monEmploiEnseignant1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -85,21 +89,9 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel1.setText("");
-        jLabel1.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                jLabel1ComponentResized(evt);
-            }
-        });
-        jLabel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jLabel1InputMethodTextChanged(evt);
-            }
-        });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 90, 30));
+        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel1.setText("Enseignant");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 110, 30));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -133,7 +125,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 90));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 150, 90));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
         seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -148,7 +140,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 150, 90));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 150, 90));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -223,9 +215,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
         
        this.desktop.removeAll();
-       this.desktop.repaint();  
+       this.desktop.repaint(); 
        this.desktop.add(monEmploiEnseignant1);
-
         try {
             monEmploiEnseignant1.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -236,13 +227,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
+        
         seanceratt.setBackground(java.awt.SystemColor.activeCaption);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        SeanceRattrapage sr = new SeanceRattrapage();
-        this.desktop.add(sr);
-        
+        if(sr == null) sr = new SeanceRattrapage();
+        this.desktop.add(this.sr);
         try {
             sr.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -252,10 +243,10 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_seancerattActionPerformed
 
-    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel1InputMethodTextChanged
+    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {                                               
         
     // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1InputMethodTextChanged
+    }                                              
 
     private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
         // TODO add your handling code here:
@@ -304,7 +295,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private javax.swing.JLabel deconnexion;
     public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
-    private com.planning.view.Enseignant.MonEmploiEnseignant monEmploiEnseignant1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;

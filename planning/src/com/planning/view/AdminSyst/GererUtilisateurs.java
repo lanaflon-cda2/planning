@@ -5,19 +5,31 @@
  */
 package com.planning.view.AdminSyst;
 
-import com.planning.view.Enseignant.*;
+import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.UsersDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Enseignant;
+import com.planning.model.Users;
+import java.sql.ResultSet;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author Azough Mehdi
  */
 public class GererUtilisateurs extends javax.swing.JInternalFrame {
+    ResultSet resultat = null;
 
     /**
      * Creates new form SeanceRattrapage
      */
     public GererUtilisateurs() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        UpdateTable();
     }
 
     /**
@@ -89,7 +101,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(listeutilisateur);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 740, 330));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 740, 380));
 
         modifier.setText("Modifier");
         modifier.setEnabled(false);
@@ -98,11 +110,16 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
                 modifierActionPerformed(evt);
             }
         });
-        getContentPane().add(modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 130, 30));
+        getContentPane().add(modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 130, 30));
 
         supprimer.setText("Supprimer");
         supprimer.setEnabled(false);
-        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, 30));
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Suprimer(evt);
+            }
+        });
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 130, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Ajouter");
@@ -111,7 +128,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 170, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 130, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,14 +151,13 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
         String tel =listeutilisateur.getModel().getValueAt(row,3).toString();
         String id =listeutilisateur.getModel().getValueAt(row,4).toString();
-        Ajouter_Modifier_Util modifier = new Ajouter_Modifier_Util();
-        modifier.setTitle("Modifier");
+        
+        Modifier_Util1 modifier = new Modifier_Util1();
         modifier.nomfield.setText(nom);
         modifier.prenomfield.setText(prenom);
         modifier.mailfield.setText(mail);
         modifier.telfield.setText(tel);
         modifier.idfield.setText(id);
-        modifier.jLabel3.setText("Modifier Utilisateur");
         modifier.setVisible(true);
         
            
@@ -152,15 +168,54 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ajouter_Modifier_Util ajouter = new Ajouter_Modifier_Util();
         ajouter.setTitle("Ajouter");
+        ajouter.getGererUtili(this);
         ajouter.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Suprimer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Suprimer
+        // TODO add your handling code here:
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        
+        int row = listeutilisateur.getSelectedRowCount();
+        String id =listeutilisateur.getModel().getValueAt(row,5).toString();
+        
+        Users user = new Users(id);
+        Enseignant enseignant = enseignantDAO.findByIDUser(id);
+        //System.out.println(enseignant.getNumEns());
+        usersDAO.delete(user);
+        enseignantDAO.delete(enseignant);
+        
+        
+        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
+        
+        UpdateTable();
+        /*UpdateTable();
+        listeutilisateur.getModel().setValueAt(" ", row, 0);
+        listeutilisateur.getModel().setValueAt(" ", row, 1);
+        listeutilisateur.getModel().setValueAt(" ", row, 2);
+        listeutilisateur.getModel().setValueAt(" ", row, 3);
+        listeutilisateur.getModel().setValueAt(" ", row, 4);*/
+    }//GEN-LAST:event_Suprimer
+    
+    public void UpdateTable(){
+           EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+           resultat = enseignantDAO.getAllEnseignant();
+           listeutilisateur.setModel(DbUtils.resultSetToTableModel(resultat)); 
+    }
+    
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+       
+        
+    }                                         
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable listeutilisateur;
+    public javax.swing.JTable listeutilisateur;
     private javax.swing.JButton modifier;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
