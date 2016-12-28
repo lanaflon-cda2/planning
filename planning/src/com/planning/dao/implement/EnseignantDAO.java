@@ -61,7 +61,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             query = "UPDATE Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
-            query += "', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel()+ " IDUser = '" + obj.getIDUser()+ "' WHERE NumEns = " + obj.getNumEns();
+            query += "', Mail = '" + obj.getMail()+ "', Tel = '" + obj.getTel()+ "' IDUser = '" + obj.getIDUser()+ "' WHERE NumEns = " + obj.getNumEns();
                                                         
             state.executeUpdate(query);
 	}
@@ -72,11 +72,12 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return true;
     }
 
-    public boolean updateByID(Enseignant obj){
+    public boolean updateByID(String id){
         try {
+            Enseignant obj = new Enseignant(id);
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             query = "UPDATE Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
-            query += "', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel()+ " WHERE IDUser = '" + obj.getIDUser() + "'";
+            query += "', Mail = '" + obj.getMail()+ "', Tel = '" + obj.getTel()+ "' WHERE IDUser = " + id;
                                                         
             state.executeUpdate(query);
 	}

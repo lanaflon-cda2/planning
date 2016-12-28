@@ -32,6 +32,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     MonCompteEnseignant me = new MonCompteEnseignant();
     
+    Modifier modifier = new Modifier();
+    
     public void setME(MonCompteEnseignant me){
         this.me = me;
         me.setIDUserMCE(this.idUser);
@@ -42,12 +44,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     public void setidUser(String s){
         this.idUser = s;
         jLabel1.setText(idUser);
-        monEmploiEnseignant1.setIDUserMEE(this.idUser);
-         
+        monEmploiEnseignant1.setIDUserMEE(this.idUser); 
         monEmploiEnseignant1.initEmp();
         monEmploiEnseignant1.setAE(this);
+        modifier.setIDUserMod(this.idUser);
     }
-    
+       
     public AcceuilEnseignant() {
         initComponents();
 

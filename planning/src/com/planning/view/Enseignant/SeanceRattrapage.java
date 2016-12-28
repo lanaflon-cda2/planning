@@ -130,6 +130,8 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     }
     public SeanceRattrapage(){
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         init();
     }
 

@@ -75,7 +75,7 @@ public class LoginGUI extends javax.swing.JFrame {
         motdepasse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         loginbackground.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/LoginBG.png")));
+        loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/Deconnexion.png")));
         loginbackground.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loginbackground.setPreferredSize(new java.awt.Dimension(900, 600));
         loginbackground.addKeyListener(new java.awt.event.KeyAdapter() {

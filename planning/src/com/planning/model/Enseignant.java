@@ -39,6 +39,10 @@ public class Enseignant implements Serializable {
         this.tel = tel;
         this.iDUser = iDUser;
     }
+    
+    public Enseignant(String id){
+        this.iDUser = id;
+    }
 
     public int getNumEnseignant(String id){
         this.iDUser=id;
