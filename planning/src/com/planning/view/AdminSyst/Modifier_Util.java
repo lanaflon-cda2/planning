@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Azough Mehdi
  */
-public class Ajouter_Modifier_Util extends javax.swing.JFrame {
+public class Modifier_Util extends javax.swing.JFrame {
     
     /**
      * Creates new form Ajouter_Modifier_Util
@@ -26,7 +26,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     public void getGererUtili(GererUtilisateurs gu){
         this.gererUtil = gu;
     }
-    public Ajouter_Modifier_Util() {
+    public Modifier_Util() {
         initComponents();
     }
 
@@ -54,7 +54,6 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         Annuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -145,28 +144,29 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
-        String nom = new String(nomfield.getText());
+        /*String nom = new String(nomfield.getText());
         String prenom = new String(prenomfield.getText());
         String mail = new String(mailfield.getText());
         String tel = new String(telfield.getText());
         String id = new String(idfield.getText());
         String mdp = new String(nomfield.getText()+"EMI");
-        
+       
         Users user = new Users(id,mdp);
-        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);        
-        usersDAO.create(user);
-        enseignantDAO.create(ens);
+        Enseignant enseignant = new Enseignant(nom,prenom,mail,tel,id); 
+        System.out.println(""+enseignant.getNumEns());
+        usersDAO.update(user);
+        enseignantDAO.updateByID(enseignant);
         this.gererUtil.UpdateTable();
-        JOptionPane.showMessageDialog(null,"Enseignant ajouté avec succès");
+        JOptionPane.showMessageDialog(null,"Enseignant modifié avec succès");
         
         System.out.println("text p " + prenomfield.getText());
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
             dispose();
-            AcceuilAdminSyst AAS = new AcceuilAdminSyst();
-            AAS.setVisible(true);
+            GererUtilisateurs gu = new GererUtilisateurs();
+            gu.setVisible(true);
     }//GEN-LAST:event_AnnulerActionPerformed
 
     /**
@@ -186,20 +186,21 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ajouter_Modifier_Util().setVisible(true);
+                new Modifier_Util().setVisible(true);
             }
         });
     }

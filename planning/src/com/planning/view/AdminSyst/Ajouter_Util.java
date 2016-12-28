@@ -16,12 +16,17 @@ import javax.swing.JOptionPane;
  *
  * @author Azough Mehdi
  */
-public class Modifier_Util1 extends javax.swing.JFrame {
-    GererUtilisateurs gu = new GererUtilisateurs();
+public class Ajouter_Util extends javax.swing.JFrame {
+    
     /**
-     * Creates new form Ajouter_Modifier_Util
+     * Creates new form Ajouter_Util
      */
-    public Modifier_Util1() {
+    private GererUtilisateurs gererUtil;
+    
+    public void getGererUtili(GererUtilisateurs gu){
+        this.gererUtil = gu;
+    }
+    public Ajouter_Util() {
         initComponents();
     }
 
@@ -53,7 +58,7 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Modifier utilisateur");
+        jLabel3.setText("Ajouter utilisateur");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         nomfield.addActionListener(new java.awt.event.ActionListener() {
@@ -133,28 +138,35 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomfieldActionPerformed
 
-    private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AnnulerActionPerformed
-
     private void EnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnregistrerActionPerformed
         // TODO add your handling code here:
+        
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-
+        
         String nom = new String(nomfield.getText());
         String prenom = new String(prenomfield.getText());
         String mail = new String(mailfield.getText());
         String tel = new String(telfield.getText());
         String id = new String(idfield.getText());
+        String mdp = new String(nomfield.getText()+"EMI");
         
-        Users user = new Users(id);
-        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
-        usersDAO.update(user);
-        enseignantDAO.update(ens);
-        JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
-
+        Users user = new Users(id,mdp);
+        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);        
+        usersDAO.create(user);
+        enseignantDAO.create(ens);
+        this.gererUtil.UpdateTable();
+        JOptionPane.showMessageDialog(null,"Enseignant ajouté avec succès");
+        
+        System.out.println("text p " + prenomfield.getText());
+        dispose();
     }//GEN-LAST:event_EnregistrerActionPerformed
+
+    private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
+            dispose();
+            GererUtilisateurs gu = new GererUtilisateurs();
+            gu.setVisible(true);
+    }//GEN-LAST:event_AnnulerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,13 +185,13 @@ public class Modifier_Util1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modifier_Util1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ajouter_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -187,7 +199,7 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Modifier_Util1().setVisible(true);
+                new Ajouter_Util().setVisible(true);
             }
         });
     }

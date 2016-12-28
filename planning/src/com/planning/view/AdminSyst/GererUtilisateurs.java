@@ -30,7 +30,11 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         initComponents();
         UpdateTable();
     }
-
+   /* public int getNumEns(){
+        int row = listeutilisateur.getSelectedRow();
+        int numEns = Integer.parseInt(listeutilisateur.getModel().getValueAt(row,0).toString());
+        return numEns ;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +49,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         listeutilisateur = new javax.swing.JTable();
         modifier = new javax.swing.JButton();
         supprimer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Ajouter = new javax.swing.JButton();
 
         setTitle("utilisateurs");
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,14 +124,14 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         });
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, 30));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Ajouter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Ajouter.setText("Ajouter");
+        Ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AjouterActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 170, 50));
+        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 170, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,32 +149,32 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
     private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
         int row = listeutilisateur.getSelectedRow();
-        String nom =listeutilisateur.getModel().getValueAt(row,0).toString();
-        String prenom =listeutilisateur.getModel().getValueAt(row,1).toString();
-        String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
-        String tel =listeutilisateur.getModel().getValueAt(row,3).toString();
-        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        //int numEns = Integer.parseInt(listeutilisateur.getModel().getValueAt(row,0).toString());
         
-        Modifier_Util1 modifier = new Modifier_Util1();
+        String nom =listeutilisateur.getModel().getValueAt(row,1).toString();
+        String prenom =listeutilisateur.getModel().getValueAt(row,2).toString();
+        String mail =listeutilisateur.getModel().getValueAt(row,3).toString();
+        String tel =listeutilisateur.getModel().getValueAt(row,4).toString();
+        String id =listeutilisateur.getModel().getValueAt(row,5).toString();
+
+        Modifier_Util modifier = new Modifier_Util();
+        modifier.setTitle("Modifier");
         modifier.nomfield.setText(nom);
         modifier.prenomfield.setText(prenom);
         modifier.mailfield.setText(mail);
         modifier.telfield.setText(tel);
         modifier.idfield.setText(id);
         modifier.setVisible(true);
-        
-           
-        
-        
+        //modifier.getGererUtili(this);
     }//GEN-LAST:event_modifierActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ajouter_Modifier_Util ajouter = new Ajouter_Modifier_Util();
+    private void AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterActionPerformed
+        Ajouter_Util ajouter = new Ajouter_Util();
         ajouter.setTitle("Ajouter");
         ajouter.getGererUtili(this);
         ajouter.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
+    }//GEN-LAST:event_AjouterActionPerformed
+  
     public void UpdateTable(){
            EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
            resultat = enseignantDAO.getAllEnseignant();
@@ -182,28 +186,29 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
-        int row = listeutilisateur.getSelectedRowCount();
-        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        int row = listeutilisateur.getSelectedRow();
+        int numeroEns = Integer.parseInt(listeutilisateur.getModel().getValueAt(row,0).toString());
+        String nom =listeutilisateur.getModel().getValueAt(row,1).toString();
+        String prenom =listeutilisateur.getModel().getValueAt(row,2).toString();
+        String mail =listeutilisateur.getModel().getValueAt(row,3).toString();
+        String tel =listeutilisateur.getModel().getValueAt(row,4).toString() ;
+        String id =listeutilisateur.getModel().getValueAt(row,5).toString();
         
+        
+        Enseignant ens = new Enseignant(numeroEns, nom, prenom, mail, tel, id);
         Users user = new Users(id);
         usersDAO.delete(user);
-        enseignantDAO.deleteById(id);
+        enseignantDAO.delete(ens);
         
         JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
         
         UpdateTable();
-        /*UpdateTable();
-        listeutilisateur.getModel().setValueAt(" ", row, 0);
-        listeutilisateur.getModel().setValueAt(" ", row, 1);
-        listeutilisateur.getModel().setValueAt(" ", row, 2);
-        listeutilisateur.getModel().setValueAt(" ", row, 3);
-        listeutilisateur.getModel().setValueAt(" ", row, 4);*/
         
     }//GEN-LAST:event_supprimerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Ajouter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listeutilisateur;
