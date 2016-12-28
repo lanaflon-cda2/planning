@@ -56,7 +56,6 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return true;
 
     }    
-
     @Override
     public boolean update(Enseignant obj){
         try {
@@ -77,7 +76,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             query = "UPDATE Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
-            query += "', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel()+ " IDUser = '" + obj.getIDUser()+ "' WHERE IDUser = " +obj.getIDUser();
+            query += "', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel()+ " WHERE IDUser = '" + obj.getIDUser() + "'";
                                                         
             state.executeUpdate(query);
 	}
