@@ -96,6 +96,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
             for(int j = 0; j < permut.size(); j++) {
             x = (Permut) permut.get(j);
                 int numEnsX = x.getNumEns();
+                System.out.println(numEnsX);
                 Enseignant enseignant = new Enseignant(numEnsX);
                 Object rowDataper[] = new Object[5];
                 ArrayList listCreneauEnsX = x.getCreneaux();
