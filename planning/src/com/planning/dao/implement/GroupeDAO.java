@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -21,18 +23,17 @@ public class GroupeDAO extends DAO<Groupe> {
     public boolean create(Groupe obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "SELECT NEXTVAL ('NumGroupe') as numgroupe";
-            res = state.executeQuery(query);
-            if(res.first()) {
-                int numgroupe = res.getInt(1);
-                PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO GROUPE (NumGroupe, NomGroupe, Niveau) VALUES (?,?,?)");
-                prepare.setInt(1,numgroupe);
-                prepare.setString(2,obj.getNomGroupe());
-                prepare.setInt(3,obj.getNiveau());
-                prepare.executeUpdate();
-            }
+            query = "INSERT INTO Groupe VALUES (NULL, ";
+            query += obj.getNumFiliere() + ", '";
+            query += obj.getNomGroupe() + "',  ";
+            query += obj.getNiveau() + ")";
+            
+            int numGroupe = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            
         }
         catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
         }    
         return true;
     }
@@ -40,23 +41,57 @@ public class GroupeDAO extends DAO<Groupe> {
     @Override
     public boolean delete(Groupe obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM GROUPE WHERE NumGroupe = " + obj.getNumGroupe());
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Groupe WHERE NumGroupe = " + obj.getNumGroupe());
         } 
         catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
         }
         return true;
     }
     
+    
+    
     @Override
     public boolean update(Groupe obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE GROUPE SET "
-                    +" NomGroupe = " + obj.getNomGroupe()+ ",'"
-                            +" Niveau = " + obj.getNiveau()
-                                    + " WHERE NumGroupe = '" + obj.getNumGroupe());
+            state = conn.createStatement();
+            query = "UPDATE Groupe SET NomGroupe = " + obj.getNomGroupe() + ", NumFiliere = " + obj.getNumFiliere() + ", Niveau = " + obj.getNiveau();
+            query += " WHERE NumGroupe = " + obj.getNumFiliere();
 	}
         catch (SQLException e) {
-	}
+            System.out.println("SQLException: " + e);
+            return false;
+        }
+        return true;
+    }
+    
+    public ResultSet findALL(){
+
+        try{
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            query = "select NumGroupe, NomGroupe, Groupe.NumFiliere as NumFiliere, NomFiliere, Niveau from Groupe, Filiere WHERE Groupe.NumFiliere = Filiere.NumFiliere";
+            res = state.executeQuery(query);
+
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+
+        return res;
+        
+    }
+	
+    public boolean updatebyObj(Groupe obj1, Groupe obj2) {
+        
+        try {
+            state = this.conn.createStatement();
+            query = "UPDATE Groupe SET NomGroupe = '" + obj2.getNomGroupe() + "', NumFiliere = " + obj2.getNumFiliere() + ", Niveau = " + obj2.getNiveau();
+            query += " WHERE NomGroupe = '" + obj1.getNomGroupe() + "' AND NumFiliere = " + obj1.getNumFiliere() + " and Niveau = " + obj1.getNiveau();
+        } catch (Exception e) {
+            System.out.println("SQLException: " + e);
+            return false;
+        }
         return true;
     }
     
