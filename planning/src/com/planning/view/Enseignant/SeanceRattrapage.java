@@ -222,12 +222,12 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-            con.setAutoCommit(false);
-        } catch (Exception ex) {
-            System.out.println("Setting auto commit to false failed: " + ex);
-            return;
-        }
+//        try {
+//            con.setAutoCommit(false);
+//        } catch (Exception ex) {
+//            System.out.println("Setting auto commit to false failed: " + ex);
+//            return;
+//        }
         
         
         Seance newseance1, newseance2, seanceoffert;
