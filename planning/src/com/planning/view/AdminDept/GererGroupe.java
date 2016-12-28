@@ -133,14 +133,16 @@ public class GererGroupe extends javax.swing.JInternalFrame {
          Modifier modifier = new Modifier();
          modifier.setTitle("Modification du groupe");
          modifier.setGererGroupe(this);
+         groupeD = new GroupeDAO(conn);
+         res = groupeD.findALL();
          int row = listeGroupe.getSelectedRow();
          String nomGroupe = listeGroupe.getModel().getValueAt(row,0).toString();
          String nomFiliere = listeGroupe.getModel().getValueAt(row,1).toString();
          int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row,0).toString());
          try {
             while(res.next()) {
-                if(nomGroupe.equals(res.getString("NomGroupe")) && nomFiliere.equals(res.getString("NomFiliere")) && niveau == res.getInt("Niveau")) {
-                    modifier.setOldNumGroupe(res.getInt("NumGroupe"));
+                if(nomGroupe.equals(res.getString(2)) && nomFiliere.equals(res.getString(4)) && (niveau == res.getInt(5))) {
+                    modifier.setOldNumGroupe(res.getInt(1));
                     break;
                 }
             }
