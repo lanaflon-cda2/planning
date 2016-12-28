@@ -41,9 +41,11 @@ public class GroupeDAO extends DAO<Groupe> {
     @Override
     public boolean delete(Groupe obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM GROUPE WHERE NumGroupe = " + obj.getNumGroupe());
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Groupe WHERE NumGroupe = " + obj.getNumGroupe());
         } 
         catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
         }
         return true;
     }
@@ -54,7 +56,7 @@ public class GroupeDAO extends DAO<Groupe> {
     public boolean update(Groupe obj){
         try {
             state = conn.createStatement();
-            query = "UPDATE GROUPE SET NomGroupe = " + obj.getNomGroupe() + ", NumFiliere = " + obj.getNumFiliere() + ", Niveau = " + obj.getNiveau();
+            query = "UPDATE Groupe SET NomGroupe = " + obj.getNomGroupe() + ", NumFiliere = " + obj.getNumFiliere() + ", Niveau = " + obj.getNiveau();
             query += " WHERE NumGroupe = " + obj.getNumFiliere();
 	}
         catch (SQLException e) {
@@ -69,10 +71,11 @@ public class GroupeDAO extends DAO<Groupe> {
         try{
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             query = "select NumGroupe, NomGroupe, Groupe.NumFiliere as NumFiliere, NomFiliere, Niveau from Groupe, Filiere WHERE Groupe.NumFiliere = Filiere.NumFiliere";
-            res =state.executeQuery(query);
+            res = state.executeQuery(query);
 
         }catch(Exception e){
             System.out.println(e);
+            return null;
         }
 
         return res;
@@ -83,7 +86,7 @@ public class GroupeDAO extends DAO<Groupe> {
         
         try {
             state = this.conn.createStatement();
-            query = "UPDATE GROUPE SET NomGroupe = '" + obj2.getNomGroupe() + "', NumFiliere = " + obj2.getNumFiliere() + ", Niveau = " + obj2.getNiveau();
+            query = "UPDATE Groupe SET NomGroupe = '" + obj2.getNomGroupe() + "', NumFiliere = " + obj2.getNumFiliere() + ", Niveau = " + obj2.getNiveau();
             query += " WHERE NomGroupe = '" + obj1.getNomGroupe() + "' AND NumFiliere = " + obj1.getNumFiliere() + " and Niveau = " + obj1.getNiveau();
         } catch (Exception e) {
             System.out.println("SQLException: " + e);

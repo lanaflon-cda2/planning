@@ -31,10 +31,10 @@ public class Ajouter extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         filD = new FiliereDAO(conn);
-        listefil=filD.findAll();
+        listefil = filD.findAll();
         for (int i = 0; i < listefil.size(); i++) {
             
-            fil=(Filiere)listefil.get(i);
+            fil= (Filiere)listefil.get(i);
             filierecombo.addItem(fil.getNomFiliere());
             
         }

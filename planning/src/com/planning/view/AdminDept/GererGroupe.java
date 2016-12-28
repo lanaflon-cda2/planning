@@ -165,6 +165,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
             }
          } catch (Exception e) {
              System.out.println("Exception in resulat: " + e);
+             return;
          }
          
          listeGroupe.setModel(model);  
@@ -179,17 +180,21 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     
    
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
-        int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sûr de  sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
         if(p == JOptionPane.YES_OPTION) {
+            
             groupeD = new GroupeDAO(conn);
+            res = groupeD.findALL();
             int row = listeGroupe.getSelectedRow();
             String nomGroupe = listeGroupe.getModel().getValueAt(row,0).toString();
             String nomFiliere = listeGroupe.getModel().getValueAt(row,1).toString();
-            int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row,0).toString());
+            int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row, 2).toString());
+            System.out.println(nomGroupe + " " + nomFiliere + " " + niveau);
             try {
                 while(res.next()) {
-                    if(nomGroupe.equals(res.getString("NomGroupe")) && nomFiliere.equals(res.getString("NomFiliere")) && niveau == res.getInt("Niveau")) {
-                        groupeD.delete(new Groupe(res.getInt("NumGroupe")));
+                    if(nomGroupe.equals(res.getString(2)) && nomFiliere.equals(res.getString(4)) && (niveau == res.getInt(5))) {
+                        System.out.println("found!");
+                        groupeD.delete(new Groupe(res.getInt(1)));
                         break; 
                     }
                 }
