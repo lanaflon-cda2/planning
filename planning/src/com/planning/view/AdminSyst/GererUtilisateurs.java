@@ -127,14 +127,23 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listeutilisateurMouseClicked
 
     private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
+        Enseignant ens;
         int row = listeutilisateur.getSelectedRow();
-        String nom =listeutilisateur.getModel().getValueAt(row,0).toString();
-        String prenom =listeutilisateur.getModel().getValueAt(row,1).toString();
-        String mail =listeutilisateur.getModel().getValueAt(row,2).toString();
-        String tel =listeutilisateur.getModel().getValueAt(row,3).toString();
-        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        String nom = listeutilisateur.getModel().getValueAt(row,0).toString();
+        String prenom = listeutilisateur.getModel().getValueAt(row,1).toString();
+        String mail = listeutilisateur.getModel().getValueAt(row,2).toString();
+        String tel = listeutilisateur.getModel().getValueAt(row,3).toString();
+        String id = listeutilisateur.getModel().getValueAt(row,4).toString();
         
         Modifier_Util1 modifier = new Modifier_Util1();
+        modifier.setTitle("Modification de l'utilisateur");
+        for(int i = 0; i < listens.size(); i++) {
+            ens = (Enseignant) listens.get(i);
+            if(id.equals(ens.getIDUser())) {
+                modifier.setOldNumUser(ens.getNumEns());
+            }
+        }
+        
         modifier.setGererUtilisateur(this);
         modifier.nomfield.setText(nom);
         modifier.prenomfield.setText(prenom);
@@ -142,9 +151,6 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         modifier.telfield.setText(tel);
         modifier.idfield.setText(id);
         modifier.setVisible(true);
-        
-           
-        
         
     }//GEN-LAST:event_modifierActionPerformed
     

@@ -62,6 +62,7 @@ public class Modifier extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajouter ");
@@ -79,7 +80,7 @@ public class Modifier extends javax.swing.JFrame {
                 SauvegarderActionPerformed(evt);
             }
         });
-        getContentPane().add(Sauvegarder, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 120, 30));
+        getContentPane().add(Sauvegarder, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 120, 30));
         getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 190, 30));
 
         getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 190, 30));
@@ -98,6 +99,14 @@ public class Modifier extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Niveau *");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        jButton1.setText("Annuler");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -143,6 +152,11 @@ public class Modifier extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_SauvegarderActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void setNomField(String s) {
         this.nomgroupefield.setText(s);
@@ -185,6 +199,7 @@ public class Modifier extends javax.swing.JFrame {
     private javax.swing.JButton Sauvegarder;
     private javax.swing.JComboBox<String> filierecombo;
     public javax.swing.JLabel indication;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
