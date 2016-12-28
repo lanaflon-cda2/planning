@@ -132,10 +132,14 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
          Modifier modifier = new Modifier();
-         modifier.setTitle("Modifier");
+         modifier.setTitle("Modification du groupe");
+         modifier.setGererGroupe(this);
          int row = listeGroupe.getSelectedRow();
-         String groupe =listeGroupe.getModel().getValueAt(row,0).toString();
-         modifier.setNomField(groupe);
+         String nomGroupe = listeGroupe.getModel().getValueAt(row,0).toString();
+         String nomFiliere = listeGroupe.getModel().getValueAt(row,1).toString();
+         int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row,0).toString());
+         modifier.setNomField(nomGroupe);
+         modifier.setVisible(true);
     }//GEN-LAST:event_ModifierActionPerformed
       
     public void affichage(){
@@ -146,7 +150,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
          model.setRowCount(0);
          try {
              while(res.next()) {
-                model.addRow(new Object[] {res.getString(1), res.getString(2), res.getString(3)});
+                model.addRow(new Object[] {res.getString(2), res.getString(4), res.getInt(5)});
             }
          } catch (Exception e) {
              System.out.println("Exception in resulat: " + e);

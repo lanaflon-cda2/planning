@@ -34,7 +34,7 @@ public class Modifier extends javax.swing.JFrame {
         listefil=filD.findAll();
         for (int i = 0; i < listefil.size(); i++) {
             
-            fil=(Filiere)listefil.get(i);
+            fil = (Filiere)listefil.get(i);
             filierecombo.addItem(fil.getNomFiliere());
             
         }

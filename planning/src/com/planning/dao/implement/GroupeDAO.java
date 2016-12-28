@@ -68,7 +68,7 @@ public class GroupeDAO extends DAO<Groupe> {
 
         try{
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "select NomGroupe, NomFiliere, Niveau from Groupe, Filiere WHERE Groupe.NumFiliere = Filiere.NumFiliere";
+            query = "select NumGroupe, NomGroupe, Groupe.NumFiliere, NomFiliere, Niveau from Groupe, Filiere WHERE Groupe.NumFiliere = Filiere.NumFiliere";
             res =state.executeQuery(query);
 
         }catch(Exception e){
