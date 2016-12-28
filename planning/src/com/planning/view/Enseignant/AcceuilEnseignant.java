@@ -20,6 +20,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     /**
      * Creates new form Acceuil
      */
+    SeanceRattrapage sr;
+    
+    public void setSeanceRattrapage(SeanceRattrapage sr){
+        this.sr = sr;
+    }
     
     String idUser;
     
@@ -120,7 +125,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 90));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 150, 90));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
         seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -135,7 +140,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 150, 90));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 150, 90));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -220,12 +225,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
+        
         seanceratt.setBackground(java.awt.SystemColor.activeCaption);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        SeanceRattrapage sr = new SeanceRattrapage();
-        this.desktop.add(sr);
+        if(sr == null) sr = new SeanceRattrapage();
+        this.desktop.add(this.sr);
         try {
             sr.setMaximum(true);
         } catch (PropertyVetoException ex) {

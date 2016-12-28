@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -620,7 +621,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private void l8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseEntered
         
     }//GEN-LAST:event_l8MouseEntered
-    private int numpan;
+    private int numpan = -1;
     
     private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
         numpan = 1;
@@ -1106,6 +1107,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_v10MouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        numpan = -1;
         v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -1158,11 +1160,12 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_l8textComponentResized
 
-    private SeanceRattrapage srat = new SeanceRattrapage();
+    private SeanceRattrapage srat;
     private AcceuilEnseignant ae;
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        srat = new SeanceRattrapage();
         switch(numpan){
             case 1: 
                 this.srat.setnumseance(emp[0][0]);
@@ -1225,15 +1228,17 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 this.srat.setnumseance(emp[4][3]);
                 break;
             default:
-                break;      
+                srat = null;
+                JOptionPane.showMessageDialog(this, "Veuillez selectionner une seance sur l'emploi du temps!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+                return;    
         }
         
-        
+        System.out.println("numseance selected " + srat.getNumSeance());
         this.ae.desktop.removeAll();
         this.ae.desktop.repaint();
         
         this.ae.desktop.add(this.srat);
-        
+        this.srat.setAE(ae);
         try {
             this.srat.setMaximum(true);
         } catch (PropertyVetoException ex) {
