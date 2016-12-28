@@ -1229,16 +1229,20 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 break;
             default:
                 srat = null;
-                JOptionPane.showMessageDialog(this, "Veuillez selectionner une seance sur l'emploi du temps!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Selectionnez une seance!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
                 return;    
         }
         
-        System.out.println("numseance selected " + srat.getNumSeance());
+        if(srat.getNumSeance() == 0) {
+            JOptionPane.showMessageDialog(this, "Selectionnez une seance valide!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         this.ae.desktop.removeAll();
         this.ae.desktop.repaint();
-        
-        this.ae.desktop.add(this.srat);
         this.srat.setAE(ae);
+        this.srat.setMonEmp(this);
+        this.ae.desktop.add(this.srat);
+        
         try {
             this.srat.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -1312,8 +1316,71 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }
     
     int[][] emp = new int[5][4];
+    public void resetEMP() {
+        l8text.setText(null);
+            jLabel32.setText(null);
+
+            jLabel13.setText(null);
+            jLabel33.setText(null);
+
+            jLabel14.setText(null);
+            jLabel34.setText(null);
+
+            jLabel15.setText(null);
+            jLabel35.setText(null);
+
+            jLabel16.setText(null);
+            jLabel36.setText(null);
+
+            jLabel17.setText(null);
+            jLabel37.setText(null);
+
+            jLabel18.setText(null);
+            jLabel38.setText(null);
+
+            jLabel19.setText(null);
+            jLabel39.setText(null);
+
+            jLabel20.setText(null);
+            jLabel40.setText(null);
+
+            jLabel21.setText(null);
+            jLabel41.setText(null);
+
+            jLabel22.setText(null);
+            jLabel42.setText(null);
+
+            jLabel23.setText(null);
+            jLabel43.setText(null);
+
+            jLabel24.setText(null);
+            jLabel44.setText(null);
+
+            jLabel25.setText(null);
+            jLabel45.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel28.setText(null);
+            jLabel48.setText(null);
+
+            jLabel29.setText(null);
+            jLabel49.setText(null);
+ 
+    }
     
     public void getEmp(Date dd, Date df){
+        this.resetEMP();
         ConsulterEMP ce = new ConsulterEMP();
         ArrayList listGrpMat = ce.getGrpMat(this.numEns, dd, df);
         String[] strings;
@@ -1464,68 +1531,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         }
         
         if(listGrpMat.size() == 0) {
-
-            l8text.setText(null);
-            jLabel32.setText(null);
-
-            jLabel13.setText(null);
-            jLabel33.setText(null);
-
-            jLabel14.setText(null);
-            jLabel34.setText(null);
-
-            jLabel15.setText(null);
-            jLabel35.setText(null);
-
-            jLabel16.setText(null);
-            jLabel36.setText(null);
-
-            jLabel17.setText(null);
-            jLabel37.setText(null);
-
-            jLabel18.setText(null);
-            jLabel38.setText(null);
-
-            jLabel19.setText(null);
-            jLabel39.setText(null);
-
-            jLabel20.setText(null);
-            jLabel40.setText(null);
-
-            jLabel21.setText(null);
-            jLabel41.setText(null);
-
-            jLabel22.setText(null);
-            jLabel42.setText(null);
-
-            jLabel23.setText(null);
-            jLabel43.setText(null);
-
-            jLabel24.setText(null);
-            jLabel44.setText(null);
-
-            jLabel25.setText(null);
-            jLabel45.setText(null);
-
-            jLabel26.setText(null);
-            jLabel46.setText(null);
-
-            jLabel27.setText(null);
-            jLabel47.setText(null);
-
-            jLabel26.setText(null);
-            jLabel46.setText(null);
-
-            jLabel27.setText(null);
-            jLabel47.setText(null);
-
-            jLabel28.setText(null);
-            jLabel48.setText(null);
-
-            jLabel29.setText(null);
-            jLabel49.setText(null);
- 
-            
+              this.resetEMP();
         }
         
         

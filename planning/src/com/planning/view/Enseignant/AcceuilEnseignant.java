@@ -177,17 +177,16 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteEnseignant mce = me;
         
-        this.desktop.add(mce);
+        this.desktop.add(me);
     
         
         try {
-            mce.setMaximum(true);
+            me.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mce.show();
+        me.show();
         monEmploiEnseignant1.setAE(this);
        
     }//GEN-LAST:event_moncompteActionPerformed
@@ -216,6 +215,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         
        this.desktop.removeAll();
        this.desktop.repaint(); 
+       monEmploiEnseignant1.setTitle("Emploi du temps");
        this.desktop.add(monEmploiEnseignant1);
         try {
             monEmploiEnseignant1.setMaximum(true);
@@ -233,6 +233,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         this.desktop.removeAll();
         this.desktop.repaint();
         if(sr == null) sr = new SeanceRattrapage();
+        sr.setTitle("Seances de Rattrapages");
         this.desktop.add(this.sr);
         try {
             sr.setMaximum(true);
