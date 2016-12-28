@@ -37,7 +37,8 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         this.numseance = i;
         SeanceDAO seanceDAO = new SeanceDAO(con);
         Seance seance = seanceDAO.find(this.numseance);
-        this.getRattrapage(seance);
+        //this.getRattrapage(seance);
+        this.addRattrapage(seance);
     }
     
     public int getnumseance(){
@@ -97,7 +98,6 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
                 int numEnsX = x.getNumEns();
                 Enseignant enseignant = new Enseignant(numEnsX);
                 Object rowDataper[] = new Object[5];
-                //System.out.println("Le professeur de numero " + numEnsX + " peut offrir les créneaux suivants: ");
                 ArrayList listCreneauEnsX = x.getCreneaux();
                 for(int k = 0; k < listCreneauEnsX.size(); k++){
                     obj = creneauDAO.find((int) listCreneauEnsX.get(k));

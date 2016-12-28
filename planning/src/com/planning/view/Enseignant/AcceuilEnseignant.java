@@ -23,7 +23,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     String idUser;
     
-    MonEmploiEnseignant monEmploiEnseignant1;
+    MonEmploiEnseignant monEmploiEnseignant1 = new MonEmploiEnseignant();
     
     MonCompteEnseignant me = new MonCompteEnseignant();
     
