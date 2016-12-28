@@ -90,14 +90,14 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         });
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 120, 30));
 
-        Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Ajouter.setText("Ajouter");
-        Ajouter.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AjouterActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
 
         listeGroupe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,11 +140,13 @@ public class GererGroupe extends javax.swing.JInternalFrame {
          try {
             while(res.next()) {
                 if(nomGroupe.equals(res.getString("NomGroupe")) && nomFiliere.equals(res.getString("NomFiliere")) && niveau == res.getInt("Niveau")) {
-                    int numGroupe = res.getInt("NumGroupe");
+                    modifier.setOldNumGroupe(res.getInt("NumGroupe"));
+                    break;
                 }
             }
          } catch (Exception e) {
              System.out.println("SQLException: " + e);
+             return;
          }
          
          modifier.setNomField(nomGroupe);
@@ -178,6 +180,26 @@ public class GererGroupe extends javax.swing.JInternalFrame {
    
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
         int p = JOptionPane.showConfirmDialog(null,"êtes-vous sur de vouloir sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(p == JOptionPane.YES_OPTION) {
+            groupeD = new GroupeDAO(conn);
+            int row = listeGroupe.getSelectedRow();
+            String nomGroupe = listeGroupe.getModel().getValueAt(row,0).toString();
+            String nomFiliere = listeGroupe.getModel().getValueAt(row,1).toString();
+            int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row,0).toString());
+            try {
+                while(res.next()) {
+                    if(nomGroupe.equals(res.getString("NomGroupe")) && nomFiliere.equals(res.getString("NomFiliere")) && niveau == res.getInt("Niveau")) {
+                        groupeD.delete(new Groupe(res.getInt("NumGroupe")));
+                        break; 
+                    }
+                }
+            } catch (Exception e) {
+                 System.out.println("SQLException: " + e);
+                 return;
+            }
+            
+            this.affichage();
+        } 
         
     }//GEN-LAST:event_supprimerActionPerformed
 
@@ -195,6 +217,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modifier;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listeGroupe;

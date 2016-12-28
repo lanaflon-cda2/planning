@@ -27,6 +27,9 @@ public class Modifier extends javax.swing.JFrame {
     Filiere fil;
     Connection conn = ConnexionBD.init();
     GererGroupe gererGroupe;
+    int oldNumGroupe;
+    
+    
     public Modifier() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -103,6 +106,10 @@ public class Modifier extends javax.swing.JFrame {
     public void setGererGroupe(GererGroupe gg) {
         this.gererGroupe = gg;
     }
+    
+    public void setOldNumGroupe(int x) {
+        this.oldNumGroupe = x;
+    }
     private void SauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SauvegarderActionPerformed
        
         String nomgroupe = nomgroupefield.getText();
@@ -122,6 +129,7 @@ public class Modifier extends javax.swing.JFrame {
                 int niveau = niveaucombo.getSelectedIndex() + 1;
                 groupe = new Groupe(1, numFiliere, nomgroupe, niveau);
                 groupeD = new GroupeDAO(conn);
+                groupeD.delete(new Groupe(this.oldNumGroupe));
                 groupeD.create(groupe);
                 this.gererGroupe.affichage();
                 this.dispose();
