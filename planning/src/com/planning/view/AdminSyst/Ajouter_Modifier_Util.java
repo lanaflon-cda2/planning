@@ -10,6 +10,7 @@ import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +29,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     }
     public Ajouter_Modifier_Util() {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
     }
 
     /**

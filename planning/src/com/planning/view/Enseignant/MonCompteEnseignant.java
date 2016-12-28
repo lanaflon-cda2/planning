@@ -8,6 +8,7 @@ package com.planning.view.Enseignant;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
+import java.awt.Color;
 import javax.swing.BorderFactory;
 
 /**
@@ -41,6 +42,8 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        this.getContentPane().setBackground(Color.white);
         //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
     }
@@ -78,6 +81,7 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -136,6 +140,11 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(153, 0, 0));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 290, 60));
 
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("hjk");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,6 +153,7 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

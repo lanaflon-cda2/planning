@@ -36,7 +36,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         this.initEmp();
     }
 

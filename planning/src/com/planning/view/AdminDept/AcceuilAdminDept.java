@@ -21,6 +21,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
      */
     public AcceuilAdminDept() {
         initComponents();
+        
     }
 
     /**
