@@ -120,7 +120,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         supprimer.setEnabled(false);
         supprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Suprimer(evt);
+                Supprimer(evt);
             }
         });
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 130, 30));
@@ -132,7 +132,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
                 AjouterActionPerformed(evt);
             }
         });
-        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, 170, 50));
+        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 130, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,6 +175,32 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         ajouter.getGererUtili(this);
         ajouter.setVisible(true);
     }//GEN-LAST:event_AjouterActionPerformed
+
+    private void Supprimer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Supprimer
+        // TODO add your handling code here:
+        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        
+        int row = listeutilisateur.getSelectedRow();
+        int numeroEns = Integer.parseInt(listeutilisateur.getModel().getValueAt(row,0).toString());
+        String nom =listeutilisateur.getModel().getValueAt(row,1).toString();
+        String prenom =listeutilisateur.getModel().getValueAt(row,2).toString();
+        String mail =listeutilisateur.getModel().getValueAt(row,3).toString();
+        String tel =listeutilisateur.getModel().getValueAt(row,4).toString() ;
+        String id =listeutilisateur.getModel().getValueAt(row,5).toString();
+        
+        
+        Enseignant ens = new Enseignant(numeroEns, nom, prenom, mail, tel, id);
+        Users user = new Users(id);
+        Enseignant enseignant = enseignantDAO.findByIDUser(id);
+        //System.out.println(enseignant.getNumEns());
+        usersDAO.delete(user);
+        enseignantDAO.delete(ens);
+        
+        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
+        
+        UpdateTable();
+    }//GEN-LAST:event_Supprimer
   
     public void UpdateTable(){
            EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
@@ -182,7 +208,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
            listeutilisateur.setModel(DbUtils.resultSetToTableModel(resultat)); 
     }
     
-    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
