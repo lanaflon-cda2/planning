@@ -100,7 +100,7 @@ public class TestAlgo {
        
     public static void testEnseignant(){
         Users user = new Users("Oumaima", "belahsen");
-        Enseignant enseignant = new Enseignant(3, "Keita", "lancine", "keita@gmail.com", "658749", user.getIDUser());
+        Enseignant enseignant = new Enseignant(3, "Keita", "lancine", "keita@gmail.com", 658749464564l, user.getIDUser());
         EnseignantDAO enseignantDAO = new EnseignantDAO(conn);
         
         if(enseignantDAO.create(enseignant)) {

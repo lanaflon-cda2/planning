@@ -17,10 +17,20 @@ import javax.swing.JOptionPane;
  * @author Azough Mehdi
  */
 public class Modifier_Util1 extends javax.swing.JFrame {
+    
     GererUtilisateurs gu = new GererUtilisateurs();
+    int oldNumUser;
     /**
      * Creates new form Ajouter_Modifier_Util
      */
+    public void setOldNumUser(int x) {
+        this.oldNumUser = x;
+    }
+    public void setGererUtilisateur(GererUtilisateurs gu) {
+        this.gu  = gu;
+    }
+    
+    
     public Modifier_Util1() {
         initComponents();
     }
@@ -142,14 +152,14 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
 
-        String nom = new String(nomfield.getText());
-        String prenom = new String(prenomfield.getText());
-        String mail = new String(mailfield.getText());
-        String tel = new String(telfield.getText());
-        String id = new String(idfield.getText());
+        String nom = nomfield.getText();
+        String prenom = prenomfield.getText();
+        String mail = mailfield.getText();
+        String tel = telfield.getText();
+        String id = idfield.getText();
         
         Users user = new Users(id);
-        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);
+        Enseignant ens = new Enseignant(10,nom,prenom,mail,Long.valueOf(tel),id);
         usersDAO.update(user);
         enseignantDAO.update(ens);
         JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");

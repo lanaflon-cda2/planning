@@ -12,10 +12,10 @@ public class Enseignant implements Serializable {
     private String nomEns;
     private String prenomEns;
     private String mail;
-    private String tel;
+    private Long tel;
     private String iDUser;
     
-    private Set<Seance> seanceList = new HashSet<>  ();
+    private Set<Seance> seanceList = new HashSet<>();
 
     public Enseignant() {
     }
@@ -23,7 +23,7 @@ public class Enseignant implements Serializable {
     public Enseignant(int numEns) {
         this.numEns = numEns;
     }
-    public Enseignant(String nomEns, String prenomEns, String mail, String tel, String iDUser) {
+    public Enseignant(String nomEns, String prenomEns, String mail, Long tel, String iDUser) {
         this.nomEns = nomEns;
         this.prenomEns = prenomEns;
         this.mail = mail;
@@ -31,7 +31,7 @@ public class Enseignant implements Serializable {
         this.iDUser = iDUser;
     
     }
-    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, String tel, String iDUser) {
+    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, long tel, String iDUser) {
         this.numEns = numEns;
         this.nomEns = nomEns;
         this.prenomEns = prenomEns;
@@ -40,10 +40,6 @@ public class Enseignant implements Serializable {
         this.iDUser = iDUser;
     }
 
-    public int getNumEnseignant(String id){
-        this.iDUser=id;
-        return numEns;
-    }
     public int getNumEns() {
         return numEns;
     }
@@ -76,11 +72,11 @@ public class Enseignant implements Serializable {
         this.mail = mail;
     }
 
-    public String getTel() {
+    public Long getTel() {
         return tel;
     }
 
-    public void setTel(String tel) {
+    public void setTel(Long tel) {
         this.tel = tel;
     }
 
