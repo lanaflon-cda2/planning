@@ -161,7 +161,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 100, 30));
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Enseignant/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("AcceuilBG.png")));
         acceuilBG.setToolTipText("");
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 

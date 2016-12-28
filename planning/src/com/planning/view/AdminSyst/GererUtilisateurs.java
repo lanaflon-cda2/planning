@@ -66,7 +66,6 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
         listeutilisateur.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Azough", "Mehdi", "sqdqsd", "qsdsqd", "sqdqsdqs"},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},

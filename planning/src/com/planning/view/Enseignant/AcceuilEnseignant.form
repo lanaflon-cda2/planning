@@ -161,8 +161,8 @@
     <Component class="javax.swing.JLabel" name="acceuilBG">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/planning/view/Enseignant/AcceuilBG.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;AcceuilBG.png&quot;))" type="code"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>

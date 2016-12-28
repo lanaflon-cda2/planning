@@ -22,19 +22,30 @@ public class Modifier extends javax.swing.JFrame {
     /**
      * Creates new form Ajouter_Modifier_Util
      */
-    private AcceuilEnseignant acceuilEnseignant;
+    private MonCompteEnseignant monCompteEnseignant;
+    private AcceuilEnseignant ae;
+    String iduser;
     
-    public void getGererUtili(AcceuilEnseignant ae){
-        this.acceuilEnseignant = ae;
+    public void getGererUtili(MonCompteEnseignant mce){
+        this.monCompteEnseignant = mce;
     }
     
     
     public void setIDUserMod(String id){
-        idfield.setText(id);
+        this.iduser = id;
+        System.out.println(this.iduser);
+        idfield.setText(iduser);
     }
     
     public Modifier() {
         initComponents();
+        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
+        Enseignant ens = enseignantDAO.findByIDUser(idfield.getText());
+        
+        nomfield.setText(ens.getNomEns());
+        prenomfield.setText(ens.getPrenomEns());
+        mailfield.setText(ens.getMail());
+        telfield.setText(ens.getTel());
     }
 
     /**
@@ -101,6 +112,7 @@ public class Modifier extends javax.swing.JFrame {
         getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
 
         idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        idfield.setEnabled(false);
         idfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idfieldActionPerformed(evt);
@@ -163,6 +175,7 @@ public class Modifier extends javax.swing.JFrame {
             Users user = new Users(id,mdp);
             Enseignant enseignant = new Enseignant(nom,prenom,mail,tel,id);
             Enseignant ens = enseignantDAO.findByIDUser(id);
+            System.out.println(ens.getNumEns());
             enseignant.setNumEns(ens.getNumEns());
             usersDAO.update(user);
             enseignantDAO.update(enseignant);
@@ -175,8 +188,8 @@ public class Modifier extends javax.swing.JFrame {
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
             dispose();
-            GererUtilisateurs gu = new GererUtilisateurs();
-            gu.setVisible(true);
+            MonCompteEnseignant mce = new MonCompteEnseignant();
+            mce.setVisible(true);
     }//GEN-LAST:event_AnnulerActionPerformed
 
     /**

@@ -101,7 +101,7 @@ public class ConsulterEMP {
             tab[5] = dateCren.toString();
             tab[6] = String.valueOf(s.getNumSeance());
             
-            System.out.println("numero " + ++i + " " + tab[0]+ " " + tab[1]+ " " + tab[2]+ " " + tab[3]+ " " + tab[4]);
+            //System.out.println("numero " + ++i + " " + tab[0]+ " " + tab[1]+ " " + tab[2]+ " " + tab[3]+ " " + tab[4]);
             listGrpMat.add(tab);       
         }
         return listGrpMat;
