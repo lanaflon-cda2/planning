@@ -138,7 +138,10 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     }//GEN-LAST:event_deconnexionMouseClicked
 
     private void utilisateursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateursActionPerformed
+        GererUtilisateurs gu = new GererUtilisateurs();
+        gu.UpdateTable();
         utilisateurs.setBackground(java.awt.SystemColor.activeCaption);
+        
         
     }//GEN-LAST:event_utilisateursActionPerformed
 

@@ -5,6 +5,10 @@
  */
 package com.planning.view.AdminDept;
 
+import com.planning.dao.implement.FiliereDAO;
+import com.planning.model.ConnexionBD;
+import java.util.ArrayList;
+
 /**
  *
  * @author Azough Mehdi
@@ -32,7 +36,7 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         Modifier = new javax.swing.JButton();
         supprimer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Ajouter = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Gérer groupes");
@@ -108,14 +112,14 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         supprimer.setEnabled(false);
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 120, 30));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Ajouter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Ajouter.setText("Ajouter");
+        Ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AjouterActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
+        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,8 +132,8 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
-         Ajouter_Modifier modifier = new Ajouter_Modifier();
-         modifier.setTitle("Modifier");
+         Modifier_Groupe modifier = new Modifier_Groupe();
+         modifier.setTitle("Modifier groupe");
          modifier.indication.setText("Veuillez mettre à jour les informations :");
          int row = ListeGroupe.getSelectedRow();
          String groupe =ListeGroupe.getModel().getValueAt(row,0).toString();
@@ -143,16 +147,31 @@ public class GererGroupe extends javax.swing.JInternalFrame {
         supprimer.setEnabled(true);
     }//GEN-LAST:event_ListeGroupeMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ajouter_Modifier ajouter = new Ajouter_Modifier(); 
-        ajouter.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterActionPerformed
+        // TODO add your handling code here:
+        Ajouter_Groupe ajout = new Ajouter_Groupe();
+        ajout.setTitle("Ajouter groupe");
+        
+        
+        int i;
+        FiliereDAO filiereDAO = new FiliereDAO(ConnexionBD.init());
+        ArrayList listeFiliere = new ArrayList();
+        listeFiliere = filiereDAO.findAll();
+        
+        for(i=0 ; i<listeFiliere.size() ; i++){
+            ajout.ChoixFiliere.addItem(listeFiliere.get(i).toString());
+        }
+        
+        
+        ajout.setVisible(true);
+        
+    }//GEN-LAST:event_AjouterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Ajouter;
     private javax.swing.JTable ListeGroupe;
     private javax.swing.JButton Modifier;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton supprimer;
