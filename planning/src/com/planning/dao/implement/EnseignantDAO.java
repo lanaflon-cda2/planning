@@ -56,19 +56,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return true;
 
     }    
-        public boolean deleteById(String id){
-        try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "DELETE FROM Enseignant WHERE iDUser = " + id;
-            state.executeUpdate(query);
-        } 
-        catch (SQLException e) {
-            System.out.println("SQLException: " + e);
-            return false;
-        }
-        return true;
 
-    }
     @Override
     public boolean update(Enseignant obj){
         try {
@@ -100,6 +88,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return true;
     }    
     
+       
     @Override
     public Enseignant find(int numens){
         

@@ -5,6 +5,9 @@
  */
 package com.planning.view.AdminDept;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+
 /**
  *
  * @author Azough Mehdi
@@ -16,6 +19,10 @@ public class GererMatiere extends javax.swing.JInternalFrame {
      */
     public GererMatiere() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
     }
 
     /**

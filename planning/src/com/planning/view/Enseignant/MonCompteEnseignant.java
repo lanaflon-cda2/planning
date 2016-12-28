@@ -8,19 +8,59 @@ package com.planning.view.Enseignant;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 
 /**
  *
  * @author Azough Mehdi
  */
 public class MonCompteEnseignant extends javax.swing.JInternalFrame {
-
+        
     /**
      * Creates new form AcceuilInternal
      */
+    private String idUser;
+    private int numEns;
+    
+    public void setIDUserMCE(String s){
+        this.idUser = s;
+        System.out.println(idUser);
+        EnseignantDAO ed = new EnseignantDAO(ConnexionBD.init());
+        Enseignant ens = ed.findByIDUser(this.idUser);
+        this.numEns = ens.getNumEns();
+        
+        jLabel7.setText(ens.getNomEns());
+        jLabel6.setText(ens.getPrenomEns());
+        jLabel8.setText(ens.getMail());
+        //MCE.getDeptInternalframe(ens.getFilEns());
+        //MCE.getTelInternalframe(ens.getTel());
+    }
+    
+    
     public MonCompteEnseignant() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        this.getContentPane().setBackground(Color.white);
+        //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
     }
+    
+       
+    
+    /*public void getDeptInternalframe(String id){
+            jlabel_.setText(id);
+    }*/
+    
+    
+        
+    /*public void getTelInternalframe(long tel){
+        jLabel9.setText(tel);
+    }     
+    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,39 +77,73 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(810, 530));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel1.setText("Vous êtes connecté en tant que:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 40));
 
-        jLabel2.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("Professeur:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, 50));
 
-        jLabel3.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Département:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("E-mail:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("N° de téléphone:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Modifier");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 150, 40));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        jLabel6.setText("Prenom");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 180, 50));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        jLabel7.setText("Nom");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 180, 50));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Mail");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 220, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Tel");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 150, 30));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText("Department");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 150, 30));
+
         jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 0, 0));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 290, 60));
+
+        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 2, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 290, 60));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("hjk");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,10 +152,15 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

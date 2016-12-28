@@ -10,6 +10,7 @@ import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +29,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     }
     public Ajouter_Modifier_Util() {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
     }
 
     /**
@@ -54,7 +56,6 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         Annuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -67,7 +68,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 nomfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 250, 30));
+        getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 250, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Nom");
@@ -75,36 +76,35 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Prenom");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         prenomfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prenomfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(prenomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 250, 30));
-        getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 250, 30));
+        getContentPane().add(prenomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, 30));
+        getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 250, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("mail");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Tel");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
-        getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 250, 30));
 
-        idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 220, 30));
+        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 250, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Saisir l'identifiant de l'utilisateur");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+        jLabel8.setText("ID");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         Enregistrer.setText("Enregistrer");
         Enregistrer.addActionListener(new java.awt.event.ActionListener() {

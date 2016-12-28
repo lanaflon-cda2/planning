@@ -5,9 +5,6 @@
  */
 package com.planning.view.Enseignant;
 
-import com.planning.dao.implement.EnseignantDAO;
-import com.planning.model.ConnexionBD;
-import com.planning.model.Enseignant;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
 import java.beans.PropertyVetoException;
@@ -19,25 +16,45 @@ import java.util.logging.Logger;
  * @author Azough Mehdi
  */
 public class AcceuilEnseignant extends javax.swing.JFrame {
-
+       
     /**
      * Creates new form Acceuil
      */
+    SeanceRattrapage sr;
+    
+    public void setSeanceRattrapage(SeanceRattrapage sr){
+        this.sr = sr;
+    }
     
     String idUser;
-    public void setIDUser(String s) {
-        this.idUser = s;
-        monEmploiEnseignant1.setIDUser(this.idUser);
-        monEmploiEnseignant1.initEmp();
+    
+    MonEmploiEnseignant monEmploiEnseignant1 = new MonEmploiEnseignant();
+    
+    MonCompteEnseignant me = new MonCompteEnseignant();
+    
+    public void setME(MonCompteEnseignant me){
+        this.me = me;
+        me.setIDUserMCE(this.idUser);
     }
+    
+    
+    
+    public void setidUser(String s){
+        this.idUser = s;
+        jLabel1.setText(idUser);
+        monEmploiEnseignant1.setIDUserMEE(this.idUser);
+         
+        monEmploiEnseignant1.initEmp();
+        monEmploiEnseignant1.setAE(this);
+    }
+    
     public AcceuilEnseignant() {
         initComponents();
+
+        
     }
-    public void getEnseignant(String id){
-        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-        Enseignant ens = enseignantDAO.findByIDUser(id);
-        jLabel1.setText(ens.getNomEns()+" "+ens.getPrenomEns());
-    }
+            
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,7 +64,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        monEmploiEnseignant1 = new com.planning.view.Enseignant.MonEmploiEnseignant();
         desktop = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
@@ -56,8 +72,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo = new javax.swing.JLabel();
         deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
-
-        monEmploiEnseignant1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -74,10 +88,10 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         mce.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 255));
         jLabel1.setText("Enseignant");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 110, 30));
 
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -111,7 +125,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 90));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 150, 90));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
         seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -126,7 +140,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 150, 90));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 150, 90));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -146,6 +160,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Enseignant/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setToolTipText("");
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
@@ -159,16 +174,21 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+                
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteEnseignant ai = new MonCompteEnseignant();
-        this.desktop.add(ai);
+        
+        this.desktop.add(me);
+    
+        
         try {
-            ai.setMaximum(true);
+            me.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ai.show();
+        me.show();
+        monEmploiEnseignant1.setAE(this);
+       
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked
@@ -190,38 +210,48 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_deconnexionMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        monemploi.setBackground(java.awt.SystemColor.activeCaption);
-        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
-        this.desktop.removeAll();
-        this.desktop.repaint();
-        this.desktop.add(monEmploiEnseignant1);
+       monemploi.setBackground(java.awt.SystemColor.activeCaption);
+       seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+        
+       this.desktop.removeAll();
+       this.desktop.repaint(); 
+       monEmploiEnseignant1.setTitle("Emploi du temps");
+       this.desktop.add(monEmploiEnseignant1);
         try {
             monEmploiEnseignant1.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
         monEmploiEnseignant1.show();
+        monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
+        
         seanceratt.setBackground(java.awt.SystemColor.activeCaption);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        SeanceRattrapage sr = new SeanceRattrapage();
-        this.desktop.add(sr);
+        if(sr == null) sr = new SeanceRattrapage();
+        sr.setTitle("Seances de Rattrapages");
+        this.desktop.add(this.sr);
         try {
             sr.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
         }
         sr.show();
+        monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_seancerattActionPerformed
 
-    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel1InputMethodTextChanged
-    EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-    
-    }//GEN-LAST:event_jLabel1InputMethodTextChanged
+    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {                                               
+        
+    // TODO add your handling code here:
+    }                                              
+
+    private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1ComponentResized
 
     /**
      * @param args the command line arguments
@@ -259,13 +289,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JLabel deconnexion;
     public javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
-    private com.planning.view.Enseignant.MonEmploiEnseignant monEmploiEnseignant1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;

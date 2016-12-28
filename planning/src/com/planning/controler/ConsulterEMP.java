@@ -52,8 +52,8 @@ public class ConsulterEMP {
         
         dd = this.setDate(dd);
         df = this.setDate(df);
-        ArrayList listGrpMat = new ArrayList();
-        String tab[] = new String[6];
+        ArrayList<String[]> listGrpMat = new ArrayList();
+        String tab[] = new String[7];
         SeanceDAO sd = new SeanceDAO(conn);
         Set<Seance> listSeance = new HashSet<>();
         Set<Seance> listSeance1 = sd.findByNumEns(numEns);
@@ -96,9 +96,10 @@ public class ConsulterEMP {
             tab[0] = mat.getNomMatiere();
             tab[1] = grp.getNomGroupe();
             tab[2] = fil.getNomFiliere();
-            tab[3] = String.valueOf(cal.get(Calendar.DAY_OF_WEEK));        
+            tab[3] = String.valueOf(cal.get(Calendar.DAY_OF_WEEK));
             tab[4] = cren.getHeureCreneau().toString();
             tab[5] = dateCren.toString();
+            tab[6] = String.valueOf(s.getNumSeance());
             
             System.out.println("numero " + ++i + " " + tab[0]+ " " + tab[1]+ " " + tab[2]+ " " + tab[3]+ " " + tab[4]);
             listGrpMat.add(tab);       

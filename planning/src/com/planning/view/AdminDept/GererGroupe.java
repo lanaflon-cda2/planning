@@ -5,23 +5,44 @@
  */
 package com.planning.view.AdminDept;
 
-import com.planning.dao.implement.FiliereDAO;
+import com.planning.dao.implement.GroupeDAO;
 import com.planning.model.ConnexionBD;
-import java.util.ArrayList;
+import com.planning.model.Groupe;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Azough Mehdi
  */
 public class GererGroupe extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form GererEmloi
-     */
+    DefaultTableModel model = new DefaultTableModel();
+    Groupe grp;
+    GroupeDAO groupeD;
+    ResultSet res = null;
+    Connection conn = ConnexionBD.init();
+    Groupe obj;
+    int selectedRowIndex;
+    int selectedColumnIndex;
+    
     public GererGroupe() {
+        
         initComponents();
+        initColor();
+        
     }
 
+    private void initColor (){
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        this.affichage(); 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,13 +52,14 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ListeGroupe = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         Modifier = new javax.swing.JButton();
         supprimer = new javax.swing.JButton();
-        Ajouter = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listeGroupe = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Gérer groupes");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -45,54 +67,6 @@ public class GererGroupe extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        ListeGroupe.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"test1", "test2", "test3"},
-                {"sdfds", "rrrrr", "aaaaa"},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Groupe", "Filière", "Niveau"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        ListeGroupe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ListeGroupeMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(ListeGroupe);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 760, 350));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Gestion des groupes");
@@ -109,16 +83,41 @@ public class GererGroupe extends javax.swing.JInternalFrame {
 
         supprimer.setText("Supprimer");
         supprimer.setEnabled(false);
-        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 120, 30));
-
-        Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Ajouter.setText("Ajouter");
-        Ajouter.addActionListener(new java.awt.event.ActionListener() {
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AjouterActionPerformed(evt);
+                supprimerActionPerformed(evt);
             }
         });
-        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 120, 30));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 40));
+
+        listeGroupe.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NomGroupe", "NomFiliere", "Niveau"
+            }
+        ));
+        listeGroupe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeGroupeMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                listeGroupeMouseExited(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listeGroupe);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 490, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,53 +125,108 @@ public class GererGroupe extends javax.swing.JInternalFrame {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         Modifier.setEnabled(false);
         supprimer.setEnabled(false);
-        ListeGroupe.clearSelection();
+        listeGroupe.clearSelection();
         
     }//GEN-LAST:event_formMouseClicked
 
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
-         Modifier_Groupe modifier = new Modifier_Groupe();
-         modifier.setTitle("Modifier groupe");
-         modifier.indication.setText("Veuillez mettre à jour les informations :");
-         int row = ListeGroupe.getSelectedRow();
-         String groupe =ListeGroupe.getModel().getValueAt(row,0).toString();
-         modifier.nomgroupefield.setText(groupe);
+         Modifier modifier = new Modifier();
+         modifier.setTitle("Modification du groupe");
+         modifier.setGererGroupe(this);
+         groupeD = new GroupeDAO(conn);
+         res = groupeD.findALL();
+         int row = listeGroupe.getSelectedRow();
+         String nomGroupe = listeGroupe.getModel().getValueAt(row,0).toString();
+         String nomFiliere = listeGroupe.getModel().getValueAt(row,1).toString();
+         int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row,2).toString());
+         try {
+            while(res.next()) {
+                if(nomGroupe.equals(res.getString(2)) && nomFiliere.equals(res.getString(4)) && (niveau == res.getInt(5))) {
+                    modifier.setOldNumGroupe(res.getInt(1));
+                    break;
+                }
+            }
+         } catch (Exception e) {
+             System.out.println("SQLException: " + e);
+             return;
+         }
          
+         modifier.setNomField(nomGroupe);
          modifier.setVisible(true);
     }//GEN-LAST:event_ModifierActionPerformed
+      
+    public void affichage(){
+         groupeD = new GroupeDAO(conn);    
+         res = groupeD.findALL();
+         
+         model = (DefaultTableModel) listeGroupe.getModel();
+         model.setRowCount(0);
+         try {
+             while(res.next()) {
+                model.addRow(new Object[] {res.getString(2), res.getString(4), res.getInt(5)});
+            }
+         } catch (Exception e) {
+             System.out.println("Exception in resulat: " + e);
+             return;
+         }
+         
+         listeGroupe.setModel(model);  
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Ajouter ajouter = new Ajouter(); 
+        ajouter.getgerergroupe(this);
+        
+        ajouter.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+   
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sûr de  sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(p == JOptionPane.YES_OPTION) {
+            
+            groupeD = new GroupeDAO(conn);
+            res = groupeD.findALL();
+            int row = listeGroupe.getSelectedRow();
+            String nomGroupe = listeGroupe.getModel().getValueAt(row,0).toString();
+            String nomFiliere = listeGroupe.getModel().getValueAt(row,1).toString();
+            int niveau = Integer.valueOf(listeGroupe.getModel().getValueAt(row, 2).toString());
+            try {
+                while(res.next()) {
+                    if(nomGroupe.equals(res.getString(2)) && nomFiliere.equals(res.getString(4)) && (niveau == res.getInt(5))) {
 
-    private void ListeGroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListeGroupeMouseClicked
+                        groupeD.delete(new Groupe(res.getInt(1)));
+                        break; 
+                    }
+                }
+            } catch (Exception e) {
+                 System.out.println("SQLException: " + e);
+                 return;
+            }
+            
+            this.affichage();
+        } 
+        
+    }//GEN-LAST:event_supprimerActionPerformed
+
+    private void listeGroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGroupeMouseClicked
+        // TODO add your handling code here:
         Modifier.setEnabled(true);
         supprimer.setEnabled(true);
-    }//GEN-LAST:event_ListeGroupeMouseClicked
+    }//GEN-LAST:event_listeGroupeMouseClicked
 
-    private void AjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterActionPerformed
+    private void listeGroupeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeGroupeMouseExited
         // TODO add your handling code here:
-        Ajouter_Groupe ajout = new Ajouter_Groupe();
-        ajout.setTitle("Ajouter groupe");
-        
-        
-        int i;
-        FiliereDAO filiereDAO = new FiliereDAO(ConnexionBD.init());
-        ArrayList listeFiliere = new ArrayList();
-        listeFiliere = filiereDAO.findAll();
-        
-        for(i=0 ; i<listeFiliere.size() ; i++){
-            ajout.ChoixFiliere.addItem(listeFiliere.get(i).toString());
-        }
-        
-        
-        ajout.setVisible(true);
-        
-    }//GEN-LAST:event_AjouterActionPerformed
+       
+    }//GEN-LAST:event_listeGroupeMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Ajouter;
-    private javax.swing.JTable ListeGroupe;
     private javax.swing.JButton Modifier;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable listeGroupe;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
 }

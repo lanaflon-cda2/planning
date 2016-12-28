@@ -81,15 +81,15 @@ public class FiliereDAO extends DAO<Filiere> {
     }
     
       public ArrayList findAll(){
-            ArrayList listeFiliere = new ArrayList();
+            ArrayList listeFiliere = null;
 
             try {    
                 state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-                query = "SELECT nomFiliere FROM Filiere";
+                query = "SELECT * FROM Filiere";
                 res = state.executeQuery(query);
                 while(res.next()) {
-                    
-                    listeFiliere.add(res.getString(1));
+                    if(listeFiliere == null) listeFiliere = new ArrayList();
+                    listeFiliere.add(new Filiere(res.getInt(1), res.getString(2)));
                 }   
             }catch (SQLException e) {   
                 System.out.println("SQLException: " + e);

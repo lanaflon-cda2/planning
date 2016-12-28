@@ -50,6 +50,7 @@ public class Absenter {
         
     }
     
+        
     public ArrayList getCreneauxMatchEnsGroupe(){
         return this.creneauxMatchEnsGroupe;
     }
@@ -61,7 +62,7 @@ public class Absenter {
     private void searchRattrapage() {
         System.out.println("La date systeme = " + dateSysteme);
         this.dateFin = this.getDateFin();
-        System.out.println("Date de fin de la fin matiere = " + dateFin);
+        System.out.println("Date de la fin matiere = " + dateFin);
         creneauxMatchEnsGroupe = this.searchMatchEnsGroupe();
         permutPossible = this.searchPermut();
 
@@ -83,13 +84,13 @@ public class Absenter {
             }
         }
         
-        try {
-            res.close();
-            state.close();
-            con.close();
-        } catch(SQLException e){
-            System.out.println("SQLException: " + e);
-        }
+//        try {
+//            res.close();
+//            state.close();
+//            con.close();
+//        } catch(SQLException e){
+//            System.out.println("SQLException: " + e);
+//        }
         
     }
             
