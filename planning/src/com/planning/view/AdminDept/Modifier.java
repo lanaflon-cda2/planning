@@ -114,7 +114,7 @@ public class Modifier extends javax.swing.JFrame {
        
         String nomgroupe = nomgroupefield.getText();
         if(!nomgroupe.equals("")) {
-            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vous modifications?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
             if(p == JOptionPane.YES_OPTION){
 
                 int numFiliere = 0;
