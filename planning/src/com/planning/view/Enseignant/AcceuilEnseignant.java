@@ -84,7 +84,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
 
         com.planning.view.Enseignant.MonCompteEnseignant mce = new com.planning.view.Enseignant.MonCompteEnseignant();
         this.desktop.add(mce);
@@ -96,8 +96,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         mce.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
-        moncompte.setBackground(new java.awt.Color(255, 255, 255));
-        moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         moncompte.setText("Mon Compte");
         moncompte.setBorderPainted(false);
         moncompte.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,7 +111,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 moncompteActionPerformed(evt);
             }
         });
-        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, -1, 30));
+        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 110, 30));
 
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
         monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N

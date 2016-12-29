@@ -76,7 +76,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 moncompteActionPerformed(evt);
             }
         });
-        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 110, 30));
+        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, 110, 30));
 
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
         monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
@@ -91,7 +91,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 150, 80));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 160, 80));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
         seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
@@ -106,7 +106,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 90));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 200, 160, 90));
 
         gerermat.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
         gerermat.setText("Matières");
@@ -120,7 +120,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 gerermatActionPerformed(evt);
             }
         });
-        getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 150, 80));
+        getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 280, 160, 90));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,7 +136,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 deconnexionMouseClicked(evt);
             }
         });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 91, 100, 30));
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 100, 30));
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
