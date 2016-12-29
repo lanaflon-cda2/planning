@@ -13,7 +13,6 @@ import com.planning.model.Users;
 import java.sql.ResultSet;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
