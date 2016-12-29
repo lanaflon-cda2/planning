@@ -125,7 +125,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 monemploiActionPerformed(evt);
             }
         });
-        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 150, 90));
+        getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 160, 90));
 
         seanceratt.setBackground(new java.awt.Color(204, 204, 204));
         seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -140,7 +140,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 seancerattActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 150, 90));
+        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 210, 160, 100));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

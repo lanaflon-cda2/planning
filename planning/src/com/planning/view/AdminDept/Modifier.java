@@ -7,9 +7,11 @@ package com.planning.view.AdminDept;
 
 import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.GroupeDAO;
+import com.planning.dao.implement.MatiereDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Filiere;
 import com.planning.model.Groupe;
+import com.planning.model.Matiere;
 import java.awt.Color;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -82,22 +84,22 @@ public class Modifier extends javax.swing.JFrame {
         getContentPane().add(Sauvegarder, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 120, 30));
         getContentPane().add(nomgroupefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 190, 30));
 
-        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 190, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 190, 30));
 
         niveaucombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 50, 30));
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 50, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Nom du groupe * ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Filière *");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 107, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Niveau *");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 157, -1, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -139,7 +141,7 @@ public class Modifier extends javax.swing.JFrame {
                 this.dispose();
             } 
         } else {
-            JOptionPane.showMessageDialog(null,"Le champ Nom du Groupe est obligatoire!","Formulaire incomplet!", JOptionPane.QUESTION_MESSAGE, null);
+            JOptionPane.showMessageDialog(null,"Le champ Nom de Matière est obligatoire!","Formulaire incomplet!", JOptionPane.QUESTION_MESSAGE, null);
         }
     
     }//GEN-LAST:event_SauvegarderActionPerformed

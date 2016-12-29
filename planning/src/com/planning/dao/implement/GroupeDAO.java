@@ -4,12 +4,10 @@ import com.planning.dao.DAO;
 import com.planning.model.Groupe;
 import com.planning.model.Seance;
 
-import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
