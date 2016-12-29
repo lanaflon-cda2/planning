@@ -391,17 +391,17 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 groupecomboActionPerformed(evt);
             }
         });
-        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 90, 30));
+        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 110, 30));
 
         jLabel1.setText("Filière");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         filierecombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 filierecomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 110, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 180, 30));
 
         jLabel11.setText("Niveau");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
@@ -412,7 +412,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 niveaucomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 90, 30));
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 90, 30));
 
         jLabel12.setText("Groupe");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
