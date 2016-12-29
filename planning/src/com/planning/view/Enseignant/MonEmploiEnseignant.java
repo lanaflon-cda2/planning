@@ -648,7 +648,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Vivaldi", 2, 48)); // NOI18N
         jLabel1.setText("Emploi");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 80));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 120, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
