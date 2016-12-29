@@ -22,6 +22,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     public AcceuilAdminDept() {
         initComponents();
         
+        
     }
 
     /**
@@ -119,7 +120,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 gerermatActionPerformed(evt);
             }
         });
-        getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 150, 80));
+        getContentPane().add(gerermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 150, 80));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

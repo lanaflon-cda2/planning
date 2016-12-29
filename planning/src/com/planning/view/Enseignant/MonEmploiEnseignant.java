@@ -274,6 +274,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         l10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l10.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -291,6 +293,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         l16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l16.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -307,6 +311,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         l14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l14.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -323,6 +329,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -339,6 +347,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -356,6 +366,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma14.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -372,6 +384,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma16.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -388,6 +402,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         j8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -404,6 +420,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -420,6 +438,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me10.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -436,6 +456,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         j10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -477,6 +499,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me14.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -493,6 +517,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me16.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -509,6 +535,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         j16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j16.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -525,6 +553,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         v8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -541,6 +571,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         v10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v10.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -557,6 +589,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         v14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v14.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
