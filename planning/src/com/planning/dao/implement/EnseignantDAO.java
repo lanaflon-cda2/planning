@@ -134,17 +134,23 @@ public class EnseignantDAO extends DAO<Enseignant> {
         return enseignant;
     }
     
-      public ResultSet getAllEnseignant(){
-
+      public ArrayList findAll(){
+            ArrayList listens = null;
+            Enseignant ens;
             try {    
                 state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
                 query = "SELECT * FROM Enseignant";
-                res = state.executeQuery(query);  
+                res = state.executeQuery(query); 
+                while(res.next()) {
+                    if(listens == null) listens = new ArrayList();
+                    ens = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getLong(5), res.getString(6));
+                    listens.add(ens);
+                }
             }catch (SQLException e) {   
                 System.out.println("SQLException: " + e);
                 return null;       
             }
-            return res;
+            return listens;
     }
     
     @Override

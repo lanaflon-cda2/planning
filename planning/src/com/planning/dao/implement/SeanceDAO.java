@@ -49,6 +49,8 @@ public class SeanceDAO extends DAO<Seance> {
             this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Seance WHERE NumSeance = " + obj.getNumSeance());
         } 
         catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
         }
         return true;
     }
@@ -68,6 +70,8 @@ public class SeanceDAO extends DAO<Seance> {
 	}
         return true;
     }
+    
+    
     
     @Override
     public Seance find(int numseance){
@@ -94,7 +98,7 @@ public class SeanceDAO extends DAO<Seance> {
         
         try {
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Seance WHERE NumEns = " + nume + " ORDER BY NumCreneau";
+            query = "SELECT * FROM Seance WHERE NumEns = " + nume + " AND EtatSeance = 1 ORDER BY NumCreneau";
             res = state.executeQuery(query);
             while(res.next()) {
                 Seance seance = new Seance(res.getInt("NumSeance"),res.getInt("NumCreneau"), res.getInt("NumEns"), res.getInt("NumMatiere"), res.getInt("NumGroupe"),res.getInt("EtatSeance"));
@@ -141,10 +145,27 @@ public class SeanceDAO extends DAO<Seance> {
         }
         return seanceList;
     } 
+    
     @Override
     public Seance find(String string){
        
         return null;
+    }
+    
+    public Seance getSeanceByFields(int numCreneau, int numEns, int numGroupe, int EtatSeance) {
+        Seance s = null;
+        try{
+            query = "SELECT * FROM Seance WHERE NumCreneau = " + numCreneau + " AND NumEns = " + numEns + " AND NumGroupe = " + numGroupe;
+            query += " AND EtatSeance = " + EtatSeance;
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            res = state.executeQuery(query);
+            while(res.next()) {
+                s = new Seance(res.getInt("NumSeance"),res.getInt("NumCreneau"), res.getInt("NumEns"), res.getInt("NumMatiere"), res.getInt("NumGroupe"),res.getInt("EtatSeance"));
+            }
+        }catch (Exception ex) {
+            System.out.println("SQLException: " + ex);
+        }
+        return s;
     }
     
     public void insertAllSeanceForStatiqueCreneau(StatiqueCreneau sc) {

@@ -15,7 +15,7 @@ public class Enseignant implements Serializable {
     private Long tel;
     private String iDUser;
     
-    private Set<Seance> seanceList = new HashSet<>  ();
+    private Set<Seance> seanceList = new HashSet<>();
 
     public Enseignant() {
     }
@@ -44,10 +44,6 @@ public class Enseignant implements Serializable {
         this.iDUser = id;
     }
 
-    public int getNumEnseignant(String id){
-        this.iDUser=id;
-        return numEns;
-    }
     public int getNumEns() {
         return numEns;
     }

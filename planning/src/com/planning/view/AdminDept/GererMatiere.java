@@ -5,17 +5,49 @@
  */
 package com.planning.view.AdminDept;
 
+import com.planning.dao.implement.GroupeDAO;
+import com.planning.dao.implement.MatiereDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Groupe;
+import com.planning.model.Matiere;
+import java.awt.Color;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Azough Mehdi
  */
 public class GererMatiere extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form GererEmloi
-     */
+    DefaultTableModel model = new DefaultTableModel();
+    ArrayList listemat;
+    MatiereDAO matd;
+    Connection conn = ConnexionBD.init();
+    Matiere mat;
+    
+    
     public GererMatiere() {
         initComponents();
+//        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+//        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        matd=new MatiereDAO(conn);
+        listemat = matd.FindAll();
+        model=(DefaultTableModel)tablemat.getModel();
+        model.setRowCount(0);
+        Matiere mat;
+        for(int i=0 ; i<listemat.size() ; i++){
+            mat = (Matiere)listemat.get(i);
+            model.addRow(new Object[]{mat.getNomMatiere()});
+            
+            
+            
+        }
+        tablemat.setModel(model);
     }
 
     /**
@@ -27,19 +59,13 @@ public class GererMatiere extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        ajoutermat = new javax.swing.JRadioButton();
-        nommat = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         ajouter = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listemat = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        modifiermat = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        confirmer = new javax.swing.JButton();
+        Modifier = new javax.swing.JButton();
+        supprimer = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablemat = new javax.swing.JTable();
 
-        setTitle("Gérer matières");
+        setTitle("Gestion des Matieres");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -47,118 +73,130 @@ public class GererMatiere extends javax.swing.JInternalFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Modifier une matière :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        ajoutermat.setText("Ajouter une matière");
-        ajoutermat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutermatActionPerformed(evt);
-            }
-        });
-        getContentPane().add(ajoutermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
-
-        nommat.setEnabled(false);
-        nommat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nommatActionPerformed(evt);
-            }
-        });
-        getContentPane().add(nommat, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 180, 30));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Nom matière");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
-
         ajouter.setText("Ajouter");
-        ajouter.setEnabled(false);
         ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ajouterActionPerformed(evt);
             }
         });
-        getContentPane().add(ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 110, 30));
+        getContentPane().add(ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 110, 30));
 
-        listemat.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "test1", "test2", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listemat.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listemat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listematMouseClicked(evt);
+        Modifier.setText("Modifier");
+        Modifier.setEnabled(false);
+        Modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifierActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(listemat);
+        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 120, 30));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 140, 200));
+        supprimer.setText("Supprimer");
+        supprimer.setEnabled(false);
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 120, 30));
 
-        jLabel3.setText("Liste des matières :");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        tablemat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Matière"
+            }
+        ));
+        tablemat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablematMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablemat);
 
-        modifiermat.setEnabled(false);
-        getContentPane().add(modifiermat, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 210, 30));
-
-        jLabel4.setText("Modification :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
-
-        confirmer.setText("Confirmer");
-        confirmer.setEnabled(false);
-        getContentPane().add(confirmer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 120, 30));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 200, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nommatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nommatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nommatActionPerformed
-
-    private void ajoutermatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutermatActionPerformed
-        if(ajoutermat.isSelected()){
-            ajouter.setEnabled(true);
-            nommat.setEnabled(true);
-        }
-        else{
-            ajouter.setEnabled(false);
-            nommat.setEnabled(false);
-        }
-    }//GEN-LAST:event_ajoutermatActionPerformed
-
     private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
-        
+         AjouterMat modifiermat = new AjouterMat();
+         modifiermat.setGererMatiere(this);    
+         modifiermat.setVisible(true);
            
     }//GEN-LAST:event_ajouterActionPerformed
 
-    private void listematMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listematMouseClicked
-        modifiermat.setEnabled(true);
-        modifiermat.setText("");
-        modifiermat.setText(listemat.getSelectedValue());
-        confirmer.setEnabled(true);
-        
-    }//GEN-LAST:event_listematMouseClicked
-
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        confirmer.setEnabled(false);
-        modifiermat.setText("");
-        modifiermat.setEnabled(false);
-        listemat.clearSelection();
+        Modifier.setEnabled(false);
+        supprimer.setEnabled(false);
+        tablemat.clearSelection();  
         
     }//GEN-LAST:event_formMouseClicked
 
+    private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
+        int row = tablemat.getSelectedRow();
+        String nommatiere = tablemat.getModel().getValueAt(row,0).toString();
+        AjouterMat modifiermat = new AjouterMat();
+        modifiermat.setGererMatiere(this);
+        modifiermat.setNomMatiereField(nommatiere);
+        modifiermat.setVisible(true); 
+        
+ 
+    }//GEN-LAST:event_ModifierActionPerformed
+    public void affichage(){
+         MatiereDAO matD = new MatiereDAO(conn);    
+         listemat=matD.FindAll();
+         Matiere matiere;
+         model = (DefaultTableModel) tablemat.getModel();
+         model.setRowCount(0);
+         try {
+             for(int i =0 ; i<listemat.size(); i++) {
+                matiere=(Matiere)listemat.get(i);
+                 model.addRow(new Object[] {matiere.getNomMatiere()});
+            }
+         } catch (Exception e) {
+             System.out.println("Exception in resulat: " + e);
+             return;
+         }
+         
+         tablemat.setModel(model);  
+    }
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+       int p = JOptionPane.showConfirmDialog(null,"Etes-vous sûr de sauvegarder","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(p == JOptionPane.YES_OPTION) {
+            int row = tablemat.getSelectedRow();
+            String nomMatiere = tablemat.getModel().getValueAt(row,0).toString();
+            MatiereDAO matiereD = new MatiereDAO(conn);
+            Matiere mat=null;
+            for(int i=0;i<listemat.size();i++){
+                mat=(Matiere)listemat.get(i);
+                if(nomMatiere.equals(mat.getNomMatiere())){
+                    mat=(Matiere)listemat.get(i);
+                    break;
+                }
+                   
+                }
+                
+                matiereD.delete(mat); 
+            }
+            
+                this.affichage(); 
+
+    }//GEN-LAST:event_supprimerActionPerformed
+
+    private void tablematMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablematMouseClicked
+        Modifier.setEnabled(true);
+        supprimer.setEnabled(true);
+    }//GEN-LAST:event_tablematMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Modifier;
     private javax.swing.JButton ajouter;
-    private javax.swing.JRadioButton ajoutermat;
-    private javax.swing.JButton confirmer;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listemat;
-    private javax.swing.JTextField modifiermat;
-    private javax.swing.JTextField nommat;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton supprimer;
+    private javax.swing.JTable tablemat;
     // End of variables declaration//GEN-END:variables
 }

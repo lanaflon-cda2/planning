@@ -36,9 +36,16 @@ public class TestDate {
         System.out.println(cal1.toString());
 
     }
+    
+    public static void testSplit(){
+        String s = "mqdkqf mqdfkmqld";
+        String[] t = s.split(" ");
+        System.out.println(t[0] + " " + t[1]);
+    }
 
     public static void main(String args[]) {
-        testdate();
+        testSplit();
+        //testdate();
 //       String t[][] = new String[4][4];
 //       String tab[] = new String[4];
 //       tab[1] = 20 + "";
