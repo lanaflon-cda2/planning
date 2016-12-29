@@ -64,7 +64,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 nomfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 250, 30));
+        getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 250, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Nom *");
@@ -79,8 +79,8 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 prenomfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(prenomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 250, 30));
-        getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 250, 30));
+        getContentPane().add(prenomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, 30));
+        getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 250, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("mail *");

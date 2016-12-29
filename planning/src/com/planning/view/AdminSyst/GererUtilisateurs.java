@@ -30,11 +30,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         initComponents();
         init();
     }
-   /* public int getNumEns(){
-        int row = listeutilisateur.getSelectedRow();
-        int numEns = Integer.parseInt(listeutilisateur.getModel().getValueAt(row,0).toString());
-        return numEns ;
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +44,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         listeutilisateur = new javax.swing.JTable();
         modifier = new javax.swing.JButton();
         supprimer = new javax.swing.JButton();
-        Ajouter = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setTitle("Gestion des Utilisateurs");
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,19 +92,19 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         supprimer.setEnabled(false);
         supprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Supprimer(evt);
+                Suprimer(evt);
             }
         });
         getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 130, 30));
 
-        Ajouter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Ajouter.setText("Ajouter");
-        Ajouter.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AjouterActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 130, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 130, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -162,9 +158,9 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         ajouter.setTitle("Ajout d'un utilisateur");
         ajouter.getGererUtili(this);
         ajouter.setVisible(true);
-    }//GEN-LAST:event_AjouterActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void Supprimer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Supprimer
+    private void Suprimer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Suprimer
         // TODO add your handling code here:
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
@@ -172,8 +168,6 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         int row = listeutilisateur.getSelectedRow();
         String id =listeutilisateur.getModel().getValueAt(row,4).toString();
         
-        
-        Enseignant ens = new Enseignant(numeroEns, nom, prenom, mail, tel, id);
         Users user = new Users(id);
         Enseignant enseignant = enseignantDAO.findByIDUser(id);
         //System.out.println(enseignant.getNumEns());
@@ -202,28 +196,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-        UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-        
-        int row = listeutilisateur.getSelectedRow();
-        int numeroEns = Integer.parseInt(listeutilisateur.getModel().getValueAt(row,0).toString());
-        String nom =listeutilisateur.getModel().getValueAt(row,1).toString();
-        String prenom =listeutilisateur.getModel().getValueAt(row,2).toString();
-        String mail =listeutilisateur.getModel().getValueAt(row,3).toString();
-        String tel =listeutilisateur.getModel().getValueAt(row,4).toString() ;
-        String id =listeutilisateur.getModel().getValueAt(row,5).toString();
-        
-        
-        Enseignant ens = new Enseignant(numeroEns, nom, prenom, mail, tel, id);
-        Users user = new Users(id);
-        Enseignant enseignant = enseignantDAO.findByIDUser(id);
-        //System.out.println(enseignant.getNumEns());
-        usersDAO.delete(user);
-        enseignantDAO.delete(ens);
-        
-        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
-        
-        UpdateTable();
+       
         
     }                                         
 
