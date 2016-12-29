@@ -5,7 +5,6 @@ import com.planning.model.Matiere;
 import com.planning.model.Seance;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,8 +48,7 @@ public class MatiereDAO extends DAO<Matiere> {
     public boolean update(Matiere obj){
         try {
             this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Matiere SET "
-                    +" NomMatiere = " + obj.getNomMatiere()+ ",'"
-                                            + " WHERE NumMatiere = '" + obj.getNumMatiere());
+                    +" NomMatiere = '" + obj.getNomMatiere()+ "' WHERE NumMatiere = " + obj.getNumMatiere());
 
 	}
         catch (SQLException e) {
