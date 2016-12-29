@@ -13,13 +13,14 @@ import com.planning.dao.implement.SeanceDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
+import com.planning.model.Matiere;
 import com.planning.model.Seance;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,6 +38,16 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private Connection con=ConnexionBD.init();
     private DefaultTableModel model;
     private AcceuilEnseignant ae;
+    
+    public void infoSeance(int numseance){
+        Seance seance = new Seance(numseance);
+        Matiere matiere = new Matiere(seance.getNumMatiere());
+        this.jPanel1.JTextField1.setText(matiere.getNomMatiere());
+        this.jPanel1.JTextField2.setText(seance.get)
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
     
     public void setAE(AcceuilEnseignant ae){
         this.ae = ae;
