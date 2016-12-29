@@ -9,6 +9,7 @@ import com.planning.controler.ConsulterEMP;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
+import com.planning.model.Seance;
 import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.sql.Date;
@@ -648,7 +649,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Vivaldi", 2, 48)); // NOI18N
         jLabel1.setText("Emploi");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 80));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -660,7 +661,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     
     private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
         numpan = 1;
-        System.out.println("jpanel 1");
         l8.setBackground(Color.gray);
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -1204,63 +1204,123 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         switch(numpan){
             case 1: 
                 this.srat.setnumseance(emp[0][0]);
+                this.l8.setBackground(Color.red);
+                /*Seance seance1 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance1);*/
                 break;
             case 2: 
                 this.srat.setnumseance(emp[0][1]);
+                this.l10.setBackground(Color.red);
+                /*Seance seance2 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance2);*/
                 break;
             case 3: 
                 this.srat.setnumseance(emp[0][2]);
+                this.l14.setBackground(Color.red);
+                /*Seance seance3 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance3);*/
                 break;
             case 4: 
                 this.srat.setnumseance(emp[0][3]);
+                this.l16.setBackground(Color.red);
+                /*Seance seance4 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance4);*/
                 break;
             case 5: 
                 this.srat.setnumseance(emp[1][0]);
+                this.ma8.setBackground(Color.red);
+                /*Seance seance5 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance5);*/
                 break;
             case 6: 
                 this.srat.setnumseance(emp[1][1]);
+                this.ma10.setBackground(Color.red);
+                /*Seance seance6 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance6);*/
                 break;
             case 7: 
                 this.srat.setnumseance(emp[1][2]);
+                this.ma14.setBackground(Color.red);
+                /*Seance seance7 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance7);*/
                 break;
             case 8: 
                 this.srat.setnumseance(emp[1][3]);
+                this.ma16.setBackground(Color.red);
+                /*Seance seance8 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance8);*/
                 break;
             case 9: 
                 this.srat.setnumseance(emp[2][0]);
+                this.me8.setBackground(Color.red);
+                /*Seance seance9 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance9);*/
                 break;
             case 10: 
                 this.srat.setnumseance(emp[2][1]);
+                this.me10.setBackground(Color.red);
+                /*Seance seance10 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance10);*/
                 break;
             case 11: 
                 this.srat.setnumseance(emp[2][2]);
+                this.me14.setBackground(Color.red);
+                /*Seance seance11 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance11);*/
                 break;
             case 12: 
                 this.srat.setnumseance(emp[2][3]);
+                this.me16.setBackground(Color.red);
+                /*Seance seance12 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance12);*/
                 break;
             case 13: 
                 this.srat.setnumseance(emp[3][0]);
+                this.j8.setBackground(Color.red);
+                /*Seance seance13 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance13);*/
                 break;
             case 14: 
                 this.srat.setnumseance(emp[3][1]);
+                this.j10.setBackground(Color.red);
+                /*Seance seance14 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance14);*/
                 break;
             case 15: 
                 this.srat.setnumseance(emp[3][2]);
+                this.j14.setBackground(Color.red);
+                /*Seance seance15 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance15);*/
                 break;
             case 16: 
                 this.srat.setnumseance(emp[3][3]);
+                this.j16.setBackground(Color.red);
+                /*Seance seance16 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance16);*/
                 break;
             case 17: 
                 this.srat.setnumseance(emp[4][0]);
+                this.v8.setBackground(Color.red);
+                /*Seance seance17 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance17);*/
                 break;
             case 18: 
                 this.srat.setnumseance(emp[4][1]);
+                this.v10.setBackground(Color.red);
+                /*Seance seance18 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance18);*/
                 break;
             case 19: 
                 this.srat.setnumseance(emp[4][2]);
+                this.v14.setBackground(Color.red);
+                /*Seance seance19 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance19);*/
                 break;
             case 20: 
                 this.srat.setnumseance(emp[4][3]);
+                this.v16.setBackground(Color.red);
+                /*Seance seance20 = new Seance(srat.getnumseance());
+                srat.addRattrapage(seance20);*/
                 break;
             default:
                 srat = null;

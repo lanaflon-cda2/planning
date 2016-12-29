@@ -5,7 +5,6 @@ import com.planning.model.Matiere;
 import com.planning.model.Seance;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,7 +22,7 @@ public class MatiereDAO extends DAO<Matiere> {
     public boolean create(Matiere obj) {
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "INSERT INTO matiere VALUES (NULL, '";
+            query = "INSERT INTO Matiere VALUES (NULL, '";
             query += obj.getNomMatiere() + "')";
             int numMatiere = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             obj.setNumMatiere(numMatiere);
@@ -38,7 +37,7 @@ public class MatiereDAO extends DAO<Matiere> {
     @Override
     public boolean delete(Matiere obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM MATIERE WHERE NumMatiere = " + obj.getNumMatiere());
+            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Matiere WHERE NumMatiere = " + obj.getNumMatiere());
         } 
         catch (SQLException e) {
         }
@@ -48,9 +47,8 @@ public class MatiereDAO extends DAO<Matiere> {
     @Override
     public boolean update(Matiere obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE MATIERE SET "
-                    +" NomMatiere = " + obj.getNomMatiere()+ ",'"
-                                            + " WHERE NumMatiere = '" + obj.getNumMatiere());
+            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Matiere SET "
+                    +" NomMatiere = '" + obj.getNomMatiere()+ "' WHERE NumMatiere = " + obj.getNumMatiere());
 
 	}
         catch (SQLException e) {
@@ -93,7 +91,7 @@ public class MatiereDAO extends DAO<Matiere> {
         ArrayList listematiere=null;
         try{
             state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "Select * from matiere";
+            query = "Select * from Matiere";
             res = state.executeQuery(query);
             while(res.next()){
                 if(listematiere==null) listematiere = new ArrayList();

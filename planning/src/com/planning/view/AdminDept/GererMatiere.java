@@ -31,17 +31,17 @@ public class GererMatiere extends javax.swing.JInternalFrame {
     
     public GererMatiere() {
         initComponents();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
-        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+//        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+//        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.getContentPane().setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         matd=new MatiereDAO(conn);
-        listemat=matd.FindAll();
+        listemat = matd.FindAll();
         model=(DefaultTableModel)tablemat.getModel();
         model.setRowCount(0);
         Matiere mat;
         for(int i=0 ; i<listemat.size() ; i++){
-            mat=(Matiere)listemat.get(i);
+            mat = (Matiere)listemat.get(i);
             model.addRow(new Object[]{mat.getNomMatiere()});
             
             
@@ -59,14 +59,13 @@ public class GererMatiere extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         ajouter = new javax.swing.JButton();
         Modifier = new javax.swing.JButton();
         supprimer = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablemat = new javax.swing.JTable();
 
-        setTitle("Gérer matières");
+        setTitle("Gestion des Matieres");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -74,17 +73,13 @@ public class GererMatiere extends javax.swing.JInternalFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Modifier une matière :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         ajouter.setText("Ajouter");
         ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ajouterActionPerformed(evt);
             }
         });
-        getContentPane().add(ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 110, 30));
+        getContentPane().add(ajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 110, 30));
 
         Modifier.setText("Modifier");
         Modifier.setEnabled(false);
@@ -93,7 +88,7 @@ public class GererMatiere extends javax.swing.JInternalFrame {
                 ModifierActionPerformed(evt);
             }
         });
-        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 120, 30));
+        getContentPane().add(Modifier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, 30));
 
         supprimer.setText("Supprimer");
         supprimer.setEnabled(false);
@@ -102,7 +97,7 @@ public class GererMatiere extends javax.swing.JInternalFrame {
                 supprimerActionPerformed(evt);
             }
         });
-        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 120, 30));
+        getContentPane().add(supprimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 120, 30));
 
         tablemat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,15 +116,16 @@ public class GererMatiere extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablemat);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 200, 380));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 380));
 
-        pack();
+        setBounds(0, 0, 810, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
-         AjouterMat modifiermat = new AjouterMat();
-         modifiermat.setGererMatiere(this);    
-         modifiermat.setVisible(true);
+         AjouterMat ajouter = new AjouterMat();
+         ajouter.setTitle("Ajouter une matiere");
+         ajouter.setGererMatiere(this);    
+         ajouter.setVisible(true);
            
     }//GEN-LAST:event_ajouterActionPerformed
 
@@ -143,8 +139,17 @@ public class GererMatiere extends javax.swing.JInternalFrame {
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
         int row = tablemat.getSelectedRow();
         String nommatiere = tablemat.getModel().getValueAt(row,0).toString();
+        Matiere matiere = null;
+        for (int i = 0; i < listemat.size(); i++) {
+            matiere = (Matiere) listemat.get(i);
+            if(nommatiere.equals(matiere.getNomMatiere())) {
+                break;
+            }
+        }
         AjouterMat modifiermat = new AjouterMat();
+        modifiermat.setTitle("Modifier la matiere");
         modifiermat.setGererMatiere(this);
+        modifiermat.setOldMat(matiere.getNumMatiere());
         modifiermat.setNomMatiereField(nommatiere);
         modifiermat.setVisible(true); 
         
@@ -200,7 +205,6 @@ public class GererMatiere extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modifier;
     private javax.swing.JButton ajouter;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton supprimer;
     private javax.swing.JTable tablemat;
