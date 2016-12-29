@@ -92,7 +92,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
                 utilisateursActionPerformed(evt);
             }
         });
-        getContentPane().add(utilisateurs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 190, 110));
+        getContentPane().add(utilisateurs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 190, 110));
 
         photo.setForeground(new java.awt.Color(255, 255, 255));
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,7 +111,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 60, 100, -1));
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/images/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
         pack();
@@ -139,7 +139,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
 
     private void utilisateursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateursActionPerformed
         GererUtilisateurs gu = new GererUtilisateurs();
-        gu.UpdateTable();
+        gu.updateTable();
         utilisateurs.setBackground(java.awt.SystemColor.activeCaption);
         
         

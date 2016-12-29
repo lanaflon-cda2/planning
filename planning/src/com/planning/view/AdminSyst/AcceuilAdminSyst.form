@@ -97,7 +97,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="240" width="190" height="110"/>
+          <AbsoluteConstraints x="0" y="130" width="190" height="110"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -139,7 +139,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/planning/images/AcceuilBG.png"/>
+          <Image iconType="3" name="/com/planning/view/AdminDept/AcceuilBG.png"/>
         </Property>
       </Properties>
       <Constraints>

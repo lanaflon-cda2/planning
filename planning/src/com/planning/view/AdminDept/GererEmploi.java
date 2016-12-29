@@ -5,7 +5,19 @@
  */
 package com.planning.view.AdminDept;
 
+import com.planning.dao.implement.FiliereDAO;
+import com.planning.dao.implement.GroupeDAO;
+import com.planning.model.ConnexionBD;
+import com.planning.model.Filiere;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -13,11 +25,34 @@ import java.awt.Color;
  */
 public class GererEmploi extends javax.swing.JInternalFrame {
 
-    /**
+    FiliereDAO filD;
+    ArrayList  listefil;
+    ResultSet res;
+    Filiere fil;
+    GroupeDAO groupedao;
+    Connection conn = ConnexionBD.init();/**
      * Creates new form GererEmloi
      */
     public GererEmploi() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+         filD = new FiliereDAO(conn);
+         groupedao = new GroupeDAO(conn);
+        listefil=filD.findAll();
+        for (int i = 0; i < listefil.size(); i++) {
+            
+            fil = (Filiere)listefil.get(i);
+            filierecombo.addItem(fil.getNomFiliere());
+            
+        }
+        res= groupedao.findALL();
+        groupecombo.removeAllItems();
+        
+        
+        
     }
 
     /**
@@ -67,6 +102,13 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         v16 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        groupecombo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        filierecombo = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        niveaucombo = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setTitle("Gérer Emplois");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,7 +121,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel2.setText("LUNDI");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 130, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 130, 80));
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -89,7 +131,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel3.setText("MARDI");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 130, 80));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 130, 80));
 
         jPanel3.setBackground(new java.awt.Color(102, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -99,7 +141,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel4.setText("MERCREDI");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 130, 80));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 130, 80));
 
         jPanel4.setBackground(new java.awt.Color(102, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -109,7 +151,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel5.setText("JEUDI");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 130, 80));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 130, 80));
 
         jPanel5.setBackground(new java.awt.Color(102, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -119,7 +161,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel6.setText("VENDREDI");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 130, 80));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 80));
 
         jPanel6.setBackground(new java.awt.Color(102, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -129,7 +171,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel7.setText("8h-10h");
         jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 140, 60));
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 140, 60));
 
         jPanel8.setBackground(new java.awt.Color(102, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -139,7 +181,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel9.setText("14h-16h");
         jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 150, 60));
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 150, 60));
 
         jPanel9.setBackground(new java.awt.Color(102, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -149,7 +191,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel10.setText("16h-18h");
         jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 150, 60));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 150, 60));
 
         l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -161,7 +203,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 l8MouseEntered(evt);
             }
         });
-        getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 140, 80));
+        getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 140, 80));
 
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -170,7 +212,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 l10MouseClicked(evt);
             }
         });
-        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 150, 80));
+        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 150, 80));
 
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -179,7 +221,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 l16MouseClicked(evt);
             }
         });
-        getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 150, 80));
+        getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 150, 80));
 
         l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -188,7 +230,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 l14MouseClicked(evt);
             }
         });
-        getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 150, 80));
+        getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 150, 80));
 
         ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -197,7 +239,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 ma8MouseClicked(evt);
             }
         });
-        getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 140, 80));
+        getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 140, 80));
 
         ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -206,7 +248,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 ma10MouseClicked(evt);
             }
         });
-        getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 150, 80));
+        getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 150, 80));
 
         ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -215,7 +257,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 ma14MouseClicked(evt);
             }
         });
-        getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 150, 80));
+        getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 150, 80));
 
         ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         ma16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -224,7 +266,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 ma16MouseClicked(evt);
             }
         });
-        getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 150, 80));
+        getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 150, 80));
 
         j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -233,7 +275,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 j8MouseClicked(evt);
             }
         });
-        getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 140, 80));
+        getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 140, 80));
 
         me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -242,7 +284,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 me8MouseClicked(evt);
             }
         });
-        getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 140, 80));
+        getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 140, 80));
 
         me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -251,7 +293,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 me10MouseClicked(evt);
             }
         });
-        getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 150, 80));
+        getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 150, 80));
 
         j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -260,7 +302,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 j10MouseClicked(evt);
             }
         });
-        getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 150, 80));
+        getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 150, 80));
 
         j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -269,7 +311,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 j14MouseClicked(evt);
             }
         });
-        getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 150, 80));
+        getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 150, 80));
 
         me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -278,7 +320,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 me14MouseClicked(evt);
             }
         });
-        getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 150, 80));
+        getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 150, 80));
 
         me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         me16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -287,7 +329,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 me16MouseClicked(evt);
             }
         });
-        getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, 150, 80));
+        getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 150, 80));
 
         j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         j16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -296,7 +338,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 j16MouseClicked(evt);
             }
         });
-        getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 150, 80));
+        getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 150, 80));
 
         v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -305,7 +347,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 v8MouseClicked(evt);
             }
         });
-        getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 140, 80));
+        getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, 140, 80));
 
         v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -314,7 +356,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 v10MouseClicked(evt);
             }
         });
-        getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 150, 80));
+        getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 150, 80));
 
         v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -323,7 +365,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 v14MouseClicked(evt);
             }
         });
-        getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, 150, 80));
+        getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, 150, 80));
 
         v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -332,7 +374,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 v16MouseClicked(evt);
             }
         });
-        getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 150, 80));
+        getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 150, 80));
 
         jPanel7.setBackground(new java.awt.Color(102, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -342,7 +384,46 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel8.setText("10h-12h");
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 150, 60));
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 150, 60));
+
+        groupecombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groupecomboActionPerformed(evt);
+            }
+        });
+        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 90, 30));
+
+        jLabel1.setText("Filière");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+
+        filierecombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                filierecomboItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 110, 30));
+
+        jLabel11.setText("Niveau");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+
+        niveaucombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        niveaucombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                niveaucomboItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 90, 30));
+
+        jLabel12.setText("Groupe");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
+
+        jButton1.setText("Définir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -813,13 +894,65 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
     }//GEN-LAST:event_v16MouseClicked
 
+    private void groupecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupecomboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_groupecomboActionPerformed
+
+    private void filierecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filierecomboItemStateChanged
+      res = groupedao.findALL();
+      String etat = (String)filierecombo.getSelectedItem();
+      int niveau = niveaucombo.getSelectedIndex()+1;
+      groupecombo.removeAllItems();
+        try {
+            while(res.next()){
+                
+                if(etat.equals(res.getString(4))&&(niveau==res.getInt(5))){
+                    groupecombo.addItem(res.getString(2));
+                    System.out.println(res.getString(2));
+                }
+                
+                    
+            } } catch (SQLException ex) {
+            Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_filierecomboItemStateChanged
+
+    private void niveaucomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_niveaucomboItemStateChanged
+      res = groupedao.findALL();
+      String etat = (String)filierecombo.getSelectedItem();
+      int niveau = niveaucombo.getSelectedIndex()+1;
+      groupecombo.removeAllItems();
+        try {
+           
+            while(res.next()){            
+                if(etat.equals(res.getString(4))&&(niveau==res.getInt(5))){
+                    groupecombo.addItem(res.getString(2));
+                    System.out.println(res.getString(2));
+                }
+                
+                    
+            } } catch (SQLException ex) {
+            Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_niveaucomboItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new AjouterSeance().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> filierecombo;
+    private javax.swing.JComboBox<String> groupecombo;
     private javax.swing.JPanel j10;
     private javax.swing.JPanel j14;
     private javax.swing.JPanel j16;
     private javax.swing.JPanel j8;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -849,6 +982,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JPanel me14;
     private javax.swing.JPanel me16;
     private javax.swing.JPanel me8;
+    private javax.swing.JComboBox<String> niveaucombo;
     private javax.swing.JPanel v10;
     private javax.swing.JPanel v14;
     private javax.swing.JPanel v16;

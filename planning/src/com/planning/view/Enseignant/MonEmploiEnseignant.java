@@ -36,7 +36,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         this.initEmp();
     }
 
@@ -273,6 +274,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         l10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l10.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -290,6 +293,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         l16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l16.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -306,6 +311,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         l14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l14.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -322,6 +329,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -338,6 +347,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -355,6 +366,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma14.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -371,6 +384,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         ma16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma16.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -387,6 +402,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         j8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -403,6 +420,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -419,6 +438,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me10.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -435,6 +456,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         j10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -476,6 +499,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me14.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -492,6 +517,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         me16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me16.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -508,6 +535,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         j16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j16.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -524,6 +553,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         v8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -540,6 +571,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         v10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v10.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -556,6 +589,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         v14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v14.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -1229,16 +1264,20 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 break;
             default:
                 srat = null;
-                JOptionPane.showMessageDialog(this, "Veuillez selectionner une seance sur l'emploi du temps!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Selectionnez une seance!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
                 return;    
         }
         
-        System.out.println("numseance selected " + srat.getNumSeance());
+        if(srat.getNumSeance() == 0) {
+            JOptionPane.showMessageDialog(this, "Selectionnez une seance valide!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         this.ae.desktop.removeAll();
         this.ae.desktop.repaint();
-        
-        this.ae.desktop.add(this.srat);
         this.srat.setAE(ae);
+        this.srat.setMonEmp(this);
+        this.ae.desktop.add(this.srat);
+        
         try {
             this.srat.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -1312,8 +1351,71 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }
     
     int[][] emp = new int[5][4];
+    public void resetEMP() {
+        l8text.setText(null);
+            jLabel32.setText(null);
+
+            jLabel13.setText(null);
+            jLabel33.setText(null);
+
+            jLabel14.setText(null);
+            jLabel34.setText(null);
+
+            jLabel15.setText(null);
+            jLabel35.setText(null);
+
+            jLabel16.setText(null);
+            jLabel36.setText(null);
+
+            jLabel17.setText(null);
+            jLabel37.setText(null);
+
+            jLabel18.setText(null);
+            jLabel38.setText(null);
+
+            jLabel19.setText(null);
+            jLabel39.setText(null);
+
+            jLabel20.setText(null);
+            jLabel40.setText(null);
+
+            jLabel21.setText(null);
+            jLabel41.setText(null);
+
+            jLabel22.setText(null);
+            jLabel42.setText(null);
+
+            jLabel23.setText(null);
+            jLabel43.setText(null);
+
+            jLabel24.setText(null);
+            jLabel44.setText(null);
+
+            jLabel25.setText(null);
+            jLabel45.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel28.setText(null);
+            jLabel48.setText(null);
+
+            jLabel29.setText(null);
+            jLabel49.setText(null);
+ 
+    }
     
     public void getEmp(Date dd, Date df){
+        this.resetEMP();
         ConsulterEMP ce = new ConsulterEMP();
         ArrayList listGrpMat = ce.getGrpMat(this.numEns, dd, df);
         String[] strings;
@@ -1464,68 +1566,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         }
         
         if(listGrpMat.size() == 0) {
-
-            l8text.setText(null);
-            jLabel32.setText(null);
-
-            jLabel13.setText(null);
-            jLabel33.setText(null);
-
-            jLabel14.setText(null);
-            jLabel34.setText(null);
-
-            jLabel15.setText(null);
-            jLabel35.setText(null);
-
-            jLabel16.setText(null);
-            jLabel36.setText(null);
-
-            jLabel17.setText(null);
-            jLabel37.setText(null);
-
-            jLabel18.setText(null);
-            jLabel38.setText(null);
-
-            jLabel19.setText(null);
-            jLabel39.setText(null);
-
-            jLabel20.setText(null);
-            jLabel40.setText(null);
-
-            jLabel21.setText(null);
-            jLabel41.setText(null);
-
-            jLabel22.setText(null);
-            jLabel42.setText(null);
-
-            jLabel23.setText(null);
-            jLabel43.setText(null);
-
-            jLabel24.setText(null);
-            jLabel44.setText(null);
-
-            jLabel25.setText(null);
-            jLabel45.setText(null);
-
-            jLabel26.setText(null);
-            jLabel46.setText(null);
-
-            jLabel27.setText(null);
-            jLabel47.setText(null);
-
-            jLabel26.setText(null);
-            jLabel46.setText(null);
-
-            jLabel27.setText(null);
-            jLabel47.setText(null);
-
-            jLabel28.setText(null);
-            jLabel48.setText(null);
-
-            jLabel29.setText(null);
-            jLabel49.setText(null);
- 
-            
+              this.resetEMP();
         }
         
         
