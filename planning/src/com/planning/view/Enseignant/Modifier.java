@@ -26,7 +26,7 @@ public class Modifier extends javax.swing.JFrame {
     private AcceuilEnseignant ae;
     String iduser;
     
-    public void getGererUtili(MonCompteEnseignant mce){
+    public void setGererUtili(MonCompteEnseignant mce){
         this.monCompteEnseignant = mce;
     }
     
@@ -34,18 +34,20 @@ public class Modifier extends javax.swing.JFrame {
     public void setIDUserMod(String id){
         this.iduser = id;
         System.out.println(this.iduser);
-        idfield.setText(iduser);
-    }
-    
-    public Modifier() {
-        initComponents();
+        idfield.setText(this.iduser);
+        
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         Enseignant ens = enseignantDAO.findByIDUser(idfield.getText());
         
         nomfield.setText(ens.getNomEns());
         prenomfield.setText(ens.getPrenomEns());
         mailfield.setText(ens.getMail());
-        telfield.setText(ens.getTel());
+        telfield.setText(String.valueOf(ens.getTel()));
+    }
+    
+    public Modifier() {
+        initComponents();
+        
     }
 
     /**
@@ -57,7 +59,6 @@ public class Modifier extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         nomfield = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -74,10 +75,6 @@ public class Modifier extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Modifier profil");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         nomfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,17 +109,16 @@ public class Modifier extends javax.swing.JFrame {
         getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
 
         idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        idfield.setEnabled(false);
         idfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 220, 30));
+        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 250, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Saisir l'identifiant de l'utilisateur");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+        jLabel8.setText("ID");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         Enregistrer.setText("Enregistrer");
         Enregistrer.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +126,7 @@ public class Modifier extends javax.swing.JFrame {
                 EnregistrerActionPerformed(evt);
             }
         });
-        getContentPane().add(Enregistrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 120, 30));
+        getContentPane().add(Enregistrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 120, 30));
 
         Annuler.setText("Annuler");
         Annuler.setToolTipText("");
@@ -139,7 +135,7 @@ public class Modifier extends javax.swing.JFrame {
                 AnnulerActionPerformed(evt);
             }
         });
-        getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 120, 30));
+        getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 120, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -160,30 +156,41 @@ public class Modifier extends javax.swing.JFrame {
     
     private void EnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnregistrerActionPerformed
         // TODO add your handling code here:
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur des modifications apportée?","Enregistrer",JOptionPane.YES_NO_OPTION);
-        if (p==0){
+        String nom = nomfield.getText();
+        String prenom = prenomfield.getText();
+        String mail = mailfield.getText();
+        String tel = telfield.getText();
+        String id = idfield.getText();
+        
+        if(nom.equals("") || prenom.equals("") || tel.equals("") || id.equals("")) {
+            JOptionPane.showMessageDialog(null, "Remplissez les champs vides!", "Modification de profil", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        } 
+        
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur des modifications apportée?","Modification de profil", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        
+        if (p == JOptionPane.YES_OPTION){
+            String mdp = id + "emi";
             UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
             EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-        
-            String nom = new String(nomfield.getText());
-            String prenom = new String(prenomfield.getText());
-            String mail = new String(mailfield.getText());
-            String tel = new String(telfield.getText());
-            String id = new String(idfield.getText());
-            String mdp = new String(nomfield.getText()+"EMI");
-       
-            Users user = new Users(id,mdp);
-            Enseignant enseignant = new Enseignant(nom,prenom,mail,tel,id);
-            Enseignant ens = enseignantDAO.findByIDUser(id);
-            System.out.println(ens.getNumEns());
-            enseignant.setNumEns(ens.getNumEns());
-            usersDAO.update(user);
-            enseignantDAO.update(enseignant);
+            Enseignant ens = enseignantDAO.findByIDUser(this.iduser);    
+            ens.setNomEns(nom);
+            ens.setPrenomEns(prenom);
+            ens.setMail(mail);
+            ens.setTel(Long.valueOf(tel));
+            enseignantDAO.update(ens);
+           
+            usersDAO.update(new Users(this.iduser), new Users(id, mdp));
+            
             JOptionPane.showMessageDialog(null,"Enseignant modifié avec succès");
+            this.monCompteEnseignant.setEns(ens);
+            this.dispose();
+            
+        } else if(p == JOptionPane.NO_OPTION) this.dispose();
         
-            dispose();
+        else {
+            
         }
-        
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
@@ -234,7 +241,6 @@ public class Modifier extends javax.swing.JFrame {
     private javax.swing.JButton Annuler;
     private javax.swing.JButton Enregistrer;
     public javax.swing.JTextField idfield;
-    public javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

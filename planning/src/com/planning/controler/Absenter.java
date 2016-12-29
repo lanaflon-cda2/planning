@@ -84,13 +84,13 @@ public class Absenter {
             }
         }
         
-        try {
-            res.close();
-            state.close();
-            con.close();
-        } catch(SQLException e){
-            System.out.println("SQLException: " + e);
-        }
+//        try {
+//            res.close();
+//            state.close();
+//            con.close();
+//        } catch(SQLException e){
+//            System.out.println("SQLException: " + e);
+//        }
         
     }
             

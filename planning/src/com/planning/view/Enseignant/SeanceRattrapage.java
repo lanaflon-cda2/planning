@@ -9,18 +9,22 @@ import com.planning.controler.Absenter;
 import com.planning.controler.Permut;
 import com.planning.dao.implement.CreneauDAO;
 import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.MatiereDAO;
 import com.planning.dao.implement.SeanceDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
 import com.planning.model.Matiere;
 import com.planning.model.Seance;
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,26 +42,42 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private Connection con=ConnexionBD.init();
     private DefaultTableModel model;
     private AcceuilEnseignant ae;
+    private MonEmploiEnseignant monemp;
+    private ArrayList listecrenovide;
+    private ArrayList listepermut;
+    private Seance seance;
     
     public void infoSeance(int numseance){
-        Seance seance = new Seance(numseance);
+        int num = numseance;
+        
+        SeanceDAO seancedao = new SeanceDAO(con);
+//        MatiereDAO matieredao = new MatiereDAO(con);
+//        CreneauDAO creneaudao = new CreneauDAO(con);
+               
+        Seance seance = seancedao.find(num);
         Matiere matiere = new Matiere(seance.getNumMatiere());
-        this.jPanel1.JTextField1.setText(matiere.getNomMatiere());
-        this.jPanel1.JTextField2.setText(seance.get)
-
-    public JTextField getjTextField1() {
-        return jTextField1;
+        Creneau creno = new Creneau(seance.getNumCreneau());
+        
+        this.jLabel9.setText(matiere.getNomMatiere());
+        this.jLabel10.setText(creno.getDateCreneau().toString());
+        this.jLabel11.setText(creno.getHeureCreneau().toString());
     }
     
+        
+    public void setMonEmp(MonEmploiEnseignant monemp) {
+        this.monemp = monemp;
+    }
     public void setAE(AcceuilEnseignant ae){
         this.ae = ae;
         this.ae.setSeanceRattrapage(this);
     }
     public void setnumseance(int i){
+
         this.numseance = i;
+        if(this.numseance == 0) return;
+        
         SeanceDAO seanceDAO = new SeanceDAO(con);
-        Seance seance = seanceDAO.find(this.numseance);
-        //this.getRattrapage(seance);
+        seance = seanceDAO.find(this.numseance);
         this.getRattrapage(seance);
     }
     
@@ -69,6 +89,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         Creneau obj;
         EnseignantDAO edao = new EnseignantDAO(con);
         Enseignant ens;
+        int numEnsX;
         model = (DefaultTableModel) listeratt.getModel();
         model.setRowCount(0);
         Object[] objet;
@@ -77,11 +98,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         Absenter absenter = new Absenter(seance);
         ArrayList creno = absenter.getCreneauxMatchEnsGroupe();
         if(creno != null) {
-            System.out.println("Les creneaux trouvés sont: ");
+            listecrenovide = new ArrayList();
             for(int i = 0; i < creno.size(); i++) {
                 obj = creneauDAO.find((int) creno.get(i));
-                System.out.println("numCreneau " + obj.getNumCreneau() + " " + this.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
-                objet = new Object[] {obj.getDateCreneau().toString() + " " + this.getDateName(obj.getDateCreneau()), obj.getHeureCreneau(), ""};
+                listecrenovide.add(new Object[]{obj.getNumCreneau(), obj.getDateCreneau().toString(), obj.getHeureCreneau().toString()});
+                objet = new Object[] {obj.getDateCreneau().toString() + " " + this.getDateName(obj.getDateCreneau()), obj.getHeureCreneau().toString(), ""};
                 model.addRow(objet);
             }
             
@@ -94,18 +115,18 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         
         if(permut != null) {
             Permut x;
-             
+            listepermut = new ArrayList();
             for(int j = 0; j < permut.size(); j++) {
 
                 x = (Permut) permut.get(j);
-                int numEnsX = x.getNumEns();
+                numEnsX = x.getNumEns();
                 ens = edao.find(numEnsX);
-                System.out.println("Le professeur de numero " + numEnsX + " et de nom " + ens.getNomEns() + "peut offrir les créneaux suivants: ");
+               
                 ArrayList listCreneauEnsX = x.getCreneaux();
                 for(int k = 0; k < listCreneauEnsX.size(); k++){
                     obj = creneauDAO.find((int) listCreneauEnsX.get(k));
-                    System.out.println("numCreneau " + obj.getNumCreneau() + " " + this.getDateName(obj.getDateCreneau())+ " " + obj.getDateCreneau() + " " + obj.getHeureCreneau());
-                    objet = new Object[] {obj.getDateCreneau().toString() + " " + this.getDateName(obj.getDateCreneau()), obj.getHeureCreneau(), ens.getNomEns()};
+                    listepermut.add(new Object[]{ens.getNumEns(), ens.getNomEns(), obj.getNumCreneau(), obj.getDateCreneau().toString(), obj.getHeureCreneau().toString()});
+                    objet = new Object[] {obj.getDateCreneau().toString() + " " + this.getDateName(obj.getDateCreneau()), obj.getHeureCreneau().toString(), ens.getNomEns()};
                     model.addRow(objet);
                 }
 
@@ -116,7 +137,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         listeratt.setModel(model);
     }
     
-    public static String getDateName(Date d){
+    public String getDateName(Date d){
         
         Calendar cal = Calendar.getInstance();
         cal.setTime(d);
@@ -141,8 +162,6 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     }
     public SeanceRattrapage(){
         initComponents();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
-        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         init();
     }
 
@@ -165,9 +184,9 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -176,14 +195,10 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("seances rattrapage");
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("Matière");
@@ -195,40 +210,36 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel5.setText("Heure");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jTextField1.setText("jTextField1");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 130, -1));
+        jLabel9.setText("jLabel9");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 120, 20));
 
-        jTextField2.setText("jTextField2");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 130, 20));
+        jLabel10.setText("jLabel10");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 20));
 
-        jTextField3.setText("jTextField3");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, 20));
+        jLabel11.setText("jLabel11");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 210, 120));
 
         jButton1.setText("Confirmer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 140, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Veuillez selectionner un créneau convenable :");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Séance à reporter");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
-        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                list_clicked_confirmer(evt);
-            }
-        });
-
         listeratt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "DateSeance", "HeureSeance", "Enseignant"
@@ -241,30 +252,82 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void list_clicked_confirmer(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_clicked_confirmer
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jButton1.setEnabled(true);
-    }//GEN-LAST:event_list_clicked_confirmer
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        // TODO add your handling code here:
-        listeratt.clearSelection();
-        jButton1.setEnabled(false);
-    }//GEN-LAST:event_formMouseClicked
+//        try {
+//            con.setAutoCommit(false);
+//        } catch (Exception ex) {
+//            System.out.println("Setting auto commit to false failed: " + ex);
+//            return;
+//        }
+        
+        
+        Seance newseance1, newseance2, seanceoffert;
+        SeanceDAO sd = new SeanceDAO(con);
+        model = (DefaultTableModel) listeratt.getModel();
+        Object[] obj;
+        int row = listeratt.getSelectedRow();
+        if(row == -1) {
+            JOptionPane.showMessageDialog(this, "Selectionnez un creneau valide!", "Seance de Rattrapages", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String dateSeanceNom = (String) model.getValueAt(row, 0);
+        
+        String dateSeance = dateSeanceNom.split(" ")[0];
+        String heureSeance = (String) model.getValueAt(row, 1);
+        String nomEns = (String) model.getValueAt(row, 2);
+        if(!nomEns.equals("")) {
+            for(int i = 0; i < listepermut.size(); i++){
+               obj = (Object[]) listepermut.get(i);
+               if(((String) obj[3]).equals(dateSeance) && ((String) obj[4]).equals(heureSeance) && ((String) obj[1]).equals(nomEns)){
+                   sd.delete(seance);
+                   seanceoffert = sd.getSeanceByFields((int)obj[2], (int)obj[0], seance.getNumGroupe(), 1);
+                   sd.delete(seanceoffert);
+                   newseance1 = new Seance(1000, (int)obj[2], seance.getNumEns(), seance.getNumMatiere(), seance.getNumGroupe(), 1);
+                   sd.create(newseance1);
+                   newseance2 = new Seance(1001, seance.getNumCreneau(), seanceoffert.getNumEns(), seanceoffert.getNumMatiere(), seanceoffert.getNumGroupe(), 1);
+                   break;
+               }
+            }
+        } else {
+            for(int i = 0; i < listecrenovide.size(); i++) {
+                obj = (Object[]) listecrenovide.get(i);
+                if(((String) obj[1]).equals(dateSeance) && ((String) obj[2]).equals(heureSeance)){
+                    sd.delete(seance);
+                    newseance1 = new Seance(1002, (int)obj[0], seance.getNumEns(), seance.getNumMatiere(), seance.getNumGroupe(), 1);
+                    sd.create(newseance1);
+                    break;
+                }
+            }
+        }
+        
+        this.ae.desktop.removeAll();
+        this.ae.desktop.repaint();
+        this.monemp.resetEMP();
+        this.monemp.initEmp();
+        this.ae.desktop.add(this.monemp);
+        
+        try {
+            this.monemp.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.monemp.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable listeratt;
     // End of variables declaration//GEN-END:variables
 }
