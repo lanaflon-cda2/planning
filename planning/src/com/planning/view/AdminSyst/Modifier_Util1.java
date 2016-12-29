@@ -19,12 +19,12 @@ import javax.swing.JOptionPane;
 public class Modifier_Util1 extends javax.swing.JFrame {
     
     GererUtilisateurs gu = new GererUtilisateurs();
-    int oldNumUser;
+    Enseignant ensens;
     /**
      * Creates new form Ajouter_Modifier_Util
      */
-    public void setOldNumUser(int x) {
-        this.oldNumUser = x;
+    public void setOldUser(Enseignant ens) {
+        this.ensens = ens;
     }
     public void setGererUtilisateur(GererUtilisateurs gu) {
         this.gu  = gu;
@@ -153,13 +153,27 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         String mail = mailfield.getText();
         String tel = telfield.getText();
         String id = idfield.getText();
-        if()
-        Users user = new Users(id);
-        Enseignant ens = new Enseignant(10,nom,prenom,mail,Long.valueOf(tel),id);
-        usersDAO.update(user);
-        enseignantDAO.update(ens);
-        JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
-
+        if(nom.equals("") || prenom.equals("") || id.equals("") || mail.equals("") || tel.equals("")) {
+            JOptionPane.showMessageDialog(null, "Remplissez tous les champs obligatoires!", "Ajout d'un utilisateur", JOptionPane.INFORMATION_MESSAGE );
+            return;
+        }
+        
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+        
+        if(p == JOptionPane.YES_OPTION){
+            usersDAO.delete(new Users(ensens.getIDUser()));
+            enseignantDAO.delete(new Enseignant(ensens.getNumEns()));   
+            usersDAO.create(new Users(id));
+            enseignantDAO.create(new Enseignant(10,nom,prenom,mail,Long.valueOf(tel),id));
+            this.gu.updateTable();
+            JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
+            this.dispose();
+            
+        } else if( p == JOptionPane.NO_OPTION) this.dispose();
+        
+        else {
+            
+        }
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     /**

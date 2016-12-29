@@ -140,7 +140,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         for(int i = 0; i < listens.size(); i++) {
             ens = (Enseignant) listens.get(i);
             if(id.equals(ens.getIDUser())) {
-                modifier.setOldNumUser(ens.getNumEns());
+                modifier.setOldUser(ens);
             }
         }
         
@@ -166,25 +166,19 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
-        int row = listeutilisateur.getSelectedRowCount();
-        String id =listeutilisateur.getModel().getValueAt(row,5).toString();
+        int row = listeutilisateur.getSelectedRow();
+        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
         
         Users user = new Users(id);
         Enseignant enseignant = enseignantDAO.findByIDUser(id);
         //System.out.println(enseignant.getNumEns());
+        //enseignantDAO.delete(enseignant);
         usersDAO.delete(user);
-        enseignantDAO.delete(enseignant);
         
-        
-        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
         
         updateTable();
-        /*updateTable();
-        listeutilisateur.getModel().setValueAt(" ", row, 0);
-        listeutilisateur.getModel().setValueAt(" ", row, 1);
-        listeutilisateur.getModel().setValueAt(" ", row, 2);
-        listeutilisateur.getModel().setValueAt(" ", row, 3);
-        listeutilisateur.getModel().setValueAt(" ", row, 4);*/
+        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
+
     }//GEN-LAST:event_Suprimer
     
     public void updateTable(){
@@ -193,6 +187,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
            listens = enseignantDAO.findAll();
            model = (DefaultTableModel) listeutilisateur.getModel();
            model.setRowCount(0);
+           if(listens == null) return;
            for(int i = 0; i < listens.size(); i++) {
                ens = (Enseignant) listens.get(i);
                model.addRow(new Object[]{ens.getNomEns(), ens.getPrenomEns(), ens.getMail(), ens.getTel(), ens.getIDUser()});
