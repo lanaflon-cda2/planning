@@ -41,7 +41,6 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         nomfield = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -57,11 +56,8 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Ajouter utilisateur");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         nomfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,11 +67,11 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         getContentPane().add(nomfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 250, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Nom");
+        jLabel4.setText("Nom *");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Prenom");
+        jLabel5.setText("Prenom *");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         prenomfield.addActionListener(new java.awt.event.ActionListener() {
@@ -87,11 +83,11 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         getContentPane().add(mailfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 250, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("mail");
+        jLabel6.setText("mail *");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("Tel");
+        jLabel7.setText("Tel *");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
         getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 250, 30));
 
@@ -100,11 +96,11 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 idfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 250, 30));
+        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 250, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("ID");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        jLabel8.setText("ID *");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         Enregistrer.setText("Enregistrer");
         Enregistrer.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +108,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 EnregistrerActionPerformed(evt);
             }
         });
-        getContentPane().add(Enregistrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 120, 30));
+        getContentPane().add(Enregistrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 120, 30));
 
         Annuler.setText("Annuler");
         Annuler.setToolTipText("");
@@ -121,7 +117,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
                 AnnulerActionPerformed(evt);
             }
         });
-        getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 120, 30));
+        getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 120, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -145,22 +141,37 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
-        String nom = new String(nomfield.getText());
-        String prenom = new String(prenomfield.getText());
-        String mail = new String(mailfield.getText());
-        String tel = new String(telfield.getText());
-        String id = new String(idfield.getText());
-        String mdp = new String(nomfield.getText()+"EMI");
+        String nom = nomfield.getText();
         
-        Users user = new Users(id,mdp);
-        Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);        
-        usersDAO.create(user);
-        enseignantDAO.create(ens);
-        this.gererUtil.UpdateTable();
-        JOptionPane.showMessageDialog(null,"Enseignant ajouté avec succès");
+        String prenom = prenomfield.getText();
+        String mail =mailfield.getText();
+        String tels = telfield.getText();
+
         
-        System.out.println("text p " + prenomfield.getText());
-        dispose();
+        String id = idfield.getText();
+        if(nom.equals("") || prenom.equals("") || id.equals("") || mail.equals("") || tels.equals("")) {
+            JOptionPane.showMessageDialog(null, "Remplissez tous les champs obligatoires!", "Ajout d'un utilisateur", JOptionPane.INFORMATION_MESSAGE );
+            return;
+        }
+        
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+        
+        if(p == JOptionPane.YES_OPTION){
+            String mdp = nomfield.getText() +"emi";
+            Long tel = Long.valueOf(tels);
+            Users user = new Users(id,mdp);
+            Enseignant ens = new Enseignant(10,nom,prenom,mail,tel,id);        
+            usersDAO.create(user);
+            enseignantDAO.create(ens);
+            this.gererUtil.updateTable();
+            JOptionPane.showMessageDialog(null,"Enseignant ajouté avec succès");
+
+            this.dispose();
+        } else if(p == JOptionPane.NO_OPTION) this.dispose();
+        
+        else {
+            
+        }
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed
@@ -208,7 +219,6 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     private javax.swing.JButton Annuler;
     private javax.swing.JButton Enregistrer;
     public javax.swing.JTextField idfield;
-    public javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
