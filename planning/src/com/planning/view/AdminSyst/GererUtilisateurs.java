@@ -11,7 +11,6 @@ import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import com.planning.model.Users;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
