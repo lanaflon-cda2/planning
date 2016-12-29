@@ -52,7 +52,7 @@ public class UsersDAO extends DAO<Users> {
         try {
             
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Users SET IDUser = '" + obj.getIDUser() + "', MotDePasse = '" + obj.getMotDePasse() + "', WHERE IDUser = '" + obj.getIDUser()+"'";
+            query = "UPDATE Users SET IDUser = '" + obj.getIDUser() + "', MotDePasse = '" + obj.getMotDePasse() + "' WHERE IDUser = '" + obj.getIDUser()+"'";
             state.executeUpdate(query);
 	}
         catch (SQLException e) {
@@ -62,6 +62,20 @@ public class UsersDAO extends DAO<Users> {
         return true;
     }
     
+    public boolean update(Users old, Users nouv) {
+        try {
+            
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            query = "UPDATE Users SET IDUser = '" + nouv.getIDUser() + "', MotDePasse = '" + nouv.getMotDePasse() + "' WHERE IDUser = '" + old.getIDUser() + "'";
+            state.executeUpdate(query);
+	}
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
+	}
+       
+        return true;
+    }
     @Override
     public Users find(String iDUser){
         Users users = null;

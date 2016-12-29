@@ -30,7 +30,9 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     ResultSet res;
     Filiere fil;
     GroupeDAO groupedao;
-    Connection conn = ConnexionBD.init();/**
+    Connection conn = ConnexionBD.init();
+    int numpan;
+    /**
      * Creates new form GererEmloi
      */
     public GererEmploi() {
@@ -64,6 +66,13 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupecombo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        filierecombo = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        niveaucombo = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -81,327 +90,87 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         l8 = new javax.swing.JPanel();
+        l8text = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
         l10 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
         l16 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         l14 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         ma8 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         ma10 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
         ma14 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
         ma16 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
         j8 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
         me8 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
         me10 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
         j10 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         j14 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
         me14 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
         me16 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         j16 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         v8 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
         v10 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
         v14 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
         v16 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        groupecombo = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        filierecombo = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        niveaucombo = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setTitle("Gérer Emplois");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel2.setText("LUNDI");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 130, 80));
-
-        jPanel2.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel3.setText("MARDI");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 130, 80));
-
-        jPanel3.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel4.setText("MERCREDI");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 130, 80));
-
-        jPanel4.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel5.setText("JEUDI");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 130, 80));
-
-        jPanel5.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel6.setText("VENDREDI");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 80));
-
-        jPanel6.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel7.setText("8h-10h");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
-
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 140, 60));
-
-        jPanel8.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel9.setText("14h-16h");
-        jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
-
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 150, 60));
-
-        jPanel9.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel10.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel10.setText("16h-18h");
-        jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 150, 60));
-
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        l8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                l8MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                l8MouseEntered(evt);
-            }
-        });
-        getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 140, 80));
-
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        l10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                l10MouseClicked(evt);
-            }
-        });
-        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 150, 80));
-
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        l16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                l16MouseClicked(evt);
-            }
-        });
-        getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 150, 80));
-
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        l14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                l14MouseClicked(evt);
-            }
-        });
-        getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 150, 80));
-
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ma8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ma8MouseClicked(evt);
-            }
-        });
-        getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 140, 80));
-
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ma10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ma10MouseClicked(evt);
-            }
-        });
-        getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 150, 80));
-
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ma14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ma14MouseClicked(evt);
-            }
-        });
-        getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 150, 80));
-
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ma16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ma16MouseClicked(evt);
-            }
-        });
-        getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 150, 80));
-
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        j8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                j8MouseClicked(evt);
-            }
-        });
-        getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 140, 80));
-
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        me8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                me8MouseClicked(evt);
-            }
-        });
-        getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 140, 80));
-
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        me10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                me10MouseClicked(evt);
-            }
-        });
-        getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 150, 80));
-
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        j10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                j10MouseClicked(evt);
-            }
-        });
-        getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 150, 80));
-
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        j14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                j14MouseClicked(evt);
-            }
-        });
-        getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 150, 80));
-
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        me14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                me14MouseClicked(evt);
-            }
-        });
-        getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 150, 80));
-
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        me16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                me16MouseClicked(evt);
-            }
-        });
-        getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 150, 80));
-
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        j16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                j16MouseClicked(evt);
-            }
-        });
-        getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 150, 80));
-
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        v8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                v8MouseClicked(evt);
-            }
-        });
-        getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, 140, 80));
-
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        v10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                v10MouseClicked(evt);
-            }
-        });
-        getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 150, 80));
-
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        v14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                v14MouseClicked(evt);
-            }
-        });
-        getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, 150, 80));
-
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        v16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                v16MouseClicked(evt);
-            }
-        });
-        getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 150, 80));
-
-        jPanel7.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel8.setText("10h-12h");
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
-
-        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 150, 60));
 
         groupecombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 groupecomboActionPerformed(evt);
             }
         });
-        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 90, 30));
+        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 110, 30));
 
         jLabel1.setText("Filière");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         filierecombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 filierecomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 110, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 180, 30));
 
         jLabel11.setText("Niveau");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
@@ -412,7 +181,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 niveaucomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 90, 30));
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 90, 30));
 
         jLabel12.setText("Groupe");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
@@ -425,474 +194,490 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 120, 30));
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel2.setText("LUNDI");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 130, 80));
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel3.setText("MARDI");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 130, 80));
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel4.setText("MERCREDI");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 80));
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel5.setText("JEUDI");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 130, 80));
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel6.setText("VENDREDI");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 130, 80));
+
+        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel7.setText("8h-10h");
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 140, 60));
+
+        jPanel8.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel9.setText("14h-16h");
+        jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 150, 60));
+
+        jPanel9.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel10.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel10.setText("16h-18h");
+        jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 150, 60));
+
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        l8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                l8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                l8MouseEntered(evt);
+            }
+        });
+        l8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        l8text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l8text.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                l8textComponentResized(evt);
+            }
+        });
+        l8text.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                l8textInputMethodTextChanged(evt);
+            }
+        });
+        l8text.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                l8textPropertyChange(evt);
+            }
+        });
+        l8.add(l8text, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setToolTipText("");
+        jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        l8.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 140, 80));
+
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        l10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                l10MouseClicked(evt);
+            }
+        });
+        l10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l10.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setToolTipText("");
+        l10.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 150, 80));
+
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        l16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                l16MouseClicked(evt);
+            }
+        });
+        l16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l16.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l16.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 150, 80));
+
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        l14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                l14MouseClicked(evt);
+            }
+        });
+        l14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l14.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 150, 80));
+
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ma8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ma8MouseClicked(evt);
+            }
+        });
+        ma8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma8.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 140, 80));
+
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ma10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ma10MouseClicked(evt);
+            }
+        });
+        ma10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setToolTipText("");
+        ma10.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 150, 80));
+
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ma14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ma14MouseClicked(evt);
+            }
+        });
+        ma14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma14.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma14.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 150, 80));
+
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ma16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ma16MouseClicked(evt);
+            }
+        });
+        ma16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma16.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ma16.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 200, 150, 80));
+
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        j8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                j8MouseClicked(evt);
+            }
+        });
+        j8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j8.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 140, 80));
+
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        me8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                me8MouseClicked(evt);
+            }
+        });
+        me8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me8.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 140, 80));
+
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        me10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                me10MouseClicked(evt);
+            }
+        });
+        me10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me10.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me10.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 150, 80));
+
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        j10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                j10MouseClicked(evt);
+            }
+        });
+        j10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 20));
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j10.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 150, 80));
+
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        j14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                j14MouseClicked(evt);
+            }
+        });
+        j14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabel26InputMethodTextChanged(evt);
+            }
+        });
+        j14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j14.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 150, 80));
+
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        me14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                me14MouseClicked(evt);
+            }
+        });
+        me14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me14.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me14.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 150, 80));
+
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        me16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                me16MouseClicked(evt);
+            }
+        });
+        me16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me16.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        me16.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 150, 80));
+
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        j16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                j16MouseClicked(evt);
+            }
+        });
+        j16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j16.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        j16.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 150, 80));
+
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        v8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                v8MouseClicked(evt);
+            }
+        });
+        v8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v8.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 140, 80));
+
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        v10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                v10MouseClicked(evt);
+            }
+        });
+        v10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v10.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v10.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, 150, 80));
+
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        v14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                v14MouseClicked(evt);
+            }
+        });
+        v14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v14.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v14.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 150, 80));
+
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        v16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                v16MouseClicked(evt);
+            }
+        });
+        v16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v16.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 130, 20));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        v16.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 150, 80));
+
+        jPanel7.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
+        jLabel8.setText("10h-12h");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 150, 60));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
-
-        l8.setBackground(Color.gray);
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-
-    }//GEN-LAST:event_l8MouseClicked
-
-    private void l8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseEntered
-
-    }//GEN-LAST:event_l8MouseEntered
-
-    private void l10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l10MouseClicked
-        l10.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_l10MouseClicked
-
-    private void l16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l16MouseClicked
-        l16.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_l16MouseClicked
-
-    private void l14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l14MouseClicked
-        l14.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_l14MouseClicked
-
-    private void ma8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma8MouseClicked
-        ma8.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_ma8MouseClicked
-
-    private void ma10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma10MouseClicked
-        ma10.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_ma10MouseClicked
-
-    private void ma14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma14MouseClicked
-        ma14.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_ma14MouseClicked
-
-    private void ma16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma16MouseClicked
-        ma16.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_ma16MouseClicked
-
-    private void j8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j8MouseClicked
-        j8.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_j8MouseClicked
-
-    private void me8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me8MouseClicked
-        me8.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_me8MouseClicked
-
-    private void me10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me10MouseClicked
-        me10.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_me10MouseClicked
-
-    private void j10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j10MouseClicked
-        j10.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_j10MouseClicked
-
-    private void j14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j14MouseClicked
-        j14.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_j14MouseClicked
-
-    private void me14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me14MouseClicked
-        me14.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_me14MouseClicked
-
-    private void me16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me16MouseClicked
-        me16.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_me16MouseClicked
-
-    private void j16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j16MouseClicked
-        j16.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_j16MouseClicked
-
-    private void v8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v8MouseClicked
-        v8.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_v8MouseClicked
-
-    private void v10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v10MouseClicked
-        v10.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_v10MouseClicked
-
-    private void v14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v14MouseClicked
-        v14.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_v14MouseClicked
-
-    private void v16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v16MouseClicked
-        v16.setBackground(Color.gray);
-        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
-    }//GEN-LAST:event_v16MouseClicked
 
     private void groupecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupecomboActionPerformed
         // TODO add your handling code here:
@@ -940,6 +725,512 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         new AjouterSeance().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void l8textComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_l8textComponentResized
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_l8textComponentResized
+
+    private void l8textInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_l8textInputMethodTextChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_l8textInputMethodTextChanged
+
+    private void l8textPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_l8textPropertyChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_l8textPropertyChange
+
+    private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
+        numpan = 1;
+        System.out.println("jpanel 1");
+        l8.setBackground(Color.gray);
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+
+    }//GEN-LAST:event_l8MouseClicked
+
+    private void l8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseEntered
+
+    }//GEN-LAST:event_l8MouseEntered
+
+    private void l10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l10MouseClicked
+        numpan = 2;
+        l10.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_l10MouseClicked
+
+    private void l16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l16MouseClicked
+        numpan = 4;
+        l16.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_l16MouseClicked
+
+    private void l14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l14MouseClicked
+        numpan = 3;
+        l14.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_l14MouseClicked
+
+    private void ma8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma8MouseClicked
+        numpan = 5;
+        ma8.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_ma8MouseClicked
+
+    private void ma10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma10MouseClicked
+        numpan = 6;
+        ma10.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_ma10MouseClicked
+
+    private void ma14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma14MouseClicked
+        numpan = 7;
+        ma14.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_ma14MouseClicked
+
+    private void ma16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ma16MouseClicked
+        numpan = 8;
+        ma16.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_ma16MouseClicked
+
+    private void j8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j8MouseClicked
+        numpan = 13;
+        j8.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_j8MouseClicked
+
+    private void me8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me8MouseClicked
+        numpan = 9;
+        me8.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_me8MouseClicked
+
+    private void me10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me10MouseClicked
+        numpan = 10;
+        me10.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_me10MouseClicked
+
+    private void j10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j10MouseClicked
+        numpan = 14;
+        j10.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_j10MouseClicked
+
+    private void jLabel26InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel26InputMethodTextChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jLabel26InputMethodTextChanged
+
+    private void j14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j14MouseClicked
+        numpan = 15;
+        j14.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_j14MouseClicked
+
+    private void me14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me14MouseClicked
+        numpan = 11;
+        me14.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_me14MouseClicked
+
+    private void me16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_me16MouseClicked
+        numpan = 12;
+        me16.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_me16MouseClicked
+
+    private void j16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j16MouseClicked
+        numpan = 16;
+        j16.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_j16MouseClicked
+
+    private void v8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v8MouseClicked
+        numpan = 17;
+        v8.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_v8MouseClicked
+
+    private void v10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v10MouseClicked
+        numpan = 18;
+        v10.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_v10MouseClicked
+
+    private void v14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v14MouseClicked
+        numpan = 19;
+        v14.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_v14MouseClicked
+
+    private void v16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_v16MouseClicked
+        numpan = 20;
+        v16.setBackground(Color.gray);
+        l8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        ma16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        me16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+    }//GEN-LAST:event_v16MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> filierecombo;
@@ -953,10 +1244,49 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -974,6 +1304,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JPanel l14;
     private javax.swing.JPanel l16;
     private javax.swing.JPanel l8;
+    private javax.swing.JLabel l8text;
     private javax.swing.JPanel ma10;
     private javax.swing.JPanel ma14;
     private javax.swing.JPanel ma16;

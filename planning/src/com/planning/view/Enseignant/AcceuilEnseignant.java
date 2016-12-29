@@ -32,6 +32,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     MonCompteEnseignant me = new MonCompteEnseignant();
     
+    Modifier modifier = new Modifier();
+    
     public void setME(MonCompteEnseignant me){
         this.me = me;
         me.setIDUserMCE(this.idUser);
@@ -41,13 +43,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     public void setidUser(String s){
         this.idUser = s;
-        jLabel1.setText(idUser);
-        monEmploiEnseignant1.setIDUserMEE(this.idUser);
-         
+        monEmploiEnseignant1.setIDUserMEE(this.idUser); 
         monEmploiEnseignant1.initEmp();
         monEmploiEnseignant1.setAE(this);
+        modifier.setIDUserMod(this.idUser);
     }
-    
+       
     public AcceuilEnseignant() {
         initComponents();
 
@@ -64,19 +65,26 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         desktop = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
         monemploi = new javax.swing.JButton();
         seanceratt = new javax.swing.JButton();
         photo = new javax.swing.JLabel();
-        deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("Deconnexion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
 
         com.planning.view.Enseignant.MonCompteEnseignant mce = new com.planning.view.Enseignant.MonCompteEnseignant();
         this.desktop.add(mce);
@@ -88,13 +96,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         mce.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 570));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel1.setText("Enseignant");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, 110, 30));
-
-        moncompte.setBackground(new java.awt.Color(255, 255, 255));
-        moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         moncompte.setText("Mon Compte");
         moncompte.setBorderPainted(false);
         moncompte.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,7 +111,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 moncompteActionPerformed(evt);
             }
         });
-        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
+        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 110, 30));
 
         monemploi.setBackground(new java.awt.Color(204, 204, 204));
         monemploi.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -147,19 +148,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         photo.setText("photo");
         getContentPane().add(photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 100));
 
-        deconnexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        deconnexion.setForeground(new java.awt.Color(255, 255, 255));
-        deconnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deconnexion.setText("Deconnexion");
-        deconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deconnexionMouseClicked(evt);
-            }
-        });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 100, 30));
-
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/Enseignant/AcceuilBG.png"))); // NOI18N
+        acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("AcceuilBG.png")));
         acceuilBG.setToolTipText("");
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
@@ -203,11 +193,6 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private void seancerattMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seancerattMouseClicked
         
     }//GEN-LAST:event_seancerattMouseClicked
-
-    private void deconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deconnexionMouseClicked
-        dispose();
-        new Deconnexion().setVisible(true);
-    }//GEN-LAST:event_deconnexionMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
        monemploi.setBackground(java.awt.SystemColor.activeCaption);
@@ -253,6 +238,11 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1ComponentResized
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         this.dispose();
+         new Deconnexion().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -293,9 +283,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
-    private javax.swing.JLabel deconnexion;
     public javax.swing.JDesktopPane desktop;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;

@@ -33,7 +33,6 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     private void initComponents() {
 
         desktop = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         moncompte = new javax.swing.JButton();
         utilisateurs = new javax.swing.JButton();
         photo = new javax.swing.JLabel();
@@ -55,11 +54,6 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         mcs.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 810, 550));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("AdminSyst");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, -1, -1));
-
         moncompte.setBackground(new java.awt.Color(255, 255, 255));
         moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         moncompte.setText("Mon Compte");
@@ -77,7 +71,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
                 moncompteActionPerformed(evt);
             }
         });
-        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 110, 30));
+        getContentPane().add(moncompte, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 110, 30));
 
         utilisateurs.setBackground(new java.awt.Color(204, 204, 204));
         utilisateurs.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
@@ -108,7 +102,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
                 deconnexionMouseClicked(evt);
             }
         });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 60, 100, -1));
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, 100, -1));
 
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
@@ -210,7 +204,6 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JLabel deconnexion;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton moncompte;
     private javax.swing.JLabel photo;
     private javax.swing.JButton utilisateurs;

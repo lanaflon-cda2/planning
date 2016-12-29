@@ -31,13 +31,17 @@ public class Enseignant implements Serializable {
         this.iDUser = iDUser;
     
     }
-    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, long tel, String iDUser) {
+    public Enseignant(int numEns, String nomEns, String prenomEns, String mail, Long tel, String iDUser) {
         this.numEns = numEns;
         this.nomEns = nomEns;
         this.prenomEns = prenomEns;
         this.mail = mail;
         this.tel = tel;
         this.iDUser = iDUser;
+    }
+    
+    public Enseignant(String id){
+        this.iDUser = id;
     }
 
     public int getNumEns() {
