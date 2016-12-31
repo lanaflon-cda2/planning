@@ -685,7 +685,8 @@ public class GererEmploi extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void groupecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupecomboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_groupecomboActionPerformed

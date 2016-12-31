@@ -101,9 +101,7 @@ public class GererMatiere extends javax.swing.JInternalFrame {
 
         tablemat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Matière"

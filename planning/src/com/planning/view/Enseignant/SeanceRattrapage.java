@@ -165,7 +165,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        confirmerRattrapage = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -190,19 +190,19 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 210, 120));
 
-        jButton1.setText("Confirmer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirmerRattrapage.setText("Confirmer");
+        confirmerRattrapage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                confirmerRattrapageActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 140, 40));
+        getContentPane().add(confirmerRattrapage, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 140, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Veuillez selectionner un créneau convenable :");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Séance à reporter");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
@@ -221,16 +221,9 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-//        try {
-//            con.setAutoCommit(false);
-//        } catch (Exception ex) {
-//            System.out.println("Setting auto commit to false failed: " + ex);
-//            return;
-//        }
-        
-        
+    private void confirmerRattrapageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmerRattrapageActionPerformed
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sûr de sauvegarder","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);    
+        if(p == JOptionPane.NO_OPTION || p == JOptionPane.CANCEL_OPTION) return;
         Seance newseance1, newseance2, seanceoffert;
         SeanceDAO sd = new SeanceDAO(con);
         model = (DefaultTableModel) listeratt.getModel();
@@ -249,12 +242,13 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
             for(int i = 0; i < listepermut.size(); i++){
                obj = (Object[]) listepermut.get(i);
                if(((String) obj[3]).equals(dateSeance) && ((String) obj[4]).equals(heureSeance) && ((String) obj[1]).equals(nomEns)){
-                   sd.delete(seance);
+                   //sd.delete(seance);
                    seanceoffert = sd.getSeanceByFields((int)obj[2], (int)obj[0], seance.getNumGroupe(), 1);
                    sd.delete(seanceoffert);
                    newseance1 = new Seance(1000, (int)obj[2], seance.getNumEns(), seance.getNumMatiere(), seance.getNumGroupe(), 1);
                    sd.create(newseance1);
                    newseance2 = new Seance(1001, seance.getNumCreneau(), seanceoffert.getNumEns(), seanceoffert.getNumMatiere(), seanceoffert.getNumGroupe(), 1);
+                   sd.create(newseance2);
                    break;
                }
             }
@@ -262,7 +256,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
             for(int i = 0; i < listecrenovide.size(); i++) {
                 obj = (Object[]) listecrenovide.get(i);
                 if(((String) obj[1]).equals(dateSeance) && ((String) obj[2]).equals(heureSeance)){
-                    sd.delete(seance);
+                    //sd.delete(seance);
                     newseance1 = new Seance(1002, (int)obj[0], seance.getNumEns(), seance.getNumMatiere(), seance.getNumGroupe(), 1);
                     sd.create(newseance1);
                     break;
@@ -282,11 +276,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
             Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.monemp.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_confirmerRattrapageActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton confirmerRattrapage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

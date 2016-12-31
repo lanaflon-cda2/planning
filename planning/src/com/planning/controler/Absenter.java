@@ -136,7 +136,8 @@ public class Absenter {
             System.out.println("SQLException: " + e);
             return null;
         }
-      return creneauxVideEns;     
+        
+         return creneauxVideEns;     
     }
     
     private ArrayList getCreneauxVideGroupe(){
@@ -211,7 +212,7 @@ public class Absenter {
             state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             seance = new ArrayList();
             String query= new String();
-            query += "Select NumCreneau from Seance where NumEns = " + numEnsX + " and NumGroupe = " + numGroupe;
+            query += "Select NumCreneau from Seance where NumEns = " + numEnsX + " and NumGroupe = " + numGroupe + " and EtatSeance = 1";
             query += " and NumCreneau IN (Select NumCreneau From Creneau where Date >= '" + dateSysteme + "' and Date <= '" + dateFin + "')";
             res = state.executeQuery(query);
             while(res.next()){
