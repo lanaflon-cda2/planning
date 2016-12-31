@@ -9,7 +9,6 @@ import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.GroupeDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Filiere;
-import com.planning.view.Enseignant.SeanceRattrapage;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,24 +37,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
      */
     public GererEmploi() {
         initComponents();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
-        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        this.getContentPane().setBackground(Color.white);
-        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-         filD = new FiliereDAO(conn);
-         groupedao = new GroupeDAO(conn);
-        listefil=filD.findAll();
-        for (int i = 0; i < listefil.size(); i++) {
-            
-            fil = (Filiere)listefil.get(i);
-            filierecombo.addItem(fil.getNomFiliere());
-            
-        }
-        res= groupedao.findALL();
-        groupecombo.removeAllItems();
-        
-        
-        
+        init();
     }
 
     /**
@@ -154,7 +135,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
 
-        setTitle("Gérer Emplois");
+        setTitle("Gestion des Emplois du temps");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -162,6 +143,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        groupecombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GA", "GB" }));
         groupecombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 groupecomboActionPerformed(evt);
@@ -686,22 +668,39 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
+    private void init() {
+        
+    ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.getContentPane().setBackground(Color.white);
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+         filD = new FiliereDAO(conn);
+         groupedao = new GroupeDAO(conn);
+        listefil=filD.findAll();
+        for (int i = 0; i < listefil.size(); i++) {
+            
+            fil = (Filiere)listefil.get(i);
+            filierecombo.addItem(fil.getNomFiliere());
+            
+        }
+        res = groupedao.findALL();
+        //groupecombo.removeAllItems();
+    }
+        
     private void groupecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupecomboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_groupecomboActionPerformed
 
     private void filierecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filierecomboItemStateChanged
       res = groupedao.findALL();
-      String etat = (String)filierecombo.getSelectedItem();
+      String filname = (String)filierecombo.getSelectedItem();
       int niveau = niveaucombo.getSelectedIndex()+1;
       groupecombo.removeAllItems();
         try {
             while(res.next()){
                 
-                if(etat.equals(res.getString(4))&&(niveau==res.getInt(5))){
+                if(filname.equals(res.getString(4)) && (niveau==res.getInt(5))){
                     groupecombo.addItem(res.getString(2));
-                    System.out.println(res.getString(2));
                 }
                 
                     
@@ -720,7 +719,6 @@ public class GererEmploi extends javax.swing.JInternalFrame {
             while(res.next()){            
                 if(etat.equals(res.getString(4))&&(niveau==res.getInt(5))){
                     groupecombo.addItem(res.getString(2));
-                    System.out.println(res.getString(2));
                 }
                 
                     
@@ -730,78 +728,121 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_niveaucomboItemStateChanged
 
     private void definirSeanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirSeanceActionPerformed
+        
         if(numpan == -1) {
             JOptionPane.showMessageDialog(null, "Choisissez un creneau!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
+        
+        res = groupedao.findALL();
+        String filname = (String)filierecombo.getSelectedItem();
+        int niveau = niveaucombo.getSelectedIndex()+1;
+        String groupename = (String) groupecombo.getSelectedItem();
+        int numGroupe = 0;
+        try {
+            while(res.next()){
+                
+                if(filname.equals(res.getString(4)) && (niveau == res.getInt(5)) && groupename.equals(res.getString(2))){
+                    numGroupe = res.getInt(1);
+                    break;
+                }
+                 
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                            
+        
+        AjouterSeance ajouterSeance = new AjouterSeance();
+        ajouterSeance.setNumGroupe(numGroupe);
          switch(numpan){
             case 1: 
-               
+                ajouterSeance.setJourSemaine(2);
+                ajouterSeance.setHeureSeance("08:00:00");
                 break;
             case 2: 
-                
+                ajouterSeance.setJourSemaine(2);
+                ajouterSeance.setHeureSeance("10:00:00");
                 break;
             case 3: 
-               
+                ajouterSeance.setJourSemaine(2);
+                ajouterSeance.setHeureSeance("14:00:00");
                 break;
             case 4: 
-                
+                ajouterSeance.setJourSemaine(2);
+                ajouterSeance.setHeureSeance("16:00:00");
                 break;
             case 5: 
-               
+                ajouterSeance.setJourSemaine(3);
+                ajouterSeance.setHeureSeance("08:00:00");
                 break;
             case 6: 
-                
+                ajouterSeance.setJourSemaine(3);
+                ajouterSeance.setHeureSeance("10:00:00");
                 break;
             case 7: 
-                
+                ajouterSeance.setJourSemaine(3);
+                ajouterSeance.setHeureSeance("14:00:00");
                 break;
             case 8: 
-                
+                ajouterSeance.setJourSemaine(3);
+                ajouterSeance.setHeureSeance("16:00:00");
                 break;
             case 9: 
-                
+                ajouterSeance.setJourSemaine(4);
+                ajouterSeance.setHeureSeance("08:00:00");
                 break;
             case 10: 
-                
+                ajouterSeance.setJourSemaine(4);
+                ajouterSeance.setHeureSeance("10:00:00");
                 break;
             case 11: 
-                
+                ajouterSeance.setJourSemaine(4);
+                ajouterSeance.setHeureSeance("14:00:00");
                 break;
             case 12: 
-                
+                ajouterSeance.setJourSemaine(4);
+                ajouterSeance.setHeureSeance("16:00:00");
                 break;
             case 13: 
-               
+                ajouterSeance.setJourSemaine(5);
+                ajouterSeance.setHeureSeance("08:00:00");
                 break;
             case 14: 
-                
+                ajouterSeance.setJourSemaine(5);
+                ajouterSeance.setHeureSeance("10:00:00");
                 break;
             case 15: 
-                
+                ajouterSeance.setJourSemaine(5);
+                ajouterSeance.setHeureSeance("14:00:00");
                 break;
             case 16: 
-                
+                ajouterSeance.setJourSemaine(5);
+                ajouterSeance.setHeureSeance("16:00:00");
                 break;
             case 17: 
-                
+                ajouterSeance.setJourSemaine(6);
+                ajouterSeance.setHeureSeance("08:00:00");
                 break;
             case 18: 
-                
+                ajouterSeance.setJourSemaine(6);
+                ajouterSeance.setHeureSeance("10:00:00");
                 break;
             case 19: 
-                
+                ajouterSeance.setJourSemaine(6);
+                ajouterSeance.setHeureSeance("14:00:00");
                 break;
             case 20: 
-                
+                ajouterSeance.setJourSemaine(6);
+                ajouterSeance.setHeureSeance("16:00:00");
                 break;
-            default:
-                
+            default: 
                 //JOptionPane.showMessageDialog(this, "Selectionnez un creneau!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
                 break;    
         }
          
-        AjouterSeance ajouterSeance = new AjouterSeance();
+        
         ajouterSeance.setVisible(true);
     }//GEN-LAST:event_definirSeanceActionPerformed
 
@@ -823,7 +864,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
 
     private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
         numpan = 1;
-        System.out.println("jpanel 1");
+
         l8.setBackground(Color.gray);
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));

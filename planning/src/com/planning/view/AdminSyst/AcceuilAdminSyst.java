@@ -32,17 +32,25 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        deconnexion = new javax.swing.JButton();
         desktop = new javax.swing.JDesktopPane();
         moncompte = new javax.swing.JButton();
         utilisateurs = new javax.swing.JButton();
         photo = new javax.swing.JLabel();
-        deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        deconnexion.setText("Deconnexion");
+        deconnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deconnexionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
 
         com.planning.view.AdminSyst.MonCompteSyst mcs = new com.planning.view.AdminSyst.MonCompteSyst();
         this.desktop.add(mcs);
@@ -54,8 +62,6 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         mcs.show();
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 810, 550));
 
-        moncompte.setBackground(new java.awt.Color(255, 255, 255));
-        moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         moncompte.setText("Mon Compte");
         moncompte.setBorderPainted(false);
         moncompte.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,17 +99,6 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         photo.setText("photo");
         getContentPane().add(photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 110));
 
-        deconnexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        deconnexion.setForeground(new java.awt.Color(255, 255, 255));
-        deconnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deconnexion.setText("Deconnexion");
-        deconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deconnexionMouseClicked(evt);
-            }
-        });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, 100, -1));
-
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
         getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
@@ -125,11 +120,6 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         gu.show();
        
     }//GEN-LAST:event_utilisateursMouseClicked
-
-    private void deconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deconnexionMouseClicked
-        dispose();
-        new Deconnexion().setVisible(true);
-    }//GEN-LAST:event_deconnexionMouseClicked
 
     private void utilisateursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateursActionPerformed
         GererUtilisateurs gu = new GererUtilisateurs();
@@ -160,6 +150,11 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     private void moncompteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moncompteMouseClicked
        
     }//GEN-LAST:event_moncompteMouseClicked
+
+    private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
+        this.dispose();
+        new Deconnexion().setVisible(true);
+    }//GEN-LAST:event_deconnexionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,7 +197,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
-    private javax.swing.JLabel deconnexion;
+    private javax.swing.JButton deconnexion;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JButton moncompte;
     private javax.swing.JLabel photo;

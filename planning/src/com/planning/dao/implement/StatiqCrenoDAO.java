@@ -8,7 +8,9 @@ package com.planning.dao.implement;
 import com.planning.dao.DAO;
 import com.planning.model.StatiqueCreneau;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,27 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
 
     @Override
     public boolean create(StatiqueCreneau obj) {
-        return false;
+       try {
+        state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+        query = "INSERT INTO StatiqueCreneau VALUES (NULL, ";
+        query += obj.getNumMatiere()+ ", ";
+        query += obj.getNumGroupe()+ ", ";
+        query += obj.getNumEns()+ ", ";
+        query += obj.getJourSemaine() + ", '";
+        query += obj.getHeureSeance()+ "', '";
+        query += obj.getDateD()+ "', '";
+        query += obj.getDateF()+ "')";
+        int numSC = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+        obj.setNumSC(numSC);            
+        }
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
+        }
+
+        return true;
     }
 
     @Override

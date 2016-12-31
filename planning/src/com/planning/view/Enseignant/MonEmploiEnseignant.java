@@ -1539,7 +1539,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         String[] strings;
         for (int i = 0; i < listGrpMat.size(); i++) {
             strings = (String[]) listGrpMat.get(i);
-            //if(strings[3] != null) {
                 System.out.println(i);
                 if(strings[3].equals("2")) {
 
@@ -1680,12 +1679,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 else {
                    
                 }
-            
-            //}
-            
-//            else {
-//                
-//            }
             
             this.updateUI();
         }

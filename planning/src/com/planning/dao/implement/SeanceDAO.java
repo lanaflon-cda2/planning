@@ -168,7 +168,7 @@ public class SeanceDAO extends DAO<Seance> {
         return s;
     }
     
-    public void insertAllSeanceForStatiqueCreneau(StatiqueCreneau sc) {
+    public void createAllSeance(StatiqueCreneau sc) {
         
         Seance s;
         
@@ -251,7 +251,7 @@ public class SeanceDAO extends DAO<Seance> {
         StatiqCrenoDAO scDAO = new StatiqCrenoDAO(conn);
         ArrayList allSC = scDAO.getAllSC();
         for(Object sc: allSC){
-            this.insertAllSeanceForStatiqueCreneau((StatiqueCreneau) sc);
+            this.createAllSeance((StatiqueCreneau) sc);
         }
         
         
