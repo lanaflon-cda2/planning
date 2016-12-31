@@ -7,8 +7,10 @@ package com.planning.view.AdminDept;
 
 import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.GroupeDAO;
+import com.planning.dao.implement.StatiqCrenoDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Filiere;
+import com.planning.model.StatiqueCreneau;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,6 +34,11 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     GroupeDAO groupedao;
     Connection conn = ConnexionBD.init();
     int numpan = -1;
+    StatiqueCreneau emp[][] = new StatiqueCreneau[5][4];
+    AcceuilAdminDept aadept;
+    MonCompteDept compteDept;
+    
+
     /**
      * Creates new form GererEmloi
      */
@@ -39,7 +46,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         initComponents();
         init();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,6 +141,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel51 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setTitle("Gestion des Emplois du temps");
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,25 +152,30 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         groupecombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GA", "GB" }));
+        groupecombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                groupecomboItemStateChanged(evt);
+            }
+        });
         groupecombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 groupecomboActionPerformed(evt);
             }
         });
-        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 110, 30));
+        getContentPane().add(groupecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 70, 30));
 
         jLabel1.setText("Filière");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         filierecombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 filierecomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 180, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 180, 30));
 
         jLabel11.setText("Niveau");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
         niveaucombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         niveaucombo.addItemListener(new java.awt.event.ItemListener() {
@@ -170,18 +183,18 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 niveaucomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 90, 30));
+        getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 50, 30));
 
         jLabel12.setText("Groupe");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
 
-        definirSeance.setText("Définir une seance");
+        definirSeance.setText("Ajouter une seance");
         definirSeance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 definirSeanceActionPerformed(evt);
             }
         });
-        getContentPane().add(definirSeance, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 160, 30));
+        getContentPane().add(definirSeance, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 160, 30));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -665,28 +678,39 @@ public class GererEmploi extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, 60));
 
+        jButton1.setText("Supprimer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
         
-    ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.getContentPane().setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-         filD = new FiliereDAO(conn);
-         groupedao = new GroupeDAO(conn);
+        filD = new FiliereDAO(conn);
+        groupedao = new GroupeDAO(conn);
         listefil=filD.findAll();
+        
         for (int i = 0; i < listefil.size(); i++) {
-            
-            fil = (Filiere)listefil.get(i);
+            fil = (Filiere) listefil.get(i);
             filierecombo.addItem(fil.getNomFiliere());
-            
         }
         res = groupedao.findALL();
-        //groupecombo.removeAllItems();
+        groupecombo.removeAllItems();
+        this.filierecomboItemStateChanged(null);
     }
-        
+    
+    public void setAcceuilAdminDept(AcceuilAdminDept aadept) {
+        this.aadept = aadept;
+    }
     private void groupecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupecomboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_groupecomboActionPerformed
@@ -696,17 +720,20 @@ public class GererEmploi extends javax.swing.JInternalFrame {
       String filname = (String)filierecombo.getSelectedItem();
       int niveau = niveaucombo.getSelectedIndex()+1;
       groupecombo.removeAllItems();
+      int numGroupe = 0;
         try {
             while(res.next()){
                 
                 if(filname.equals(res.getString(4)) && (niveau==res.getInt(5))){
                     groupecombo.addItem(res.getString(2));
+                    if(numGroupe == 0) numGroupe = res.getInt(1);
                 }
                 
                     
             } } catch (SQLException ex) {
             Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_filierecomboItemStateChanged
 
     private void niveaucomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_niveaucomboItemStateChanged
@@ -714,17 +741,20 @@ public class GererEmploi extends javax.swing.JInternalFrame {
       String etat = (String)filierecombo.getSelectedItem();
       int niveau = niveaucombo.getSelectedIndex()+1;
       groupecombo.removeAllItems();
+      int numGroupe = 0;
         try {
            
             while(res.next()){            
                 if(etat.equals(res.getString(4))&&(niveau==res.getInt(5))){
                     groupecombo.addItem(res.getString(2));
+                    if(numGroupe == 0) numGroupe = res.getInt(1);
                 }
                 
                     
             } } catch (SQLException ex) {
             Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_niveaucomboItemStateChanged
 
     private void definirSeanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirSeanceActionPerformed
@@ -753,9 +783,10 @@ public class GererEmploi extends javax.swing.JInternalFrame {
             Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
         }
                             
-        
+        this.getEmp(numGroupe);
         AjouterSeance ajouterSeance = new AjouterSeance();
         ajouterSeance.setNumGroupe(numGroupe);
+        
          switch(numpan){
             case 1: 
                 ajouterSeance.setJourSemaine(2);
@@ -842,10 +873,221 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 break;    
         }
          
-        
+        ajouterSeance.setGererEmploi(this);
         ajouterSeance.setVisible(true);
     }//GEN-LAST:event_definirSeanceActionPerformed
+    
+    public void getEmp(int numGroupe) {
+        this.resetEMP();
+        StatiqCrenoDAO scdao = new StatiqCrenoDAO(conn);
+        ArrayList listensmat = scdao.findAllByNumGroupe(numGroupe);
+        StatiqueCreneau sc;
+        int jourS;
+        String heureS;
+        if(listensmat == null) {
+            return;
+        }
+        for (int i = 0; i < listensmat.size(); i++) {
+            sc = (StatiqueCreneau) listensmat.get(i);
+            jourS = sc.getJourSemaine();
+            heureS = sc.getHeureSeance().toString();
+                if(String.valueOf(jourS).equals("2")) {
 
+                    if(heureS.equals("08:00:00")) {
+                        emp[0][0] = sc;
+                        l8text.setText(sc.getNomMatiere());
+                        jLabel32.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                   
+                    else if(heureS.equals("10:00:00")) {
+                        emp[0][1] = sc;
+                        jLabel13.setText(sc.getNomMatiere());
+                        jLabel33.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else if(heureS.equals("14:00:00")) {
+                        emp[0][2] = sc;
+                        jLabel14.setText(sc.getNomMatiere());
+                        jLabel34.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else {
+                        emp[0][3] = sc;
+                        jLabel15.setText(sc.getNomMatiere());
+                        jLabel35.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                }
+
+                else if(String.valueOf(jourS).equals("3")) {
+                    if(heureS.equals("08:00:00")) {
+                        emp[1][0] = sc;
+                        jLabel16.setText(sc.getNomMatiere());
+                        jLabel36.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+
+                    else if(heureS.equals("10:00:00")) {
+                        emp[1][1] = sc;
+                        jLabel17.setText(sc.getNomMatiere());
+                        jLabel37.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else if(heureS.equals("14:00:00")) {
+                        emp[1][2] = sc;
+                        jLabel18.setText(sc.getNomMatiere());
+                        jLabel38.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else {
+                        emp[1][3] = sc;
+                        jLabel19.setText(sc.getNomMatiere());
+                        jLabel39.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                }
+
+                else if(String.valueOf(jourS).equals("4")) {
+                    if(heureS.equals("08:00:00")) {
+                        emp[2][0] = sc;
+                        jLabel20.setText(sc.getNomMatiere());
+                        jLabel40.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+
+                    else if(heureS.equals("10:00:00")) {
+                        emp[2][1] = sc;
+                        jLabel21.setText(sc.getNomMatiere());
+                        jLabel41.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else if(heureS.equals("14:00:00")) {
+                        emp[2][2] = sc;
+                        jLabel22.setText(sc.getNomMatiere());
+                        jLabel42.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else {
+                        emp[2][3] = sc;
+                        jLabel23.setText(sc.getNomMatiere());
+                        jLabel43.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                }
+
+                else if(String.valueOf(jourS).equals("5")) {
+                    if(heureS.equals("08:00:00")) {
+                        emp[3][0] = sc;
+                        jLabel24.setText(sc.getNomMatiere());
+                        jLabel44.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+
+                    else if(heureS.equals("10:00:00")) {
+                        emp[3][1] = sc;
+                        jLabel25.setText(sc.getNomMatiere());
+                        jLabel45.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else if(heureS.equals("14:00:00")) {
+                        emp[3][2] = sc;
+                        jLabel26.setText(sc.getNomMatiere());
+                        jLabel46.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                 
+                        jLabel26.paintImmediately(jLabel26.getVisibleRect());
+                        jLabel46.paintImmediately(jLabel46.getVisibleRect());
+                    }
+                    else {
+                        emp[3][3] = sc;
+                        jLabel27.setText(sc.getNomMatiere());
+                        jLabel47.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                }
+
+                else if (String.valueOf(jourS).equals("6")) {
+                    if(heureS.equals("08:00:00")) {
+                        emp[4][0] = sc;
+                        jLabel26.setText(sc.getNomMatiere());
+                        jLabel46.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+
+                    else if(heureS.equals("10:00:00")) {
+                        emp[4][1] = sc;
+                        jLabel27.setText(sc.getNomMatiere());
+                        jLabel47.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else if(heureS.equals("14:00:00")) {
+                        emp[4][2] = sc;
+                        jLabel28.setText(sc.getNomMatiere());
+                        jLabel48.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                    else {
+                        emp[4][3] = sc;
+                        jLabel29.setText(sc.getNomMatiere());
+                        jLabel49.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                    }
+                }
+
+                else {
+                   
+                }
+
+        }
+        
+        
+        
+    }
+    
+    public void resetEMP() {
+        l8text.setText(null);
+        jLabel32.setText(null);
+
+        jLabel13.setText(null);
+        jLabel33.setText(null);
+
+        jLabel14.setText(null);
+        jLabel34.setText(null);
+
+        jLabel15.setText(null);
+        jLabel35.setText(null);
+
+        jLabel16.setText(null);
+        jLabel36.setText(null);
+
+        jLabel17.setText(null);
+        jLabel37.setText(null);
+
+        jLabel18.setText(null);
+        jLabel38.setText(null);
+
+        jLabel19.setText(null);
+        jLabel39.setText(null);
+
+        jLabel20.setText(null);
+        jLabel40.setText(null);
+
+        jLabel21.setText(null);
+        jLabel41.setText(null);
+
+        jLabel22.setText(null);
+        jLabel42.setText(null);
+
+        jLabel23.setText(null);
+        jLabel43.setText(null);
+
+        jLabel24.setText(null);
+        jLabel44.setText(null);
+
+        jLabel25.setText(null);
+        jLabel45.setText(null);
+
+        jLabel26.setText(null);
+        jLabel46.setText(null);
+
+        jLabel27.setText(null);
+        jLabel47.setText(null);
+
+        jLabel26.setText(null);
+        jLabel46.setText(null);
+
+        jLabel27.setText(null);
+        jLabel47.setText(null);
+
+        jLabel28.setText(null);
+        jLabel48.setText(null);
+
+        jLabel29.setText(null);
+        jLabel49.setText(null);
+
+    }
+    
     private void l8textComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_l8textComponentResized
         // TODO add your handling code here:
        
@@ -1351,12 +1593,126 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        
     }//GEN-LAST:event_v16MouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         numpan = -1;
     }//GEN-LAST:event_formMouseClicked
+
+    private void groupecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_groupecomboItemStateChanged
+        // TODO add your handling code here:
+        if(groupecombo.getSelectedIndex() == -1) return;
+        res = groupedao.findALL();
+        String filname = (String)filierecombo.getSelectedItem();
+        int niveau = niveaucombo.getSelectedIndex()+1;
+        String groupename = (String) groupecombo.getSelectedItem();
+        int numGroupe = 0;
+        try {
+            while(res.next()){
+                
+                if(filname.equals(res.getString(4)) && (niveau == res.getInt(5)) && groupename.equals(res.getString(2))){
+                    numGroupe = res.getInt(1);
+                    break;
+                }
+                 
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(GererEmploi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                            
+        this.getEmp(numGroupe);
+        
+    }//GEN-LAST:event_groupecomboItemStateChanged
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(numpan == -1) {
+            JOptionPane.showMessageDialog(null, "Choisissez un creneau!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir supprimer?","Confirmation",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+            
+        if(p == JOptionPane.NO_OPTION){
+            return;
+        }
+        StatiqueCreneau sc; 
+        
+        switch(numpan){
+            case 1: 
+                sc = emp[0][0];
+                break;
+            case 2: 
+                sc = emp[0][1];
+                break;
+            case 3: 
+                sc = emp[0][2];
+                break;
+            case 4: 
+                sc = emp[0][3];
+                break;
+            case 5: 
+                sc = emp[1][0];
+                break;
+            case 6: 
+                sc = emp[1][1];
+                break;
+            case 7: 
+                sc = emp[1][2];
+                break;
+            case 8: 
+                sc = emp[1][3];
+                break;
+            case 9: 
+                sc = emp[2][0];
+                break;
+            case 10: 
+                sc = emp[2][1];
+                break;
+            case 11: 
+                sc = emp[2][2];
+                break;
+            case 12: 
+                sc  = emp[2][3];
+                break;
+            case 13: 
+                sc = emp[3][0];
+                break;
+            case 14: 
+                sc = emp[3][1];
+                break;
+            case 15: 
+                sc  = emp[3][2];
+                break;
+            case 16: 
+                sc = emp[3][3];
+                break;
+            case 17: 
+                sc = emp[4][0];
+                break;
+            case 18: 
+                sc = emp[4][1];
+                break;
+            case 19: 
+                sc = emp[4][2];
+                break;
+            case 20: 
+                sc = emp[4][3];
+                break;
+            default:
+                return;    
+        }
+        
+        StatiqCrenoDAO scdao = new StatiqCrenoDAO(conn);
+        scdao.delete(sc);
+        
+        this.getEmp(sc.getNumGroupe());
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1367,6 +1723,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JPanel j14;
     private javax.swing.JPanel j16;
     private javax.swing.JPanel j8;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

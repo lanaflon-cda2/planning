@@ -49,7 +49,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="com.planning.view.AdminDept.MonCompteDept mcd = new com.planning.view.AdminDept.MonCompteDept();&#xa;this.desktop.add(mcd);&#xa;try {&#xa;            mcd.setMaximum(true);&#xa;        } catch (PropertyVetoException ex) {&#xa;            Logger.getLogger(com.planning.view.AdminDept.AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;        mcd.show();"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="mcd = new MonCompteDept();&#xa;this.desktop.add(mcd);&#xa;try {&#xa;            mcd.setMaximum(true);&#xa;        } catch (PropertyVetoException ex) {&#xa;            Logger.getLogger(com.planning.view.AdminDept.AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;        mcd.show();"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -97,7 +97,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="seanceratt">
+    <Component class="javax.swing.JButton" name="gerergroupe">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -108,8 +108,8 @@
         <Property name="text" type="java.lang.String" value="Groupes"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="seancerattMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seancerattActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="gerergroupeMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gerergroupeActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

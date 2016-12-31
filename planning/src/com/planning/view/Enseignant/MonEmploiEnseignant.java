@@ -1405,130 +1405,67 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     
     int[][] emp = new int[5][4];
     
-    public void paintCompo(){
-         
-            l8text.paintImmediately(l8text.getVisibleRect());
-            jLabel32.paintImmediately(jLabel32.getVisibleRect());
-
-            jLabel13.paintImmediately(jLabel13.getVisibleRect());
-            jLabel33.paintImmediately(jLabel33.getVisibleRect());
-
-            jLabel14.paintImmediately(jLabel14.getVisibleRect());
-            jLabel34.paintImmediately(jLabel34.getVisibleRect());
-
-            jLabel15.setText(null);
-            jLabel35.setText(null);
-
-            jLabel16.setText(null);
-            jLabel36.setText(null);
-
-            jLabel17.setText(null);
-            jLabel37.setText(null);
-
-            jLabel18.setText(null);
-            jLabel38.setText(null);
-
-            jLabel19.setText(null);
-            jLabel39.setText(null);
-
-            jLabel20.setText(null);
-            jLabel40.setText(null);
-
-            jLabel21.setText(null);
-            jLabel41.setText(null);
-
-            jLabel22.setText(null);
-            jLabel42.setText(null);
-
-            jLabel23.setText(null);
-            jLabel43.setText(null);
-
-            jLabel24.setText(null);
-            jLabel44.setText(null);
-
-            jLabel25.setText(null);
-            jLabel45.setText(null);
-
-            jLabel26.setText(null);
-            jLabel46.setText(null);
-
-            jLabel27.setText(null);
-            jLabel47.setText(null);
-
-            jLabel26.setText(null);
-            jLabel46.setText(null);
-
-            jLabel27.setText(null);
-            jLabel47.setText(null);
-
-            jLabel28.setText(null);
-            jLabel48.setText(null);
-
-            jLabel29.setText(null);
-            jLabel49.setText(null);
- 
-    }
     public void resetEMP() {
         l8text.setText(null);
-            jLabel32.setText(null);
+        jLabel32.setText(null);
 
-            jLabel13.setText(null);
-            jLabel33.setText(null);
+        jLabel13.setText(null);
+        jLabel33.setText(null);
 
-            jLabel14.setText(null);
-            jLabel34.setText(null);
+        jLabel14.setText(null);
+        jLabel34.setText(null);
 
-            jLabel15.setText(null);
-            jLabel35.setText(null);
+        jLabel15.setText(null);
+        jLabel35.setText(null);
 
-            jLabel16.setText(null);
-            jLabel36.setText(null);
+        jLabel16.setText(null);
+        jLabel36.setText(null);
 
-            jLabel17.setText(null);
-            jLabel37.setText(null);
+        jLabel17.setText(null);
+        jLabel37.setText(null);
 
-            jLabel18.setText(null);
-            jLabel38.setText(null);
+        jLabel18.setText(null);
+        jLabel38.setText(null);
 
-            jLabel19.setText(null);
-            jLabel39.setText(null);
+        jLabel19.setText(null);
+        jLabel39.setText(null);
 
-            jLabel20.setText(null);
-            jLabel40.setText(null);
+        jLabel20.setText(null);
+        jLabel40.setText(null);
 
-            jLabel21.setText(null);
-            jLabel41.setText(null);
+        jLabel21.setText(null);
+        jLabel41.setText(null);
 
-            jLabel22.setText(null);
-            jLabel42.setText(null);
+        jLabel22.setText(null);
+        jLabel42.setText(null);
 
-            jLabel23.setText(null);
-            jLabel43.setText(null);
+        jLabel23.setText(null);
+        jLabel43.setText(null);
 
-            jLabel24.setText(null);
-            jLabel44.setText(null);
+        jLabel24.setText(null);
+        jLabel44.setText(null);
 
-            jLabel25.setText(null);
-            jLabel45.setText(null);
+        jLabel25.setText(null);
+        jLabel45.setText(null);
 
-            jLabel26.setText(null);
-            jLabel46.setText(null);
+        jLabel26.setText(null);
+        jLabel46.setText(null);
 
-            jLabel27.setText(null);
-            jLabel47.setText(null);
+        jLabel27.setText(null);
+        jLabel47.setText(null);
 
-            jLabel26.setText(null);
-            jLabel46.setText(null);
+        jLabel26.setText(null);
+        jLabel46.setText(null);
 
-            jLabel27.setText(null);
-            jLabel47.setText(null);
+        jLabel27.setText(null);
+        jLabel47.setText(null);
 
-            jLabel28.setText(null);
-            jLabel48.setText(null);
+        jLabel28.setText(null);
+        jLabel48.setText(null);
 
-            jLabel29.setText(null);
-            jLabel49.setText(null);
- 
+        jLabel29.setText(null);
+        jLabel49.setText(null);
+
     }
     
     public void getEmp(Date dd, Date df){
@@ -1539,17 +1476,13 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         String[] strings;
         for (int i = 0; i < listGrpMat.size(); i++) {
             strings = (String[]) listGrpMat.get(i);
-                System.out.println(i);
                 if(strings[3].equals("2")) {
 
                     if(strings[4].equals("08:00:00")) {
-                        System.out.println("Hey I'm here lundi 8");
                         emp[0][0] = Integer.valueOf(strings[6]);
                         l8text.setText(strings[0]);
-                        
                         jLabel32.setText(strings[1] + " " + strings[2]);
-                        l8text.paintImmediately(l8text.getVisibleRect());
-                        jLabel32.paintImmediately(jLabel32.getVisibleRect());
+    
                      
                     }
                    
@@ -1637,13 +1570,9 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                         jLabel45.setText(strings[1] + " " + strings[2]);
                     }
                     else if(strings[4].equals("14:00:00")) {
-                        System.out.println("Hey I'm here jeudi 14h");
                         emp[3][2] = Integer.valueOf(strings[6]);
                         jLabel26.setText(strings[0]);
                         jLabel46.setText(strings[1] + " " + strings[2]);
-                 
-                        jLabel26.paintImmediately(jLabel26.getVisibleRect());
-                        jLabel46.paintImmediately(jLabel46.getVisibleRect());
                     }
                     else {
                         emp[3][3] = Integer.valueOf(strings[6]);

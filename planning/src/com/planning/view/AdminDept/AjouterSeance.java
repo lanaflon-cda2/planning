@@ -36,6 +36,7 @@ public class AjouterSeance extends javax.swing.JFrame {
     private String heureSeance;
     private Time heuremillis;
     private int numGroupe;
+    private GererEmploi gererEmploi;
     Connection conn = ConnexionBD.init();
     
     /**
@@ -142,6 +143,9 @@ public class AjouterSeance extends javax.swing.JFrame {
     public void setNumGroupe(int n) {
         this.numGroupe = n;
     }
+    public void setGererEmploi(GererEmploi ge) {
+        this.gererEmploi = ge;
+    }
     private void enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregistrerActionPerformed
 
         if(dateDChooser.getDate() == null || dateDChooser.getDate() == null) {
@@ -173,9 +177,9 @@ public class AjouterSeance extends javax.swing.JFrame {
         StatiqueCreneau sc = new StatiqueCreneau(mat.getNumMatiere(), this.numGroupe, ens.getNumEns(), jourSemaine, t, dateD, dateF);
         StatiqCrenoDAO scdao = new StatiqCrenoDAO(conn);
         scdao.create(sc);
-//        SeanceDAO s = new SeanceDAO(conn);
-//        s.createAllSeance(sc);
-        
+        SeanceDAO s = new SeanceDAO(conn);
+        s.createAllSeance(sc);
+        this.gererEmploi.getEmp(numGroupe);
         this.dispose();
     }//GEN-LAST:event_enregistrerActionPerformed
     

@@ -50,7 +50,18 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
 
     @Override
     public boolean delete(StatiqueCreneau obj) {
-        return false;
+         try {
+            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "DELETE FROM StatiqueCreneau WHERE NumSC = " + obj.getNumSC();
+            state.executeUpdate(query);
+            query = "DELETE FROM Seance WHERE NumEns = " + obj.getNumEns() + " AND NumMatiere = " + obj.getNumMatiere() + " AND NumGroupe = " + obj.getNumGroupe();
+            state.executeUpdate(query);
+        } 
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e);
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -62,13 +73,13 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
     public StatiqueCreneau find(int id) {
         return null;
     }
-
+    
     @Override
     public StatiqueCreneau find(String string) {
         return null;
     }
     
-    public ArrayList getAllSC(){
+    public ArrayList findALL(){
         
         ArrayList allSC = null;
         StatiqueCreneau sc;
@@ -77,6 +88,7 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
             query = "Select * FROM StatiqueCreneau";
             res = state.executeQuery(query);
             while(res.next()) {
+                if(allSC == null) allSC = new ArrayList();
                 sc = new StatiqueCreneau(res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getTime(6), res.getDate(7), res.getDate(8));
                 allSC.add(sc);
             }
@@ -87,4 +99,28 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
         return allSC;
     }
     
+    public ArrayList findAllByNumGroupe(int numGroupe) {
+        ArrayList allSC = null;
+        StatiqueCreneau sc;
+        try {
+            state = conn.createStatement();
+            query = "Select NumSC, StatiqueCreneau.NumMatiere, StatiqueCreneau.NumGroupe, StatiqueCreneau.NumEns, JourSemaine, HeureSeance, DateD, DateF, NomMatiere, NomEns, PrenomEns, NomGroupe"; 
+            query += " FROM StatiqueCreneau, Groupe, Matiere, Enseignant WHERE StatiqueCreneau.NumGroupe = " + numGroupe + " and Enseignant.NumEns = StatiqueCreneau.NumEns and Matiere.NumMatiere = StatiqueCreneau.NumMatiere";
+            query += " and Groupe.NumGroupe = StatiqueCreneau.NumGroupe";
+            res = state.executeQuery(query);
+            while(res.next()) {
+                if(allSC == null) allSC = new ArrayList();
+                sc = new StatiqueCreneau(res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4), res.getInt(5), res.getTime(6), res.getDate(7), res.getDate(8));
+                sc.setNomMatiere(res.getString(9));
+                sc.setNomEns(res.getString(10));
+                sc.setPrenomEns(res.getString(11));
+                allSC.add(sc);
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: in findALLByNumGroupe" + e);
+            return null;
+        }
+        
+        return allSC;
+    }
 }
