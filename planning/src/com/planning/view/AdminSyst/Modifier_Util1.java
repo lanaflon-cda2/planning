@@ -158,22 +158,12 @@ public class Modifier_Util1 extends javax.swing.JFrame {
             return;
         }
         
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-        
-        if(p == JOptionPane.YES_OPTION){
-            usersDAO.delete(new Users(ensens.getIDUser()));
-            enseignantDAO.delete(new Enseignant(ensens.getNumEns()));   
-            usersDAO.create(new Users(id));
-            enseignantDAO.create(new Enseignant(10,nom,prenom,mail,Long.valueOf(tel),id));
-            this.gu.updateTable();
-            JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
-            this.dispose();
-            
-        } else if( p == JOptionPane.NO_OPTION) this.dispose();
-        
-        else {
-            
-        }
+        enseignantDAO.update(new Enseignant(ensens.getNumEns(),nom,prenom,mail,Long.valueOf(tel),id));
+        usersDAO.update(new Users(ensens.getIDUser()), new Users(id));
+        this.gu.updateTable();
+        JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
+        this.dispose();
+
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     /**

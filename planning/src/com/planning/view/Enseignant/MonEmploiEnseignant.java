@@ -132,7 +132,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         consulter = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("mon emploi");
@@ -240,6 +239,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         l8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         l8text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l8text.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         l8text.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 l8textComponentResized(evt);
@@ -646,10 +646,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(consulter, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 120, 30));
-
-        jLabel1.setFont(new java.awt.Font("Vivaldi", 2, 48)); // NOI18N
-        jLabel1.setText("Emploi");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 120, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1204,121 +1200,118 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         switch(numpan){
             case 1: 
                 this.srat.setnumseance(emp[0][0]);
-                this.l8.setBackground(Color.red);
                 /*Seance seance1 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance1);*/
                 break;
             case 2: 
                 this.srat.setnumseance(emp[0][1]);
-                this.l10.setBackground(Color.red);
                 /*Seance seance2 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance2);*/
                 break;
             case 3: 
                 this.srat.setnumseance(emp[0][2]);
-                this.l14.setBackground(Color.red);
                 /*Seance seance3 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance3);*/
                 break;
             case 4: 
                 this.srat.setnumseance(emp[0][3]);
-                this.l16.setBackground(Color.red);
+                //this.l16.setBackground(Color.red);
                 /*Seance seance4 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance4);*/
                 break;
             case 5: 
                 this.srat.setnumseance(emp[1][0]);
-                this.ma8.setBackground(Color.red);
+                //this.ma8.setBackground(Color.red);
                 /*Seance seance5 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance5);*/
                 break;
             case 6: 
                 this.srat.setnumseance(emp[1][1]);
-                this.ma10.setBackground(Color.red);
+                //this.ma10.setBackground(Color.red);
                 /*Seance seance6 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance6);*/
                 break;
             case 7: 
                 this.srat.setnumseance(emp[1][2]);
-                this.ma14.setBackground(Color.red);
+                //this.ma14.setBackground(Color.red);
                 /*Seance seance7 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance7);*/
                 break;
             case 8: 
                 this.srat.setnumseance(emp[1][3]);
-                this.ma16.setBackground(Color.red);
+                //this.ma16.setBackground(Color.red);
                 /*Seance seance8 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance8);*/
                 break;
             case 9: 
                 this.srat.setnumseance(emp[2][0]);
-                this.me8.setBackground(Color.red);
+                //this.me8.setBackground(Color.red);
                 /*Seance seance9 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance9);*/
                 break;
             case 10: 
                 this.srat.setnumseance(emp[2][1]);
-                this.me10.setBackground(Color.red);
+                //this.me10.setBackground(Color.red);
                 /*Seance seance10 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance10);*/
                 break;
             case 11: 
                 this.srat.setnumseance(emp[2][2]);
-                this.me14.setBackground(Color.red);
+                //this.me14.setBackground(Color.red);
                 /*Seance seance11 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance11);*/
                 break;
             case 12: 
                 this.srat.setnumseance(emp[2][3]);
-                this.me16.setBackground(Color.red);
+                //this.me16.setBackground(Color.red);
                 /*Seance seance12 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance12);*/
                 break;
             case 13: 
                 this.srat.setnumseance(emp[3][0]);
-                this.j8.setBackground(Color.red);
+                //this.j8.setBackground(Color.red);
                 /*Seance seance13 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance13);*/
                 break;
             case 14: 
                 this.srat.setnumseance(emp[3][1]);
-                this.j10.setBackground(Color.red);
+                //this.j10.setBackground(Color.red);
                 /*Seance seance14 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance14);*/
                 break;
             case 15: 
                 this.srat.setnumseance(emp[3][2]);
-                this.j14.setBackground(Color.red);
+                //this.j14.setBackground(Color.red);
                 /*Seance seance15 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance15);*/
                 break;
             case 16: 
                 this.srat.setnumseance(emp[3][3]);
-                this.j16.setBackground(Color.red);
+                //this.j16.setBackground(Color.red);
                 /*Seance seance16 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance16);*/
                 break;
             case 17: 
                 this.srat.setnumseance(emp[4][0]);
-                this.v8.setBackground(Color.red);
+                //this.v8.setBackground(Color.red);
                 /*Seance seance17 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance17);*/
                 break;
             case 18: 
                 this.srat.setnumseance(emp[4][1]);
-                this.v10.setBackground(Color.red);
+                //this.v10.setBackground(Color.red);
                 /*Seance seance18 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance18);*/
                 break;
             case 19: 
                 this.srat.setnumseance(emp[4][2]);
-                this.v14.setBackground(Color.red);
+                //this.v14.setBackground(Color.red);
                 /*Seance seance19 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance19);*/
                 break;
             case 20: 
                 this.srat.setnumseance(emp[4][3]);
-                this.v16.setBackground(Color.red);
+                //this.v16.setBackground(Color.red);
                 /*Seance seance20 = new Seance(srat.getnumseance());
                 srat.addRattrapage(seance20);*/
                 break;
@@ -1411,6 +1404,70 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     }
     
     int[][] emp = new int[5][4];
+    
+    public void paintCompo(){
+         
+            l8text.paintImmediately(l8text.getVisibleRect());
+            jLabel32.paintImmediately(jLabel32.getVisibleRect());
+
+            jLabel13.paintImmediately(jLabel13.getVisibleRect());
+            jLabel33.paintImmediately(jLabel33.getVisibleRect());
+
+            jLabel14.paintImmediately(jLabel14.getVisibleRect());
+            jLabel34.paintImmediately(jLabel34.getVisibleRect());
+
+            jLabel15.setText(null);
+            jLabel35.setText(null);
+
+            jLabel16.setText(null);
+            jLabel36.setText(null);
+
+            jLabel17.setText(null);
+            jLabel37.setText(null);
+
+            jLabel18.setText(null);
+            jLabel38.setText(null);
+
+            jLabel19.setText(null);
+            jLabel39.setText(null);
+
+            jLabel20.setText(null);
+            jLabel40.setText(null);
+
+            jLabel21.setText(null);
+            jLabel41.setText(null);
+
+            jLabel22.setText(null);
+            jLabel42.setText(null);
+
+            jLabel23.setText(null);
+            jLabel43.setText(null);
+
+            jLabel24.setText(null);
+            jLabel44.setText(null);
+
+            jLabel25.setText(null);
+            jLabel45.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel26.setText(null);
+            jLabel46.setText(null);
+
+            jLabel27.setText(null);
+            jLabel47.setText(null);
+
+            jLabel28.setText(null);
+            jLabel48.setText(null);
+
+            jLabel29.setText(null);
+            jLabel49.setText(null);
+ 
+    }
     public void resetEMP() {
         l8text.setText(null);
             jLabel32.setText(null);
@@ -1478,18 +1535,23 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         this.resetEMP();
         ConsulterEMP ce = new ConsulterEMP();
         ArrayList listGrpMat = ce.getGrpMat(this.numEns, dd, df);
+        if(listGrpMat == null) return;
         String[] strings;
         for (int i = 0; i < listGrpMat.size(); i++) {
             strings = (String[]) listGrpMat.get(i);
-            if(strings[3] != null) {
+            //if(strings[3] != null) {
+                System.out.println(i);
                 if(strings[3].equals("2")) {
 
                     if(strings[4].equals("08:00:00")) {
-                        System.out.println("Hey I'm here");
+                        System.out.println("Hey I'm here lundi 8");
                         emp[0][0] = Integer.valueOf(strings[6]);
                         l8text.setText(strings[0]);
+                        
                         jLabel32.setText(strings[1] + " " + strings[2]);
-                        l8.updateUI();
+                        l8text.paintImmediately(l8text.getVisibleRect());
+                        jLabel32.paintImmediately(jLabel32.getVisibleRect());
+                     
                     }
                    
                     else if(strings[4].equals("10:00:00")) {
@@ -1576,10 +1638,13 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                         jLabel45.setText(strings[1] + " " + strings[2]);
                     }
                     else if(strings[4].equals("14:00:00")) {
+                        System.out.println("Hey I'm here jeudi 14h");
                         emp[3][2] = Integer.valueOf(strings[6]);
                         jLabel26.setText(strings[0]);
                         jLabel46.setText(strings[1] + " " + strings[2]);
-                        j14.updateUI();
+                 
+                        jLabel26.paintImmediately(jLabel26.getVisibleRect());
+                        jLabel46.paintImmediately(jLabel46.getVisibleRect());
                     }
                     else {
                         emp[3][3] = Integer.valueOf(strings[6]);
@@ -1616,11 +1681,11 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                    
                 }
             
-            }
+            //}
             
-            else {
-                
-            }
+//            else {
+//                
+//            }
             
             this.updateUI();
         }
@@ -1639,7 +1704,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     private javax.swing.JPanel j8;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
