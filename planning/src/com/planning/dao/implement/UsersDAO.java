@@ -121,7 +121,18 @@ public class UsersDAO extends DAO<Users> {
                 EnseignantDAO enseignantDAO = new EnseignantDAO(this.conn);
                 Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(1));
                 users.setEnseignant(enseignant);
-            }   
+            }
+            if(users == null) {
+                query = "SELECT IDUser, MotDePasse, Fonction, Users.NumFiliere, '' FROM Users WHERE IDUser = '" + iDUser + "'";
+                res = state.executeQuery(query);
+                while(res.next()) {
+                    users = new Users(res.getString(1), res.getString(2), res.getString(3), res.getInt(4));   
+                    users.setNomFiliere(res.getString(5));
+                    EnseignantDAO enseignantDAO = new EnseignantDAO(this.conn);
+                    Enseignant enseignant = enseignantDAO.findByIDUser(res.getString(1));
+                    users.setEnseignant(enseignant);
+                }
+            }
         }catch (SQLException e) {  
             System.out.println("SQLException: " + e);
             return null;
