@@ -1,7 +1,9 @@
  /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+
+* and open the template in the editor.
  */
 package com.planning.controler;
 
@@ -83,14 +85,6 @@ public class Absenter {
                 System.out.println("Intersection trouvee et des permutations sont aussi possibles");
             }
         }
-        
-//        try {
-//            res.close();
-//            state.close();
-//            con.close();
-//        } catch(SQLException e){
-//            System.out.println("SQLException: " + e);
-//        }
         
     }
             

@@ -174,7 +174,7 @@ public class TestAlgo {
         Date df = new Date(timeMillis);
  
         StatiqueCreneau so = new StatiqueCreneau(14, 1, 18, 3, t, dd, df);
-        s.insertAllSeanceForStatiqueCreneau(so);
+        s.createAllSeance(so);
     }
     
     
@@ -194,7 +194,6 @@ public class TestAlgo {
             
         } else System.out.println(" Creno = " + creno + " Aucun creno vide trouvée.");
         
-        //Supposons que creno = null. On va chercher si des permutations sont possibles; 
         System.out.println("\n\n");
         
         ArrayList permut = absence.getPermutPossible();

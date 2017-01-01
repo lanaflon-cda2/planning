@@ -10,6 +10,7 @@ import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.GroupeDAO;
 import com.planning.dao.implement.MatiereDAO;
 import com.planning.dao.implement.SeanceDAO;
+import com.planning.dao.implement.StatiqCrenoDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Filiere;
@@ -108,4 +109,5 @@ public class ConsulterEMP {
         }
         return listGrpMat;
     }
+    
 }

@@ -9,10 +9,12 @@ import com.planning.controler.Absenter;
 import com.planning.controler.Permut;
 import com.planning.dao.implement.CreneauDAO;
 import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.MatiereDAO;
 import com.planning.dao.implement.SeanceDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Enseignant;
+import com.planning.model.Matiere;
 import com.planning.model.Seance;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
@@ -59,6 +61,14 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         
         SeanceDAO seanceDAO = new SeanceDAO(con);
         seance = seanceDAO.find(this.numseance);
+        
+        MatiereDAO mdao = new MatiereDAO(con);
+        CreneauDAO cdao = new CreneauDAO(con);
+        Matiere mat = mdao.find(seance.getNumMatiere());
+        Creneau c = cdao.find(seance.getNumCreneau());
+        this.matiereLabel.setText(mat.getNomMatiere());
+        this.dateLabel.setText(c.getDateCreneau().toString());
+        this.heureLabel.setText(c.getHeureCreneau().toString());
         this.getRattrapage(seance);
     }
     
@@ -165,6 +175,9 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+        matiereLabel = new javax.swing.JLabel();
+        heureLabel = new javax.swing.JLabel();
         confirmerRattrapage = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -173,6 +186,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("seances rattrapage");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -187,10 +205,14 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Heure");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jPanel1.add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 20));
+        jPanel1.add(matiereLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 20));
+        jPanel1.add(heureLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 85, 120, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 210, 120));
 
         confirmerRattrapage.setText("Confirmer");
+        confirmerRattrapage.setEnabled(false);
         confirmerRattrapage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmerRattrapageActionPerformed(evt);
@@ -206,6 +228,12 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jLabel2.setText("Séance à reporter");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
+
         listeratt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -214,6 +242,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
                 "DateSeance", "HeureSeance", "Enseignant"
             }
         ));
+        listeratt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listerattMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listeratt);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 430, 290));
@@ -222,17 +255,22 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmerRattrapageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmerRattrapageActionPerformed
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sûr de sauvegarder","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);    
+        
+        
+        int row = listeratt.getSelectedRow();
+        if(row == -1) {
+            JOptionPane.showMessageDialog(this, "Selectionnez un creneau de rattrapage dans la liste proposée!", "Seance de Rattrapages", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);    
         if(p == JOptionPane.NO_OPTION || p == JOptionPane.CANCEL_OPTION) return;
+        
         Seance newseance1, newseance2, seanceoffert;
         SeanceDAO sd = new SeanceDAO(con);
         model = (DefaultTableModel) listeratt.getModel();
         Object[] obj;
-        int row = listeratt.getSelectedRow();
-        if(row == -1) {
-            JOptionPane.showMessageDialog(this, "Selectionnez un creneau valide!", "Seance de Rattrapages", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+        
         String dateSeanceNom = (String) model.getValueAt(row, 0);
         
         String dateSeance = dateSeanceNom.split(" ")[0];
@@ -269,7 +307,13 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         this.monemp.resetEMP();
         this.monemp.initEmp();
         this.ae.desktop.add(this.monemp);
-        
+        //this.initComponents();
+        matiereLabel.setText("");
+        dateLabel.setText("");
+        heureLabel.setText("");
+        model = (DefaultTableModel) listeratt.getModel();
+        model.setRowCount(0);
+        listeratt.setModel(model);
         try {
             this.monemp.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -278,9 +322,26 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         this.monemp.show();
     }//GEN-LAST:event_confirmerRattrapageActionPerformed
 
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+        //confirmerRattrapage.setEnabled(true);
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        confirmerRattrapage.setEnabled(false);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void listerattMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listerattMouseClicked
+        // TODO add your handling code here:
+        confirmerRattrapage.setEnabled(true);
+    }//GEN-LAST:event_listerattMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmerRattrapage;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JLabel heureLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -289,5 +350,6 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listeratt;
+    private javax.swing.JLabel matiereLabel;
     // End of variables declaration//GEN-END:variables
 }
