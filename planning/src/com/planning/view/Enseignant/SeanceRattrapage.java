@@ -242,6 +242,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
                 "DateSeance", "HeureSeance", "Enseignant"
             }
         ));
+        listeratt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listerattMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listeratt);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 430, 290));
@@ -302,7 +307,13 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         this.monemp.resetEMP();
         this.monemp.initEmp();
         this.ae.desktop.add(this.monemp);
-        this.initComponents();
+        //this.initComponents();
+        matiereLabel.setText("");
+        dateLabel.setText("");
+        heureLabel.setText("");
+        model = (DefaultTableModel) listeratt.getModel();
+        model.setRowCount(0);
+        listeratt.setModel(model);
         try {
             this.monemp.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -313,13 +324,18 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         // TODO add your handling code here:
-        confirmerRattrapage.setEnabled(true);
+        //confirmerRattrapage.setEnabled(true);
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         confirmerRattrapage.setEnabled(false);
     }//GEN-LAST:event_formMouseClicked
+
+    private void listerattMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listerattMouseClicked
+        // TODO add your handling code here:
+        confirmerRattrapage.setEnabled(true);
+    }//GEN-LAST:event_listerattMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

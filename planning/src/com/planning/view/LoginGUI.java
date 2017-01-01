@@ -138,7 +138,7 @@ public class LoginGUI extends javax.swing.JFrame {
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                if(user.getFonction().equals("Enseignant")) {
+                if(user.getFonction().equals("Enseignant") || user.getFonction().equals("Chef Departement") || user.getFonction().equals("Coordinateur Filiere")) {
                     AcceuilEnseignant AE = new AcceuilEnseignant();
                     AE.desktop.removeAll();
                     AE.desktop.repaint(); 
@@ -154,14 +154,10 @@ public class LoginGUI extends javax.swing.JFrame {
                     mce.show();
                     dispose();
                     AE.setVisible(true);
-                } else if(user.getFonction().equals("Chef Departement")) {
-                    
                 } else if(user.getFonction().equals("Administrateur Departement")) {
                     AcceuilAdminDept aadept = new AcceuilAdminDept();
                     this.dispose();
                     aadept.setVisible(true);
-                } else if(user.getFonction().equals("Coordinateur Filiere")) {
-                    
                 } else if(user.getFonction().equals("Administrateur Systeme")) {
                     AcceuilAdminSyst aasys = new AcceuilAdminSyst();
                     this.dispose();

@@ -706,7 +706,8 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         }
         res = groupedao.findALL();
         groupecombo.removeAllItems();
-        this.filierecomboItemStateChanged(null);
+        filierecombo.setSelectedIndex(-1);
+        //this.filierecomboItemStateChanged(null);
     }
     
     public void setAcceuilAdminDept(AcceuilAdminDept aadept) {
@@ -717,11 +718,12 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_groupecomboActionPerformed
 
     private void filierecomboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filierecomboItemStateChanged
-      res = groupedao.findALL();
-      String filname = (String)filierecombo.getSelectedItem();
-      int niveau = niveaucombo.getSelectedIndex()+1;
-      groupecombo.removeAllItems();
-      int numGroupe = 0;
+        if(filierecombo.getSelectedIndex() == -1) return;
+        res = groupedao.findALL();
+        String filname = (String)filierecombo.getSelectedItem();
+        int niveau = niveaucombo.getSelectedIndex()+1;
+        groupecombo.removeAllItems();
+        int numGroupe = 0;
         try {
             while(res.next()){
                 
@@ -761,10 +763,13 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private void definirSeanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirSeanceActionPerformed
         
         if(numpan == -1) {
-            JOptionPane.showMessageDialog(null, "Choisissez un creneau!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selectionnez un creneau!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+        if(niveaucombo.getSelectedIndex() == -1 || groupecombo.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Selectionnez un groupe", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         res = groupedao.findALL();
         String filname = (String)filierecombo.getSelectedItem();
         int niveau = niveaucombo.getSelectedIndex()+1;

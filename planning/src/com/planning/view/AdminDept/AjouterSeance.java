@@ -155,13 +155,10 @@ public class AjouterSeance extends javax.swing.JFrame {
         Date dateD = new Date(dateDChooser.getDate().getTime());
         Date dateF = new Date(dateFChooser.getDate().getTime());
         String nomprecombo = (String) ensCombo.getSelectedItem();
-        String[] nompre = nomprecombo.split(" ");
-        String nomens = nompre[0];
-        String prenomens = nompre[1];
         String nommat = (String) matiereCombo.getSelectedItem();
         for(int i = 0; i < listens.size(); i++) {
             ens = (Enseignant) listens.get(i);
-            if(nomens.equals(ens.getNomEns()) && prenomens.equals(ens.getPrenomEns())) {
+            if(nomprecombo.equals(ens.getNomEns() + " " + ens.getPrenomEns())) {
                 break;
             }
         }

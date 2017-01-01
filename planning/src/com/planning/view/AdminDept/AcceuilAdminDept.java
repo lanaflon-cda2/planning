@@ -139,9 +139,9 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
         acceuilBG.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 700));
+        getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 710));
 
-        pack();
+        setSize(new java.awt.Dimension(998, 730));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
