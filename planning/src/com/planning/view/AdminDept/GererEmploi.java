@@ -178,6 +178,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
         niveaucombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        niveaucombo.setSelectedIndex(-1);
         niveaucombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 niveaucomboItemStateChanged(evt);

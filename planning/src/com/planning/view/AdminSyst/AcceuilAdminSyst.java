@@ -19,10 +19,14 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     /**
      * Creates new form Acceuil
      */
+    
+    GererUtilisateurs gu;
+    
     public AcceuilAdminSyst() {
         initComponents();
+        init();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,7 +110,11 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void init() {
+        gu = new GererUtilisateurs();
+        gu.updateTable();
+    }
     private void utilisateursMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_utilisateursMouseClicked
        this.desktop.removeAll();
        this.desktop.repaint();  
@@ -122,11 +130,8 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     }//GEN-LAST:event_utilisateursMouseClicked
 
     private void utilisateursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateursActionPerformed
-        GererUtilisateurs gu = new GererUtilisateurs();
-        gu.updateTable();
+
         utilisateurs.setBackground(java.awt.SystemColor.activeCaption);
-        
-        
     }//GEN-LAST:event_utilisateursActionPerformed
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
