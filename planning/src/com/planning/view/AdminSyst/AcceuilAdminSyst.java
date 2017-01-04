@@ -22,6 +22,20 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     
     GererUtilisateurs gu;
     
+    String idUser;
+    MonCompteSyst ms = new MonCompteSyst();
+    Modifier2 modifier = new Modifier2();
+    
+    public void setidUserAS(String s){
+        this.idUser = s;
+    }
+    
+    
+    public void setMD2(MonCompteSyst ms){
+        this.ms = ms;
+        ms.setIDUserMCS(this.idUser);
+    }
+    
     public AcceuilAdminSyst() {
         initComponents();
         init();
@@ -203,7 +217,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JButton deconnexion;
-    private javax.swing.JDesktopPane desktop;
+    public javax.swing.JDesktopPane desktop;
     private javax.swing.JButton moncompte;
     private javax.swing.JLabel photo;
     private javax.swing.JButton utilisateurs;

@@ -25,7 +25,6 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
      */
     String idUser;
     MonCompteDept md = new MonCompteDept();
-    GererEmploi monEmploiDept = new GererEmploi();
     Modifier1 modifier = new Modifier1();
     
     public void setidUserAD(String s){
@@ -33,7 +32,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }
     
     
-    public void setMD(MonCompteDept md){
+    public void setMD1(MonCompteDept md){
         this.md = md;
         md.setIDUserMCD(this.idUser);
     }

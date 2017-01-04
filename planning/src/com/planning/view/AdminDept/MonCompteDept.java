@@ -82,6 +82,11 @@ public class MonCompteDept extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Modifier");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel7.setText("Nom");
@@ -157,6 +162,15 @@ public class MonCompteDept extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Modifier1 modifier = new Modifier1();
+        modifier.setTitle("Modification de profil");
+        modifier.setGererUtili(this);
+        modifier.setIDUserMod1(this.idUser);
+        modifier.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

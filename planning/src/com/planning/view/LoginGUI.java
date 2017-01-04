@@ -12,6 +12,7 @@ import com.planning.model.Users;
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.AdminDept.MonCompteDept;
 import com.planning.view.AdminSyst.AcceuilAdminSyst;
+import com.planning.view.AdminSyst.MonCompteSyst;
 import com.planning.view.Enseignant.MonCompteEnseignant;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -162,7 +163,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     aadept.setidUserAD(id);
                     MonCompteDept mcd = new MonCompteDept();
                     aadept.desktop.add(mcd);
-                    aadept.setMD(mcd);
+                    aadept.setMD1(mcd);
                     try {
                         mcd.setMaximum(true);
                      } catch (PropertyVetoException ex) {
@@ -174,8 +175,21 @@ public class LoginGUI extends javax.swing.JFrame {
                     this.dispose();
                 } else if(user.getFonction().equals("Administrateur Systeme")) {
                     AcceuilAdminSyst aasys = new AcceuilAdminSyst();
-                    this.dispose();
+                    aasys.desktop.removeAll();
+                    aasys.desktop.repaint(); 
+                    aasys.setidUserAS(id);
+                    MonCompteSyst mcs = new MonCompteSyst();
+                    aasys.desktop.add(mcs);
+                    aasys.setMD2(mcs);
+                    try {
+                        mcs.setMaximum(true);
+                     } catch (PropertyVetoException ex) {
+                        Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                    mcs.show();
+                    dispose();
                     aasys.setVisible(true);
+                    this.dispose();
                 }                                                       
 
             }
