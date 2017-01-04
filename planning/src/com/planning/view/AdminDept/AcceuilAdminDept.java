@@ -23,6 +23,20 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     /**
      * Creates new form AcceuilEnseignant
      */
+    String idUser;
+    MonCompteDept md = new MonCompteDept();
+    Modifier1 modifier = new Modifier1();
+    
+    public void setidUserAD(String s){
+        this.idUser = s;
+    }
+    
+    
+    public void setMD1(MonCompteDept md){
+        this.md = md;
+        md.setIDUserMCD(this.idUser);
+    }
+    
     public AcceuilAdminDept() {
         initComponents();
         init();
@@ -285,7 +299,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JButton deconnexion;
-    private javax.swing.JDesktopPane desktop;
+    public javax.swing.JDesktopPane desktop;
     private javax.swing.JButton gerergroupe;
     private javax.swing.JButton gerermat;
     private javax.swing.JButton moncompte;

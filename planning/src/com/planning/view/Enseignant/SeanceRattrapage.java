@@ -47,6 +47,23 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private ArrayList listepermut;
     private Seance seance;
     
+    public void infoSeance(int numseance){
+        int num = numseance;
+        
+        SeanceDAO seancedao = new SeanceDAO(con);
+//        MatiereDAO matieredao = new MatiereDAO(con);
+//        CreneauDAO creneaudao = new CreneauDAO(con);
+               
+        Seance seance = seancedao.find(num);
+        Matiere matiere = new Matiere(seance.getNumMatiere());
+        Creneau creno = new Creneau(seance.getNumCreneau());
+        
+        this.jLabel9.setText(matiere.getNomMatiere());
+        this.jLabel10.setText(creno.getDateCreneau().toString());
+        this.jLabel11.setText(creno.getHeureCreneau().toString());
+    }
+    
+        
     public void setMonEmp(MonEmploiEnseignant monemp) {
         this.monemp = monemp;
     }
@@ -209,6 +226,15 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jPanel1.add(matiereLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 20));
         jPanel1.add(heureLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 85, 120, 20));
 
+        jLabel9.setText("jLabel9");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 120, 20));
+
+        jLabel10.setText("jLabel10");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 20));
+
+        jLabel11.setText("jLabel11");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 210, 120));
 
         confirmerRattrapage.setText("Confirmer");
@@ -343,10 +369,13 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel heureLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listeratt;

@@ -1330,6 +1330,8 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         this.srat.setAE(ae);
         this.srat.setMonEmp(this);
         this.ae.desktop.add(this.srat);
+        System.out.println(srat.getNumSeance());
+        srat.infoSeance(srat.getNumSeance());
         
         try {
             this.srat.setMaximum(true);
