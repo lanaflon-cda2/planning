@@ -25,6 +25,15 @@ public class MonCompteDept extends javax.swing.JInternalFrame {
     private int numEns;
     private Enseignant ens;
     
+    public void setAdminDept(Enseignant ens) {
+        this.ens = ens;
+        this.idUser = ens.getIDUser();
+        jLabel7.setText(ens.getNomEns());
+        jLabel12.setText(ens.getPrenomEns());
+        jLabel13.setText(ens.getMail());
+        jLabel9.setText(String.valueOf(ens.getTel()));
+    }
+    
     
     public void setIDUserMCD(String s){
         this.idUser = s;
@@ -105,9 +114,9 @@ public class MonCompteDept extends javax.swing.JInternalFrame {
                         .addGap(130, 130, 130)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
+                        .addGap(264, 264, 264)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(630, 630, 630)
@@ -128,13 +137,13 @@ public class MonCompteDept extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel2)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel13))

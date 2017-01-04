@@ -26,8 +26,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     String idUser;
     MonCompteDept md = new MonCompteDept();
     GererEmploi monEmploiDept = new GererEmploi();
-    
-    Modifier modifier = new Modifier();
+    Modifier1 modifier = new Modifier1();
     
     public void setidUserAD(String s){
         this.idUser = s;
