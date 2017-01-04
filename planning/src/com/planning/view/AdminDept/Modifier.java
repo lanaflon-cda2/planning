@@ -56,7 +56,6 @@ public class Modifier extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        indication = new javax.swing.JLabel();
         Sauvegarder = new javax.swing.JButton();
         nomgroupefield = new javax.swing.JTextField();
         filierecombo = new javax.swing.JComboBox<>();
@@ -71,10 +70,6 @@ public class Modifier extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(400, 400));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        indication.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        indication.setText("Veuillez modifier les informations suivantes :");
-        getContentPane().add(indication, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Sauvegarder.setText("Enregistrer");
         Sauvegarder.addActionListener(new java.awt.event.ActionListener() {
@@ -125,30 +120,23 @@ public class Modifier extends javax.swing.JFrame {
        
         String nomgroupe = nomgroupefield.getText();
         if(!nomgroupe.equals("")) {
-            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vous modifications?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-            if(p == JOptionPane.YES_OPTION){
-
-                int numFiliere = 0;
-                String fils = (String) filierecombo.getSelectedItem();
-                for (int i = 0; i < listefil.size(); i++) {
-                    fil = (Filiere) listefil.get(i);
-                    if(fils.equals(fil.getNomFiliere())) {
-                        numFiliere = fil.getNumFiliere();
-                        break;
-                    }
+            int numFiliere = 0;
+            String fils = (String) filierecombo.getSelectedItem();
+            for (int i = 0; i < listefil.size(); i++) {
+                fil = (Filiere) listefil.get(i);
+                if(fils.equals(fil.getNomFiliere())) {
+                    numFiliere = fil.getNumFiliere();
+                    break;
                 }
-                int niveau = niveaucombo.getSelectedIndex() + 1;
-                groupe = new Groupe(1, numFiliere, nomgroupe, niveau);
-                groupeD = new GroupeDAO(conn);
-                groupeD.delete(new Groupe(this.oldNumGroupe));
-                groupeD.create(groupe);
-                this.gererGroupe.affichage();
-                this.dispose();
+            }
+            int niveau = niveaucombo.getSelectedIndex() + 1;
+            groupe = new Groupe(1, numFiliere, nomgroupe, niveau);
+            groupeD = new GroupeDAO(conn);
+            groupeD.delete(new Groupe(this.oldNumGroupe));
+            groupeD.create(groupe);
+            this.gererGroupe.affichage();
+            this.dispose();
 
-            } else if(p == JOptionPane.NO_OPTION) {
-
-                this.dispose();
-            } 
         } else {
             JOptionPane.showMessageDialog(null,"Le champ Nom de Matière est obligatoire!","Formulaire incomplet!", JOptionPane.QUESTION_MESSAGE, null);
         }
@@ -200,7 +188,6 @@ public class Modifier extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Sauvegarder;
     private javax.swing.JComboBox<String> filierecombo;
-    public javax.swing.JLabel indication;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

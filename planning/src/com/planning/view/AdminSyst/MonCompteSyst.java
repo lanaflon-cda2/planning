@@ -36,7 +36,6 @@ public class MonCompteSyst extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -47,13 +46,9 @@ public class MonCompteSyst extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(810, 530));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        jLabel1.setText("Vous êtes connecté en tant que:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 20));
-
         jLabel2.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
         jLabel2.setText("Administrateur Système:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
         jLabel4.setText("E-mail:");
@@ -73,7 +68,6 @@ public class MonCompteSyst extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

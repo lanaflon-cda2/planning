@@ -10,6 +10,7 @@ import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.GroupeDAO;
 import com.planning.dao.implement.MatiereDAO;
 import com.planning.dao.implement.SeanceDAO;
+import com.planning.dao.implement.StatiqCrenoDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Creneau;
 import com.planning.model.Filiere;
@@ -52,7 +53,7 @@ public class ConsulterEMP {
         
         dd = this.setDate(dd);
         df = this.setDate(df);
-        ArrayList<String[]> listGrpMat = new ArrayList();
+        ArrayList<String[]> listGrpMat = null;
         String tab[] = new String[7];
         SeanceDAO sd = new SeanceDAO(conn);
         Set<Seance> listSeance = new HashSet<>();
@@ -84,6 +85,8 @@ public class ConsulterEMP {
         Filiere fil;
         int i = 0;
         while(it.hasNext()){
+            tab = new String[7];
+            if(listGrpMat == null) listGrpMat = new ArrayList();
             s = (Seance) it.next();
             mat = matd.find(s.getNumMatiere());
             grp = grpd.find(s.getNumGroupe());
@@ -101,9 +104,10 @@ public class ConsulterEMP {
             tab[5] = dateCren.toString();
             tab[6] = String.valueOf(s.getNumSeance());
             
-            //System.out.println("numero " + ++i + " " + tab[0]+ " " + tab[1]+ " " + tab[2]+ " " + tab[3]+ " " + tab[4]);
+            System.out.println("numero " + ++i + " " + tab[0]+ " " + tab[1]+ " " + tab[2]+ " " + tab[3]+ " " + tab[4]);
             listGrpMat.add(tab);       
         }
         return listGrpMat;
     }
+    
 }

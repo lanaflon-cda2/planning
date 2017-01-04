@@ -29,17 +29,7 @@ public class Ajouter extends javax.swing.JFrame {
     GererGroupe gerergrp;
     public Ajouter() {
         initComponents();
-        this.getContentPane().setBackground(Color.white);
-        filD = new FiliereDAO(conn);
-        listefil = filD.findAll();
-        for (int i = 0; i < listefil.size(); i++) {
-            
-            fil= (Filiere)listefil.get(i);
-            filierecombo.addItem(fil.getNomFiliere());
-            
-        }
-        
-        
+        init();
     }
 
     /**
@@ -51,7 +41,6 @@ public class Ajouter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        indication = new javax.swing.JLabel();
         Sauvegarder = new javax.swing.JButton();
         annulerButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -69,10 +58,6 @@ public class Ajouter extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(400, 400));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        indication.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        indication.setText("Veuillez remplir les informations suivantes :");
-        getContentPane().add(indication, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Sauvegarder.setText("Enregistrer");
         Sauvegarder.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +115,17 @@ public class Ajouter extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private void init() {
+        this.getContentPane().setBackground(Color.white);
+        filD = new FiliereDAO(conn);
+        listefil = filD.findAll();
+        for (int i = 0; i < listefil.size(); i++) {
+            
+            fil= (Filiere)listefil.get(i);
+            filierecombo.addItem(fil.getNomFiliere());
+            
+        }
+    }
     public void getgerergroupe(GererGroupe g){
         this.gerergrp=g;
         
@@ -139,8 +134,8 @@ public class Ajouter extends javax.swing.JFrame {
     private void SauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SauvegarderActionPerformed
         String nomgroupe = nomgroupefield.getText();
         if(!nomgroupe.equals("")) {
-            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-            if(p == JOptionPane.YES_OPTION){
+//            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+//            if(p == JOptionPane.YES_OPTION){
 
                 int numFiliere = 0;
                 String fils = (String) filierecombo.getSelectedItem();
@@ -158,10 +153,10 @@ public class Ajouter extends javax.swing.JFrame {
                 this.gerergrp.affichage();
                 this.dispose();
 
-            } else if(p == JOptionPane.NO_OPTION) {
-
-                this.dispose();
-            } 
+//            } else if(p == JOptionPane.NO_OPTION) {
+//
+//                this.dispose();
+//            } 
         } else {
             JOptionPane.showMessageDialog(null,"Le champ Nom du Groupe est obligatoire!","Formulaire incomplet!", JOptionPane.QUESTION_MESSAGE, null);
         }
@@ -234,7 +229,6 @@ public class Ajouter extends javax.swing.JFrame {
     private javax.swing.JButton Sauvegarder;
     private javax.swing.JButton annulerButton;
     private javax.swing.JComboBox<String> filierecombo;
-    public javax.swing.JLabel indication;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -65,7 +65,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        deconnexion = new javax.swing.JButton();
         desktop = new javax.swing.JDesktopPane();
         moncompte = new javax.swing.JButton();
         monemploi = new javax.swing.JButton();
@@ -78,13 +78,13 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Deconnexion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        deconnexion.setText("Deconnexion");
+        deconnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                deconnexionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
 
         com.planning.view.Enseignant.MonCompteEnseignant mce = new com.planning.view.Enseignant.MonCompteEnseignant();
         this.desktop.add(mce);
@@ -238,10 +238,10 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1ComponentResized
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
          this.dispose();
          new Deconnexion().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_deconnexionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,8 +283,8 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
+    private javax.swing.JButton deconnexion;
     public javax.swing.JDesktopPane desktop;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;

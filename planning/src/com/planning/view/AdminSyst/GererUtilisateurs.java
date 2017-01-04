@@ -10,6 +10,7 @@ import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,9 +20,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Azough Mehdi
  */
 public class GererUtilisateurs extends javax.swing.JInternalFrame {
-    ArrayList listens = null;
+    private ArrayList listens = null;
+    private ArrayList listusers = null;
     private DefaultTableModel model;
-    
+    Connection conn = ConnexionBD.init();
     /**
      * Creates new form SeanceRattrapage
      */
@@ -58,11 +60,11 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nom", "Prenom", "Mail", "Tel", "ID"
+                "Nom", "Prenom", "Mail", "Tel", "ID", "Fonction", "Filiere"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,13 +143,7 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
                 modifier.setOldUser(ens);
             }
         }
-        
-        modifier.setGererUtilisateur(this);
-        modifier.nomfield.setText(nom);
-        modifier.prenomfield.setText(prenom);
-        modifier.mailfield.setText(mail);
-        modifier.telfield.setText(tel);
-        modifier.idfield.setText(id);
+        modifier.getFields(this, nom, prenom, mail, tel, id);
         modifier.setVisible(true);
         
     }//GEN-LAST:event_modifierActionPerformed
@@ -161,36 +157,41 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
 
     private void Suprimer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Suprimer
         // TODO add your handling code here:
+        String text = "Etes-vous sur de vouloir sauvegarder?\nLa suppression d'un enseignant entraînera la destruction de toutes les seances dispensées par ce dernier.";
+        
+        int p = JOptionPane.showConfirmDialog(null, text,"Confirmation",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+        
+        if(p == JOptionPane.NO_OPTION){
+            return;
+        }
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
         
         int row = listeutilisateur.getSelectedRow();
-        String id =listeutilisateur.getModel().getValueAt(row,4).toString();
+        String id = listeutilisateur.getModel().getValueAt(row,4).toString();
         
         Users user = new Users(id);
-        Enseignant enseignant = enseignantDAO.findByIDUser(id);
-        //System.out.println(enseignant.getNumEns());
-        //enseignantDAO.delete(enseignant);
         usersDAO.delete(user);
-        
-        
         updateTable();
-        JOptionPane.showMessageDialog(null, "Enseignant supprimé avec succès");
 
     }//GEN-LAST:event_Suprimer
     
     public void updateTable(){
-           EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-           Enseignant ens;
-           listens = enseignantDAO.findAll();
-           model = (DefaultTableModel) listeutilisateur.getModel();
-           model.setRowCount(0);
-           if(listens == null) return;
-           for(int i = 0; i < listens.size(); i++) {
-               ens = (Enseignant) listens.get(i);
-               model.addRow(new Object[]{ens.getNomEns(), ens.getPrenomEns(), ens.getMail(), ens.getTel(), ens.getIDUser()});
-           } 
-           listeutilisateur.setModel(model); 
+        UsersDAO udao = new UsersDAO(conn);
+        EnseignantDAO edao = new EnseignantDAO(conn);
+        listens = edao.findAll();
+        listusers = udao.findALL();
+        Users user;
+        Enseignant ens;
+        model = (DefaultTableModel) listeutilisateur.getModel();
+        model.setRowCount(0);
+        if(listusers == null) return;
+        for(int i = 0; i < listusers.size(); i++) {
+           user = (Users) listusers.get(i);
+           ens = user.getEnseignant();
+           if(ens != null) model.addRow(new Object[]{ens.getNomEns(), ens.getPrenomEns(), ens.getMail(), ens.getTel(), ens.getIDUser(), user.getFonction(), user.getNomFiliere()});
+           else model.addRow(new Object[]{"", "", "", 0, user.getIDUser(), user.getFonction(), user.getNomFiliere()});
+       } 
+       listeutilisateur.setModel(model); 
     }
     
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {                                          

@@ -167,9 +167,9 @@ public class Modifier extends javax.swing.JFrame {
             return;
         } 
         
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur des modifications apportée?","Modification de profil", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        
-        if (p == JOptionPane.YES_OPTION){
+//        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur des modifications apportée?","Modification de profil", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+//        
+//        if (p == JOptionPane.YES_OPTION){
             String mdp = id + "emi";
             UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
             EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
@@ -179,18 +179,18 @@ public class Modifier extends javax.swing.JFrame {
             ens.setMail(mail);
             ens.setTel(Long.valueOf(tel));
             enseignantDAO.update(ens);
-           
-            usersDAO.update(new Users(this.iduser), new Users(id, mdp));
+            Users user = usersDAO.find(this.iduser);
+            usersDAO.update(user, new Users(id, mdp, user.getFonction(), user.getNumFiliere()));
             
-            JOptionPane.showMessageDialog(null,"Enseignant modifié avec succès");
+//            JOptionPane.showMessageDialog(null,"Enseignant modifié avec succès");
             this.monCompteEnseignant.setEns(ens);
             this.dispose();
             
-        } else if(p == JOptionPane.NO_OPTION) this.dispose();
+//        } else if(p == JOptionPane.NO_OPTION) this.dispose();
         
-        else {
-            
-        }
+//        else {
+//            
+//        }
     }//GEN-LAST:event_EnregistrerActionPerformed
 
     private void AnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnulerActionPerformed

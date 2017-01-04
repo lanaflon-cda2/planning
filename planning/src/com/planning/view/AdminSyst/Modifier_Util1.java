@@ -6,10 +6,15 @@
 package com.planning.view.AdminSyst;
 
 import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
+import com.planning.model.Filiere;
 import com.planning.model.Users;
+import java.awt.Color;
+import java.sql.Connection;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class Modifier_Util1 extends javax.swing.JFrame {
     
-    GererUtilisateurs gu = new GererUtilisateurs();
-    Enseignant ensens;
+    private GererUtilisateurs gu = new GererUtilisateurs();
+    private Enseignant ensens;    
+    private ArrayList listefil;
+    private FiliereDAO filD;
+    private Filiere fil;
+    private Connection conn = ConnexionBD.init();
+    
     /**
      * Creates new form Ajouter_Modifier_Util
      */
@@ -33,6 +43,7 @@ public class Modifier_Util1 extends javax.swing.JFrame {
     
     public Modifier_Util1() {
         initComponents();
+        init();
     }
 
     /**
@@ -56,6 +67,10 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         Enregistrer = new javax.swing.JButton();
         Annuler = new javax.swing.JButton();
+        fonctionLabel = new javax.swing.JLabel();
+        fonctionCombo = new javax.swing.JComboBox<>();
+        filiereCombo = new javax.swing.JComboBox<>();
+        filiereLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
@@ -70,11 +85,11 @@ public class Modifier_Util1 extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Nom *");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Prenom *");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         prenomfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,24 +101,23 @@ public class Modifier_Util1 extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Mail *");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Tel *");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
         getContentPane().add(telfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 250, 30));
 
-        idfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idfieldActionPerformed(evt);
             }
         });
-        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 220, 30));
+        getContentPane().add(idfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 250, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("ID*");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
 
         Enregistrer.setText("Enregistrer");
         Enregistrer.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +125,7 @@ public class Modifier_Util1 extends javax.swing.JFrame {
                 EnregistrerActionPerformed(evt);
             }
         });
-        getContentPane().add(Enregistrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 120, 30));
+        getContentPane().add(Enregistrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 120, 30));
 
         Annuler.setText("Annuler");
         Annuler.setToolTipText("");
@@ -120,12 +134,45 @@ public class Modifier_Util1 extends javax.swing.JFrame {
                 AnnulerActionPerformed(evt);
             }
         });
-        getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 120, 30));
+        getContentPane().add(Annuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 120, 30));
 
-        pack();
+        fonctionLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        fonctionLabel.setText("Fonction *");
+        getContentPane().add(fonctionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+
+        fonctionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enseignant", "Coordinateur Filiere", "Chef Departement", "Administrateur Departement", "Administrateur Systeme", " " }));
+        fonctionCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                fonctionComboItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(fonctionCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 250, 30));
+
+        getContentPane().add(filiereCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 325, 250, 30));
+
+        filiereLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        filiereLabel.setText("Filière :");
+        getContentPane().add(filiereLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, 20));
+
+        setSize(new java.awt.Dimension(410, 498));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void init() {
+        this.getContentPane().setBackground(Color.white);
+        filD = new FiliereDAO(conn);
+        listefil = filD.findAll();
+        for (int i = 0; i < listefil.size(); i++) {
+            
+            fil= (Filiere)listefil.get(i);
+            filiereCombo.addItem(fil.getNomFiliere());
+            
+        }
+        filiereCombo.setSelectedIndex(-1);
+        fonctionCombo.setSelectedIndex(-1);
+//        filiereLabel.setVisible(false);
+//        filiereCombo.setVisible(false);
+    }
     private void prenomfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prenomfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prenomfieldActionPerformed
@@ -153,29 +200,59 @@ public class Modifier_Util1 extends javax.swing.JFrame {
         String mail = mailfield.getText();
         String tel = telfield.getText();
         String id = idfield.getText();
-        if(nom.equals("") || prenom.equals("") || id.equals("") || mail.equals("") || tel.equals("")) {
+        int findex = fonctionCombo.getSelectedIndex();
+        int filindex = filiereCombo.getSelectedIndex();
+        if(nom.equals("") || prenom.equals("") || id.equals("") || mail.equals("") || tel.equals("") || findex == -1) {
             JOptionPane.showMessageDialog(null, "Remplissez tous les champs obligatoires!", "Ajout d'un utilisateur", JOptionPane.INFORMATION_MESSAGE );
             return;
         }
         
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-        
-        if(p == JOptionPane.YES_OPTION){
-            usersDAO.delete(new Users(ensens.getIDUser()));
-            enseignantDAO.delete(new Enseignant(ensens.getNumEns()));   
-            usersDAO.create(new Users(id));
-            enseignantDAO.create(new Enseignant(10,nom,prenom,mail,Long.valueOf(tel),id));
-            this.gu.updateTable();
-            JOptionPane.showMessageDialog(null, "Enseignant modifié avec succès");
-            this.dispose();
-            
-        } else if( p == JOptionPane.NO_OPTION) this.dispose();
-        
-        else {
-            
+        String fonction = (String) fonctionCombo.getSelectedItem();
+        String filierenom = (String) filiereCombo.getSelectedItem();
+        int numFiliere = 0;
+        if(filindex == -1) {
+            if(findex != 4) {
+                String text = "L'utilisateur n'est pas un administrateur système. Choisissez donc une filière valide!";
+                JOptionPane.showMessageDialog(null, text, "Modification d'un utilisateur", JOptionPane.INFORMATION_MESSAGE );
+                return;
+            }
+                
+        } else {
+            if(findex == 4) {
+                String text = "L'utilisateur est un administrateur système. Il n'appartient donc à aucune filiere!";
+                JOptionPane.showMessageDialog(null, text, "Ajout d'un utilisateur", JOptionPane.INFORMATION_MESSAGE );
+                filiereCombo.setSelectedIndex(-1);
+                return;
+            }
+            for (int i = 0; i < listefil.size(); i++) {
+                fil = (Filiere) listefil.get(i);
+                if(filierenom.equals(fil.getNomFiliere())) {
+                    numFiliere = fil.getNumFiliere();
+                    break;
+                }
+            }
         }
+        enseignantDAO.update(new Enseignant(ensens.getNumEns(),nom,prenom,mail,Long.valueOf(tel), ensens.getIDUser()));
+        usersDAO.update(new Users(ensens.getIDUser()), new Users(id, id+"emi", fonction, numFiliere));
+        this.gu.updateTable();
+        this.dispose();
+
     }//GEN-LAST:event_EnregistrerActionPerformed
 
+    private void fonctionComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fonctionComboItemStateChanged
+        // TODO add your handling code here:
+        if(fonctionCombo.getSelectedIndex() == 4) filiereCombo.setSelectedIndex(-1);
+    }//GEN-LAST:event_fonctionComboItemStateChanged
+    
+    public void getFields(GererUtilisateurs ge, String nomField, String prenomField, String mailField, String telField, String idField) {
+        this.setGererUtilisateur(ge);
+        nomfield.setText(nomField);
+        prenomfield.setText(prenomField);
+        mailfield.setText(mailField);
+        telfield.setText(telField);
+        idfield.setText(idField);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -215,15 +292,19 @@ public class Modifier_Util1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Annuler;
     private javax.swing.JButton Enregistrer;
-    public javax.swing.JTextField idfield;
+    private javax.swing.JComboBox<String> filiereCombo;
+    private javax.swing.JLabel filiereLabel;
+    private javax.swing.JComboBox<String> fonctionCombo;
+    private javax.swing.JLabel fonctionLabel;
+    private javax.swing.JTextField idfield;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     public javax.swing.JLabel jLabel8;
-    public javax.swing.JTextField mailfield;
-    public javax.swing.JTextField nomfield;
-    public javax.swing.JTextField prenomfield;
-    public javax.swing.JTextField telfield;
+    private javax.swing.JTextField mailfield;
+    private javax.swing.JTextField nomfield;
+    private javax.swing.JTextField prenomfield;
+    private javax.swing.JTextField telfield;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,9 @@
  /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+
+* and open the template in the editor.
  */
 package com.planning.controler;
 
@@ -84,14 +86,6 @@ public class Absenter {
             }
         }
         
-//        try {
-//            res.close();
-//            state.close();
-//            con.close();
-//        } catch(SQLException e){
-//            System.out.println("SQLException: " + e);
-//        }
-        
     }
             
     public static boolean updateEtat(Seance s,int etat){
@@ -136,7 +130,8 @@ public class Absenter {
             System.out.println("SQLException: " + e);
             return null;
         }
-      return creneauxVideEns;     
+        
+         return creneauxVideEns;     
     }
     
     private ArrayList getCreneauxVideGroupe(){
@@ -211,7 +206,7 @@ public class Absenter {
             state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
             seance = new ArrayList();
             String query= new String();
-            query += "Select NumCreneau from Seance where NumEns = " + numEnsX + " and NumGroupe = " + numGroupe;
+            query += "Select NumCreneau from Seance where NumEns = " + numEnsX + " and NumGroupe = " + numGroupe + " and EtatSeance = 1";
             query += " and NumCreneau IN (Select NumCreneau From Creneau where Date >= '" + dateSysteme + "' and Date <= '" + dateFin + "')";
             res = state.executeQuery(query);
             while(res.next()){

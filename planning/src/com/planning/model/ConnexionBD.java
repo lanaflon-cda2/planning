@@ -10,15 +10,20 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ConnexionBD {
+    private static final Connection CONN = ConnexionBD.setConn();
     
     public static Connection init(){
-        Connection conn = null;
+        return ConnexionBD.CONN;
+    }
+    
+    private static Connection setConn() {
+        Connection x = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd_test","root","");
+            x = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd_test","root","");
             /*if (conn != null)
                 System.out.println("Connexion A la base de donnees reusies.");*/
-            if(conn == null)
+            if(x == null)
                 System.out.println("Erreur de Connexion");
         
                 
@@ -28,8 +33,9 @@ public class ConnexionBD {
             System.out.println("MySQL Driver Not Found");
         }
         
-        return conn;
+        return x;
     }
+    
     public static void main(String args[]){
          ConnexionBD.init();
      }
