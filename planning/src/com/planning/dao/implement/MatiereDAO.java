@@ -101,14 +101,10 @@ public class MatiereDAO extends DAO<Matiere> {
             }
 
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println( "SQLException: " + e);
             return null;
         }
         return  listematiere;
-
-        
-        
-        
     }
         
         

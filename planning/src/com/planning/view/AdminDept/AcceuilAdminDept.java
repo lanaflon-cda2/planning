@@ -15,14 +15,33 @@ import java.util.logging.Logger;
  * @author Azough Mehdi
  */
 public class AcceuilAdminDept extends javax.swing.JFrame {
-
+    
+    GererEmploi ge;
+    MonCompteDept mcd;
+    GererGroupe gg;
+    GererMatiere gm;
     /**
      * Creates new form AcceuilEnseignant
      */
+    String idUser;
+    MonCompteDept md = new MonCompteDept();
+    GererEmploi monEmploiDept = new GererEmploi();
+    
+    Modifier modifier = new Modifier();
+    
+    public void setidUserAD(String s){
+        this.idUser = s;
+    }
+    
+    
+    public void setMD(MonCompteDept md){
+        this.md = md;
+        md.setIDUserMCD(this.idUser);
+    }
+    
     public AcceuilAdminDept() {
         initComponents();
-        
-        
+        init();
     }
 
     /**
@@ -34,13 +53,13 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        deconnexion = new javax.swing.JButton();
         desktop = new javax.swing.JDesktopPane();
         moncompte = new javax.swing.JButton();
         monemploi = new javax.swing.JButton();
-        seanceratt = new javax.swing.JButton();
+        gerergroupe = new javax.swing.JButton();
         gerermat = new javax.swing.JButton();
         photo = new javax.swing.JLabel();
-        deconnexion = new javax.swing.JLabel();
         acceuilBG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,7 +67,15 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        com.planning.view.AdminDept.MonCompteDept mcd = new com.planning.view.AdminDept.MonCompteDept();
+        deconnexion.setText("Deconnexion");
+        deconnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deconnexionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, -1, 30));
+
+        mcd = new MonCompteDept();
         this.desktop.add(mcd);
         try {
             mcd.setMaximum(true);
@@ -59,8 +86,6 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         desktop.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 560));
 
-        moncompte.setBackground(new java.awt.Color(240, 241, 240));
-        moncompte.setFont(new java.awt.Font("Champagne & Limousines", 1, 14)); // NOI18N
         moncompte.setText("Mon Compte");
         moncompte.setBorderPainted(false);
         moncompte.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,20 +118,20 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         });
         getContentPane().add(monemploi, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 130, 160, 80));
 
-        seanceratt.setBackground(new java.awt.Color(204, 204, 204));
-        seanceratt.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
-        seanceratt.setText("Groupes");
-        seanceratt.addMouseListener(new java.awt.event.MouseAdapter() {
+        gerergroupe.setBackground(new java.awt.Color(204, 204, 204));
+        gerergroupe.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
+        gerergroupe.setText("Groupes");
+        gerergroupe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                seancerattMouseClicked(evt);
+                gerergroupeMouseClicked(evt);
             }
         });
-        seanceratt.addActionListener(new java.awt.event.ActionListener() {
+        gerergroupe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seancerattActionPerformed(evt);
+                gerergroupeActionPerformed(evt);
             }
         });
-        getContentPane().add(seanceratt, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 200, 160, 90));
+        getContentPane().add(gerergroupe, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 200, 160, 90));
 
         gerermat.setFont(new java.awt.Font("Champagne & Limousines", 1, 15)); // NOI18N
         gerermat.setText("Matières");
@@ -127,26 +152,20 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         photo.setText("photo");
         getContentPane().add(photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 90, 110));
 
-        deconnexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 18)); // NOI18N
-        deconnexion.setForeground(new java.awt.Color(255, 255, 255));
-        deconnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deconnexion.setText("Deconnexion");
-        deconnexion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deconnexionMouseClicked(evt);
-            }
-        });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 100, 30));
-
         acceuilBG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acceuilBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/AdminDept/AcceuilBG.png"))); // NOI18N
         acceuilBG.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
+        getContentPane().add(acceuilBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 710));
 
-        pack();
+        setSize(new java.awt.Dimension(998, 730));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void init() {
+        ge = new GererEmploi();
+        gg = new GererGroupe();
+        gm = new GererMatiere();
+    }
     private void moncompteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moncompteMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_moncompteMouseExited
@@ -154,11 +173,10 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
         moncompte.setBackground(java.awt.SystemColor.activeCaption);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
-        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+        gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteDept mcd = new MonCompteDept();
         this.desktop.add(mcd);
         try {
             mcd.setMaximum(true);
@@ -176,18 +194,19 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         
     }//GEN-LAST:event_moncompteMouseClicked
 
-    private void seancerattMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seancerattMouseClicked
+    private void gerergroupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gerergroupeMouseClicked
         
-    }//GEN-LAST:event_seancerattMouseClicked
+    }//GEN-LAST:event_gerergroupeMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
         monemploi.setBackground(java.awt.SystemColor.activeCaption);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
-        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+        gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
-         this.desktop.removeAll();
-       this.desktop.repaint();  
-       GererEmploi ge = new GererEmploi();
+        this.desktop.removeAll();
+        this.desktop.repaint();  
+        
+        //ge.setAcceuilAdminDept(this);
         this.desktop.add(ge);
         try {
             ge.setMaximum(true);
@@ -201,19 +220,13 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         
     }//GEN-LAST:event_gerermatMouseClicked
 
-    private void deconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deconnexionMouseClicked
-        dispose();
-        new Deconnexion().setVisible(true);        
-    }//GEN-LAST:event_deconnexionMouseClicked
-
-    private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
-        seanceratt.setBackground(java.awt.SystemColor.activeCaption);
+    private void gerergroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerergroupeActionPerformed
+        gerergroupe.setBackground(java.awt.SystemColor.activeCaption);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        GererGroupe gg = new GererGroupe();
         this.desktop.add(gg);
         try {
             gg.setMaximum(true);
@@ -222,16 +235,16 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         }
         gg.show();
         
-    }//GEN-LAST:event_seancerattActionPerformed
+    }//GEN-LAST:event_gerergroupeActionPerformed
 
     private void gerermatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerermatActionPerformed
         gerermat.setBackground(java.awt.SystemColor.activeCaption);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
-        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+        gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        GererMatiere gm = new GererMatiere();
+
         this.desktop.add(gm);
         try {
             gm.setMaximum(true);
@@ -240,6 +253,11 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         }
         gm.show();
     }//GEN-LAST:event_gerermatActionPerformed
+
+    private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
+        this.dispose();
+        new Deconnexion().setVisible(true);
+    }//GEN-LAST:event_deconnexionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,12 +300,12 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
-    private javax.swing.JLabel deconnexion;
-    private javax.swing.JDesktopPane desktop;
+    private javax.swing.JButton deconnexion;
+    public javax.swing.JDesktopPane desktop;
+    private javax.swing.JButton gerergroupe;
     private javax.swing.JButton gerermat;
     private javax.swing.JButton moncompte;
     private javax.swing.JButton monemploi;
     private javax.swing.JLabel photo;
-    private javax.swing.JButton seanceratt;
     // End of variables declaration//GEN-END:variables
 }

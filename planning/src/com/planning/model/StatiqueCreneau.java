@@ -13,8 +13,11 @@ public class StatiqueCreneau {
     
     private int numSC;
     private int numMatiere;
+    private String nomMatiere;
     private int numGroupe;
     private int numEns;
+    private String nomEns;
+    private String prenomEns;
     private int jourSemaine;
     private Time heureSeance;
     private Date dateD;
@@ -32,6 +35,7 @@ public class StatiqueCreneau {
         this.numMatiere = numMatiere;
         this.numGroupe = numGroupe;
         this.numEns = numEns;
+        
         this.jourSemaine = jourSemaine;
         this.heureSeance = heureSeance;
         this.dateD = dateD;
@@ -47,6 +51,29 @@ public class StatiqueCreneau {
         this.heureSeance = heureSeance;
         this.dateD = dateD;
         this.dateF = dateF;
+    }
+    
+    public void setNomEns(String s) {
+        this.nomEns = s;
+    }
+    
+    public String getNomEns() {
+        return this.nomEns;
+    }
+    
+    public void setPrenomEns(String s) {
+        this.prenomEns = s;
+    }
+    
+    public String getPrenomEns() {
+        return this.prenomEns;
+    }
+    public void setNomMatiere(String s) {
+        this.nomMatiere = s;
+    }
+    
+    public String getNomMatiere() {
+        return this.nomMatiere;
     }
 
     public int getNumSC() {

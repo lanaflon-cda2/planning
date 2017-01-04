@@ -48,7 +48,7 @@ public class AjouterMat extends javax.swing.JFrame {
         matierefield = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -74,25 +74,25 @@ public class AjouterMat extends javax.swing.JFrame {
        
        String nommat = matierefield.getText();
        if(!nommat.equals("")) {
-            int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+            //int p = JOptionPane.showConfirmDialog(null,"Etes-vous sur de vouloir sauvegarder?","Confirmation",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
             
-            if(p == JOptionPane.YES_OPTION){
-                matieredao = new MatiereDAO(conn);
-                
-                
-                if(this.getTitle().equals("Modifier la matiere")) {
-                    matieredao.update(new Matiere(this.oldMat, nommat));
-                } else {
-                    matieredao.create(new Matiere(1,nommat));
-                }
-                
-                this.gererMatiere.affichage();
-                this.dispose();
-        
-            } else if(p == JOptionPane.NO_OPTION) {
+            //if(p == JOptionPane.YES_OPTION){
+            matieredao = new MatiereDAO(conn);
 
-                this.dispose();
-            } 
+
+            if(this.getTitle().equals("Modifier la matiere")) {
+                matieredao.update(new Matiere(this.oldMat, nommat));
+            } else {
+                matieredao.create(new Matiere(1,nommat));
+            }
+
+            this.gererMatiere.affichage();
+            this.dispose();
+        
+//            } else if(p == JOptionPane.NO_OPTION) {
+//
+//                this.dispose();
+//            } 
         } else {
             JOptionPane.showMessageDialog(null,"Le champ Nom de Matière est obligatoire!","Formulaire incomplet!", JOptionPane.QUESTION_MESSAGE, null);
         }

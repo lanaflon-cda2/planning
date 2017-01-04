@@ -5,12 +5,13 @@
  */
 package com.planning.view;
 
-import com.planning.dao.implement.EnseignantDAO;
 import com.planning.view.Enseignant.AcceuilEnseignant;
 import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
-import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import com.planning.view.AdminDept.AcceuilAdminDept;
+import com.planning.view.AdminDept.MonCompteDept;
+import com.planning.view.AdminSyst.AcceuilAdminSyst;
 import com.planning.view.Enseignant.MonCompteEnseignant;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -130,7 +131,7 @@ public class LoginGUI extends javax.swing.JFrame {
     //public static Users user = null ;
     private void ConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnexionActionPerformed
         UsersDAO usersDAO = new UsersDAO(ConnexionBD.init());
-        String id = new String(identifiant.getText());
+        String id = identifiant.getText();
         Users user = usersDAO.find(id);
         String passwordtext = new String(motdepasse.getPassword());
                
@@ -138,40 +139,54 @@ public class LoginGUI extends javax.swing.JFrame {
         if(user != null ) {
             String passworduser = user.getMotDePasse();
             if(passworduser.equals(passwordtext)) {
-                                    
-                AcceuilEnseignant AE = new AcceuilEnseignant();
-  
-                AE.desktop.removeAll();
-                AE.desktop.repaint(); 
-               
-                AE.setidUser(id);
-                
-                MonCompteEnseignant mce = new MonCompteEnseignant();
-                
-                AE.desktop.add(mce);
-                AE.setME(mce);
-                
-                
-                try {
-                    mce.setMaximum(true);
-                 } catch (PropertyVetoException ex) {
-                    Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                mce.show();
-                
-                 dispose();
-                 AE.setVisible(true);
-                 
-                
+                if(user.getFonction().equals("Enseignant") || user.getFonction().equals("Chef Departement") || user.getFonction().equals("Coordinateur Filiere")) {
+                    AcceuilEnseignant AE = new AcceuilEnseignant();
+                    AE.desktop.removeAll();
+                    AE.desktop.repaint(); 
+                    AE.setidUser(id);
+                    MonCompteEnseignant mce = new MonCompteEnseignant();
+                    AE.desktop.add(mce);
+                    AE.setME(mce);
+                    try {
+                        mce.setMaximum(true);
+                     } catch (PropertyVetoException ex) {
+                        Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                    mce.show();
+                    dispose();
+                    AE.setVisible(true);
+                } else if(user.getFonction().equals("Administrateur Departement")) {
+                    AcceuilAdminDept aadept = new AcceuilAdminDept();
+                    aadept.desktop.removeAll();
+                    aadept.desktop.repaint(); 
+                    aadept.setidUserAD(id);
+                    MonCompteDept mcd = new MonCompteDept();
+                    aadept.desktop.add(mcd);
+                    aadept.setMD(mcd);
+                    try {
+                        mcd.setMaximum(true);
+                     } catch (PropertyVetoException ex) {
+                        Logger.getLogger(AcceuilEnseignant.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                    mcd.show();
+                    dispose();
+                    aadept.setVisible(true);
+                    this.dispose();
+                } else if(user.getFonction().equals("Administrateur Systeme")) {
+                    AcceuilAdminSyst aasys = new AcceuilAdminSyst();
+                    this.dispose();
+                    aasys.setVisible(true);
+                }                                                       
+
             }
             
             else {
-            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer ");
+                JOptionPane.showMessageDialog(null, "Le mot de passe saisis est incorrect ! \nVeuillez Réessayer ");
             }
               
         } else {
             
-            JOptionPane.showMessageDialog(null, "Identifiant ou Mot de passe incorrect ! \nVeuillez Réessayer");
+            JOptionPane.showMessageDialog(null, "Cet utilisateur n'existe pas ! \nVeuillez Réessayer");
         }
     }//GEN-LAST:event_ConnexionActionPerformed
 

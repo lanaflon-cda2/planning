@@ -24,7 +24,7 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
     private int numEns;
     private Enseignant ens;
     
-    public void setEns(Enseignant ens) {
+   public void setEns(Enseignant ens) {
         this.ens = ens;
         this.idUser = ens.getIDUser();
         jLabel7.setText(ens.getNomEns());
@@ -32,6 +32,7 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
         jLabel8.setText(ens.getMail());
         jLabel9.setText(String.valueOf(ens.getTel()));
     }
+    
     public void setIDUserMCE(String s){
         this.idUser = s;
         System.out.println(idUser);
@@ -151,9 +152,8 @@ public class MonCompteEnseignant extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30)))
-                .addGap(75, 75, Short.MAX_VALUE))
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(80, 80, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(jLabel2)
