@@ -47,6 +47,13 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private ArrayList listepermut;
     private Seance seance;
     
+    private String idUser;
+    private Enseignant ens;
+    
+    public void setidens(String id) {
+        this.idUser = id;
+    }
+    
     public void setMonEmp(MonEmploiEnseignant monemp) {
         this.monemp = monemp;
     }
@@ -253,17 +260,31 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+   
+    
     private void confirmerRattrapageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmerRattrapageActionPerformed
         
         
         int row = listeratt.getSelectedRow();
+        
+        
+        
         if(row == -1) {
             JOptionPane.showMessageDialog(this, "Selectionnez un creneau de rattrapage dans la liste proposée!", "Seance de Rattrapages", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);    
+        String nomEns = (String) model.getValueAt(row, 2);
+        System.out.println("lol i here "+ nomEns);   
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);
+        if(p == JOptionPane.YES_OPTION){
+            System.out.println("lol i here 22"+nomEns);   
+            if(!nomEns.equals("")){
+                Mail_conf conf = new Mail_conf();
+                conf.setTitle("Mail de confirmation");
+                conf.setIDUserMail(this.idUser);
+                conf.setVisible(true);}
+        }
         if(p == JOptionPane.NO_OPTION || p == JOptionPane.CANCEL_OPTION) return;
         
         Seance newseance1, newseance2, seanceoffert;
@@ -272,10 +293,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         Object[] obj;
         
         String dateSeanceNom = (String) model.getValueAt(row, 0);
-        
         String dateSeance = dateSeanceNom.split(" ")[0];
         String heureSeance = (String) model.getValueAt(row, 1);
-        String nomEns = (String) model.getValueAt(row, 2);
+        
+        
+        
         if(!nomEns.equals("")) {
             for(int i = 0; i < listepermut.size(); i++){
                obj = (Object[]) listepermut.get(i);

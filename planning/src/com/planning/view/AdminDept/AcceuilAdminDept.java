@@ -5,7 +5,7 @@
  */
 package com.planning.view.AdminDept;
 
-import com.planning.view.Deconnexion;
+import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +23,22 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     /**
      * Creates new form AcceuilEnseignant
      */
+    String idUser;
+    MonCompteDept md = new MonCompteDept();
+    Modifier1 modifier = new Modifier1();
+    
+    
+    public void setMD(MonCompteDept md){
+        this.md = md;
+        md.setIDUserMCD(this.idUser);
+    }
+    
+    
+    public void setidUserAD(String s){
+        this.idUser = s;
+    }
+    
+    
     public AcceuilAdminDept() {
         initComponents();
         init();
@@ -146,6 +162,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
+        this.setTitle("SwapMyCourse");
         ge = new GererEmploi();
         gg = new GererGroupe();
         gm = new GererMatiere();
@@ -155,7 +172,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseExited
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
-        moncompte.setBackground(java.awt.SystemColor.activeCaption);
+        moncompte.setBackground(java.awt.SystemColor.GRAY);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
@@ -183,7 +200,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_gerergroupeMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        monemploi.setBackground(java.awt.SystemColor.activeCaption);
+        monemploi.setBackground(java.awt.SystemColor.GRAY);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
@@ -205,7 +222,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_gerermatMouseClicked
 
     private void gerergroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerergroupeActionPerformed
-        gerergroupe.setBackground(java.awt.SystemColor.activeCaption);
+        gerergroupe.setBackground(java.awt.SystemColor.GRAY);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
@@ -222,7 +239,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_gerergroupeActionPerformed
 
     private void gerermatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerermatActionPerformed
-        gerermat.setBackground(java.awt.SystemColor.activeCaption);
+        gerermat.setBackground(java.awt.SystemColor.GRAY);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
@@ -240,7 +257,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
 
     private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
         this.dispose();
-        new Deconnexion().setVisible(true);
+        new LoginGUI().setVisible(true);
     }//GEN-LAST:event_deconnexionActionPerformed
 
     /**
@@ -285,7 +302,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JButton deconnexion;
-    private javax.swing.JDesktopPane desktop;
+    public javax.swing.JDesktopPane desktop;
     private javax.swing.JButton gerergroupe;
     private javax.swing.JButton gerermat;
     private javax.swing.JButton moncompte;
