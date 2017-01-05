@@ -163,7 +163,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     aadept.setidUserAD(id);
                     MonCompteDept mcd = new MonCompteDept();
                     aadept.desktop.add(mcd);
-                    aadept.setMD1(mcd);
+                    aadept.setMD(mcd);
                     try {
                         mcd.setMaximum(true);
                      } catch (PropertyVetoException ex) {
@@ -180,7 +180,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     aasys.setidUserAS(id);
                     MonCompteSyst mcs = new MonCompteSyst();
                     aasys.desktop.add(mcs);
-                    aasys.setMD2(mcs);
+                    aasys.setMS(mcs);
                     try {
                         mcs.setMaximum(true);
                      } catch (PropertyVetoException ex) {

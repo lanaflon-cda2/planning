@@ -27,15 +27,17 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     MonCompteDept md = new MonCompteDept();
     Modifier1 modifier = new Modifier1();
     
+    
+    public void setMD(MonCompteDept md){
+        this.md = md;
+        md.setIDUserMCD(this.idUser);
+    }
+    
+    
     public void setidUserAD(String s){
         this.idUser = s;
     }
     
-    
-    public void setMD1(MonCompteDept md){
-        this.md = md;
-        md.setIDUserMCD(this.idUser);
-    }
     
     public AcceuilAdminDept() {
         initComponents();

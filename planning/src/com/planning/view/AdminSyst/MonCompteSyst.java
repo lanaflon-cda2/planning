@@ -20,7 +20,7 @@ public class MonCompteSyst extends javax.swing.JInternalFrame {
     /**
      * Creates new form AcceuilInternal
      */
-     private String idUser;
+    private String idUser;
     private int numEns;
     private Enseignant ens;
     
