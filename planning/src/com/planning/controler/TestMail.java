@@ -34,7 +34,7 @@ public class TestMail {
 
       Properties props = System.getProperties();
       props.put("mail.smtp.auth", "true");
-      props.put("mail.smtp.starttls.enable", "false");
+      props.put("mail.smtp.starttls.enable", "true");
       props.put("mail.smtp.host", host);
       //props.put("mail.smtp.user", from);
       props.put("mail.smtp.ssl.enable", "true");
@@ -43,7 +43,13 @@ public class TestMail {
       //System.out.println("ici1");
 
       // Get the Session object.
-      Session session = Session.getInstance(props, null);
+      Session session = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(username, password);
+	   }
+         });
+
       session.setDebug(true);
 
       try {
