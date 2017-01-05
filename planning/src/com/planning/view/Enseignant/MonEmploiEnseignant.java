@@ -1328,6 +1328,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         this.ae.desktop.repaint();
         this.srat.setAE(ae);
         this.srat.setMonEmp(this);
+        this.srat.setidens(this.idUser);
         this.ae.desktop.add(this.srat);
         
         try {

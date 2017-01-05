@@ -30,8 +30,8 @@ public class Mail_conf extends javax.swing.JFrame {
         jLabel5.setText(this.iduser);
         
         EnseignantDAO enseignantDAO = new EnseignantDAO(ConnexionBD.init());
-        Enseignant ens = enseignantDAO.findByIDUser(jLabel5.getText());
-        
+        //Enseignant ens = enseignantDAO.findByIDUser(jLabel5.getText());
+        Enseignant ens = enseignantDAO.findByIDUser(this.iduser);
         nomprof1.setText(ens.getNomEns());
         prenomprof.setText(ens.getPrenomEns());
         jTextField3.setText(ens.getMail());

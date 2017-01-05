@@ -47,7 +47,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private ArrayList listepermut;
     private Seance seance;
     
-     private String idUser;
+    private String idUser;
     private Enseignant ens;
     
     public void setidens(String id) {
@@ -274,18 +274,20 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Selectionnez un creneau de rattrapage dans la liste proposée!", "Seance de Rattrapages", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+        String nomEns = (String) model.getValueAt(row, 2);
+        System.out.println("lol i here "+nomEns);   
         int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);
-        /*if(p == JOptionPane.YES_OPTION){
+        if(p == JOptionPane.YES_OPTION){
+            System.out.println("lol i here 22"+nomEns);   
             if(!nomEns.equals("")){
                 Mail_conf conf = new Mail_conf();
                 conf.setTitle("Mail de confirmation");
                 conf.setIDUserMail(this.idUser);
                 conf.setVisible(true);}
-        }*/
+        }
         if(p == JOptionPane.NO_OPTION || p == JOptionPane.CANCEL_OPTION) return;
         
-         Seance newseance1, newseance2, seanceoffert;
+        Seance newseance1, newseance2, seanceoffert;
         SeanceDAO sd = new SeanceDAO(con);
         model = (DefaultTableModel) listeratt.getModel();
         Object[] obj;
@@ -293,8 +295,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         String dateSeanceNom = (String) model.getValueAt(row, 0);
         String dateSeance = dateSeanceNom.split(" ")[0];
         String heureSeance = (String) model.getValueAt(row, 1);
-        String nomEns = (String) model.getValueAt(row, 2);
-        System.out.println("lol"+nomEns);   
+        
         
         
         if(!nomEns.equals("")) {
