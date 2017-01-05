@@ -7,6 +7,7 @@ package com.planning.view.Enseignant;
 
 import com.planning.view.AdminDept.AcceuilAdminDept;
 import com.planning.view.Deconnexion;
+import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +47,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
     public AcceuilEnseignant() {
         initComponents();
-
+        this.setTitle("SwapMyCourse");
     }
 
     /**
@@ -187,7 +188,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_seancerattMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        monemploi.setBackground(java.awt.SystemColor.activeCaption);
+        monemploi.setBackground(java.awt.SystemColor.GRAY);
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
 
         this.desktop.removeAll();
@@ -204,7 +205,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
 
-        seanceratt.setBackground(java.awt.SystemColor.activeCaption);
+        seanceratt.setBackground(java.awt.SystemColor.GRAY);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
@@ -233,7 +234,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
     private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
         this.dispose();
-        new Deconnexion().setVisible(true);
+        new LoginGUI().setVisible(true);
     }//GEN-LAST:event_deconnexionActionPerformed
 
     /**

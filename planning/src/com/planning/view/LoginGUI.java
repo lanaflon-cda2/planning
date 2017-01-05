@@ -32,7 +32,7 @@ public class LoginGUI extends javax.swing.JFrame {
     
     public LoginGUI() {
         initComponents();
-        this.setTitle("EMISessionUpdater");
+        this.setTitle("SwapMyCourse");
     }
 
     /**
@@ -51,6 +51,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Connexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
         Connexion.setText("Connexion");
@@ -66,6 +67,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 ConnexionActionPerformed(evt);
             }
         });
+        getContentPane().add(Connexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 150, -1));
 
         identifiant.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         identifiant.addActionListener(new java.awt.event.ActionListener() {
@@ -73,50 +75,20 @@ public class LoginGUI extends javax.swing.JFrame {
                 identifiantActionPerformed(evt);
             }
         });
+        getContentPane().add(identifiant, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 230, 30));
 
         motdepasse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(motdepasse, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 230, 30));
 
         loginbackground.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/LoginBG.png"))); // NOI18N
         loginbackground.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        loginbackground.setPreferredSize(new java.awt.Dimension(900, 600));
         loginbackground.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 loginbackgroundKeyPressed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(420, 420, 420)
-                        .addComponent(identifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(420, 420, 420)
-                        .addComponent(motdepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(370, 370, 370)
-                        .addComponent(Connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(loginbackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginbackground, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(identifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(400, 400, 400)
-                .addComponent(motdepasse, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(510, 510, 510)
-                .addComponent(Connexion))
-        );
+        getContentPane().add(loginbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
 
         pack();
         setLocationRelativeTo(null);

@@ -5,7 +5,7 @@
  */
 package com.planning.view.AdminDept;
 
-import com.planning.view.Deconnexion;
+import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -162,7 +162,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
-        this.setTitle("EMISessionUpdater");
+        this.setTitle("SwapMyCourse");
         ge = new GererEmploi();
         gg = new GererGroupe();
         gm = new GererMatiere();
@@ -172,7 +172,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_moncompteMouseExited
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
-        moncompte.setBackground(java.awt.SystemColor.activeCaption);
+        moncompte.setBackground(java.awt.SystemColor.GRAY);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
@@ -200,7 +200,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_gerergroupeMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-        monemploi.setBackground(java.awt.SystemColor.activeCaption);
+        monemploi.setBackground(java.awt.SystemColor.GRAY);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
@@ -222,7 +222,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_gerermatMouseClicked
 
     private void gerergroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerergroupeActionPerformed
-        gerergroupe.setBackground(java.awt.SystemColor.activeCaption);
+        gerergroupe.setBackground(java.awt.SystemColor.GRAY);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
@@ -239,7 +239,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }//GEN-LAST:event_gerergroupeActionPerformed
 
     private void gerermatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerermatActionPerformed
-        gerermat.setBackground(java.awt.SystemColor.activeCaption);
+        gerermat.setBackground(java.awt.SystemColor.GRAY);
         moncompte.setBackground(new java.awt.Color(240, 240, 240));
         gerergroupe.setBackground(new java.awt.Color(240, 240, 240));
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
@@ -257,7 +257,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
 
     private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
         this.dispose();
-        new Deconnexion().setVisible(true);
+        new LoginGUI().setVisible(true);
     }//GEN-LAST:event_deconnexionActionPerformed
 
     /**

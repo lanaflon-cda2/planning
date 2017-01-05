@@ -6,6 +6,7 @@
 package com.planning.view.AdminSyst;
 
 import com.planning.view.Deconnexion;
+import com.planning.view.LoginGUI;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,7 +127,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
-        this.setTitle("EMISessionUpdater");
+        this.setTitle("SwapMyCourse");
         gu = new GererUtilisateurs();
         gu.updateTable();
     }
@@ -146,7 +147,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
 
     private void utilisateursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateursActionPerformed
 
-        utilisateurs.setBackground(java.awt.SystemColor.activeCaption);
+        utilisateurs.setBackground(java.awt.SystemColor.GRAY);
     }//GEN-LAST:event_utilisateursActionPerformed
 
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
@@ -173,7 +174,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
 
     private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
         this.dispose();
-        new Deconnexion().setVisible(true);
+        new LoginGUI().setVisible(true);
     }//GEN-LAST:event_deconnexionActionPerformed
 
     /**
