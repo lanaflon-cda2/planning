@@ -9,7 +9,6 @@ import com.planning.controler.ConsulterEMP;
 import com.planning.dao.implement.EnseignantDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
-import com.planning.model.Seance;
 import java.awt.Color;
 import java.beans.PropertyVetoException;
 import java.sql.Date;
@@ -1330,8 +1329,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         this.srat.setAE(ae);
         this.srat.setMonEmp(this);
         this.ae.desktop.add(this.srat);
-        System.out.println(srat.getNumSeance());
-        srat.infoSeance(srat.getNumSeance());
         
         try {
             this.srat.setMaximum(true);
@@ -1396,12 +1393,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     
     private String idUser;
     private int numEns;
+    SeanceRattrapage sr = new SeanceRattrapage();
     
     public void setIDUserMEE(String s){
         this.idUser = s;
         EnseignantDAO ed = new EnseignantDAO(ConnexionBD.init());
         Enseignant ens = ed.findByIDUser(this.idUser);
         this.numEns = ens.getNumEns();
+        sr.setidens(this.idUser);
         
     }
     
