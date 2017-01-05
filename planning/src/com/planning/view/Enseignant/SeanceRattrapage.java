@@ -275,7 +275,7 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
             return;
         }
         String nomEns = (String) model.getValueAt(row, 2);
-        System.out.println("lol i here "+nomEns);   
+        System.out.println("lol i here "+ nomEns);   
         int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);
         if(p == JOptionPane.YES_OPTION){
             System.out.println("lol i here 22"+nomEns);   

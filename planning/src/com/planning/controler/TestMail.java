@@ -22,7 +22,7 @@ public class TestMail {
     
     public static void testMail() {
         // Recipient's email ID needs to be mentioned.
-      String to = "g.alahassa@gmail.com";
+      String to = "chiadmi.dalila@gmail.com";
 
       // Sender's email ID needs to be mentioned
       String from = "wilofice@gmail.com";
@@ -64,10 +64,10 @@ public class TestMail {
                InternetAddress.parse(to));
 	
 	   // Set Subject: header field
-	   message.setSubject("Testing Subject");
+	   message.setSubject("Testing Mail");
 	
 	   // Now set the actual message
-	   message.setText("Hello, this is sample for to check send " +
+	   message.setText("This is test to check send " +
 		"email using JavaMailAPI ");
 
 	   // Send message

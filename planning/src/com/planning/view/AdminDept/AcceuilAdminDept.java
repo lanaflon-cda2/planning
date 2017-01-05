@@ -162,6 +162,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
+        this.setTitle("EMISessionUpdater");
         ge = new GererEmploi();
         gg = new GererGroupe();
         gm = new GererMatiere();

@@ -126,6 +126,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
+        this.setTitle("EMISessionUpdater");
         gu = new GererUtilisateurs();
         gu.updateTable();
     }
