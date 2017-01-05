@@ -47,23 +47,13 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private ArrayList listepermut;
     private Seance seance;
     
-    public void infoSeance(int numseance){
-        int num = numseance;
-        
-        SeanceDAO seancedao = new SeanceDAO(con);
-//        MatiereDAO matieredao = new MatiereDAO(con);
-//        CreneauDAO creneaudao = new CreneauDAO(con);
-               
-        Seance seance = seancedao.find(num);
-        Matiere matiere = new Matiere(seance.getNumMatiere());
-        Creneau creno = new Creneau(seance.getNumCreneau());
-        
-        this.jLabel9.setText(matiere.getNomMatiere());
-        this.jLabel10.setText(creno.getDateCreneau().toString());
-        this.jLabel11.setText(creno.getHeureCreneau().toString());
+    private String idUser;
+    private Enseignant ens;
+    
+    public void setidens(String id) {
+        this.idUser = id;
     }
     
-        
     public void setMonEmp(MonEmploiEnseignant monemp) {
         this.monemp = monemp;
     }
@@ -226,15 +216,6 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         jPanel1.add(matiereLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 20));
         jPanel1.add(heureLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 85, 120, 20));
 
-        jLabel9.setText("jLabel9");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 120, 20));
-
-        jLabel10.setText("jLabel10");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 20));
-
-        jLabel11.setText("jLabel11");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, 20));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 210, 120));
 
         confirmerRattrapage.setText("Confirmer");
@@ -279,17 +260,31 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+   
+    
     private void confirmerRattrapageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmerRattrapageActionPerformed
         
         
         int row = listeratt.getSelectedRow();
+        
+        
+        
         if(row == -1) {
             JOptionPane.showMessageDialog(this, "Selectionnez un creneau de rattrapage dans la liste proposée!", "Seance de Rattrapages", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
-        int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);    
+        String nomEns = (String) model.getValueAt(row, 2);
+        System.out.println("lol i here "+nomEns);   
+        int p = JOptionPane.showConfirmDialog(null,"Etes-vous de pouvoir rattraper à ce créneau?","Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION);
+        if(p == JOptionPane.YES_OPTION){
+            System.out.println("lol i here 22"+nomEns);   
+            if(!nomEns.equals("")){
+                Mail_conf conf = new Mail_conf();
+                conf.setTitle("Mail de confirmation");
+                conf.setIDUserMail(this.idUser);
+                conf.setVisible(true);}
+        }
         if(p == JOptionPane.NO_OPTION || p == JOptionPane.CANCEL_OPTION) return;
         
         Seance newseance1, newseance2, seanceoffert;
@@ -298,10 +293,11 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
         Object[] obj;
         
         String dateSeanceNom = (String) model.getValueAt(row, 0);
-        
         String dateSeance = dateSeanceNom.split(" ")[0];
         String heureSeance = (String) model.getValueAt(row, 1);
-        String nomEns = (String) model.getValueAt(row, 2);
+        
+        
+        
         if(!nomEns.equals("")) {
             for(int i = 0; i < listepermut.size(); i++){
                obj = (Object[]) listepermut.get(i);
@@ -369,13 +365,10 @@ public class SeanceRattrapage extends javax.swing.JInternalFrame {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel heureLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listeratt;

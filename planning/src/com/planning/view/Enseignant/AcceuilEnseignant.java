@@ -16,46 +16,39 @@ import java.util.logging.Logger;
  * @author Azough Mehdi
  */
 public class AcceuilEnseignant extends javax.swing.JFrame {
-       
+
     /**
      * Creates new form Acceuil
      */
     SeanceRattrapage sr;
-    
-    public void setSeanceRattrapage(SeanceRattrapage sr){
+
+    public void setSeanceRattrapage(SeanceRattrapage sr) {
         this.sr = sr;
     }
-    
+
     String idUser;
-    
     MonEmploiEnseignant monEmploiEnseignant1 = new MonEmploiEnseignant();
-    
     MonCompteEnseignant me = new MonCompteEnseignant();
-    
     Modifier modifier = new Modifier();
-    
-    public void setME(MonCompteEnseignant me){
+
+    public void setME(MonCompteEnseignant me) {
         this.me = me;
         me.setIDUserMCE(this.idUser);
     }
-    
-    
-    
-    public void setidUser(String s){
+
+    public void setidUser(String s) {
         this.idUser = s;
-        monEmploiEnseignant1.setIDUserMEE(this.idUser); 
+        monEmploiEnseignant1.setIDUserMEE(this.idUser);
         monEmploiEnseignant1.initEmp();
         monEmploiEnseignant1.setAE(this);
         modifier.setIDUserMod(this.idUser);
     }
-       
+
     public AcceuilEnseignant() {
         initComponents();
 
-        
     }
-            
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,13 +157,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     private void moncompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moncompteActionPerformed
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         seanceratt.setBackground(new java.awt.Color(240, 240, 240));
-                
+
         this.desktop.removeAll();
         this.desktop.repaint();
-        
+
         this.desktop.add(me);
-    
-        
+
         try {
             me.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -178,30 +170,29 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         }
         me.show();
         monEmploiEnseignant1.setAE(this);
-       
+
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked
-       
-       
+
+
     }//GEN-LAST:event_monemploiMouseClicked
 
     private void moncompteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moncompteMouseClicked
-        
+
     }//GEN-LAST:event_moncompteMouseClicked
 
     private void seancerattMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seancerattMouseClicked
-        
+
     }//GEN-LAST:event_seancerattMouseClicked
 
     private void monemploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monemploiActionPerformed
-       monemploi.setBackground(java.awt.SystemColor.activeCaption);
-       seanceratt.setBackground(new java.awt.Color(240, 240, 240));
-        
-       this.desktop.removeAll();
-       this.desktop.repaint(); 
-       monEmploiEnseignant1.setTitle("Emploi du temps");
-       this.desktop.add(monEmploiEnseignant1);
+        monemploi.setBackground(java.awt.SystemColor.activeCaption);
+        seanceratt.setBackground(new java.awt.Color(240, 240, 240));
+
+        this.desktop.removeAll();
+        this.desktop.repaint();
+        this.desktop.add(monEmploiEnseignant1);
         try {
             monEmploiEnseignant1.setMaximum(true);
         } catch (PropertyVetoException ex) {
@@ -212,12 +203,14 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
     }//GEN-LAST:event_monemploiActionPerformed
 
     private void seancerattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seancerattActionPerformed
-        
+
         seanceratt.setBackground(java.awt.SystemColor.activeCaption);
         monemploi.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        if(sr == null) sr = new SeanceRattrapage();
+        if (sr == null) {
+            sr = new SeanceRattrapage();
+        }
         sr.setTitle("Seances de Rattrapages");
         this.desktop.add(this.sr);
         try {
@@ -229,18 +222,18 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         monEmploiEnseignant1.setAE(this);
     }//GEN-LAST:event_seancerattActionPerformed
 
-    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {                                               
-        
-    // TODO add your handling code here:
-    }                                              
+    private void jLabel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+
+        // TODO add your handling code here:
+    }
 
     private void jLabel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentResized
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1ComponentResized
 
     private void deconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deconnexionActionPerformed
-         this.dispose();
-         new Deconnexion().setVisible(true);
+        this.dispose();
+        new Deconnexion().setVisible(true);
     }//GEN-LAST:event_deconnexionActionPerformed
 
     /**
@@ -275,12 +268,12 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AcceuilEnseignant().setVisible(true);
-                
+
             }
         });
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceuilBG;
     private javax.swing.JButton deconnexion;

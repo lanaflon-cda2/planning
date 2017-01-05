@@ -26,14 +26,14 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     MonCompteSyst ms = new MonCompteSyst();
     Modifier2 modifier = new Modifier2();
     
-    public void setidUserAS(String s){
-        this.idUser = s;
+    public void setMS(MonCompteSyst ms){
+        this.ms = ms;
+        ms.setIDUserMCS(this.idUser);
     }
     
     
-    public void setMD2(MonCompteSyst ms){
-        this.ms = ms;
-        ms.setIDUserMCS(this.idUser);
+    public void setidUserAS(String s){
+        this.idUser = s;
     }
     
     public AcceuilAdminSyst() {

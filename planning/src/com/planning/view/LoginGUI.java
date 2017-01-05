@@ -77,7 +77,7 @@ public class LoginGUI extends javax.swing.JFrame {
         motdepasse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         loginbackground.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("LoginBG.png")));
+        loginbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/planning/view/LoginBG.png"))); // NOI18N
         loginbackground.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loginbackground.setPreferredSize(new java.awt.Dimension(900, 600));
         loginbackground.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -163,7 +163,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     aadept.setidUserAD(id);
                     MonCompteDept mcd = new MonCompteDept();
                     aadept.desktop.add(mcd);
-                    aadept.setMD1(mcd);
+                    aadept.setMD(mcd);
                     try {
                         mcd.setMaximum(true);
                      } catch (PropertyVetoException ex) {
@@ -180,7 +180,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     aasys.setidUserAS(id);
                     MonCompteSyst mcs = new MonCompteSyst();
                     aasys.desktop.add(mcs);
-                    aasys.setMD2(mcs);
+                    aasys.setMS(mcs);
                     try {
                         mcs.setMaximum(true);
                      } catch (PropertyVetoException ex) {
