@@ -17,9 +17,9 @@ public class FiliereDAO extends DAO<Filiere> {
     @Override
     public boolean create(Filiere obj) {
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement();
             
-            query = "INSERT INTO Filiere VALUES (NULL, ";
+            query = "INSERT INTO APP.Filiere VALUES (DEFAULT, ";
             query += "'" + obj.getNomFiliere() + "')";
             
             int numFiliere = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
@@ -27,7 +27,7 @@ public class FiliereDAO extends DAO<Filiere> {
             obj.setNumFiliere(numFiliere);            
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in Filiere.create: " + e);
             return false;
         }
         return true;
@@ -36,12 +36,12 @@ public class FiliereDAO extends DAO<Filiere> {
     @Override
     public boolean delete(Filiere obj){
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "DELETE FROM Filiere WHERE NumFliere = " + obj.getNumFiliere();
+            state = conn.createStatement();
+            query = "DELETE FROM APP.Filiere WHERE NumFliere = " + obj.getNumFiliere();
             state.executeUpdate(query);
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in Filiere.delete: " + e);
             return false;
         }
         return true;
@@ -50,12 +50,12 @@ public class FiliereDAO extends DAO<Filiere> {
     @Override
     public boolean update(Filiere obj){
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Filiere SET NomFiliere = '" + obj.getNomFiliere() + "', WHERE NumFilere = " + obj.getNumFiliere();
+            state = conn.createStatement();
+            query = "UPDATE APP.Filiere SET NomFiliere = '" + obj.getNomFiliere() + "', WHERE NumFilere = " + obj.getNumFiliere();
             state.executeUpdate(query);
 	}
         catch (SQLException e) {
-	    System.out.println("SQLException: " + e);
+	    System.out.println("SQLException in Filiere.update: " + e);
             return false;
 	}
         return true;
@@ -67,14 +67,14 @@ public class FiliereDAO extends DAO<Filiere> {
         Filiere filiere = null;
         
         try {    
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Filiere WHERE NumFiliere = " + numf;
+            state = conn.createStatement();
+            query = "SELECT * FROM APP.Filiere WHERE NumFiliere = " + numf;
             res = state.executeQuery(query);
-            if(res.first()) {
+            while(res.next()) {
                 filiere = new Filiere(res.getInt(1), res.getString(2));   
             }   
         }catch (SQLException e) {   
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in Filiere.find: " + e);
             return null;       
         }
         return filiere;
@@ -84,15 +84,15 @@ public class FiliereDAO extends DAO<Filiere> {
             ArrayList listeFiliere = null;
 
             try {    
-                state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-                query = "SELECT * FROM Filiere";
+                state = conn.createStatement();
+                query = "SELECT * FROM APP.Filiere";
                 res = state.executeQuery(query);
                 while(res.next()) {
                     if(listeFiliere == null) listeFiliere = new ArrayList();
                     listeFiliere.add(new Filiere(res.getInt(1), res.getString(2)));
                 }   
             }catch (SQLException e) {   
-                System.out.println("SQLException: " + e);
+                System.out.println("SQLException in Filiere.findALL: " + e);
                 return null;       
             }
             return listeFiliere;
@@ -103,14 +103,14 @@ public class FiliereDAO extends DAO<Filiere> {
         int numf = 0;
         
         try {    
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT numFiliere FROM Filiere WHERE NomFiliere = " + nomf;
+            state = conn.createStatement();
+            query = "SELECT numFiliere FROM APP.Filiere WHERE NomFiliere = " + nomf;
             res = state.executeQuery(query);
             if(res.first()) {
                 numf = res.getInt(1);   
             }   
         }catch (SQLException e) {   
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in Filiere.findNumFiliere: " + e);
             return 0;       
         }
         return numf;

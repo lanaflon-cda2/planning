@@ -19,8 +19,8 @@ public class ConnexionBD {
     private static Connection setConn() {
         Connection x = null;
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            x = DriverManager.getConnection("jdbc:mysql://localhost/planning_bd_test","root","root");
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            x = DriverManager.getConnection("jdbc:derby://localhost:1527/planning_bd","root","root");
             /*if (conn != null)
                 System.out.println("Connexion A la base de donnees reusies.");*/
             if(x == null)
@@ -37,7 +37,7 @@ public class ConnexionBD {
     }
     
     public static void main(String args[]){
-         ConnexionBD.init();
+        System.out.println(ConnexionBD.init());
      }
     
 }

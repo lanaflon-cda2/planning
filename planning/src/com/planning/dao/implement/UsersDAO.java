@@ -18,7 +18,7 @@ public class UsersDAO extends DAO<Users> {
     @Override
     public boolean create(Users obj) {
         try {
-            PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO Users VALUES (?,?,?,?)");
+            PreparedStatement prepare = this.conn.prepareStatement("INSERT INTO APP.Users VALUES (?,?,?,?)");
             prepare.setString(1,obj.getIDUser());
             prepare.setString(2,obj.getMotDePasse());
             prepare.setString(3,obj.getFonction());
@@ -27,7 +27,7 @@ public class UsersDAO extends DAO<Users> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in UsersDAO.create: " + e);
             return false;
             
         }
@@ -38,12 +38,12 @@ public class UsersDAO extends DAO<Users> {
     @Override
     public boolean delete(Users obj){
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "DELETE FROM Users WHERE IDUser = '" + obj.getIDUser() + "'";
+            state = conn.createStatement();
+            query = "DELETE FROM APP.Users WHERE IDUser = '" + obj.getIDUser() + "'";
             state.executeUpdate(query);
         } 
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in UsersDAO.delete: " + e);
             return false;
         }
         return true;
@@ -53,15 +53,15 @@ public class UsersDAO extends DAO<Users> {
     public boolean update(Users obj){
         try {
             
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Users SET IDUser = '" + obj.getIDUser() + "', MotDePasse = '" + obj.getMotDePasse() + "', Fonction = '" + obj.getFonction();
+            state = conn.createStatement();
+            query = "UPDATE APP.Users SET IDUser = '" + obj.getIDUser() + "', MotDePasse = '" + obj.getMotDePasse() + "', Fonction = '" + obj.getFonction();
             query += "', NumFiliere = " + obj.getNumFiliere();
             query +=  " WHERE IDUser = '" + obj.getIDUser() +"'";
             
             state.executeUpdate(query);
 	}
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in UsersDAO.update: " + e);
             return false;
 	}
         return true;
@@ -70,14 +70,14 @@ public class UsersDAO extends DAO<Users> {
     public boolean update(Users old, Users nouv) {
         try {
             
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Users SET IDUser = '" + nouv.getIDUser() + "', MotDePasse = '" + nouv.getMotDePasse();
+            state = conn.createStatement();
+            query = "UPDATE APP.Users SET IDUser = '" + nouv.getIDUser() + "', MotDePasse = '" + nouv.getMotDePasse();
             query +=  "', Fonction = '" + nouv.getFonction() + "', NumFiliere = " + nouv.getNumFiliere();
             query += " WHERE IDUser = '" + old.getIDUser() + "'";
             state.executeUpdate(query);
 	}
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in UsersDAO.update(Users, Users): " + e);
             return false;
 	}
        
@@ -89,9 +89,9 @@ public class UsersDAO extends DAO<Users> {
         ArrayList listusers = null;
         Users users = null;
         try {    
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT IDUser, MotDePasse, Fonction, Users.NumFiliere, NomFiliere FROM Users, Filiere WHERE Filiere.NumFiliere = Users.NumFiliere";
-            query += " UNION (SELECT IDUser, MotDePasse, Fonction, NumFiliere, '' FROM Users WHERE NumFiliere = 0)";
+            state = conn.createStatement();
+            query = "SELECT IDUser, MotDePasse, Fonction, APP.Users.NumFiliere, NomFiliere FROM APP.Users, APP.Filiere WHERE APP.Filiere.NumFiliere = APP.Users.NumFiliere";
+            query += " UNION (SELECT IDUser, MotDePasse, Fonction, NumFiliere, '' FROM APP.Users WHERE NumFiliere = 0)";
             res = state.executeQuery(query);
             while(res.next()) {
                 if(listusers == null)  listusers = new ArrayList();
@@ -103,7 +103,7 @@ public class UsersDAO extends DAO<Users> {
                 listusers.add(users);
             }   
         }catch (SQLException e) {  
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in UsersDAO.findALL: " + e);
             return null;
         }
         return listusers;
@@ -112,8 +112,8 @@ public class UsersDAO extends DAO<Users> {
     public Users find(String iDUser){
         Users users = null;
         try {    
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT IDUser, MotDePasse, Fonction, Users.NumFiliere, NomFiliere FROM Users, Filiere WHERE Filiere.NumFiliere = Users.NumFiliere and IDUser = '" + iDUser + "'";
+            state = conn.createStatement();
+            query = "SELECT IDUser, MotDePasse, Fonction, APP.Users.NumFiliere, NomFiliere FROM APP.Users, APP.Filiere WHERE APP.Filiere.NumFiliere = APP.Users.NumFiliere and IDUser = '" + iDUser + "'";
             res = state.executeQuery(query);
             while(res.next()) {
                 users = new Users(res.getString(1), res.getString(2), res.getString(3), res.getInt(4));   
@@ -123,7 +123,7 @@ public class UsersDAO extends DAO<Users> {
                 users.setEnseignant(enseignant);
             }
             if(users == null) {
-                query = "SELECT IDUser, MotDePasse, Fonction, Users.NumFiliere, '' FROM Users WHERE IDUser = '" + iDUser + "'";
+                query = "SELECT IDUser, MotDePasse, Fonction, APP.Users.NumFiliere, '' FROM APP.Users WHERE IDUser = '" + iDUser + "'";
                 res = state.executeQuery(query);
                 while(res.next()) {
                     users = new Users(res.getString(1), res.getString(2), res.getString(3), res.getInt(4));   
@@ -134,7 +134,7 @@ public class UsersDAO extends DAO<Users> {
                 }
             }
         }catch (SQLException e) {  
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in UsersDAO.find: " + e);
             return null;
         }
         return users;

@@ -21,9 +21,9 @@ public class CreneauDAO extends DAO<Creneau> {
     public boolean create(Creneau obj) {
         
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement();
                  
-            query = "INSERT INTO Creneau VALUES (NULL, '";
+            query = "INSERT INTO APP.Creneau VALUES (DEFAULT, '";
             query += obj.getDateCreneau() + "','";
             query += obj.getHeureCreneau() + "')";
             int numCreneau = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
@@ -31,7 +31,7 @@ public class CreneauDAO extends DAO<Creneau> {
             
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in CreneauDAO.create: " + e);
             return false;
         }
         
@@ -43,12 +43,12 @@ public class CreneauDAO extends DAO<Creneau> {
     @Override
     public boolean delete(Creneau obj){
         try {
-            query = "DELETE FROM Creneau WHERE NumCreneau = " + obj.getNumCreneau();
+            query = "DELETE FROM APP.Creneau WHERE NumCreneau = " + obj.getNumCreneau();
             
-            conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate(query);
+            conn.createStatement().executeUpdate(query);
         } 
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in CreneauDAO.delete: " + e);
             return false;
         }
         return true;
@@ -58,12 +58,12 @@ public class CreneauDAO extends DAO<Creneau> {
     public boolean update(Creneau obj){
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Creneau SET DateCreneau = " + obj.getDateCreneau()+ ", HeureCreneau = " + obj.getHeureCreneau();
+            query = "UPDATE APP.Creneau SET DateCreneau = " + obj.getDateCreneau()+ ", HeureCreneau = " + obj.getHeureCreneau();
             query += " WHERE NumSeance = '" + obj.getNumCreneau();
             state.executeUpdate(query);
 	}
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in CreneauDAO.update: " + e);
             return false;
         }
         return true;
@@ -75,14 +75,14 @@ public class CreneauDAO extends DAO<Creneau> {
         Creneau creneau = null;
         
         try {
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Creneau WHERE NumCreneau = " + numcreneau;
+            state = conn.createStatement();
+            query = "SELECT * FROM APP.Creneau WHERE NumCreneau = " + numcreneau;
             res = state.executeQuery(query);
             while(res.next()) {
                 creneau = new Creneau(res.getInt(1), res.getDate(2), res.getTime(3));                
             }
         } catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in CreneauDAO.find(int): " + e);
             return null;
         }
         return creneau;

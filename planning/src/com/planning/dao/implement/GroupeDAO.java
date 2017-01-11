@@ -20,8 +20,8 @@ public class GroupeDAO extends DAO<Groupe> {
     @Override
     public boolean create(Groupe obj) {
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "INSERT INTO Groupe VALUES (NULL, ";
+            state = conn.createStatement();
+            query = "INSERT INTO APP.Groupe VALUES (DEFAULT, ";
             query += obj.getNumFiliere() + ", '";
             query += obj.getNomGroupe() + "',  ";
             query += obj.getNiveau() + ")";
@@ -30,7 +30,7 @@ public class GroupeDAO extends DAO<Groupe> {
             
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in GroupeDAO.create: " + e);
             return false;
         }    
         return true;
@@ -39,10 +39,10 @@ public class GroupeDAO extends DAO<Groupe> {
     @Override
     public boolean delete(Groupe obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Groupe WHERE NumGroupe = " + obj.getNumGroupe());
+            this.conn.createStatement().executeUpdate("DELETE FROM APP.Groupe WHERE NumGroupe = " + obj.getNumGroupe());
         } 
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in GroupeDAO.delete: " + e);
             return false;
         }
         return true;
@@ -54,11 +54,11 @@ public class GroupeDAO extends DAO<Groupe> {
     public boolean update(Groupe obj){
         try {
             state = conn.createStatement();
-            query = "UPDATE Groupe SET NomGroupe = " + obj.getNomGroupe() + ", NumFiliere = " + obj.getNumFiliere() + ", Niveau = " + obj.getNiveau();
+            query = "UPDATE APP.Groupe SET NomGroupe = " + obj.getNomGroupe() + ", NumFiliere = " + obj.getNumFiliere() + ", Niveau = " + obj.getNiveau();
             query += " WHERE NumGroupe = " + obj.getNumFiliere();
 	}
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in GroupeDAO.update: " + e);
             return false;
         }
         return true;
@@ -67,12 +67,12 @@ public class GroupeDAO extends DAO<Groupe> {
     public ResultSet findALL(){
 
         try{
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "select NumGroupe, NomGroupe, Groupe.NumFiliere as NumFiliere, NomFiliere, Niveau from Groupe, Filiere WHERE Groupe.NumFiliere = Filiere.NumFiliere";
+            state = conn.createStatement();
+            query = "select NumGroupe, NomGroupe, APP.Groupe.NumFiliere as NumFiliere, NomFiliere, Niveau from APP.Groupe, APP.Filiere WHERE APP.Groupe.NumFiliere = APP.Filiere.NumFiliere";
             res = state.executeQuery(query);
 
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println("SQLException in GroupeDAO.findALL: " + e);
             return null;
         }
 
@@ -84,10 +84,10 @@ public class GroupeDAO extends DAO<Groupe> {
         
         try {
             state = this.conn.createStatement();
-            query = "UPDATE Groupe SET NomGroupe = '" + obj2.getNomGroupe() + "', NumFiliere = " + obj2.getNumFiliere() + ", Niveau = " + obj2.getNiveau();
+            query = "UPDATE APP.Groupe SET NomGroupe = '" + obj2.getNomGroupe() + "', NumFiliere = " + obj2.getNumFiliere() + ", Niveau = " + obj2.getNiveau();
             query += " WHERE NomGroupe = '" + obj1.getNomGroupe() + "' AND NumFiliere = " + obj1.getNumFiliere() + " and Niveau = " + obj1.getNiveau();
         } catch (Exception e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in GroupeDAO.updateByObj: " + e);
             return false;
         }
         return true;
@@ -100,8 +100,8 @@ public class GroupeDAO extends DAO<Groupe> {
         Groupe groupe = null;
         
         try {    
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Groupe WHERE NumGroupe = " + numg;
+            state = conn.createStatement();
+            query = "SELECT * FROM APP.Groupe WHERE NumGroupe = " + numg;
             res = state.executeQuery(query);
             while(res.next()) {
                 groupe = new Groupe(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4));   
@@ -113,7 +113,7 @@ public class GroupeDAO extends DAO<Groupe> {
                 }
              }   
         }catch (SQLException e) {   
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in GroupeDAO.find: " + e);
         }
         return groupe;
     }

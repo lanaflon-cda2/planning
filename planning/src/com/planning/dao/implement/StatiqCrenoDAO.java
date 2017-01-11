@@ -26,9 +26,9 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
     @Override
     public boolean create(StatiqueCreneau obj) {
        try {
-        state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        state = conn.createStatement();
 
-        query = "INSERT INTO StatiqueCreneau VALUES (NULL, ";
+        query = "INSERT INTO APP.StatiqueCreneau VALUES (DEFAULT, ";
         query += obj.getNumMatiere()+ ", ";
         query += obj.getNumGroupe()+ ", ";
         query += obj.getNumEns()+ ", ";
@@ -41,7 +41,7 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
         obj.setNumSC(numSC);            
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in StatiqCrenoDAO.create: " + e);
             return false;
         }
 
@@ -51,14 +51,14 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
     @Override
     public boolean delete(StatiqueCreneau obj) {
          try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "DELETE FROM StatiqueCreneau WHERE NumSC = " + obj.getNumSC();
+            state = conn.createStatement();
+            query = "DELETE FROM APP.StatiqueCreneau WHERE NumSC = " + obj.getNumSC();
             state.executeUpdate(query);
-            query = "DELETE FROM Seance WHERE NumEns = " + obj.getNumEns() + " AND NumMatiere = " + obj.getNumMatiere() + " AND NumGroupe = " + obj.getNumGroupe();
+            query = "DELETE FROM APP.Seance WHERE NumEns = " + obj.getNumEns() + " AND NumMatiere = " + obj.getNumMatiere() + " AND NumGroupe = " + obj.getNumGroupe();
             state.executeUpdate(query);
         } 
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in StatiqCrenoDAO.delete: " + e);
             return false;
         }
         return true;
@@ -85,7 +85,7 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
         StatiqueCreneau sc;
         try {
             state = conn.createStatement();
-            query = "Select * FROM StatiqueCreneau";
+            query = "Select * FROM APP.StatiqueCreneau";
             res = state.executeQuery(query);
             while(res.next()) {
                 if(allSC == null) allSC = new ArrayList();
@@ -93,7 +93,7 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
                 allSC.add(sc);
             }
         } catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in StatiqCrenoDAO.findALL: " + e);
             return null;
         }
         return allSC;
@@ -104,9 +104,9 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
         StatiqueCreneau sc;
         try {
             state = conn.createStatement();
-            query = "Select NumSC, StatiqueCreneau.NumMatiere, StatiqueCreneau.NumGroupe, StatiqueCreneau.NumEns, JourSemaine, HeureSeance, DateD, DateF, NomMatiere, NomEns, PrenomEns, NomGroupe"; 
-            query += " FROM StatiqueCreneau, Groupe, Matiere, Enseignant WHERE StatiqueCreneau.NumGroupe = " + numGroupe + " and Enseignant.NumEns = StatiqueCreneau.NumEns and Matiere.NumMatiere = StatiqueCreneau.NumMatiere";
-            query += " and Groupe.NumGroupe = StatiqueCreneau.NumGroupe";
+            query = "Select NumSC, APP.StatiqueCreneau.NumMatiere, APP.StatiqueCreneau.NumGroupe, APP.StatiqueCreneau.NumEns, JourSemaine, HeureSeance, DateD, DateF, NomMatiere, NomEns, PrenomEns, NomGroupe"; 
+            query += " FROM APP.StatiqueCreneau, APP.Groupe, APP.Matiere, APP.Enseignant WHERE APP.StatiqueCreneau.NumGroupe = " + numGroupe + " and APP.Enseignant.NumEns = APP.StatiqueCreneau.NumEns and APP.Matiere.NumMatiere = APP.StatiqueCreneau.NumMatiere";
+            query += " and APP.Groupe.NumGroupe = APP.StatiqueCreneau.NumGroupe";
             res = state.executeQuery(query);
             while(res.next()) {
                 if(allSC == null) allSC = new ArrayList();
@@ -117,7 +117,7 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
                 allSC.add(sc);
             }
         } catch (SQLException e) {
-            System.out.println("SQLException: in findALLByNumGroupe" + e);
+            System.out.println("SQLException in StatiqCrenoDAO.findALLByNumGroupe" + e);
             return null;
         }
         

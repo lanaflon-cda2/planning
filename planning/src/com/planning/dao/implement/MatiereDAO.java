@@ -21,15 +21,16 @@ public class MatiereDAO extends DAO<Matiere> {
     @Override
     public boolean create(Matiere obj) {
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "INSERT INTO Matiere VALUES (NULL, '";
+            state = conn.createStatement();
+            query = "INSERT INTO APP.Matiere VALUES (DEFAULT, '";
             query += obj.getNomMatiere() + "')";
             int numMatiere = state.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             obj.setNumMatiere(numMatiere);
             
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("SQLException in MatiereDAO.create: " + e);
+            return false;
         }
         return true;
     }
@@ -37,9 +38,11 @@ public class MatiereDAO extends DAO<Matiere> {
     @Override
     public boolean delete(Matiere obj){
         try {
-            this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE).executeUpdate("DELETE FROM Matiere WHERE NumMatiere = " + obj.getNumMatiere());
+            this.conn.createStatement().executeUpdate("DELETE FROM APP.Matiere WHERE NumMatiere = " + obj.getNumMatiere());
         } 
         catch (SQLException e) {
+            System.out.println("SQLException in MatiereDAO.delete: " + e);
+            return false;
         }
         return true;
     }
@@ -47,11 +50,13 @@ public class MatiereDAO extends DAO<Matiere> {
     @Override
     public boolean update(Matiere obj){
         try {
-            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE Matiere SET "
+            this .conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate("UPDATE APP.Matiere SET "
                     +" NomMatiere = '" + obj.getNomMatiere()+ "' WHERE NumMatiere = " + obj.getNumMatiere());
 
 	}
         catch (SQLException e) {
+            System.out.println("SQLException in MatiereDAO.update: " + e);
+            return false;
 	}
         return true;
     }
@@ -62,8 +67,8 @@ public class MatiereDAO extends DAO<Matiere> {
         Matiere matiere = null;
         
         try {    
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Matiere WHERE NumMatiere = " + numm;
+            state = conn.createStatement();
+            query = "SELECT * FROM APP.Matiere WHERE NumMatiere = " + numm;
             res = state.executeQuery(query);
             while(res.next()) {
                 matiere = new Matiere(res.getInt(1), res.getString(2));   
@@ -75,7 +80,7 @@ public class MatiereDAO extends DAO<Matiere> {
                 }
              }   
         }catch (SQLException e) {  
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in MatiereDAO.find: " + e);
         }
         return matiere;
     }
@@ -90,8 +95,8 @@ public class MatiereDAO extends DAO<Matiere> {
     public ArrayList FindAll(){
         ArrayList listematiere=null;
         try{
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "Select * from Matiere";
+            state = conn.createStatement();
+            query = "Select * from APP.Matiere";
             res = state.executeQuery(query);
             while(res.next()){
                 if(listematiere==null) listematiere = new ArrayList();
@@ -101,7 +106,7 @@ public class MatiereDAO extends DAO<Matiere> {
             }
 
         }catch(Exception e){
-            System.out.println( "SQLException: " + e);
+            System.out.println( "SQLException in MatiereDAO.find(string): " + e);
             return null;
         }
         return  listematiere;

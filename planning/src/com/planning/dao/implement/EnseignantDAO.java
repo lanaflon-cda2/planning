@@ -20,9 +20,9 @@ public class EnseignantDAO extends DAO<Enseignant> {
     @Override
     public boolean create(Enseignant obj) {
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            state = conn.createStatement();
             
-            query = "INSERT INTO Enseignant VALUES (NULL, ";
+            query = "INSERT INTO APP.Enseignant VALUES (DEFAULT, ";
             query += "'" + obj.getNomEns() + "', ";
             query += "'" + obj.getPrenomEns() + "',";
             query += "'" + obj.getMail() + "', ";
@@ -34,7 +34,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             obj.setNumEns(numEns);            
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in EnseignantDAO.create: " + e);
             return false;
         }
        
@@ -45,12 +45,12 @@ public class EnseignantDAO extends DAO<Enseignant> {
     @Override
     public boolean delete(Enseignant obj){
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            query = "DELETE FROM Enseignant WHERE NumEns = " + obj.getNumEns();
+            state = conn.createStatement();
+            query = "DELETE FROM APP.Enseignant WHERE NumEns = " + obj.getNumEns();
             state.executeUpdate(query);
         } 
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in EnseignantDAO.delete: " + e);
             return false;
         }
         return true;
@@ -59,15 +59,15 @@ public class EnseignantDAO extends DAO<Enseignant> {
     @Override
     public boolean update(Enseignant obj){
         try {
-            state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
+            state = conn.createStatement();
+            query = "UPDATE APP.Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
             query += "', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel()+ " WHERE NumEns = " + obj.getNumEns();
 
             state.executeUpdate(query);
 	}
         
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in EnseignantDAO.update: " + e);
             return false;
 	}
         return true;
@@ -77,13 +77,13 @@ public class EnseignantDAO extends DAO<Enseignant> {
         try {
             Enseignant obj = new Enseignant(id);
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            query = "UPDATE Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
+            query = "UPDATE APP.Enseignant SET NomEns = '"  + obj.getNomEns()+ "', PrenomEns = '" + obj.getPrenomEns();
             query += "', Mail = '" + obj.getMail()+ "', Tel = " + obj.getTel() + " WHERE IDUser = '" + id + "'";
                                                         
             state.executeUpdate(query);
 	}
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in EnseignantDAO.updateByID: " + e);
             return false;
 	}
         return true;
@@ -96,8 +96,8 @@ public class EnseignantDAO extends DAO<Enseignant> {
         Enseignant enseignant = null;
         
         try {
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Enseignant WHERE NumEns = " + numens;
+            state = conn.createStatement();
+            query = "SELECT * FROM APP.Enseignant WHERE NumEns = " + numens;
             res = state.executeQuery(query);
             if(res.next()) {
                 enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getLong(5), res.getString(6));
@@ -109,7 +109,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in EnseignantDAO.find(int): " + e);
             return null;
         }
         return enseignant;
@@ -120,14 +120,14 @@ public class EnseignantDAO extends DAO<Enseignant> {
         Enseignant enseignant = null;
         
         try {
-            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            query = "SELECT * FROM Enseignant WHERE IDUser = '" + iDUser+ "'";
+            state = conn.createStatement();
+            query = "SELECT * FROM APP.Enseignant WHERE IDUser = '" + iDUser+ "'";
             res = state.executeQuery(query);
             while(res.next()) {
                 enseignant = new Enseignant(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getLong(5), res.getString(6));                  
             }
         } catch (SQLException e) {
-             System.out.println("SQLException: " + e);
+             System.out.println("SQLException in EnseignantDAO.findByIDUser: " + e);
             return null;
         }
         
@@ -138,8 +138,8 @@ public class EnseignantDAO extends DAO<Enseignant> {
             ArrayList listens = null;
             Enseignant ens;
             try {    
-                state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-                query = "SELECT * FROM Enseignant";
+                state = conn.createStatement();
+                query = "SELECT * FROM APP.Enseignant";
                 res = state.executeQuery(query); 
                 while(res.next()) {
                     if(listens == null) listens = new ArrayList();
@@ -147,7 +147,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
                     listens.add(ens);
                 }
             }catch (SQLException e) {   
-                System.out.println("SQLException: " + e);
+                System.out.println("SQLException in EnseignantDAO.findALL: " + e);
                 return null;       
             }
             return listens;
