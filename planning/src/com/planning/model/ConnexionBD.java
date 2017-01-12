@@ -5,19 +5,15 @@
  */
 package com.planning.model;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
 
 public class ConnexionBD {
     private static Connection conn = null;
@@ -31,21 +27,24 @@ public class ConnexionBD {
         boolean f = false;
         try{
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            x = DriverManager.getConnection("jdbc:derby:testad;create=true","root","root");
+            new Scanner(new File("data/service.properties")).delimiter();
+            f = true;
+            x = DriverManager.getConnection("jdbc:derby:data;create=true","root","root");
             /*if (conn != null)
                 System.out.println("Connexion A la base de donnees reusies.");*/
             if(x == null)
                 System.out.println("Erreur de Connexion");
-            String derby = new Scanner(new File("derby.log")).useDelimiter("\\Z").next();
-            f = true;
-            conn = DriverManager.getConnection("jdbc:derby:testad;create=true","root","root");
+            
+            conn = x;
         }catch(ClassNotFoundException | SQLException | FileNotFoundException e){
             System.out.println("--> Exception in ConnexionBD.setConn: " + e);
             //return x;
         } finally {
             try{
-                if(!f) {
-                    Statement stat = x.createStatement();
+                if(f == false) {
+                conn = DriverManager.getConnection("jdbc:derby:data;create=true","root","root");
+                x = conn;
+                Statement stat = x.createStatement();
                 String content = new Scanner(new File("sqlfin.txt")).useDelimiter("\\Z").next();
                 String req[] = content.split("delimiter");
                 String create = req[0];
