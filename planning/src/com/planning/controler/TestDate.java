@@ -44,7 +44,7 @@ public class TestDate {
     }
 
     public static void main(String args[]) {
-        testSplit();
+        //testSplit();
         //testdate();
 //       String t[][] = new String[4][4];
 //       String tab[] = new String[4];
@@ -57,5 +57,8 @@ public class TestDate {
 //            System.out.println("" + j);
 //            
 //        //}
+
+    System.out.println("Working Directory = " +
+              System.getProperty("user.dir"));
     }
 }

@@ -47,7 +47,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
 
     public AcceuilEnseignant() {
         initComponents();
-        this.setTitle("SwapMyCourse");
+        this.setTitle("SwapMyLecture");
     }
 
     /**

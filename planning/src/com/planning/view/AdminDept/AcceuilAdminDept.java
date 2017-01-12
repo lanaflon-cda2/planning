@@ -162,7 +162,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
-        this.setTitle("SwapMyCourse");
+        this.setTitle("SwapMyLecture");
         ge = new GererEmploi();
         gg = new GererGroupe();
         gm = new GererMatiere();
@@ -178,13 +178,13 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         gerermat.setBackground(new java.awt.Color(240, 240, 240));
         this.desktop.removeAll();
         this.desktop.repaint();
-        this.desktop.add(mcd);
+        this.desktop.add(md);
         try {
-            mcd.setMaximum(true);
+            md.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mcd.show();
+        md.show();
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void monemploiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monemploiMouseClicked

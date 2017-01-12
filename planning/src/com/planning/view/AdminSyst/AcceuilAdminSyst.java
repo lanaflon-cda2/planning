@@ -127,7 +127,7 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
-        this.setTitle("SwapMyCourse");
+        this.setTitle("SwapMyLecture");
         gu = new GererUtilisateurs();
         gu.updateTable();
     }
@@ -154,14 +154,14 @@ public class AcceuilAdminSyst extends javax.swing.JFrame {
       utilisateurs.setBackground(new java.awt.Color(240, 240, 240));
        this.desktop.removeAll();
         this.desktop.repaint();
-        MonCompteSyst mcs = new MonCompteSyst();
-        this.desktop.add(mcs);
+        //MonCompteSyst mcs = new MonCompteSyst();
+        this.desktop.add(ms);
         try {
-            mcs.setMaximum(true);
+            ms.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(AcceuilAdminSyst.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mcs.show();
+        ms.show();
     }//GEN-LAST:event_moncompteActionPerformed
 
     private void moncompteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moncompteMouseExited

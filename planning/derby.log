@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Jan 12 04:42:46 WET 2017:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631) : instance a816c00e-0159-90fc-3b2a-000003d48db8 
+dans le répertoire de base de données /home/genereux/NetBeansProjects/planning/planning/testad avec le chargeur de classe sun.misc.Launcher$AppClassLoader@355da254
+Chargé de file:/usr/java/jdk1.8.0_102/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_102-b14
+user.dir=/home/genereux/NetBeansProjects/planning/planning
+os.name=Linux
+os.arch=amd64
+os.version=4.8.15-200.fc24.x86_64
+derby.system.home=null
+Chargeur de classe de la base de données démarré - derby.database.classpath = ''
