@@ -217,10 +217,10 @@ public class TestAlgo {
         } 
     }
     
-    public static void main(String args[]){
-        
-        //TestDAO.insertSeance();
-        TestAlgo.testAbsence();
-    }
+//    public static void main(String args[]){
+//        
+//        //TestDAO.insertSeance();
+//        TestAlgo.testAbsence();
+//    }
 
 }

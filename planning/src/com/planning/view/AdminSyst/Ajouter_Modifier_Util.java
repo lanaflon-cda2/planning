@@ -204,7 +204,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         int numFiliere = 0;
         if(filindex == -1) {
             if(findex != 4) {
-                String text = "L'utilisateur n'est pas un administrateur système. Choisissez donc une filière valide!";
+                String text = "Veuillez indiquer une filiere!";
                 JOptionPane.showMessageDialog(null, text, "Ajout d'un utilisateur", JOptionPane.INFORMATION_MESSAGE );
                 return;
             }
@@ -226,7 +226,7 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
         }
         
         
-        String mdp = nomfield.getText() +"emi";
+        String mdp = id +"emi";
         Long tel = Long.valueOf(tels);
         Users user = new Users(id,mdp, fonction, numFiliere);
         user.setFonction(fonction);
@@ -243,44 +243,49 @@ public class Ajouter_Modifier_Util extends javax.swing.JFrame {
     }//GEN-LAST:event_AnnulerActionPerformed
 
     private void fonctionComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fonctionComboItemStateChanged
-        // TODO add your handling code here:
-        if(fonctionCombo.getSelectedIndex() == 4) filiereCombo.setSelectedIndex(-1);
+
+        if(fonctionCombo.getSelectedIndex() == 4) {
+            filiereCombo.setEnabled(false);
+            return;
+            
+        }
+        filiereCombo.setEnabled(true);
     }//GEN-LAST:event_fonctionComboItemStateChanged
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Ajouter_Modifier_Util().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Ajouter_Modifier_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Ajouter_Modifier_Util().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Annuler;

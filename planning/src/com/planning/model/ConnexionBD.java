@@ -35,8 +35,8 @@ public class ConnexionBD {
         return x;
     }
     
-    public static void main(String args[]){
-         ConnexionBD.init();
-     }
+//    public static void main(String args[]){
+//         ConnexionBD.init();
+//    }
     
 }

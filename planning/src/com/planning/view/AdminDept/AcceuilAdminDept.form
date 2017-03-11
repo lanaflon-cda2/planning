@@ -44,11 +44,6 @@
       </Constraints>
     </Component>
     <Container class="javax.swing.JDesktopPane" name="desktop">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="mcd = new MonCompteDept();&#xa;this.desktop.add(mcd);&#xa;try {&#xa;            mcd.setMaximum(true);&#xa;        } catch (PropertyVetoException ex) {&#xa;            Logger.getLogger(com.planning.view.AdminDept.AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;        mcd.show();"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

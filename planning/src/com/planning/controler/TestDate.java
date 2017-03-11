@@ -43,8 +43,8 @@ public class TestDate {
         System.out.println(t[0] + " " + t[1]);
     }
 
-    public static void main(String args[]) {
-        testSplit();
+//    public static void main(String args[]) {
+//        testSplit();
         //testdate();
 //       String t[][] = new String[4][4];
 //       String tab[] = new String[4];
@@ -57,5 +57,5 @@ public class TestDate {
 //            System.out.println("" + j);
 //            
 //        //}
-    }
+//    }
 }
