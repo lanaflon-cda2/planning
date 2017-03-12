@@ -1456,17 +1456,17 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jLabel27.setText(null);
         jLabel47.setText(null);
 
-        jLabel26.setText(null);
-        jLabel46.setText(null);
-
-        jLabel27.setText(null);
-        jLabel47.setText(null);
-
         jLabel28.setText(null);
         jLabel48.setText(null);
 
         jLabel29.setText(null);
         jLabel49.setText(null);
+
+        jLabel30.setText(null);
+        jLabel50.setText(null);
+
+        jLabel31.setText(null);
+        jLabel51.setText(null);
 
     }
     
@@ -1586,24 +1586,24 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 else if (strings[3].equals("6")) {
                     if(strings[4].equals("08:00:00")) {
                         emp[4][0] = Integer.valueOf(strings[6]);
-                        jLabel26.setText(strings[0]);
-                        jLabel46.setText(strings[1] + " " + strings[2]);
+                        jLabel28.setText(strings[0]);
+                        jLabel48.setText(strings[1] + " " + strings[2]);
                     }
 
                     else if(strings[4].equals("10:00:00")) {
                         emp[4][1] = Integer.valueOf(strings[6]);
-                        jLabel27.setText(strings[0]);
-                        jLabel47.setText(strings[1] + " " + strings[2]);
+                        jLabel29.setText(strings[0]);
+                        jLabel49.setText(strings[1] + " " + strings[2]);
                     }
                     else if(strings[4].equals("14:00:00")) {
                         emp[4][2] = Integer.valueOf(strings[6]);
-                        jLabel28.setText(strings[0]);
-                        jLabel48.setText(strings[1] + " " + strings[2]);
+                        jLabel30.setText(strings[0]);
+                        jLabel50.setText(strings[1] + " " + strings[2]);
                     }
                     else {
                         emp[4][3] = Integer.valueOf(strings[6]);
-                        jLabel29.setText(strings[0]);
-                        jLabel49.setText(strings[1] + " " + strings[2]);
+                        jLabel31.setText(strings[0]);
+                        jLabel51.setText(strings[1] + " " + strings[2]);
                     }
                 }
 

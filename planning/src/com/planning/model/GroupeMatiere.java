@@ -31,36 +31,38 @@ public class GroupeMatiere {
         this.numGroupe = numGroupe;
     }
 
-    public int getnumGroupe() {
+    public int getNumGroupe() {
         return numGroupe;
     }
 
-    public void setnumGroupe(int numGroupe) {
+    public void setNumGroupe(int numGroupe) {
         this.numGroupe = numGroupe;
     }
 
-    public int getnumMatiere() {
+    public int getNumMatiere() {
         return numMatiere;
     }
 
-    public void setnumMatiere(int numMatiere) {
+    public void setNumMatiere(int numMatiere) {
         this.numMatiere = numMatiere;
-    }    
-    
+    }
+
     public Date getDateDebut() {
         return dateDebut;
     }
 
     public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
-    } 
-    
+    }
+
     public Date getDateFin() {
         return dateFin;
     }
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
-    }    
+    }
+
+    
     
 }

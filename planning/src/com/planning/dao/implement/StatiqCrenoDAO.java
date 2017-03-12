@@ -6,6 +6,7 @@
 package com.planning.dao.implement;
 
 import com.planning.dao.DAO;
+import com.planning.model.Creneau;
 import com.planning.model.StatiqueCreneau;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -54,8 +55,14 @@ public class StatiqCrenoDAO  extends DAO <StatiqueCreneau> {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             query = "DELETE FROM StatiqueCreneau WHERE NumSC = " + obj.getNumSC();
             state.executeUpdate(query);
-            query = "DELETE FROM Seance WHERE NumEns = " + obj.getNumEns() + " AND NumMatiere = " + obj.getNumMatiere() + " AND NumGroupe = " + obj.getNumGroupe();
-            state.executeUpdate(query);
+            CreneauDAO cdao = new CreneauDAO(conn);
+            ArrayList list = cdao.getCreByJourEtHeure(obj.getJourSemaine(), obj.getHeureSeance(), obj.getDateD(), obj.getDateF());
+            for(int i = 0; i < list.size(); i++) {
+                query = "DELETE FROM Seance WHERE NumEns = " + obj.getNumEns() + " AND NumMatiere = " + obj.getNumMatiere() + " AND NumGroupe = " + obj.getNumGroupe();
+                query += " and NumCreneau = " + ((Creneau)list.get(i)).getNumCreneau();
+                state.executeUpdate(query);
+            }
+            
         } 
         catch (SQLException e) {
             System.out.println("SQLException: " + e);

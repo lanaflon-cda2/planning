@@ -7,8 +7,10 @@
  */
 package com.planning.controler;
 
+import com.planning.dao.implement.CreneauDAO;
 import com.planning.dao.implement.SeanceDAO;
 import com.planning.model.ConnexionBD;
+import com.planning.model.Creneau;
 import com.planning.model.Seance;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -97,10 +99,17 @@ public class Absenter {
     }
 
     private Date getDateFin(){
+        CreneauDAO cdao = new CreneauDAO(con);
+        Creneau cren = cdao.find(numCreneau);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(cren.getDateCreneau());
+        int jourSemaine = cal.get(Calendar.DAY_OF_WEEK);
         try {
             state = con.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
-            String query = new String();
-            query += "SELECT DateFin FROM GroupeMatiere WHERE NumGroupe = " + numGroupe + " and NumMatiere= "+ numMatiere;
+//            String query = "SELECT DateF FROM StatiqueCreneau WHERE NumGroupe = " + numGroupe + " and NumMatiere = " + numMatiere + " and JourSemaine = " + jourSemaine;
+            String query = "SELECT MAX(DateF) FROM StatiqueCreneau WHERE NumGroupe = " + numGroupe + " and NumMatiere = " + numMatiere + " and NumEns = " + numEns;
+            
+            query += " and HeureSeance = '" + cren.getHeureCreneau() + "'";
             res = state.executeQuery(query);
             while(res.next()) {
                 dateFin = res.getDate(1);                 

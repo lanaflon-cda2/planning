@@ -24,13 +24,12 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
      * Creates new form AcceuilEnseignant
      */
     String idUser;
-    MonCompteDept md = new MonCompteDept();
     Modifier1 modifier = new Modifier1();
     
     
     public void setMD(MonCompteDept md){
-        this.md = md;
-        md.setIDUserMCD(this.idUser);
+        this.mcd = md;
+        mcd.setIDUserMCD(this.idUser);
     }
     
     

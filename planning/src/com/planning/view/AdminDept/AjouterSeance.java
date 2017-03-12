@@ -6,11 +6,13 @@
 package com.planning.view.AdminDept;
 
 import com.planning.dao.implement.EnseignantDAO;
+import com.planning.dao.implement.GrpMatDAO;
 import com.planning.dao.implement.MatiereDAO;
 import com.planning.dao.implement.SeanceDAO;
 import com.planning.dao.implement.StatiqCrenoDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
+import com.planning.model.GroupeMatiere;
 import com.planning.model.Matiere;
 import com.planning.model.StatiqueCreneau;
 import java.sql.Connection;
@@ -176,6 +178,9 @@ public class AjouterSeance extends javax.swing.JFrame {
         scdao.create(sc);
         SeanceDAO s = new SeanceDAO(conn);
         s.createAllSeance(sc);
+//        GrpMatDAO grpMatDAO = new GrpMatDAO(conn);
+//        GroupeMatiere gmat = new GroupeMatiere(mat.getNumMatiere(), this.numGroupe, dateD, dateF);
+//        grpMatDAO.create(gmat);
         this.gererEmploi.getEmp(numGroupe);
         this.dispose();
     }//GEN-LAST:event_enregistrerActionPerformed

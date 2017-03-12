@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreneauDAO extends DAO<Creneau> {
@@ -206,6 +207,27 @@ public class CreneauDAO extends DAO<Creneau> {
         }
         
     
+    }
+    
+    public ArrayList getCreByJourEtHeure(int jour, Time t, Date dd, Date df){
+        ArrayList list = null;
+        Creneau creneau = null;
+        try { 
+            state = conn.createStatement(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            query = "SELECT * FROM Creneau WHERE DAYOFWEEK(Date) = " + jour + " and Heure = '" + t + "'";
+            query += " and Date >= '" + dd + "' and Date <= '" + df + "'";
+            res = state.executeQuery(query);
+            while(res.next()) {
+                if(list == null) list = new ArrayList();
+                creneau = new Creneau(res.getInt(1), res.getDate(2), res.getTime(3));    
+                list.add(creneau);
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException in getCreByJourEtHeure: " + e);
+        }
+        
+        return list;
+        
     }
     
 }

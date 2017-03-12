@@ -34,7 +34,7 @@ public class EnseignantDAO extends DAO<Enseignant> {
             obj.setNumEns(numEns);            
         }
         catch (SQLException e) {
-            System.out.println("SQLException: " + e);
+            System.out.println("SQLException in creating Enseignant: " + e);
             return false;
         }
        

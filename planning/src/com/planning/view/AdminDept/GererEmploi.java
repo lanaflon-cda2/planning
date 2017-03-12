@@ -7,9 +7,11 @@ package com.planning.view.AdminDept;
 
 import com.planning.dao.implement.FiliereDAO;
 import com.planning.dao.implement.GroupeDAO;
+import com.planning.dao.implement.GrpMatDAO;
 import com.planning.dao.implement.StatiqCrenoDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Filiere;
+import com.planning.model.GroupeMatiere;
 import com.planning.model.StatiqueCreneau;
 import java.awt.Color;
 import java.sql.Connection;
@@ -141,7 +143,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel51 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        supprimerButton = new javax.swing.JButton();
 
         setTitle("Gestion des Emplois du temps");
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -679,13 +681,13 @@ public class GererEmploi extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, 60));
 
-        jButton1.setText("Supprimer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        supprimerButton.setText("Supprimer");
+        supprimerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                supprimerButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, 30));
+        getContentPane().add(supprimerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -893,6 +895,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         if(listensmat == null) {
             return;
         }
+        
         for (int i = 0; i < listensmat.size(); i++) {
             sc = (StatiqueCreneau) listensmat.get(i);
             jourS = sc.getJourSemaine();
@@ -1000,24 +1003,24 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 else if (String.valueOf(jourS).equals("6")) {
                     if(heureS.equals("08:00:00")) {
                         emp[4][0] = sc;
-                        jLabel26.setText(sc.getNomMatiere());
-                        jLabel46.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        jLabel28.setText(sc.getNomMatiere());
+                        jLabel48.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[4][1] = sc;
-                        jLabel27.setText(sc.getNomMatiere());
-                        jLabel47.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        jLabel29.setText(sc.getNomMatiere());
+                        jLabel49.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[4][2] = sc;
-                        jLabel28.setText(sc.getNomMatiere());
-                        jLabel48.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        jLabel30.setText(sc.getNomMatiere());
+                        jLabel50.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[4][3] = sc;
-                        jLabel29.setText(sc.getNomMatiere());
-                        jLabel49.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        jLabel31.setText(sc.getNomMatiere());
+                        jLabel51.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                 }
 
@@ -1080,17 +1083,17 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel27.setText(null);
         jLabel47.setText(null);
 
-        jLabel26.setText(null);
-        jLabel46.setText(null);
-
-        jLabel27.setText(null);
-        jLabel47.setText(null);
-
         jLabel28.setText(null);
         jLabel48.setText(null);
 
         jLabel29.setText(null);
         jLabel49.setText(null);
+
+        jLabel30.setText(null);
+        jLabel50.setText(null);
+
+        jLabel31.setText(null);
+        jLabel51.setText(null);
 
     }
     
@@ -1633,7 +1636,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_groupecomboItemStateChanged
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void supprimerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerButtonActionPerformed
         // TODO add your handling code here:
         if(numpan == -1) {
             JOptionPane.showMessageDialog(null, "Choisissez un creneau!", "Emploi du temps", JOptionPane.INFORMATION_MESSAGE);
@@ -1714,11 +1717,13 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         
         StatiqCrenoDAO scdao = new StatiqCrenoDAO(conn);
         scdao.delete(sc);
+//        GrpMatDAO grpMatDAO = new GrpMatDAO(conn);
+//        grpMatDAO.delete(new GroupeMatiere(sc.getNumMatiere(), sc.getNumGroupe()));
         
         this.getEmp(sc.getNumGroupe());
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_supprimerButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1729,7 +1734,6 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JPanel j14;
     private javax.swing.JPanel j16;
     private javax.swing.JPanel j8;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1804,6 +1808,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JPanel me16;
     private javax.swing.JPanel me8;
     private javax.swing.JComboBox<String> niveaucombo;
+    private javax.swing.JButton supprimerButton;
     private javax.swing.JPanel v10;
     private javax.swing.JPanel v14;
     private javax.swing.JPanel v16;
