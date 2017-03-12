@@ -710,6 +710,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         groupecombo.removeAllItems();
         filierecombo.setSelectedIndex(-1);
         //this.filierecomboItemStateChanged(null);
+        this.resetEMP();
     }
     
     public void setAcceuilAdminDept(AcceuilAdminDept aadept) {
@@ -892,6 +893,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         StatiqueCreneau sc;
         int jourS;
         String heureS;
+        String text;
         if(listensmat == null) {
             return;
         }
@@ -904,123 +906,198 @@ public class GererEmploi extends javax.swing.JInternalFrame {
 
                     if(heureS.equals("08:00:00")) {
                         emp[0][0] = sc;
-                        l8text.setText(sc.getNomMatiere());
-                        jLabel32.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = l8text.getText();
+                        text += "\n---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        l8text.setText(text);
+                        //jLabel32.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                    
                     else if(heureS.equals("10:00:00")) {
                         emp[0][1] = sc;
-                        jLabel13.setText(sc.getNomMatiere());
-                        jLabel33.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel13.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel13.setText(text);
+                        //jLabel33.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[0][2] = sc;
-                        jLabel14.setText(sc.getNomMatiere());
-                        jLabel34.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel14.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel14.setText(text);
+//                        jLabel14.setText(sc.getNomMatiere());
+//                        jLabel34.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[0][3] = sc;
-                        jLabel15.setText(sc.getNomMatiere());
-                        jLabel35.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel15.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel15.setText(text);
+//                        jLabel15.setText(sc.getNomMatiere());
+//                        jLabel35.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                 }
 
                 else if(String.valueOf(jourS).equals("3")) {
                     if(heureS.equals("08:00:00")) {
                         emp[1][0] = sc;
-                        jLabel16.setText(sc.getNomMatiere());
-                        jLabel36.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel16.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel16.setText(text);
+//                        jLabel16.setText(sc.getNomMatiere());
+//                        jLabel36.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[1][1] = sc;
-                        jLabel17.setText(sc.getNomMatiere());
-                        jLabel37.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel17.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel17.setText(text);
+//                        jLabel17.setText(sc.getNomMatiere());
+//                        jLabel37.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[1][2] = sc;
-                        jLabel18.setText(sc.getNomMatiere());
-                        jLabel38.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel18.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel18.setText(text);
+//                        jLabel18.setText(sc.getNomMatiere());
+//                        jLabel38.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[1][3] = sc;
-                        jLabel19.setText(sc.getNomMatiere());
-                        jLabel39.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel19.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel19.setText(text);
+//                        jLabel19.setText(sc.getNomMatiere());
+//                        jLabel39.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                 }
 
                 else if(String.valueOf(jourS).equals("4")) {
                     if(heureS.equals("08:00:00")) {
                         emp[2][0] = sc;
-                        jLabel20.setText(sc.getNomMatiere());
-                        jLabel40.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel20.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel20.setText(text);
+//                        jLabel20.setText(sc.getNomMatiere());
+//                        jLabel40.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[2][1] = sc;
-                        jLabel21.setText(sc.getNomMatiere());
-                        jLabel41.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel21.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel21.setText(text);
+//                        jLabel21.setText(sc.getNomMatiere());
+//                        jLabel41.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[2][2] = sc;
-                        jLabel22.setText(sc.getNomMatiere());
-                        jLabel42.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel22.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel22.setText(text);
+//                        jLabel22.setText(sc.getNomMatiere());
+//                        jLabel42.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[2][3] = sc;
-                        jLabel23.setText(sc.getNomMatiere());
-                        jLabel43.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel23.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel23.setText(text);
+//                        jLabel23.setText(sc.getNomMatiere());
+//                        jLabel43.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                 }
 
                 else if(String.valueOf(jourS).equals("5")) {
                     if(heureS.equals("08:00:00")) {
                         emp[3][0] = sc;
-                        jLabel24.setText(sc.getNomMatiere());
-                        jLabel44.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel24.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel24.setText(text);
+//                        jLabel24.setText(sc.getNomMatiere());
+//                        jLabel44.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[3][1] = sc;
-                        jLabel25.setText(sc.getNomMatiere());
-                        jLabel45.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel25.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel25.setText(text);
+//                        jLabel25.setText(sc.getNomMatiere());
+//                        jLabel45.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[3][2] = sc;
-                        jLabel26.setText(sc.getNomMatiere());
-                        jLabel46.setText(sc.getNomEns() + " " + sc.getPrenomEns());
-                 
-                        jLabel26.paintImmediately(jLabel26.getVisibleRect());
-                        jLabel46.paintImmediately(jLabel46.getVisibleRect());
+                        text = jLabel26.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel26.setText(text);
+//                        jLabel26.setText(sc.getNomMatiere());
+//                        jLabel46.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[3][3] = sc;
-                        jLabel27.setText(sc.getNomMatiere());
-                        jLabel47.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel27.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel27.setText(text);
+//                        jLabel27.setText(sc.getNomMatiere());
+//                        jLabel47.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                 }
 
                 else if (String.valueOf(jourS).equals("6")) {
                     if(heureS.equals("08:00:00")) {
                         emp[4][0] = sc;
-                        jLabel28.setText(sc.getNomMatiere());
-                        jLabel48.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel28.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel28.setText(text);
+//                        jLabel28.setText(sc.getNomMatiere());
+//                        jLabel48.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[4][1] = sc;
-                        jLabel29.setText(sc.getNomMatiere());
-                        jLabel49.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel29.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel29.setText(text);
+//                        jLabel29.setText(sc.getNomMatiere());
+//                        jLabel49.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[4][2] = sc;
-                        jLabel30.setText(sc.getNomMatiere());
-                        jLabel50.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel30.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel30.setText(text);
+//                        jLabel30.setText(sc.getNomMatiere());
+//                        jLabel50.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[4][3] = sc;
-                        jLabel31.setText(sc.getNomMatiere());
-                        jLabel51.setText(sc.getNomEns() + " " + sc.getPrenomEns());
+                        text = jLabel31.getText();
+                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
+                        jLabel31.setText(text);
+//                        jLabel31.setText(sc.getNomMatiere());
+//                        jLabel51.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                 }
 
@@ -1035,65 +1112,65 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     }
     
     public void resetEMP() {
-        l8text.setText(null);
-        jLabel32.setText(null);
+        l8text.setText("");
+        jLabel32.setText("");
 
-        jLabel13.setText(null);
-        jLabel33.setText(null);
+        jLabel13.setText("");
+        jLabel33.setText("");
 
-        jLabel14.setText(null);
-        jLabel34.setText(null);
+        jLabel14.setText("");
+        jLabel34.setText("");
 
-        jLabel15.setText(null);
-        jLabel35.setText(null);
+        jLabel15.setText("");
+        jLabel35.setText("");
 
-        jLabel16.setText(null);
-        jLabel36.setText(null);
+        jLabel16.setText("");
+        jLabel36.setText("");
 
-        jLabel17.setText(null);
-        jLabel37.setText(null);
+        jLabel17.setText("");
+        jLabel37.setText("");
 
-        jLabel18.setText(null);
-        jLabel38.setText(null);
+        jLabel18.setText("");
+        jLabel38.setText("");
 
-        jLabel19.setText(null);
-        jLabel39.setText(null);
+        jLabel19.setText("");
+        jLabel39.setText("");
 
-        jLabel20.setText(null);
-        jLabel40.setText(null);
+        jLabel20.setText("");
+        jLabel40.setText("");
 
-        jLabel21.setText(null);
-        jLabel41.setText(null);
+        jLabel21.setText("");
+        jLabel41.setText("");
 
-        jLabel22.setText(null);
-        jLabel42.setText(null);
+        jLabel22.setText("");
+        jLabel42.setText("");
 
-        jLabel23.setText(null);
-        jLabel43.setText(null);
+        jLabel23.setText("");
+        jLabel43.setText("");
 
-        jLabel24.setText(null);
-        jLabel44.setText(null);
+        jLabel24.setText("");
+        jLabel44.setText("");
 
-        jLabel25.setText(null);
-        jLabel45.setText(null);
+        jLabel25.setText("");
+        jLabel45.setText("");
 
-        jLabel26.setText(null);
-        jLabel46.setText(null);
+        jLabel26.setText("");
+        jLabel46.setText("");
 
-        jLabel27.setText(null);
-        jLabel47.setText(null);
+        jLabel27.setText("");
+        jLabel47.setText("");
 
-        jLabel28.setText(null);
-        jLabel48.setText(null);
+        jLabel28.setText("");
+        jLabel48.setText("");
 
-        jLabel29.setText(null);
-        jLabel49.setText(null);
+        jLabel29.setText("");
+        jLabel49.setText("");
 
-        jLabel30.setText(null);
-        jLabel50.setText(null);
+        jLabel30.setText("");
+        jLabel50.setText("");
 
-        jLabel31.setText(null);
-        jLabel51.setText(null);
+        jLabel31.setText("");
+        jLabel51.setText("");
 
     }
     
