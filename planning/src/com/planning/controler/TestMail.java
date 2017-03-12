@@ -22,7 +22,7 @@ public class TestMail {
     
     public static void testMail() {
         // Recipient's email ID needs to be mentioned.
-      String to = "bouayadsalma94@gmail.com";
+      String to = "genereuxwilcoxalahassa@student.emi.ac.ma";
 
       // Sender's email ID needs to be mentioned
       String from = "wilofice@gmail.com";

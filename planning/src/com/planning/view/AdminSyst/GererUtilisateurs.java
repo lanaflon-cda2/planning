@@ -10,8 +10,10 @@ import com.planning.dao.implement.UsersDAO;
 import com.planning.model.ConnexionBD;
 import com.planning.model.Enseignant;
 import com.planning.model.Users;
+import java.awt.Color;
 import java.sql.Connection;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -111,8 +113,10 @@ public class GererUtilisateurs extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void init() {
-        //((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
-        //this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        this.getContentPane().setBackground(Color.white);
         updateTable();
     }
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
