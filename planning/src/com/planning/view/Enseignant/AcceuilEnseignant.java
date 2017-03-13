@@ -6,8 +6,8 @@
 package com.planning.view.Enseignant;
 
 import com.planning.view.AdminDept.AcceuilAdminDept;
-import com.planning.view.Deconnexion;
 import com.planning.view.LoginGUI;
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,6 +68,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
         acceuilBG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("calendar(2).png")));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,7 +79,7 @@ public class AcceuilEnseignant extends javax.swing.JFrame {
                 deconnexionActionPerformed(evt);
             }
         });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 30));
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 110, 30));
 
         com.planning.view.Enseignant.MonCompteEnseignant mce = new com.planning.view.Enseignant.MonCompteEnseignant();
         this.desktop.add(mce);

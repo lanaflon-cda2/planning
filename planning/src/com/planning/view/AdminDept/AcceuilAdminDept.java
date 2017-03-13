@@ -6,6 +6,7 @@
 package com.planning.view.AdminDept;
 
 import com.planning.view.LoginGUI;
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,6 +63,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
         acceuilBG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("calendar(2).png")));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,7 +74,7 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
                 deconnexionActionPerformed(evt);
             }
         });
-        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, -1, 30));
+        getContentPane().add(deconnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 110, 30));
 
         mcd = new MonCompteDept();
         this.desktop.add(mcd);
@@ -82,7 +84,6 @@ public class AcceuilAdminDept extends javax.swing.JFrame {
             Logger.getLogger(com.planning.view.AdminDept.AcceuilAdminDept.class.getName()).log(Level.SEVERE, null, ex);
         }
         mcd.show();
-        desktop.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(desktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 860, 560));
 
         moncompte.setText("Mon Compte");

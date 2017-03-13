@@ -20,7 +20,7 @@ public class ConnexionBD {
         Connection x = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            x = DriverManager.getConnection("jdbc:mysql://localhost/planningbd","root","root");
+            x = DriverManager.getConnection("jdbc:mysql://localhost/planningbd","root","");
             
             if(x == null)
                 System.out.println("Erreur de Connexion");

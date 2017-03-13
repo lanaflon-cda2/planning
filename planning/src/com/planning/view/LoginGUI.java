@@ -14,6 +14,7 @@ import com.planning.view.AdminDept.MonCompteDept;
 import com.planning.view.AdminSyst.AcceuilAdminSyst;
 import com.planning.view.AdminSyst.MonCompteSyst;
 import com.planning.view.Enseignant.MonCompteEnseignant;
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +51,9 @@ public class LoginGUI extends javax.swing.JFrame {
         loginbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("calendar(2).png")));
         setMinimumSize(new java.awt.Dimension(900, 600));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Connexion.setFont(new java.awt.Font("Champagne & Limousines", 1, 24)); // NOI18N
@@ -67,7 +70,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 ConnexionActionPerformed(evt);
             }
         });
-        getContentPane().add(Connexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 150, -1));
+        getContentPane().add(Connexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 220, -1));
 
         identifiant.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         identifiant.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +93,7 @@ public class LoginGUI extends javax.swing.JFrame {
         });
         getContentPane().add(loginbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
 
-        pack();
+        setSize(new java.awt.Dimension(416, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

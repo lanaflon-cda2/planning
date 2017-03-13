@@ -34,9 +34,10 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
     
     public MonEmploiEnseignant() {
         initComponents();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
-        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+       //((javax.swing.plaf.basic.BasicInternalFrameUI)getUI()).setNorthPane(null);
+        //this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.getContentPane().setBackground(Color.white);
+        //this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         this.initEmp();
     }
@@ -130,10 +131,10 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        consulter = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setTitle("mon emploi");
+        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(860, 570));
         setMinimumSize(new java.awt.Dimension(860, 580));
         setPreferredSize(new java.awt.Dimension(860, 570));
@@ -624,7 +625,7 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 123, 32));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 123, 32));
 
         jPanel7.setBackground(new java.awt.Color(0, 153, 153));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -635,18 +636,15 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 150, 60));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 280, 30));
 
-        consulter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        consulter.setText("Consulter");
-        consulter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consulterActionPerformed(evt);
+        jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser1PropertyChange(evt);
             }
         });
-        getContentPane().add(consulter, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 120, 30));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 280, 30));
 
-        pack();
+        setBounds(0, 0, 860, 602);
     }// </editor-fold>//GEN-END:initComponents
 
     private void l8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseEntered
@@ -1159,17 +1157,14 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         v14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         l10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
     }//GEN-LAST:event_formMouseClicked
-
-    private void consulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulterActionPerformed
-        // TODO add your handling code here:
-        
+    
+    private void consulter() {
         Date dateSemaine = new Date(jDateChooser1.getDate().getTime());
         dateSemaine = this.getMonday(dateSemaine);
         Date semaineFin = this.getFriday(dateSemaine);
         this.getEmp(dateSemaine, semaineFin);
-
-    }//GEN-LAST:event_consulterActionPerformed
-
+    }
+    
     private void l8textInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_l8textInputMethodTextChanged
         // TODO add your handling code here:
  
@@ -1340,6 +1335,15 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
+        // TODO add your handling code here:
+        Date dateselected = new Date(jDateChooser1.getDate().getTime());
+        Date monday = this.getMonday(dateselected);
+        Date friday = this.getFriday(dateselected);
+        this.setTitle("Semaine du Lundi " + monday + " au Vendredi " + friday);
+        this.consulter();
+    }//GEN-LAST:event_jDateChooser1PropertyChange
     
     public void initEmp(){
         
@@ -1621,7 +1625,6 @@ public class MonEmploiEnseignant extends javax.swing.JInternalFrame {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton consulter;
     private javax.swing.JPanel j10;
     private javax.swing.JPanel j14;
     private javax.swing.JPanel j16;

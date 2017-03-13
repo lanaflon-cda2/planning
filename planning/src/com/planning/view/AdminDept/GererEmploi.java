@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -63,7 +64,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         filierecombo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         niveaucombo = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
+        groupeCombo = new javax.swing.JLabel();
         definirSeance = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -82,65 +83,105 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         l8 = new javax.swing.JPanel();
-        l8text = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         l10 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
         l16 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane4 = new javax.swing.JTextPane();
         l14 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
         ma8 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane5 = new javax.swing.JTextPane();
         ma10 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane6 = new javax.swing.JTextPane();
         ma14 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextPane7 = new javax.swing.JTextPane();
         ma16 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextPane8 = new javax.swing.JTextPane();
         j8 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTextPane13 = new javax.swing.JTextPane();
         me8 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextPane9 = new javax.swing.JTextPane();
         me10 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextPane10 = new javax.swing.JTextPane();
         j10 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTextPane14 = new javax.swing.JTextPane();
         j14 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTextPane15 = new javax.swing.JTextPane();
         me14 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTextPane11 = new javax.swing.JTextPane();
         me16 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTextPane12 = new javax.swing.JTextPane();
         j16 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jTextPane16 = new javax.swing.JTextPane();
         v8 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jTextPane17 = new javax.swing.JTextPane();
         v10 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jTextPane18 = new javax.swing.JTextPane();
         v14 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jTextPane19 = new javax.swing.JTextPane();
         v16 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
+        jScrollPane20 = new javax.swing.JScrollPane();
+        jTextPane20 = new javax.swing.JTextPane();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         supprimerButton = new javax.swing.JButton();
@@ -174,7 +215,7 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 filierecomboItemStateChanged(evt);
             }
         });
-        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 180, 30));
+        getContentPane().add(filierecombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 170, 30));
 
         jLabel11.setText("Niveau");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
@@ -188,8 +229,8 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         });
         getContentPane().add(niveaucombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 50, 30));
 
-        jLabel12.setText("Groupe");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
+        groupeCombo.setText("Groupe");
+        getContentPane().add(groupeCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
 
         definirSeance.setText("Ajouter une seance");
         definirSeance.addActionListener(new java.awt.event.ActionListener() {
@@ -292,31 +333,45 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         });
         l8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        l8text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l8text.addComponentListener(new java.awt.event.ComponentAdapter() {
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
-                l8textComponentResized(evt);
+                jLabel12ComponentResized(evt);
             }
         });
-        l8text.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        jLabel12.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                l8textInputMethodTextChanged(evt);
+                jLabel12InputMethodTextChanged(evt);
             }
         });
-        l8text.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        jLabel12.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                l8textPropertyChange(evt);
+                jLabel12PropertyChange(evt);
             }
         });
-        l8.add(l8text, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+        l8.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setToolTipText("");
         jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         l8.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane1.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane1.setAutoscrolls(false);
+        jTextPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTextPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTextPane1);
+
+        l8.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 80));
 
         getContentPane().add(l8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 140, 80));
 
@@ -337,6 +392,22 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel33.setToolTipText("");
         l10.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jScrollPane2.setOpaque(false);
+
+        jTextPane2.setEditable(false);
+        jTextPane2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane2.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane2.setAutoscrolls(false);
+        jTextPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTextPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTextPane2);
+
+        l10.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(l10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 150, 80));
 
         l16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -354,6 +425,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l16.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane4.setEditable(false);
+        jTextPane4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane4.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane4.setAutoscrolls(false);
+        jTextPane4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane4MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTextPane4);
+
+        l16.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -6, 150, 90));
 
         getContentPane().add(l16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 150, 80));
 
@@ -373,6 +457,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         l14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane3.setEditable(false);
+        jTextPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane3.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane3.setAutoscrolls(false);
+        jTextPane3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane3MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTextPane3);
+
+        l14.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(l14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 150, 80));
 
         ma8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -390,6 +487,18 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma8.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        jTextPane5.setEditable(false);
+        jTextPane5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane5.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane5MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jTextPane5);
+
+        ma8.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -6, 140, 90));
 
         getContentPane().add(ma8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 140, 80));
 
@@ -410,6 +519,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel37.setToolTipText("");
         ma10.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane6.setEditable(false);
+        jTextPane6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane6.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane6.setAutoscrolls(false);
+        jTextPane6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane6MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTextPane6);
+
+        ma10.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -6, 150, 90));
+
         getContentPane().add(ma10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 150, 80));
 
         ma14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -427,6 +549,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma14.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane7.setEditable(false);
+        jTextPane7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane7.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane7.setAutoscrolls(false);
+        jTextPane7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane7MouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(jTextPane7);
+
+        ma14.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
 
         getContentPane().add(ma14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 150, 80));
 
@@ -446,6 +581,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ma16.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane8.setEditable(false);
+        jTextPane8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane8.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane8.setAutoscrolls(false);
+        jTextPane8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane8MouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(jTextPane8);
+
+        ma16.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(ma16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 150, 80));
 
         j8.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -463,6 +611,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j8.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
+
+        jTextPane13.setEditable(false);
+        jTextPane13.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane13.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane13.setAutoscrolls(false);
+        jTextPane13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane13MouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(jTextPane13);
+
+        j8.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 80));
 
         getContentPane().add(j8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 140, 80));
 
@@ -482,6 +643,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me8.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
 
+        jTextPane9.setEditable(false);
+        jTextPane9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane9.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane9.setAutoscrolls(false);
+        jTextPane9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane9MouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(jTextPane9);
+
+        me8.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 80));
+
         getContentPane().add(me8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 140, 80));
 
         me10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -500,6 +674,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me10.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane10.setEditable(false);
+        jTextPane10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane10.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane10.setAutoscrolls(false);
+        jTextPane10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane10MouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(jTextPane10);
+
+        me10.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(me10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 150, 80));
 
         j10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -517,6 +704,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j10.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane14.setEditable(false);
+        jTextPane14.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane14.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane14.setAutoscrolls(false);
+        jTextPane14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane14MouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(jTextPane14);
+
+        j10.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
 
         getContentPane().add(j10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 150, 80));
 
@@ -543,6 +743,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j14.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane15.setEditable(false);
+        jTextPane15.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane15.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane15.setAutoscrolls(false);
+        jTextPane15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane15MouseClicked(evt);
+            }
+        });
+        jScrollPane15.setViewportView(jTextPane15);
+
+        j14.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(j14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 150, 80));
 
         me14.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -560,6 +773,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me14.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane11.setEditable(false);
+        jTextPane11.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane11.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jTextPane11.setAutoscrolls(false);
+        jTextPane11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane11MouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(jTextPane11);
+
+        me14.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
 
         getContentPane().add(me14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 150, 80));
 
@@ -579,6 +805,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         me16.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane12.setEditable(false);
+        jTextPane12.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane12.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane12.setAutoscrolls(false);
+        jTextPane12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane12MouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(jTextPane12);
+
+        me16.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(me16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 150, 80));
 
         j16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -596,6 +835,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         j16.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane16.setEditable(false);
+        jTextPane16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane16.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane16.setAutoscrolls(false);
+        jTextPane16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane16MouseClicked(evt);
+            }
+        });
+        jScrollPane16.setViewportView(jTextPane16);
+
+        j16.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
 
         getContentPane().add(j16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 150, 80));
 
@@ -615,6 +867,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v8.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 20));
 
+        jTextPane17.setEditable(false);
+        jTextPane17.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane17.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane17.setAutoscrolls(false);
+        jTextPane17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane17MouseClicked(evt);
+            }
+        });
+        jScrollPane17.setViewportView(jTextPane17);
+
+        v8.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 80));
+
         getContentPane().add(v8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 140, 80));
 
         v10.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -632,6 +897,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel49.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v10.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane18.setEditable(false);
+        jTextPane18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextPane18.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane18.setAutoscrolls(false);
+        jTextPane18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane18MouseClicked(evt);
+            }
+        });
+        jScrollPane18.setViewportView(jTextPane18);
+
+        v10.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
 
         getContentPane().add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 150, 80));
 
@@ -651,6 +929,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v14.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
+        jTextPane19.setEditable(false);
+        jTextPane19.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane19.setFont(new java.awt.Font("Century Schoolbook L", 0, 10)); // NOI18N
+        jTextPane19.setAutoscrolls(false);
+        jTextPane19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane19MouseClicked(evt);
+            }
+        });
+        jScrollPane19.setViewportView(jTextPane19);
+
+        v14.add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
+
         getContentPane().add(v14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 150, 80));
 
         v16.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
@@ -668,6 +959,19 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         jLabel51.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v16.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
+
+        jTextPane20.setEditable(false);
+        jTextPane20.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextPane20.setFont(new java.awt.Font("Century Schoolbook L", 0, 14)); // NOI18N
+        jTextPane20.setAutoscrolls(false);
+        jTextPane20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane20MouseClicked(evt);
+            }
+        });
+        jScrollPane20.setViewportView(jTextPane20);
+
+        v16.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 80));
 
         getContentPane().add(v16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, 150, 80));
 
@@ -906,36 +1210,36 @@ public class GererEmploi extends javax.swing.JInternalFrame {
 
                     if(heureS.equals("08:00:00")) {
                         emp[0][0] = sc;
-                        text = l8text.getText();
-                        text += "\n---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        l8text.setText(text);
+                        text = jTextPane1.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane1.setText(text);
                         //jLabel32.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                    
                     else if(heureS.equals("10:00:00")) {
                         emp[0][1] = sc;
-                        text = jLabel13.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel13.setText(text);
+                        text = jTextPane2.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane2.setText(text);
                         //jLabel33.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[0][2] = sc;
-                        text = jLabel14.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel14.setText(text);
+                        text = jTextPane3.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane3.setText(text);
 //                        jLabel14.setText(sc.getNomMatiere());
 //                        jLabel34.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[0][3] = sc;
-                        text = jLabel15.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel15.setText(text);
+                        text = jTextPane4.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane4.setText(text);
 //                        jLabel15.setText(sc.getNomMatiere());
 //                        jLabel35.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
@@ -944,38 +1248,38 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 else if(String.valueOf(jourS).equals("3")) {
                     if(heureS.equals("08:00:00")) {
                         emp[1][0] = sc;
-                        text = jLabel16.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel16.setText(text);
+                        text = jTextPane5.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane5.setText(text);
 //                        jLabel16.setText(sc.getNomMatiere());
 //                        jLabel36.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[1][1] = sc;
-                        text = jLabel17.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel17.setText(text);
+                        text = jTextPane6.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n------------\n";
+                        jTextPane6.setText(text);
 //                        jLabel17.setText(sc.getNomMatiere());
 //                        jLabel37.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[1][2] = sc;
-                        text = jLabel18.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel18.setText(text);
+                        text = jTextPane7.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane7.setText(text);
 //                        jLabel18.setText(sc.getNomMatiere());
 //                        jLabel38.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[1][3] = sc;
-                        text = jLabel19.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel19.setText(text);
+                        text = jTextPane8.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane8.setText(text);
 //                        jLabel19.setText(sc.getNomMatiere());
 //                        jLabel39.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
@@ -984,38 +1288,38 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 else if(String.valueOf(jourS).equals("4")) {
                     if(heureS.equals("08:00:00")) {
                         emp[2][0] = sc;
-                        text = jLabel20.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel20.setText(text);
+                        text = jTextPane9.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane9.setText(text);
 //                        jLabel20.setText(sc.getNomMatiere());
 //                        jLabel40.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[2][1] = sc;
-                        text = jLabel21.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel21.setText(text);
+                        text = jTextPane10.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane10.setText(text);
 //                        jLabel21.setText(sc.getNomMatiere());
 //                        jLabel41.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[2][2] = sc;
-                        text = jLabel22.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel22.setText(text);
+                        text = jTextPane11.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane11.setText(text);
 //                        jLabel22.setText(sc.getNomMatiere());
 //                        jLabel42.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[2][3] = sc;
-                        text = jLabel23.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel23.setText(text);
+                        text = jTextPane12.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane12.setText(text);
 //                        jLabel23.setText(sc.getNomMatiere());
 //                        jLabel43.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
@@ -1024,38 +1328,38 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 else if(String.valueOf(jourS).equals("5")) {
                     if(heureS.equals("08:00:00")) {
                         emp[3][0] = sc;
-                        text = jLabel24.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel24.setText(text);
+                        text = jTextPane13.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n--------------\n";
+                        jTextPane13.setText(text);
 //                        jLabel24.setText(sc.getNomMatiere());
 //                        jLabel44.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[3][1] = sc;
-                        text = jLabel25.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel25.setText(text);
+                        text = jTextPane14.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane14.setText(text);
 //                        jLabel25.setText(sc.getNomMatiere());
 //                        jLabel45.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[3][2] = sc;
-                        text = jLabel26.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel26.setText(text);
+                        text = jTextPane15.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n--------------\n";
+                        jTextPane15.setText(text);
 //                        jLabel26.setText(sc.getNomMatiere());
 //                        jLabel46.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[3][3] = sc;
-                        text = jLabel27.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel27.setText(text);
+                        text = jTextPane16.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n--------------\n";
+                        jTextPane16.setText(text);
 //                        jLabel27.setText(sc.getNomMatiere());
 //                        jLabel47.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
@@ -1064,38 +1368,38 @@ public class GererEmploi extends javax.swing.JInternalFrame {
                 else if (String.valueOf(jourS).equals("6")) {
                     if(heureS.equals("08:00:00")) {
                         emp[4][0] = sc;
-                        text = jLabel28.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel28.setText(text);
+                        text = jTextPane17.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n-------------\n";
+                        jTextPane17.setText(text);
 //                        jLabel28.setText(sc.getNomMatiere());
 //                        jLabel48.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
 
                     else if(heureS.equals("10:00:00")) {
                         emp[4][1] = sc;
-                        text = jLabel29.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel29.setText(text);
+                        text = jTextPane18.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n--------------\n";
+                        jTextPane18.setText(text);
 //                        jLabel29.setText(sc.getNomMatiere());
 //                        jLabel49.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else if(heureS.equals("14:00:00")) {
                         emp[4][2] = sc;
-                        text = jLabel30.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel30.setText(text);
+                        text = jTextPane19.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n--------------\n";
+                        jTextPane19.setText(text);
 //                        jLabel30.setText(sc.getNomMatiere());
 //                        jLabel50.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
                     else {
                         emp[4][3] = sc;
-                        text = jLabel31.getText();
-                        text += "\n" + "---------------\n" + sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
-                        text += "\n" + sc.getDateD() + "-" + sc.getDateF();
-                        jLabel31.setText(text);
+                        text = jTextPane20.getText();
+                        text += sc.getNomMatiere() + "\n" + sc.getNomEns() + " " + sc.getPrenomEns();
+                        text += "\n" + sc.getDateD() + " | " + sc.getDateF() + "\n--------------\n";
+                        jTextPane20.setText(text);
 //                        jLabel31.setText(sc.getNomMatiere());
 //                        jLabel51.setText(sc.getNomEns() + " " + sc.getPrenomEns());
                     }
@@ -1112,83 +1416,106 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     }
     
     public void resetEMP() {
-        l8text.setText("");
-        jLabel32.setText("");
-
-        jLabel13.setText("");
-        jLabel33.setText("");
-
-        jLabel14.setText("");
-        jLabel34.setText("");
-
-        jLabel15.setText("");
-        jLabel35.setText("");
-
-        jLabel16.setText("");
-        jLabel36.setText("");
-
-        jLabel17.setText("");
-        jLabel37.setText("");
-
-        jLabel18.setText("");
-        jLabel38.setText("");
-
-        jLabel19.setText("");
-        jLabel39.setText("");
-
-        jLabel20.setText("");
-        jLabel40.setText("");
-
-        jLabel21.setText("");
-        jLabel41.setText("");
-
-        jLabel22.setText("");
-        jLabel42.setText("");
-
-        jLabel23.setText("");
-        jLabel43.setText("");
-
-        jLabel24.setText("");
-        jLabel44.setText("");
-
-        jLabel25.setText("");
-        jLabel45.setText("");
-
-        jLabel26.setText("");
-        jLabel46.setText("");
-
-        jLabel27.setText("");
-        jLabel47.setText("");
-
-        jLabel28.setText("");
-        jLabel48.setText("");
-
-        jLabel29.setText("");
-        jLabel49.setText("");
-
-        jLabel30.setText("");
-        jLabel50.setText("");
-
-        jLabel31.setText("");
-        jLabel51.setText("");
+        
+        jTextPane1.setText("");
+        jTextPane2.setText("");
+        jTextPane3.setText("");
+        jTextPane4.setText("");
+        jTextPane5.setText("");
+        jTextPane6.setText("");
+        jTextPane7.setText("");
+        jTextPane8.setText("");
+        jTextPane9.setText("");
+        jTextPane10.setText("");
+        jTextPane11.setText("");
+        jTextPane12.setText("");
+        jTextPane13.setText("");
+        jTextPane14.setText("");
+        jTextPane15.setText("");
+        jTextPane16.setText("");
+        jTextPane17.setText("");
+        jTextPane18.setText("");
+        jTextPane19.setText("");
+        jTextPane20.setText("");
+        
+//        
+//        jLabel12.setText("");
+//        jLabel32.setText("");
+//
+//        jLabel13.setText("");
+//        jLabel33.setText("");
+//
+//        jLabel14.setText("");
+//        jLabel34.setText("");
+//
+//        jLabel15.setText("");
+//        jLabel35.setText("");
+//
+//        jLabel16.setText("");
+//        jLabel36.setText("");
+//
+//        jLabel17.setText("");
+//        jLabel37.setText("");
+//
+//        jLabel18.setText("");
+//        jLabel38.setText("");
+//
+//        jLabel19.setText("");
+//        jLabel39.setText("");
+//
+//        jLabel20.setText("");
+//        jLabel40.setText("");
+//
+//        jLabel21.setText("");
+//        jLabel41.setText("");
+//
+//        jLabel22.setText("");
+//        jLabel42.setText("");
+//
+//        jLabel23.setText("");
+//        jLabel43.setText("");
+//
+//        jLabel24.setText("");
+//        jLabel44.setText("");
+//
+//        jLabel25.setText("");
+//        jLabel45.setText("");
+//
+//        jLabel26.setText("");
+//        jLabel46.setText("");
+//
+//        jLabel27.setText("");
+//        jLabel47.setText("");
+//
+//        jLabel28.setText("");
+//        jLabel48.setText("");
+//
+//        jLabel29.setText("");
+//        jLabel49.setText("");
+//
+//        jLabel30.setText("");
+//        jLabel50.setText("");
+//
+//        jLabel31.setText("");
+//        jLabel51.setText("");
 
     }
     
-    private void l8textComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_l8textComponentResized
+    private void jLabel12ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel12ComponentResized
         // TODO add your handling code here:
        
 
-    }//GEN-LAST:event_l8textComponentResized
+    }//GEN-LAST:event_jLabel12ComponentResized
 
-    private void l8textInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_l8textInputMethodTextChanged
+    private void jLabel12InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabel12InputMethodTextChanged
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_l8textInputMethodTextChanged
+    }//GEN-LAST:event_jLabel12InputMethodTextChanged
 
-    private void l8textPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_l8textPropertyChange
+    private void jLabel12PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel12PropertyChange
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_l8textPropertyChange
+    }//GEN-LAST:event_jLabel12PropertyChange
 
     private void l8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_l8MouseClicked
         numpan = 1;
@@ -1802,10 +2129,111 @@ public class GererEmploi extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_supprimerButtonActionPerformed
 
+    private void jTextPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane1MouseClicked
+        // TODO add your handling code here:
+        numpan = 1;
+    }//GEN-LAST:event_jTextPane1MouseClicked
+
+    private void jTextPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane2MouseClicked
+        // TODO add your handling code here:
+        numpan = 2;
+    }//GEN-LAST:event_jTextPane2MouseClicked
+
+    private void jTextPane4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane4MouseClicked
+        // TODO add your handling code here:
+        numpan = 4;
+    }//GEN-LAST:event_jTextPane4MouseClicked
+
+    private void jTextPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane3MouseClicked
+        // TODO add your handling code here:
+        numpan = 3;
+    }//GEN-LAST:event_jTextPane3MouseClicked
+
+    private void jTextPane5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane5MouseClicked
+        // TODO add your handling code here:
+        numpan = 5;
+    }//GEN-LAST:event_jTextPane5MouseClicked
+
+    private void jTextPane6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane6MouseClicked
+        // TODO add your handling code here:
+        numpan = 6;
+    }//GEN-LAST:event_jTextPane6MouseClicked
+
+    private void jTextPane7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane7MouseClicked
+        // TODO add your handling code here:
+        numpan = 7;
+    }//GEN-LAST:event_jTextPane7MouseClicked
+
+    private void jTextPane8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane8MouseClicked
+        // TODO add your handling code here:
+        numpan = 8;
+    }//GEN-LAST:event_jTextPane8MouseClicked
+
+    private void jTextPane13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane13MouseClicked
+        // TODO add your handling code here:
+        numpan = 13;
+    }//GEN-LAST:event_jTextPane13MouseClicked
+
+    private void jTextPane9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane9MouseClicked
+        // TODO add your handling code here:
+        numpan = 9;
+    }//GEN-LAST:event_jTextPane9MouseClicked
+
+    private void jTextPane10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane10MouseClicked
+        // TODO add your handling code here:
+        numpan = 10;
+    }//GEN-LAST:event_jTextPane10MouseClicked
+
+    private void jTextPane14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane14MouseClicked
+        // TODO add your handling code here:
+        numpan = 14;
+    }//GEN-LAST:event_jTextPane14MouseClicked
+
+    private void jTextPane15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane15MouseClicked
+        // TODO add your handling code here:
+        numpan = 15;
+    }//GEN-LAST:event_jTextPane15MouseClicked
+
+    private void jTextPane11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane11MouseClicked
+        // TODO add your handling code here:
+        numpan = 11;
+    }//GEN-LAST:event_jTextPane11MouseClicked
+
+    private void jTextPane12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane12MouseClicked
+        // TODO add your handling code here:
+        numpan = 12;
+    }//GEN-LAST:event_jTextPane12MouseClicked
+
+    private void jTextPane16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane16MouseClicked
+        // TODO add your handling code here:
+        numpan = 16;
+    }//GEN-LAST:event_jTextPane16MouseClicked
+
+    private void jTextPane17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane17MouseClicked
+        // TODO add your handling code here:
+        numpan = 17;
+    }//GEN-LAST:event_jTextPane17MouseClicked
+
+    private void jTextPane18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane18MouseClicked
+        // TODO add your handling code here:
+        numpan = 18;
+    }//GEN-LAST:event_jTextPane18MouseClicked
+
+    private void jTextPane19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane19MouseClicked
+        // TODO add your handling code here:
+        numpan = 19;
+    }//GEN-LAST:event_jTextPane19MouseClicked
+
+    private void jTextPane20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextPane20MouseClicked
+        // TODO add your handling code here:
+        numpan = 20;
+    }//GEN-LAST:event_jTextPane20MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton definirSeance;
     private javax.swing.JComboBox<String> filierecombo;
+    private javax.swing.JLabel groupeCombo;
     private javax.swing.JComboBox<String> groupecombo;
     private javax.swing.JPanel j10;
     private javax.swing.JPanel j14;
@@ -1871,11 +2299,50 @@ public class GererEmploi extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane10;
+    private javax.swing.JTextPane jTextPane11;
+    private javax.swing.JTextPane jTextPane12;
+    private javax.swing.JTextPane jTextPane13;
+    private javax.swing.JTextPane jTextPane14;
+    private javax.swing.JTextPane jTextPane15;
+    private javax.swing.JTextPane jTextPane16;
+    private javax.swing.JTextPane jTextPane17;
+    private javax.swing.JTextPane jTextPane18;
+    private javax.swing.JTextPane jTextPane19;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane20;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextPane jTextPane4;
+    private javax.swing.JTextPane jTextPane5;
+    private javax.swing.JTextPane jTextPane6;
+    private javax.swing.JTextPane jTextPane7;
+    private javax.swing.JTextPane jTextPane8;
+    private javax.swing.JTextPane jTextPane9;
     private javax.swing.JPanel l10;
     private javax.swing.JPanel l14;
     private javax.swing.JPanel l16;
     private javax.swing.JPanel l8;
-    private javax.swing.JLabel l8text;
     private javax.swing.JPanel ma10;
     private javax.swing.JPanel ma14;
     private javax.swing.JPanel ma16;
